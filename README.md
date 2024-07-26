@@ -2,7 +2,7 @@
 Family Farm
 </h1>
 
-## Contents
+<h2 align='center'>Contents</h2>
 
 - [프로젝트 초기 생성 절차](#-프로젝트-초기-생성-절차)
 - [설치한 라이브러리](#-설치한-라이브러리)
