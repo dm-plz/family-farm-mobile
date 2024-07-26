@@ -1,12 +1,12 @@
 import React from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+import {SafeAreaView} from 'react-native';
+
+import LoginPage from './src/component/LoginPage';
 
 function App(): React.JSX.Element {
   return (
-    <SafeAreaView>
-      <View>
-        <Text className="text-red-500">Hellow World!</Text>
-      </View>
+    <SafeAreaView className="bg-amber-100/30 h-full flex flex-col">
+      <LoginPage />
     </SafeAreaView>
   );
 }
