@@ -17,6 +17,8 @@ npx @react-native-community/cli@13.6.5 init FamilyFarmRN --version 0.74.3
 "name": "FamilyFarmRN"
 ->
 "name": "family-farm-rn"
+->
+"name": "family-farm-mobile"
 
 ### App.tsx 수정
 
