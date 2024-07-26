@@ -5,6 +5,7 @@ Family Farm
 ## Contents
 
 - [프로젝트 초기 생성 절차](#-프로젝트-초기-생성-절차)
+- [설치한 라이브러리](#-설치한-라이브러리)
 
 ## 📖 프로젝트 초기 생성 절차
 
@@ -21,3 +22,9 @@ npx @react-native-community/cli@13.6.5 init FamilyFarmRN --version 0.74.3
 ### App.tsx 수정
 
 Hello World만 남김
+
+## 설치한 라이브러리
+
+### NativeWind
+
+Native-Wind[https://www.nativewind.dev/]
