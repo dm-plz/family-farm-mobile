@@ -27,4 +27,4 @@ Hello World만 남김
 
 ### NativeWind
 
-Native-Wind[https://www.nativewind.dev/]
+[Native-Wind](https://www.nativewind.dev/)
