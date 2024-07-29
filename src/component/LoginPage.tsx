@@ -1,16 +1,12 @@
 import React from 'react';
-import {Image, Platform, Pressable, Text, View} from 'react-native';
 
-import Config from 'react-native-config';
+import {Image, Platform, Pressable, Text, View} from 'react-native';
 
 function LoginPage() {
   const isIOS = Platform.OS === 'ios';
 
-  console.log(Config.TEST_URL);
-
   return (
     <View className="h-full">
-      <Text>{Config.TEST_URL ? 'good' : 'null'}</Text>
       <View className="flex flex-row items-center justify-center basis-2/3">
         <Image
           source={require('../assets/img/orange.png')}
