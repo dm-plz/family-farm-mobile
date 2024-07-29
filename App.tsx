@@ -2,7 +2,7 @@ import React from 'react';
 import {SafeAreaView} from 'react-native';
 
 // import LoginPage from '@/pages/LoginPage';
-import SignUpPage from '@/pages/SignUpPage';
+import SignUpPage from '@/pages/sign-up/SignUpWelcomePage';
 
 function App() {
   return (
