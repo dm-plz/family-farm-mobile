@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {Image, Platform, Pressable, Text, View} from 'react-native';
 
 function LoginPage() {
