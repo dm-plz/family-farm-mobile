@@ -1,8 +1,8 @@
 import React from 'react';
 import {Image, Platform, Pressable, Text, View} from 'react-native';
 
-function LoginPage(): React.JSX.Element {
-  const isIOS = Platform.OS === 'ios' ? true : false;
+function LoginPage() {
+  const isIOS = Platform.OS === 'ios';
 
   return (
     <View className="h-full">
@@ -13,9 +13,9 @@ function LoginPage(): React.JSX.Element {
           resizeMode="contain"
         />
       </View>
-      <View className="basis-1/3 flex flex-col px-10">
+      <View className="flex flex-col px-10 basis-1/3">
         <Pressable
-          className="bg-yellow-200 w-full px-4 py-6 mb-4"
+          className="w-full px-4 py-6 mb-4 bg-yellow-200"
           onPress={() => {
             console.log('KAKAO Clicked!');
           }}>
@@ -28,7 +28,6 @@ function LoginPage(): React.JSX.Element {
 }
 
 function RenderLoginButtonByPlatform({isIOS}: {isIOS: boolean}) {
-  console.log(isIOS);
   return isIOS ? (
     <Pressable className="w-full px-4 py-6 bg-blue-200">
       <Text>IOS</Text>

@@ -1,11 +1,11 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
 
-import LoginPage from './src/component/LoginPage';
+import LoginPage from '@/component/LoginPage';
 
-function App(): React.JSX.Element {
+function App() {
   return (
-    <SafeAreaView className="bg-amber-100/30 h-full flex flex-col">
+    <SafeAreaView className="flex flex-col h-full bg-amber-100/30">
       <LoginPage />
     </SafeAreaView>
   );
