@@ -1,14 +1,12 @@
 import React from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
+import MainHeader from '@/components/MainHeader';
 
 export default function Main01() {
   return (
     <SafeAreaView className="bg-green-100">
       <View className="h-full">
-        <View className="relative mb-10">
-          <Text className="text-center text-xl">Logo</Text>
-          <Text className="absolute right-0 mr-4">Bell Icon</Text>
-        </View>
+        <MainHeader />
         <View className="mx-8 flex items-center justify-center">
           <View className="flex h-32 w-52 items-center justify-center bg-slate-200">
             <Text className="text-center">Character</Text>
