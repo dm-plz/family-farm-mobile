@@ -6,7 +6,7 @@ export default function Main01() {
   return (
     <SafeAreaView className="bg-green-100">
       <View className="h-full">
-        <MainHeader />
+        <MainHeader iconText="Bell Icon" />
         <View className="mx-8 flex items-center justify-center">
           <View className="flex h-32 w-52 items-center justify-center bg-slate-200">
             <Text className="text-center">Character</Text>
