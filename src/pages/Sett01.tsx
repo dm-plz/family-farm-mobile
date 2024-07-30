@@ -2,7 +2,7 @@ import React from 'react';
 import {Alert, Button, SafeAreaView, Text, View} from 'react-native';
 import MainHeader from '@/components/MainHeader';
 
-export default function Mymy01() {
+export default function Sett01() {
   const showAlert = () => {
     Alert.alert(
       '로그아웃 확인',
