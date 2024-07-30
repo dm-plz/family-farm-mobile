@@ -1,12 +1,8 @@
+import Main01 from '@/pages/main01';
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
 
 function App() {
-  return (
-    <SafeAreaView>
-      <Text className="text-orange-300">Hellow World</Text>
-    </SafeAreaView>
-  );
+  return <Main01 />;
 }
 
 export default App;
