@@ -1,8 +1,8 @@
-import Main01 from '@/pages/Main01';
+import Mymy01 from '@/pages/Mymy01';
 import React from 'react';
 
 function App() {
-  return <Main01 />;
+  return <Mymy01 />;
 }
 
 export default App;
