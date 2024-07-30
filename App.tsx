@@ -1,8 +1,8 @@
-import Mymy01 from '@/pages/Mymy01';
+import Sett01 from '@/pages/Sett01';
 import React from 'react';
 
 function App() {
-  return <Mymy01 />;
+  return <Sett01 />;
 }
 
 export default App;
