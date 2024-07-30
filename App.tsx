@@ -1,4 +1,4 @@
-import Main01 from '@/pages/main01';
+import Main01 from '@/pages/Main01';
 import React from 'react';
 
 function App() {
