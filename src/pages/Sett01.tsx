@@ -1,8 +1,23 @@
 import React from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+import {Alert, Button, SafeAreaView, Text, View} from 'react-native';
 import MainHeader from '@/components/MainHeader';
 
 export default function Mymy01() {
+  const showAlert = () => {
+    Alert.alert(
+      '로그아웃 확인',
+      '로그아웃하시겠어요?',
+      [
+        {
+          text: '취소',
+          onPress: () => {},
+        },
+        {text: '로그아웃', onPress: () => {}, style: 'destructive'},
+      ],
+      {cancelable: false},
+    );
+  };
+
   return (
     <SafeAreaView className="h-full bg-green-100 py-8">
       <MainHeader />
@@ -37,7 +52,7 @@ export default function Mymy01() {
             <Text className="text-xl font-bold">개인/보안</Text>
             <View className="flex flex-row justify-between">
               <Text>로그아웃</Text>
-              <Text>로그아웃 이동 버튼</Text>
+              <Button title="로그아웃 이동 버튼" onPress={showAlert} />
             </View>
             <View className="flex flex-row justify-between">
               <Text>탈퇴하기</Text>
