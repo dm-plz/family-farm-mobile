@@ -1,20 +1,24 @@
 module.exports = {
   root: true,
-  plugins: ['import'],
+  parser: '@typescript-eslint/parser',
+  plugins: ['import', '@typescript-eslint'],
   extends: [
     '@react-native',
+    'prettier',
+    'plugin:prettier/recommended',
+    'plugin:import/typescript',
     'plugin:import/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
-    'plugin:import/typescript',
   ],
-  parser: '@typescript-eslint/parser',
   settings: {
-    'import/resolver': {
-      node: {},
-      typescript: {},
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
-    'import/parsers': {'@typescript-eslint/parser': ['.ts', '.tsx']},
+    'import/resolver': {
+      typescript: true,
+      node: true,
+    },
   },
   rules: {
     'import/order': [
@@ -28,13 +32,5 @@ module.exports = {
         'newlines-between': 'always',
       },
     ],
-    'import/no-unresolved': 'off',
-    'import/export': 'off',
-    'import/namespace': 'off',
   },
-  '@typescript-eslint/quotes': [
-    {
-      allowTemplateLiterals: true,
-    },
-  ],
 };
