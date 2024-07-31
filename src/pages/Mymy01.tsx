@@ -1,5 +1,6 @@
 import React from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
+
 import MainHeader from '@/components/MainHeader';
 
 export default function Mymy01() {

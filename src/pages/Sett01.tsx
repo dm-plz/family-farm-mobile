@@ -1,5 +1,6 @@
 import React from 'react';
 import {Alert, Button, SafeAreaView, Text, View} from 'react-native';
+
 import MainHeader from '@/components/MainHeader';
 
 export default function Sett01() {

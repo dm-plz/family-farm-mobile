@@ -1,9 +1,10 @@
-import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import React from 'react';
+import {Text} from 'react-native';
+
+import {colors} from '@/constants';
 import Main01 from '@/pages/Main01';
 import Mymy01 from '@/pages/Mymy01';
-import {colors} from '@/constants';
-import {Text} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
