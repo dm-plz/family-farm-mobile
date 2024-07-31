@@ -3,19 +3,19 @@ import {Text, View} from 'react-native';
 
 const SignUpPageHeader = ({currentStep}: {currentStep: 1 | 2 | 3}) => {
   return (
-    <View className="flex flex-row items-center justify-center w-full h-40">
-      <View className="flex items-center justify-center w-20 h-20 bg-transparent border-4 border-green-600 rounded-full">
+    <View className="flex h-40 w-full flex-row items-center justify-center">
+      <View className="flex h-20 w-20 items-center justify-center rounded-full border-4 border-green-600 bg-transparent">
         <Text className="font-bold text-green-600">1</Text>
-        <Text className="mt-2 text-green-600">가족 면접</Text>
+        <Text className="mt-2 text-green-600">가족 연결</Text>
       </View>
       <View
-        className={`w-10 h-[2px] ${
+        className={`h-[2px] w-10 ${
           currentStep >= 2 ? 'bg-green-600' : 'bg-slate-500'
         }`}
       />
       <View
-        className={`flex items-center justify-center border-4 w-20 h-20 bg-transparent ${
-          currentStep >= 2 ? ' border-green-600' : 'border-slate-500'
+        className={`flex h-20 w-20 items-center justify-center border-4 bg-transparent ${
+          currentStep >= 2 ? 'border-green-600' : 'border-slate-500'
         } rounded-full`}>
         <Text
           className={`font-bold ${
@@ -31,13 +31,13 @@ const SignUpPageHeader = ({currentStep}: {currentStep: 1 | 2 | 3}) => {
         </Text>
       </View>
       <View
-        className={`w-10 h-[2px] ${
+        className={`h-[2px] w-10 ${
           currentStep === 3 ? 'bg-green-600' : 'bg-slate-500'
         }`}
       />
       <View
-        className={`flex items-center justify-center border-4 w-20 h-20 bg-transparent ${
-          currentStep === 3 ? ' border-green-600' : 'border-slate-500'
+        className={`flex h-20 w-20 items-center justify-center border-4 bg-transparent ${
+          currentStep === 3 ? 'border-green-600' : 'border-slate-500'
         } rounded-full`}>
         <Text
           className={`font-bold ${

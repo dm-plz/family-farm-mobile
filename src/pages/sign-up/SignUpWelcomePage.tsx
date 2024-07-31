@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Pressable, SafeAreaView, Text, TextInput, View} from 'react-native';
 
 import SignUpPageHeader from '@/component/sign-up-page/SignUpPageHeader';
+import CustomButton from '@/component/CustomButton';
 
 function SignUpWelcomePage() {
+  const [activeBorder, setActiveBorder] = useState(false);
+
   return (
     <SafeAreaView>
       <View className="h-full justify-between px-10 pb-10">
@@ -17,18 +20,21 @@ function SignUpWelcomePage() {
             </Text>
           </View>
           <TextInput
-            className="mt-4 h-16 w-full rounded-md border-2 border-slate-200 bg-white p-4"
+            className={`mt-4 h-16 w-full rounded-md border-2 bg-white p-4 ${activeBorder ? 'border-violet-300' : 'border-slate-200'}`}
             placeholder="코드 8자리를 입력해 주세요"
+            keyboardType="number-pad"
+            onFocus={() => {
+              setActiveBorder(true);
+            }}
+            onBlur={() => setActiveBorder(false)}
           />
 
-          <Pressable className="mt-4 h-12 w-full items-center justify-center rounded-lg bg-slate-200 p-2">
-            <Text>입력 완료</Text>
-          </Pressable>
+          <CustomButton>입력완료</CustomButton>
         </View>
 
-        <Pressable className="h-12 w-full items-center justify-center rounded-lg bg-green-200 p-2">
-          <Text>제가 가족중 처음이에요!</Text>
-        </Pressable>
+        <CustomButton twClass="bg-sky-300">
+          제가 가족중 처음이에요!
+        </CustomButton>
       </View>
     </SafeAreaView>
   );
