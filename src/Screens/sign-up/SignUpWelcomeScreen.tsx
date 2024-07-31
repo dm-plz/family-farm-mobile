@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {Pressable, SafeAreaView, Text, TextInput, View} from 'react-native';
 
-import SignUpPageHeader from '@/component/sign-up-page/SignUpPageHeader';
+import SignUpPageHeader from '@/component/sign-up-screen/SignUpPageHeader';
 import CustomButton from '@/component/CustomButton';
 
-function SignUpWelcomePage() {
+function SignUpWelcomeScreen({navigation}) {
   const [activeBorder, setActiveBorder] = useState(false);
 
   return (
@@ -32,11 +32,13 @@ function SignUpWelcomePage() {
           <CustomButton>입력완료</CustomButton>
         </View>
 
-        <CustomButton twClass="bg-sky-300">
+        <CustomButton
+          twClass="bg-sky-300"
+          onPress={() => navigation.navigate('SignUpInfoInputScreen')}>
           제가 가족중 처음이에요!
         </CustomButton>
       </View>
     </SafeAreaView>
   );
 }
-export default SignUpWelcomePage;
+export default SignUpWelcomeScreen;

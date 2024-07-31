@@ -1,16 +1,15 @@
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
 
-import LoginPage from '@/pages/LoginPage';
-import SignUpWelcomePage from '@/pages/sign-up/SignUpWelcomePage';
+import {NavigationContainer} from '@react-navigation/native';
+import SignUpStackNavigator from '@/navigations/stack/SignUpStackNavigator';
 
 function App() {
   return (
-    <SafeAreaView>
+    <NavigationContainer>
       {/* LoginPage === USER01 */}
       {/* <LoginPage /> */}
-      <SignUpWelcomePage />
-    </SafeAreaView>
+      <SignUpStackNavigator />
+    </NavigationContainer>
   );
 }
 

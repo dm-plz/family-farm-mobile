@@ -3,10 +3,10 @@ import {Text, View} from 'react-native';
 
 const SignUpPageHeader = ({currentStep}: {currentStep: 1 | 2 | 3}) => {
   return (
-    <View className="flex h-40 w-full flex-row items-center justify-center">
+    <View className="mt-2 flex w-full flex-row items-center justify-center">
       <View className="flex h-20 w-20 items-center justify-center rounded-full border-4 border-green-600 bg-transparent">
         <Text className="font-bold text-green-600">1</Text>
-        <Text className="mt-2 text-green-600">가족 연결</Text>
+        <Text className="text-green-600">가족 연결</Text>
       </View>
       <View
         className={`h-[2px] w-10 ${
@@ -24,7 +24,7 @@ const SignUpPageHeader = ({currentStep}: {currentStep: 1 | 2 | 3}) => {
           2
         </Text>
         <Text
-          className={`mt-2 ${
+          className={` ${
             currentStep >= 2 ? 'text-green-600' : 'text-slate-500'
           }`}>
           정보 입력
@@ -46,7 +46,7 @@ const SignUpPageHeader = ({currentStep}: {currentStep: 1 | 2 | 3}) => {
           3
         </Text>
         <Text
-          className={`mt-2 ${
+          className={` ${
             currentStep === 3 ? 'text-green-600' : 'text-slate-500'
           }`}>
           시작 하기
