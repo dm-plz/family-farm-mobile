@@ -1,9 +1,16 @@
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {Alert, Button, SafeAreaView, Text, View} from 'react-native';
 
 import MainHeader from '@/components/MainHeader';
+import {mymyNavigation} from '@/constants';
+import {MapStackParamList} from '@/navigations/stack/MymyStackNavigator';
 
-export default function Sett01() {
+type SettingScreenProps = NativeStackScreenProps<
+  MapStackParamList,
+  typeof mymyNavigation.SETTING
+>;
+export default function Sett01({navigation}: SettingScreenProps) {
   const showAlert = () => {
     Alert.alert(
       '로그아웃 확인',
@@ -25,7 +32,9 @@ export default function Sett01() {
         <MainHeader />
         <View className="px-4">
           <View>
-            <Text>뒤로가기 버튼</Text>
+            <Text onPress={() => navigation.navigate(mymyNavigation.MYMY_HOME)}>
+              뒤로가기 버튼
+            </Text>
           </View>
           <View className="mt-6 px-4">
             <View className="mt-4 space-y-8">
