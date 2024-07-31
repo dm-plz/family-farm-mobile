@@ -26,25 +26,36 @@ export default function BottomTabNavigator() {
         name="홈"
         component={Main01}
         options={{
-          tabBarIcon: ({color}) => <Text style={{color}}>홈 아이콘</Text>,
+          tabBarIcon: props => TabBarIcon(props, '홈 아이콘'),
         }}
       />
       <Tab.Screen
         name="질문 답변"
         component={Mymy01}
         options={{
-          tabBarIcon: ({color}) => (
-            <Text style={{color}}>질문 답변 아이콘</Text>
-          ),
+          tabBarIcon: props => TabBarIcon(props, '질문 답변 아이콘'),
         }}
       />
       <Tab.Screen
         name="마이"
         component={Mymy01}
         options={{
-          tabBarIcon: ({color}) => <Text style={{color}}>마이 아이콘</Text>,
+          tabBarIcon: props => TabBarIcon(props, '마이 아이콘'),
         }}
       />
     </Tab.Navigator>
   );
+}
+
+function TabBarIcon(
+  {
+    color,
+  }: {
+    focused: boolean;
+    color: string;
+    size: number;
+  },
+  text: string,
+) {
+  return <Text style={{color}}>{text}</Text>;
 }
