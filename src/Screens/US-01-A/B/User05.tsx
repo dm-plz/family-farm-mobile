@@ -8,15 +8,14 @@ function User05() {
   return (
     <SafeAreaView>
       <View className="flex h-full flex-col justify-between px-10 pb-8">
-        <View>
-          <SignUpPageHeader currentStep={3} />
-          <View className="flex h-[60%] flex-col items-center justify-center bg-red-200">
-            <Text>로고</Text>
-            <Text>가은님! 가족에게 초대장 코드를 보내보세요!</Text>
-            <Text>초대장 보내기</Text>
-            <Text>or</Text>
-            <Text>나의 코드 복사</Text>
-            <Text>A2SDK3</Text>
+        <SignUpPageHeader currentStep={3} />
+        <View className="flex h-[40%] flex-col items-center space-y-6">
+          <View className="flex h-20 w-60 items-center justify-center bg-slate-200">
+            <Text className="text-center">로고</Text>
+          </View>
+          <View>
+            <Text className="text-center font-bold">{`가은님,
+      가족과 소중한 추억 쌓으러 가볼까요?`}</Text>
           </View>
         </View>
         <CustomButton>시작하기</CustomButton>

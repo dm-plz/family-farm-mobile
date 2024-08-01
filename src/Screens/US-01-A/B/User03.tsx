@@ -2,6 +2,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {SafeAreaView, ScrollView, Text, TextInput, View} from 'react-native';
 
+import CustomCheckBox from '@/components/CheckBox';
 import CustomButton from '@/components/CustomButton';
 import SignUpPageHeader from '@/components/sign-up-screen/SignUpPageHeader';
 import {signUpNavigation} from '@/constants';
@@ -65,6 +66,7 @@ function User03({navigation}: SignUpInfoInputScreenProps) {
               <Text className="text-sm text-red-400">
                 생년월일이 선택되지 않았습니다.
               </Text>
+              <CustomCheckBox twClass="mt-2">음력</CustomCheckBox>
             </View>
           </View>
           <View className="mt-6 flex flex-col space-y-2">

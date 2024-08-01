@@ -35,6 +35,9 @@ function User02({navigation}: SignUpWelcomScreenProps) {
             }}
             onBlur={() => setActiveBorder(false)}
           />
+          <Text className="text-sm text-red-400">
+            코드가 조회되지 않습니다. 다시 확인해 주세요.
+          </Text>
 
           <CustomButton twClass="mt-2">입력완료</CustomButton>
         </View>

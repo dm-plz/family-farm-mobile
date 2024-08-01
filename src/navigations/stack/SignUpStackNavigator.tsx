@@ -10,6 +10,7 @@ export type SignUpStackParamList = {
   [signUpNavigation.SIGN_UP_WELCOME]: undefined;
   [signUpNavigation.SIGN_UP_INFO_INPUT]: undefined;
   [signUpNavigation.SIGN_UP_INVITE]: undefined;
+  [signUpNavigation.SIGN_UP_WITH_CODE]: undefined;
 };
 
 const Stack = createNativeStackNavigator<SignUpStackParamList>();
