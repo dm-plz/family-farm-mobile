@@ -31,8 +31,8 @@ function User03({navigation}: SignUpInfoInputScreenProps) {
             />
             <View>
               <Text className="mt-4 font-bold">역할을 선택해 주세요</Text>
-              <View className="mt-2">
-                <View className="flex flex-row gap-x-2">
+              <View className="mt-2 space-y-2">
+                <View className="flex flex-row items-center justify-center space-x-2">
                   <CustomButton twClass="bg-slate-200 w-[45%]">
                     아빠
                   </CustomButton>
@@ -40,7 +40,7 @@ function User03({navigation}: SignUpInfoInputScreenProps) {
                     엄마
                   </CustomButton>
                 </View>
-                <View className="flex flex-row gap-x-2">
+                <View className="flex flex-row items-center justify-center space-x-2">
                   <CustomButton twClass="bg-slate-200 w-[45%]">
                     아들
                   </CustomButton>
@@ -57,7 +57,7 @@ function User03({navigation}: SignUpInfoInputScreenProps) {
               />
             </View>
           </View>
-          <View className="flex">
+          <View className="mt-6 flex flex-col space-y-2">
             <CustomButton
               onPress={() => {
                 navigation.goBack();
