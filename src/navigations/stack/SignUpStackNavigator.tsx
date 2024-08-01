@@ -1,8 +1,9 @@
-import SignUpWelcomeScreen from '@/Screens/sign-up/SignUpWelcomeScreen';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React from 'react';
+
 import SignUpInfoInputScreen from '@/Screens/sign-up/SignUpInfoInputScreen';
 import SignUpInviteCodeScreen from '@/Screens/sign-up/SignUpInviteCodeScreen';
-
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import SignUpWelcomeScreen from '@/Screens/sign-up/SignUpWelcomeScreen';
 
 const Stack = createNativeStackNavigator();
 

@@ -1,6 +1,8 @@
+import React from 'react';
+import {SafeAreaView, Text, View} from 'react-native';
+
 import CustomButton from '@/component/CustomButton';
 import SignUpPageHeader from '@/component/sign-up-screen/SignUpPageHeader';
-import {SafeAreaView, Text, View} from 'react-native';
 
 function SignUpInviteCodeScreen() {
   return (

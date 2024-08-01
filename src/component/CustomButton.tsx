@@ -1,3 +1,4 @@
+import React from 'react';
 import {Pressable, PressableProps, Text} from 'react-native';
 
 interface CustomButtonProps extends PressableProps {

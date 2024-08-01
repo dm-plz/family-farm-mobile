@@ -1,8 +1,14 @@
+import {StackScreenProps} from '@react-navigation/stack';
 import React, {useState} from 'react';
-import {Pressable, SafeAreaView, Text, TextInput, View} from 'react-native';
+import {SafeAreaView, Text, TextInput, View} from 'react-native';
 
-import SignUpPageHeader from '@/component/sign-up-screen/SignUpPageHeader';
 import CustomButton from '@/component/CustomButton';
+import SignUpPageHeader from '@/component/sign-up-screen/SignUpPageHeader';
+
+type AuthHomeScreenProps = StackScreenProps<
+  AuthStackParamList,
+  typeof authNavigations.AUTH_HOME
+>;
 
 function SignUpWelcomeScreen({navigation}) {
   const [activeBorder, setActiveBorder] = useState(false);
@@ -22,7 +28,6 @@ function SignUpWelcomeScreen({navigation}) {
           <TextInput
             className={`mt-4 h-16 w-full rounded-md border-2 bg-white p-4 ${activeBorder ? 'border-violet-300' : 'border-slate-200'}`}
             placeholder="코드 8자리를 입력해 주세요"
-            keyboardType="number-pad"
             onFocus={() => {
               setActiveBorder(true);
             }}
