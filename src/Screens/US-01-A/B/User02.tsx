@@ -36,7 +36,7 @@ function User02({navigation}: SignUpWelcomScreenProps) {
             onBlur={() => setActiveBorder(false)}
           />
 
-          <CustomButton>입력완료</CustomButton>
+          <CustomButton twClass="mt-2">입력완료</CustomButton>
         </View>
 
         <CustomButton

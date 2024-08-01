@@ -29,6 +29,9 @@ function User03({navigation}: SignUpInfoInputScreenProps) {
               className="mt-4 h-12 w-full rounded-md border-2 border-slate-200 bg-white p-4"
               placeholder="이름이나 닉네임을 입력해 주세요"
             />
+            <Text className="text-sm text-red-400">
+              이름이나 닉네임이 입력되지 않았습니다.
+            </Text>
             <View>
               <Text className="mt-4 font-bold">역할을 선택해 주세요</Text>
               <View className="mt-2 space-y-2">
@@ -46,6 +49,9 @@ function User03({navigation}: SignUpInfoInputScreenProps) {
                   </CustomButton>
                   <CustomButton twClass="bg-slate-200 w-[45%]">딸</CustomButton>
                 </View>
+                <Text className="text-sm text-red-400">
+                  가족 구성원 내 역할이 선택되지 않았습니다.
+                </Text>
               </View>
             </View>
 
@@ -55,6 +61,10 @@ function User03({navigation}: SignUpInfoInputScreenProps) {
                 className="mt-4 h-12 w-full rounded-md border-2 border-slate-200 bg-white p-4"
                 placeholder="YYYY년 MM월 DD일"
               />
+
+              <Text className="text-sm text-red-400">
+                생년월일이 선택되지 않았습니다.
+              </Text>
             </View>
           </View>
           <View className="mt-6 flex flex-col space-y-2">

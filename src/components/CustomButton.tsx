@@ -8,7 +8,7 @@ interface CustomButtonProps extends Pick<PressableProps, 'onPress' | 'style'> {
 
 const CustomButton = ({
   children,
-  twClass = 'bg-slate-200',
+  twClass,
   onPress,
   style,
 }: CustomButtonProps) => {
@@ -16,7 +16,7 @@ const CustomButton = ({
     <Pressable
       onPress={onPress}
       style={style}
-      className={`flex h-12 ${twClass} items-center justify-center rounded-lg p-2 active:bg-green-200`}>
+      className={`flex h-12 bg-slate-200 ${twClass} items-center justify-center rounded-lg p-2 active:bg-green-200`}>
       <Text>{children}</Text>
     </Pressable>
   );
