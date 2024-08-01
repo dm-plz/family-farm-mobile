@@ -1,10 +1,18 @@
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {SafeAreaView, ScrollView, Text, TextInput, View} from 'react-native';
 
-import CustomButton from '@/component/CustomButton';
-import SignUpPageHeader from '@/component/sign-up-screen/SignUpPageHeader';
+import CustomButton from '@/components/CustomButton';
+import SignUpPageHeader from '@/components/sign-up-screen/SignUpPageHeader';
+import {signUpNavigation} from '@/constants';
+import {SignUpStackParamList} from '@/navigations/stack/SignUpStackNavigator';
 
-function SignUpInfoInputScreen({navigation}) {
+type SignUpInfoInputScreenProps = NativeStackScreenProps<
+  SignUpStackParamList,
+  typeof signUpNavigation.SIGN_UP_INFO_INPUT
+>;
+
+function User03({navigation}: SignUpInfoInputScreenProps) {
   return (
     <SafeAreaView>
       <ScrollView>
@@ -58,7 +66,7 @@ function SignUpInfoInputScreen({navigation}) {
             </CustomButton>
             <CustomButton
               onPress={() => {
-                navigation.navigate('SignUpInviteCodeScreen');
+                navigation.navigate(signUpNavigation.SIGN_UP_INVITE);
               }}>
               다음
             </CustomButton>
@@ -68,4 +76,4 @@ function SignUpInfoInputScreen({navigation}) {
     </SafeAreaView>
   );
 }
-export default SignUpInfoInputScreen;
+export default User03;

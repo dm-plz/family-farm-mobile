@@ -1,16 +1,18 @@
-import {StackScreenProps} from '@react-navigation/stack';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useState} from 'react';
 import {SafeAreaView, Text, TextInput, View} from 'react-native';
 
-import CustomButton from '@/component/CustomButton';
-import SignUpPageHeader from '@/component/sign-up-screen/SignUpPageHeader';
+import CustomButton from '@/components/CustomButton';
+import SignUpPageHeader from '@/components/sign-up-screen/SignUpPageHeader';
+import {signUpNavigation} from '@/constants';
+import {SignUpStackParamList} from '@/navigations/stack/SignUpStackNavigator';
 
-type AuthHomeScreenProps = StackScreenProps<
-  AuthStackParamList,
-  typeof authNavigations.AUTH_HOME
+type SignUpWelcomScreenProps = NativeStackScreenProps<
+  SignUpStackParamList,
+  typeof signUpNavigation.SIGN_UP_WELCOME
 >;
 
-function SignUpWelcomeScreen({navigation}) {
+function User02({navigation}: SignUpWelcomScreenProps) {
   const [activeBorder, setActiveBorder] = useState(false);
 
   return (
@@ -39,11 +41,13 @@ function SignUpWelcomeScreen({navigation}) {
 
         <CustomButton
           twClass="bg-sky-300"
-          onPress={() => navigation.navigate('SignUpInfoInputScreen')}>
+          onPress={() =>
+            navigation.navigate(signUpNavigation.SIGN_UP_INFO_INPUT)
+          }>
           제가 가족중 처음이에요!
         </CustomButton>
       </View>
     </SafeAreaView>
   );
 }
-export default SignUpWelcomeScreen;
+export default User02;

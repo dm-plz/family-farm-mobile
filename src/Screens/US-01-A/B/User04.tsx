@@ -1,10 +1,10 @@
 import React from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
 
-import CustomButton from '@/component/CustomButton';
-import SignUpPageHeader from '@/component/sign-up-screen/SignUpPageHeader';
+import CustomButton from '@/components/CustomButton';
+import SignUpPageHeader from '@/components/sign-up-screen/SignUpPageHeader';
 
-function SignUpInviteCodeScreen() {
+function User04() {
   return (
     <SafeAreaView>
       <View className="flex h-full flex-col justify-between px-10 pb-8">
@@ -24,4 +24,4 @@ function SignUpInviteCodeScreen() {
     </SafeAreaView>
   );
 }
-export default SignUpInviteCodeScreen;
+export default User04;

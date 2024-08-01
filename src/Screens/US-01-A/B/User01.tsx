@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, Platform, Pressable, Text, View} from 'react-native';
 
-function LoginScreen() {
+function User01() {
   const isIOS = Platform.OS === 'ios';
 
   return (
@@ -39,4 +39,4 @@ function RenderLoginButtonByPlatform({isIOS}: {isIOS: boolean}) {
   );
 }
 
-export default LoginScreen;
+export default User01;
