@@ -5,13 +5,12 @@ import {myNavigation} from '@/constants';
 import My from '@/pages/my/My';
 import Setting from '@/pages/my/Setting';
 
-//TODO: Type-Name 변경
-export type MapStackParamList = {
+export type MyStackParamList = {
   [myNavigation.MY]: undefined;
   [myNavigation.SETTING]: undefined;
 };
 
-const Stack = createNativeStackNavigator<MapStackParamList>();
+const Stack = createNativeStackNavigator<MyStackParamList>();
 
 function MapStackNavigator() {
   return (

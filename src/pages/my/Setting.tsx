@@ -4,10 +4,10 @@ import {Alert, Button, SafeAreaView, Text, View} from 'react-native';
 
 import MainHeader from '@/components/MainHeader';
 import {myNavigation} from '@/constants';
-import {MapStackParamList} from '@/navigations/stack/MyStackNavigator';
+import {MyStackParamList} from '@/navigations/stack/MyStackNavigator';
 
 type SettingScreenProps = NativeStackScreenProps<
-  MapStackParamList,
+  MyStackParamList,
   typeof myNavigation.SETTING
 >;
 export default function Setting({navigation}: SettingScreenProps) {

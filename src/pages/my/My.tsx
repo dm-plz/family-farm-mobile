@@ -4,10 +4,10 @@ import {SafeAreaView, Text, View} from 'react-native';
 
 import MainHeader from '@/components/MainHeader';
 import {myNavigation} from '@/constants';
-import {MapStackParamList} from '@/navigations/stack/MyStackNavigator';
+import {MyStackParamList} from '@/navigations/stack/MyStackNavigator';
 
 type MymyScreenProps = NativeStackScreenProps<
-  MapStackParamList,
+  MyStackParamList,
   typeof myNavigation.MY
 >;
 
