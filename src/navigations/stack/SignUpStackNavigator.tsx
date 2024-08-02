@@ -2,9 +2,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 
 import {signUpNavigation} from '@/constants';
-import User02 from '@/screens/US-01-A(B)/User02';
-import User03 from '@/screens/US-01-A(B)/User03';
-import User04 from '@/screens/US-01-A(B)/User04';
+import User02 from '@/pages/US-01-A(B)/User02';
+import User03 from '@/pages/US-01-A(B)/User03';
+import User04 from '@/pages/US-01-A(B)/User04';
 
 export type SignUpStackParamList = {
   [signUpNavigation.SIGN_UP_WELCOME]: undefined;
