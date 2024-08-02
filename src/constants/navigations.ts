@@ -5,4 +5,9 @@ const signUpNavigation = {
   SIGN_UP_WITH_CODE: 'SignUpWithCode',
 } as const;
 
-export {signUpNavigation};
+const mymyNavigation = {
+  MYMY_HOME: 'MymyHome',
+  SETTING: 'Setting',
+} as const;
+
+export {signUpNavigation, mymyNavigation};

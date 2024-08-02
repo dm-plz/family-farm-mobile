@@ -3,12 +3,10 @@ import React from 'react';
 
 import SignUpStackNavigator from '@/navigations/stack/SignUpStackNavigator';
 
-function App() {
+export default function App() {
   return (
     <NavigationContainer>
       <SignUpStackNavigator />
     </NavigationContainer>
   );
 }
-
-export default App;
