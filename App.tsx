@@ -1,11 +1,12 @@
-import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import RootNavigator from '@/navigations/RootNavigator';
+import React from 'react';
+
+import SignUpStackNavigator from '@/navigations/stack/SignUpStackNavigator';
 
 export default function App() {
   return (
     <NavigationContainer>
-      <RootNavigator />
+      <SignUpStackNavigator />
     </NavigationContainer>
   );
 }
