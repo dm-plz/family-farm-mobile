@@ -4,7 +4,7 @@ import {SafeAreaView, Text, View} from 'react-native';
 import CustomButton from '@/components/CustomButton';
 import SignUpPageHeader from '@/components/sign-up-screen/SignUpPageHeader';
 
-function User05() {
+function Join3B() {
   return (
     <SafeAreaView>
       <View className="flex h-full flex-col justify-between px-10 pb-8">
@@ -23,4 +23,4 @@ function User05() {
     </SafeAreaView>
   );
 }
-export default User05;
+export default Join3B;

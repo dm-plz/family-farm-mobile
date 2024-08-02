@@ -3,7 +3,7 @@ import {SafeAreaView, Text, View} from 'react-native';
 
 import MainHeader from '@/components/MainHeader';
 
-export default function Main01() {
+export default function Main() {
   return (
     <SafeAreaView className="bg-green-100">
       <View className="h-full">

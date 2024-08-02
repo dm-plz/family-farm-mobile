@@ -1,13 +1,13 @@
 const signUpNavigation = {
-  SIGN_UP_WELCOME: 'SignUpWelcome',
-  SIGN_UP_INFO_INPUT: 'SignUpInfoInput',
-  SIGN_UP_INVITE: 'SignUpInvite',
-  SIGN_UP_WITH_CODE: 'SignUpWithCode',
+  JOIN_1: 'SignUp_Join1',
+  JOIN_2: 'SignUp_Join2',
+  JOIN_3A: 'SignUp_Join3A',
+  JOIN_3B: 'SignUp_Join3B',
 } as const;
 
-const mymyNavigation = {
-  MYMY_HOME: 'MymyHome',
-  SETTING: 'Setting',
+const myNavigation = {
+  MY: 'My_My',
+  SETTING: 'My_Setting',
 } as const;
 
-export {signUpNavigation, mymyNavigation};
+export {signUpNavigation, myNavigation};

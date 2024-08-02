@@ -2,15 +2,15 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 
 import {signUpNavigation} from '@/constants';
-import User02 from '@/pages/US-01-A(B)/User02';
-import User03 from '@/pages/US-01-A(B)/User03';
-import User04 from '@/pages/US-01-A(B)/User04';
+import Join1 from '@/pages/sign-up/Join1';
+import Join2 from '@/pages/sign-up/Join2';
+import Join3A from '@/pages/sign-up/Join3A';
 
 export type SignUpStackParamList = {
-  [signUpNavigation.SIGN_UP_WELCOME]: undefined;
-  [signUpNavigation.SIGN_UP_INFO_INPUT]: undefined;
-  [signUpNavigation.SIGN_UP_INVITE]: undefined;
-  [signUpNavigation.SIGN_UP_WITH_CODE]: undefined;
+  [signUpNavigation.JOIN_1]: undefined;
+  [signUpNavigation.JOIN_2]: undefined;
+  [signUpNavigation.JOIN_3A]: undefined;
+  [signUpNavigation.JOIN_3B]: undefined;
 };
 
 const Stack = createNativeStackNavigator<SignUpStackParamList>();
@@ -18,17 +18,11 @@ const Stack = createNativeStackNavigator<SignUpStackParamList>();
 function SignUpStackNavigator() {
   return (
     <Stack.Navigator
-      initialRouteName={signUpNavigation.SIGN_UP_WELCOME}
+      initialRouteName={signUpNavigation.JOIN_1}
       screenOptions={{headerShown: false}}>
-      <Stack.Screen
-        name={signUpNavigation.SIGN_UP_WELCOME}
-        component={User02}
-      />
-      <Stack.Screen
-        name={signUpNavigation.SIGN_UP_INFO_INPUT}
-        component={User03}
-      />
-      <Stack.Screen name={signUpNavigation.SIGN_UP_INVITE} component={User04} />
+      <Stack.Screen name={signUpNavigation.JOIN_1} component={Join1} />
+      <Stack.Screen name={signUpNavigation.JOIN_2} component={Join2} />
+      <Stack.Screen name={signUpNavigation.JOIN_3A} component={Join3A} />
     </Stack.Navigator>
   );
 }

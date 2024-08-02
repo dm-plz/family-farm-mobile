@@ -9,10 +9,10 @@ import {SignUpStackParamList} from '@/navigations/stack/SignUpStackNavigator';
 
 type SignUpWelcomScreenProps = NativeStackScreenProps<
   SignUpStackParamList,
-  typeof signUpNavigation.SIGN_UP_WELCOME
+  typeof signUpNavigation.JOIN_1
 >;
 
-function User02({navigation}: SignUpWelcomScreenProps) {
+function Join1({navigation}: SignUpWelcomScreenProps) {
   const [activeBorder, setActiveBorder] = useState(false);
 
   return (
@@ -44,13 +44,11 @@ function User02({navigation}: SignUpWelcomScreenProps) {
 
         <CustomButton
           twClass="bg-sky-300"
-          onPress={() =>
-            navigation.navigate(signUpNavigation.SIGN_UP_INFO_INPUT)
-          }>
+          onPress={() => navigation.navigate(signUpNavigation.JOIN_2)}>
           제가 가족중 처음이에요!
         </CustomButton>
       </View>
     </SafeAreaView>
   );
 }
-export default User02;
+export default Join1;

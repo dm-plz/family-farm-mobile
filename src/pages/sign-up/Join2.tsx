@@ -10,10 +10,10 @@ import {SignUpStackParamList} from '@/navigations/stack/SignUpStackNavigator';
 
 type SignUpInfoInputScreenProps = NativeStackScreenProps<
   SignUpStackParamList,
-  typeof signUpNavigation.SIGN_UP_INFO_INPUT
+  typeof signUpNavigation.JOIN_2
 >;
 
-function User03({navigation}: SignUpInfoInputScreenProps) {
+function Join2({navigation}: SignUpInfoInputScreenProps) {
   return (
     <SafeAreaView>
       <ScrollView>
@@ -78,7 +78,7 @@ function User03({navigation}: SignUpInfoInputScreenProps) {
             </CustomButton>
             <CustomButton
               onPress={() => {
-                navigation.navigate(signUpNavigation.SIGN_UP_INVITE);
+                navigation.navigate(signUpNavigation.JOIN_3A);
               }}>
               다음
             </CustomButton>
@@ -88,4 +88,4 @@ function User03({navigation}: SignUpInfoInputScreenProps) {
     </SafeAreaView>
   );
 }
-export default User03;
+export default Join2;

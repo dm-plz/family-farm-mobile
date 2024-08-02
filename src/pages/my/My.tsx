@@ -3,21 +3,21 @@ import React from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
 
 import MainHeader from '@/components/MainHeader';
-import {mymyNavigation} from '@/constants';
-import {MapStackParamList} from '@/navigations/stack/MymyStackNavigator';
+import {myNavigation} from '@/constants';
+import {MapStackParamList} from '@/navigations/stack/MyStackNavigator';
 
 type MymyScreenProps = NativeStackScreenProps<
   MapStackParamList,
-  typeof mymyNavigation.MYMY_HOME
+  typeof myNavigation.MY
 >;
 
-export default function Mymy01({navigation}: MymyScreenProps) {
+export default function My({navigation}: MymyScreenProps) {
   return (
     <SafeAreaView className="h-full bg-green-100">
       <View>
         <MainHeader
           iconText="Setting Icon"
-          onPressIcon={() => navigation.navigate(mymyNavigation.SETTING)}
+          onPressIcon={() => navigation.navigate(myNavigation.SETTING)}
         />
         <Text className="text-center font-extrabold">가은's family</Text>
         <View className="my-4 flex flex-row items-center justify-center">

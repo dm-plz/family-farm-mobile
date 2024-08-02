@@ -3,14 +3,14 @@ import React from 'react';
 import {Alert, Button, SafeAreaView, Text, View} from 'react-native';
 
 import MainHeader from '@/components/MainHeader';
-import {mymyNavigation} from '@/constants';
-import {MapStackParamList} from '@/navigations/stack/MymyStackNavigator';
+import {myNavigation} from '@/constants';
+import {MapStackParamList} from '@/navigations/stack/MyStackNavigator';
 
 type SettingScreenProps = NativeStackScreenProps<
   MapStackParamList,
-  typeof mymyNavigation.SETTING
+  typeof myNavigation.SETTING
 >;
-export default function Sett01({navigation}: SettingScreenProps) {
+export default function Setting({navigation}: SettingScreenProps) {
   const showAlert = () => {
     Alert.alert(
       '로그아웃 확인',
@@ -32,7 +32,7 @@ export default function Sett01({navigation}: SettingScreenProps) {
         <MainHeader />
         <View className="px-4">
           <View>
-            <Text onPress={() => navigation.navigate(mymyNavigation.MYMY_HOME)}>
+            <Text onPress={() => navigation.navigate(myNavigation.MY)}>
               뒤로가기 버튼
             </Text>
           </View>

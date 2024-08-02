@@ -3,8 +3,8 @@ import React from 'react';
 import {Text} from 'react-native';
 
 import {colors} from '@/constants';
-import MapStackNavigator from '@/navigations/stack/MymyStackNavigator';
-import Main01 from '@/pages/Main01';
+import MapStackNavigator from '@/navigations/stack/MyStackNavigator';
+import Main from '@/pages/home/Main';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,14 +24,14 @@ export default function BottomTabNavigator() {
       }}>
       <Tab.Screen
         name="홈"
-        component={Main01}
+        component={Main}
         options={{
           tabBarIcon: props => TabBarIcon(props, '홈 아이콘'),
         }}
       />
       <Tab.Screen
         name="질문 답변"
-        component={Main01}
+        component={Main}
         options={{
           tabBarIcon: props => TabBarIcon(props, '질문 답변 아이콘'),
         }}

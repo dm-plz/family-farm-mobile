@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, Platform, Pressable, Text, View} from 'react-native';
 
-function User01() {
+function Onboarding() {
   const isIOS = Platform.OS === 'ios';
 
   return (
@@ -39,4 +39,4 @@ function RenderLoginButtonByPlatform({isIOS}: {isIOS: boolean}) {
   );
 }
 
-export default User01;
+export default Onboarding;
