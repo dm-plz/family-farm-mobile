@@ -1,12 +1,11 @@
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import RootNavigator from '@/navigations/RootNavigator';
 
-function App() {
+export default function App() {
   return (
-    <SafeAreaView>
-      <Text className="text-orange-300">Hellow World</Text>
-    </SafeAreaView>
+    <NavigationContainer>
+      <RootNavigator />
+    </NavigationContainer>
   );
 }
-
-export default App;
