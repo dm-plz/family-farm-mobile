@@ -1,17 +1,12 @@
-import {QueryClientProvider} from '@tanstack/react-query';
+import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
 
-import queryClient from '@/api/queryClient';
+import SignUpStackNavigator from '@/navigations/stack/SignUpStackNavigator';
 
-function App() {
+export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <SafeAreaView>
-        <Text className="text-orange-300">Hellow World</Text>
-      </SafeAreaView>
-    </QueryClientProvider>
+    <NavigationContainer>
+      <SignUpStackNavigator />
+    </NavigationContainer>
   );
 }
-
-export default App;
