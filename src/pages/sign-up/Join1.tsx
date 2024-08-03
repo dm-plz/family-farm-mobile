@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {SafeAreaView, Text, TextInput, View} from 'react-native';
 
 import CustomButton from '@/components/CustomButton';
-import SignUpPageHeader from '@/components/sign-up-screen/SignUpPageHeader';
+import StepHeader from '@/components/sign-up/StepHeader';
 import {signUpNavigation} from '@/constants';
 import {SignUpStackParamList} from '@/navigations/stack/SignUpStackNavigator';
 
@@ -19,7 +19,7 @@ function Join1({navigation}: SignUpWelcomScreenProps) {
     <SafeAreaView>
       <View className="h-full justify-between px-10 pb-10">
         <View>
-          <SignUpPageHeader currentStep={1} />
+          <StepHeader currentStep={1} />
           <View>
             <Text className="text-2xl font-bold">환영합니다!</Text>
             <Text className="text-2xl font-bold">초대를 받고 오셨나요?</Text>

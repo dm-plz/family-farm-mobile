@@ -2,13 +2,13 @@ import React from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
 
 import CustomButton from '@/components/CustomButton';
-import SignUpPageHeader from '@/components/sign-up-screen/SignUpPageHeader';
+import StepHeader from '@/components/sign-up/StepHeader';
 
 function Join3B() {
   return (
     <SafeAreaView>
       <View className="flex h-full flex-col justify-between px-10 pb-8">
-        <SignUpPageHeader currentStep={3} />
+        <StepHeader currentStep={3} />
         <View className="flex h-[40%] flex-col items-center space-y-6">
           <View className="flex h-20 w-60 items-center justify-center bg-slate-200">
             <Text className="text-center">로고</Text>

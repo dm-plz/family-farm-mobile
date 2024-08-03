@@ -4,7 +4,7 @@ import {SafeAreaView, ScrollView, Text, TextInput, View} from 'react-native';
 
 import CustomCheckBox from '@/components/CheckBox';
 import CustomButton from '@/components/CustomButton';
-import SignUpPageHeader from '@/components/sign-up-screen/SignUpPageHeader';
+import StepHeader from '@/components/sign-up/StepHeader';
 import {signUpNavigation} from '@/constants';
 import {SignUpStackParamList} from '@/navigations/stack/SignUpStackNavigator';
 
@@ -19,7 +19,7 @@ function Join2({navigation}: SignUpInfoInputScreenProps) {
       <ScrollView>
         <View className="flex h-full flex-col justify-between px-10 pb-10">
           <View>
-            <SignUpPageHeader currentStep={2} />
+            <StepHeader currentStep={2} />
             <View>
               <Text className="mt-8 font-bold">
                 가족에서 어떤 역할을 담당하고 있나요?

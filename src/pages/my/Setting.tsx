@@ -2,7 +2,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {Alert, Button, SafeAreaView, Text, View} from 'react-native';
 
-import MainHeader from '@/components/MainHeader';
+import MainHeader from '@/components/my/MainHeader';
 import {myNavigation} from '@/constants';
 import {MyStackParamList} from '@/navigations/stack/MyStackNavigator';
 
