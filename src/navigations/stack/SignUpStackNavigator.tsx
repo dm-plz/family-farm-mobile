@@ -4,7 +4,7 @@ import React from 'react';
 import {signUpNavigation} from '@/constants';
 import Join1 from '@/pages/sign-up/Join1';
 import Join2 from '@/pages/sign-up/Join2';
-import Join3A from '@/pages/sign-up/Join3A';
+import Join3 from '@/pages/sign-up/Join3';
 
 export type SignUpStackParamList = {
   [signUpNavigation.JOIN_1]: undefined;
@@ -22,7 +22,7 @@ function SignUpStackNavigator() {
       screenOptions={{headerShown: false}}>
       <Stack.Screen name={signUpNavigation.JOIN_1} component={Join1} />
       <Stack.Screen name={signUpNavigation.JOIN_2} component={Join2} />
-      <Stack.Screen name={signUpNavigation.JOIN_3A} component={Join3A} />
+      <Stack.Screen name={signUpNavigation.JOIN_3A} component={Join3} />
     </Stack.Navigator>
   );
 }
