@@ -7,12 +7,12 @@ import StepHeader from '@/components/sign-up/StepHeader';
 import {signUpNavigation} from '@/constants';
 import {SignUpStackParamList} from '@/navigations/stack/SignUpStackNavigator';
 
-type SignUpWelcomScreenProps = NativeStackScreenProps<
+type Join1ScreenProps = NativeStackScreenProps<
   SignUpStackParamList,
   typeof signUpNavigation.JOIN_1
 >;
 
-function Join1({navigation}: SignUpWelcomScreenProps) {
+function Join1({navigation}: Join1ScreenProps) {
   const [activeBorder, setActiveBorder] = useState(false);
 
   return (

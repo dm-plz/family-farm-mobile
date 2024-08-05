@@ -1,7 +1,16 @@
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {Image, Platform, Pressable, Text, View} from 'react-native';
 
-function Onboarding() {
+import {signUpNavigation} from '@/constants';
+import {SignUpStackParamList} from '@/navigations/stack/SignUpStackNavigator';
+
+type OnboardingProps = NativeStackScreenProps<
+  SignUpStackParamList,
+  typeof signUpNavigation.ONBOARDING
+>;
+
+function Onboarding({navigation}: OnboardingProps) {
   const isIOS = Platform.OS === 'ios';
 
   return (
@@ -14,14 +23,19 @@ function Onboarding() {
         />
       </View>
       <View className="flex basis-1/3 flex-col px-10">
-        <Pressable
-          className="mb-4 w-full bg-yellow-200 px-4 py-6"
-          onPress={() => {
-            console.log('KAKAO Clicked!');
-          }}>
+        <Pressable className="mb-4 w-full bg-yellow-200 px-4 py-6">
           <Text>카카오 로그인</Text>
         </Pressable>
         <RenderLoginButtonByPlatform isIOS={isIOS} />
+
+        <Pressable
+          className="mt-4 w-full bg-green-200 px-4 py-6"
+          onPress={() => {
+            navigation.navigate(signUpNavigation.JOIN_1);
+          }}>
+          {/*TODO:로그인 로직 구현 완료 이후 버튼 로직 수정  */}
+          <Text>Join 화면 진입</Text>
+        </Pressable>
       </View>
     </View>
   );

@@ -1,10 +1,18 @@
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
 
 import CustomButton from '@/components/CustomButton';
 import StepHeader from '@/components/sign-up/StepHeader';
+import {signUpNavigation} from '@/constants';
+import {SignUpStackParamList} from '@/navigations/stack/SignUpStackNavigator';
 
-function Join3() {
+type Join3ScreenProps = NativeStackScreenProps<
+  SignUpStackParamList,
+  typeof signUpNavigation.JOIN_3
+>;
+
+function Join3({}: Join3ScreenProps) {
   const isHost = false;
 
   return (
@@ -37,6 +45,7 @@ function Join3() {
             </View>
           )}
         </View>
+        {/* TODO: Oauth 구현 이후, 이 시작하기 버튼을 누르면, UseAuth의 isLogin이 True로 바뀌어야 함. */}
         <CustomButton>시작하기</CustomButton>
       </View>
     </SafeAreaView>

@@ -8,12 +8,12 @@ import StepHeader from '@/components/sign-up/StepHeader';
 import {signUpNavigation} from '@/constants';
 import {SignUpStackParamList} from '@/navigations/stack/SignUpStackNavigator';
 
-type SignUpInfoInputScreenProps = NativeStackScreenProps<
+type Join2ScreenProps = NativeStackScreenProps<
   SignUpStackParamList,
   typeof signUpNavigation.JOIN_2
 >;
 
-function Join2({navigation}: SignUpInfoInputScreenProps) {
+function Join2({navigation}: Join2ScreenProps) {
   return (
     <SafeAreaView>
       <ScrollView>
@@ -78,7 +78,7 @@ function Join2({navigation}: SignUpInfoInputScreenProps) {
             </CustomButton>
             <CustomButton
               onPress={() => {
-                navigation.navigate(signUpNavigation.JOIN_3A);
+                navigation.navigate(signUpNavigation.JOIN_3);
               }}>
               다음
             </CustomButton>
