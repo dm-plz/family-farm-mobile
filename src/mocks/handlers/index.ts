@@ -1,7 +1,6 @@
 import {http, HttpResponse} from 'msw';
-import {Config} from 'react-native-config';
 
-const {BASE_URL: API_BASE_URL} = Config;
+import {API_BASE_URL} from '@/constants/api';
 
 const getHandlers = [
   http.get(API_BASE_URL + '/auth/signout', () => {
