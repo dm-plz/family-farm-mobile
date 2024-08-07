@@ -32,5 +32,8 @@ module.exports = {
         'newlines-between': 'always',
       },
     ],
+    'space-before-function-paren': ['error', 'always'],
+    'space-before-blocks': ['error', 'always'],
+    'object-curly-spacing': ['error', 'always'],
   },
 };
