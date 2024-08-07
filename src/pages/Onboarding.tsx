@@ -10,6 +10,8 @@ type OnboardingProps = NativeStackScreenProps<
   typeof signUpNavigation.ONBOARDING
 >;
 
+const __DEV__ = true;
+
 function Onboarding({navigation}: OnboardingProps) {
   const isIOS = Platform.OS === 'ios';
 
@@ -28,14 +30,16 @@ function Onboarding({navigation}: OnboardingProps) {
         </Pressable>
         <RenderLoginButtonByPlatform isIOS={isIOS} />
 
-        <Pressable
-          className="mt-4 w-full bg-green-200 px-4 py-6"
-          onPress={() => {
-            navigation.navigate(signUpNavigation.JOIN_1);
-          }}>
-          {/*TODO:로그인 로직 구현 완료 이후 버튼 로직 수정  */}
-          <Text>Join 화면 진입</Text>
-        </Pressable>
+        {__DEV__ && (
+          <Pressable
+            className="mt-4 w-full bg-green-200 px-4 py-6"
+            onPress={() => {
+              navigation.navigate(signUpNavigation.JOIN_1);
+            }}>
+            {/*TODO:로그인 로직 구현 완료 이후 버튼 로직 수정  */}
+            <Text>Join 화면 진입</Text>
+          </Pressable>
+        )}
       </View>
     </View>
   );
