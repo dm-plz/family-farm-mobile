@@ -1,16 +1,14 @@
-import {roles} from '@/constants';
+import {birthType, roles} from '@/constants';
 
 export type Role = (typeof roles)[number];
-
-export type Birthday = {
-  isLuna: boolean;
-  date: Date;
-};
+export type BirthType = (typeof birthType)[number];
 
 export type Member = {
-  name: string;
-  role: Role;
-  birthday: Birthday;
+  nickName: string;
+  groupRole: Role;
+  birth: string;
+  birthType: BirthType;
+  email: string;
   signUpDate: Date;
   isHost: boolean; // 그룹장 여부
 };
