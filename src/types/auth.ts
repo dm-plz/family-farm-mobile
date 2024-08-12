@@ -1,4 +1,4 @@
-export type OAuthAgent = 'apple' | 'google' | 'kakao';
+export type OAuthAgent = 'NATIVE' | 'GOOGLE' | 'NAVER' | 'KAKAO' | 'APPLE';
 
 export type SignInLog = {
   recentSigninDate: Date; // 최근 접속 시간

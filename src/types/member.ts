@@ -1,11 +1,11 @@
 import {birthType, roles} from '@/constants';
 
-export type Role = (typeof roles)[number];
+export type GoupRole = (typeof roles)[number];
 export type BirthType = (typeof birthType)[number];
 
 export type Member = {
   nickName: string;
-  groupRole: Role;
+  groupRole: GoupRole;
   birth: string;
   birthType: BirthType;
   email: string;
