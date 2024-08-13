@@ -1,3 +1,5 @@
+import {Buffer} from 'buffer';
+
 import {faker} from '@faker-js/faker';
 
 import {Member} from '@/types';
@@ -20,7 +22,6 @@ export function createFakeJWT(
     alg: 'HS256',
     typ: 'JWT',
   };
-
   const encodedHeader = base64Encode(JSON.stringify(header));
 
   const currentTime = Math.floor(Date.now() / 1000);
