@@ -1,16 +1,16 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
-import {Alert, Button, SafeAreaView, Text, View} from 'react-native';
+import { Alert, Button, SafeAreaView, Text, View } from 'react-native';
 
 import MainHeader from '@/components/my/MainHeader';
-import {myNavigation} from '@/constants';
-import {MyStackParamList} from '@/navigations/stack/MyStackNavigator';
+import { myNavigation } from '@/constants';
+import { MyStackParamList } from '@/navigations/stack/MyStackNavigator';
 
 type SettingScreenProps = NativeStackScreenProps<
   MyStackParamList,
   typeof myNavigation.SETTING
 >;
-export default function Setting({navigation}: SettingScreenProps) {
+export default function Setting({ navigation }: SettingScreenProps) {
   const showAlert = () => {
     Alert.alert(
       '로그아웃 확인',
@@ -20,9 +20,9 @@ export default function Setting({navigation}: SettingScreenProps) {
           text: '취소',
           onPress: () => {},
         },
-        {text: '로그아웃', onPress: () => {}, style: 'destructive'},
+        { text: '로그아웃', onPress: () => {}, style: 'destructive' },
       ],
-      {cancelable: false},
+      { cancelable: false },
     );
   };
 

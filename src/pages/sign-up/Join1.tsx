@@ -1,18 +1,18 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React, {useState} from 'react';
-import {SafeAreaView, Text, TextInput, View} from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import React, { useState } from 'react';
+import { SafeAreaView, Text, TextInput, View } from 'react-native';
 
 import CustomButton from '@/components/CustomButton';
 import StepHeader from '@/components/sign-up/StepHeader';
-import {signUpNavigation} from '@/constants';
-import {SignUpStackParamList} from '@/navigations/stack/SignUpStackNavigator';
+import { signUpNavigation } from '@/constants';
+import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
 
 type Join1ScreenProps = NativeStackScreenProps<
   SignUpStackParamList,
   typeof signUpNavigation.JOIN_1
 >;
 
-function Join1({navigation}: Join1ScreenProps) {
+function Join1({ navigation }: Join1ScreenProps) {
   const [activeBorder, setActiveBorder] = useState(false);
 
   return (

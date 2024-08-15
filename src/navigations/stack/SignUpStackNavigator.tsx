@@ -1,7 +1,7 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
-import {signUpNavigation} from '@/constants';
+import { signUpNavigation } from '@/constants';
 import Onboarding from '@/pages/Onboarding';
 import Join1 from '@/pages/sign-up/Join1';
 import Join2 from '@/pages/sign-up/Join2';
@@ -20,7 +20,7 @@ function SignUpStackNavigator() {
   return (
     <Stack.Navigator
       initialRouteName={signUpNavigation.ONBOARDING}
-      screenOptions={{headerShown: false}}>
+      screenOptions={{ headerShown: false }}>
       <Stack.Screen name={signUpNavigation.ONBOARDING} component={Onboarding} />
       <Stack.Screen name={signUpNavigation.JOIN_1} component={Join1} />
       <Stack.Screen name={signUpNavigation.JOIN_2} component={Join2} />

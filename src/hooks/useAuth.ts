@@ -1,7 +1,7 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
 export default function useAuth() {
   const [isLogin] = useState(false);
 
-  return {isLogin};
+  return { isLogin };
 }

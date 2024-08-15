@@ -10,4 +10,4 @@ const myNavigation = {
   SETTING: 'My_Setting',
 } as const;
 
-export {signUpNavigation, myNavigation};
+export { signUpNavigation, myNavigation };

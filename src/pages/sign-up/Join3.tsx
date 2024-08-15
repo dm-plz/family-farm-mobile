@@ -1,11 +1,11 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+import { SafeAreaView, Text, View } from 'react-native';
 
 import CustomButton from '@/components/CustomButton';
 import StepHeader from '@/components/sign-up/StepHeader';
-import {signUpNavigation} from '@/constants';
-import {SignUpStackParamList} from '@/navigations/stack/SignUpStackNavigator';
+import { signUpNavigation } from '@/constants';
+import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
 
 type Join3ScreenProps = NativeStackScreenProps<
   SignUpStackParamList,

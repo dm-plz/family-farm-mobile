@@ -1,19 +1,19 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
-import {SafeAreaView, ScrollView, Text, TextInput, View} from 'react-native';
+import { SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
 
 import CustomCheckBox from '@/components/CheckBox';
 import CustomButton from '@/components/CustomButton';
 import StepHeader from '@/components/sign-up/StepHeader';
-import {signUpNavigation} from '@/constants';
-import {SignUpStackParamList} from '@/navigations/stack/SignUpStackNavigator';
+import { signUpNavigation } from '@/constants';
+import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
 
 type Join2ScreenProps = NativeStackScreenProps<
   SignUpStackParamList,
   typeof signUpNavigation.JOIN_2
 >;
 
-function Join2({navigation}: Join2ScreenProps) {
+function Join2({ navigation }: Join2ScreenProps) {
   return (
     <SafeAreaView>
       <ScrollView>

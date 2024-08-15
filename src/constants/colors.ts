@@ -10,4 +10,4 @@ const colors = {
   GREEN_700: '#15803d',
 };
 
-export {colors};
+export { colors };
