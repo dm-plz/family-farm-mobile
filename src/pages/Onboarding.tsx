@@ -1,18 +1,16 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
-import {Image, Platform, Pressable, Text, View} from 'react-native';
+import { Image, Platform, Pressable, Text, View } from 'react-native';
 
-import {signUpNavigation} from '@/constants';
-import {SignUpStackParamList} from '@/navigations/stack/SignUpStackNavigator';
+import { signUpNavigation } from '@/constants';
+import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
 
 type OnboardingProps = NativeStackScreenProps<
   SignUpStackParamList,
   typeof signUpNavigation.ONBOARDING
 >;
 
-const __DEV__ = true;
-
-function Onboarding({navigation}: OnboardingProps) {
+function Onboarding({ navigation }: OnboardingProps) {
   const isIOS = Platform.OS === 'ios';
 
   return (
@@ -45,7 +43,7 @@ function Onboarding({navigation}: OnboardingProps) {
   );
 }
 
-function RenderLoginButtonByPlatform({isIOS}: {isIOS: boolean}) {
+function RenderLoginButtonByPlatform({ isIOS }: { isIOS: boolean }) {
   return isIOS ? (
     <Pressable className="w-full bg-blue-200 px-4 py-6">
       <Text>IOS</Text>
