@@ -1,14 +1,20 @@
 import {kyInstance} from './ky';
 
-type ResponseTodayQuestion = {
-  question: string;
+type ParamGetQuestion = {
+  familyId: string;
 };
 
-async function getTodayQuestion() {
+type ResponseGetQuestion = {
+  questionHistoryId: string;
+  question: string;
+  isAnswered: boolean;
+};
+
+async function getQuestion({familyId}: ParamGetQuestion) {
   return (await kyInstance
-    .get('question/today')
-    .json()) as ResponseTodayQuestion;
+    .get(`question/${familyId}`)
+    .json()) as ResponseGetQuestion;
 }
 
-export {getTodayQuestion};
-export type {ResponseTodayQuestion};
+export {getQuestion};
+export type {ParamGetQuestion, ResponseGetQuestion};
