@@ -1,8 +1,8 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import {Text} from 'react-native';
+import { Text } from 'react-native';
 
-import {colors} from '@/constants';
+import { colors } from '@/constants';
 import MapStackNavigator from '@/navigations/stack/MyStackNavigator';
 import Main from '@/pages/home/Main';
 
@@ -57,5 +57,5 @@ function TabBarIcon(
   },
   text: string,
 ) {
-  return <Text style={{color}}>{text}</Text>;
+  return <Text style={{ color }}>{text}</Text>;
 }

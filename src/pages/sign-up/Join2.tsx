@@ -1,25 +1,25 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
-import {SafeAreaView, ScrollView, Text, TextInput, View} from 'react-native';
+import { SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
 
 import CustomCheckBox from '@/components/CheckBox';
 import CustomButton from '@/components/CustomButton';
-import SignUpPageHeader from '@/components/sign-up-screen/SignUpPageHeader';
-import {signUpNavigation} from '@/constants';
-import {SignUpStackParamList} from '@/navigations/stack/SignUpStackNavigator';
+import StepHeader from '@/components/sign-up/StepHeader';
+import { signUpNavigation } from '@/constants';
+import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
 
-type SignUpInfoInputScreenProps = NativeStackScreenProps<
+type Join2ScreenProps = NativeStackScreenProps<
   SignUpStackParamList,
   typeof signUpNavigation.JOIN_2
 >;
 
-function Join2({navigation}: SignUpInfoInputScreenProps) {
+function Join2({ navigation }: Join2ScreenProps) {
   return (
     <SafeAreaView>
       <ScrollView>
         <View className="flex h-full flex-col justify-between px-10 pb-10">
           <View>
-            <SignUpPageHeader currentStep={2} />
+            <StepHeader currentStep={2} />
             <View>
               <Text className="mt-8 font-bold">
                 가족에서 어떤 역할을 담당하고 있나요?
@@ -78,7 +78,7 @@ function Join2({navigation}: SignUpInfoInputScreenProps) {
             </CustomButton>
             <CustomButton
               onPress={() => {
-                navigation.navigate(signUpNavigation.JOIN_3A);
+                navigation.navigate(signUpNavigation.JOIN_3);
               }}>
               다음
             </CustomButton>

@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Image, Pressable, Text, View} from 'react-native';
+import React, { useState } from 'react';
+import { Image, Pressable, Text, View } from 'react-native';
 
 interface CustomCheckBoxProps {
   children?: React.ReactNode;

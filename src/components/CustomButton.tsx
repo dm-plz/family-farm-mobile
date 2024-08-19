@@ -1,5 +1,5 @@
 import React from 'react';
-import {Pressable, PressableProps, Text} from 'react-native';
+import { Pressable, PressableProps, Text } from 'react-native';
 
 interface CustomButtonProps extends Pick<PressableProps, 'onPress' | 'style'> {
   twClass?: string;

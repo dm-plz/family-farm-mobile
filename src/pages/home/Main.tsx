@@ -1,7 +1,7 @@
 import React from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+import { SafeAreaView, Text, View } from 'react-native';
 
-import MainHeader from '@/components/MainHeader';
+import MainHeader from '@/components/my/MainHeader';
 
 export default function Main() {
   return (
