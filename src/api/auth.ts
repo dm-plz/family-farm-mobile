@@ -12,6 +12,11 @@ type RequestSignUp = {
   email: String;
   groupRole: GoupRole;
   familyCode: null | string;
+  alertToken: {
+    deviceId: string;
+    type: 'FCM';
+    value: string;
+  };
 };
 
 type ResponseToken = {
