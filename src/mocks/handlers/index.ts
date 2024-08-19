@@ -2,15 +2,14 @@
 // import {faker} from '@faker-js/faker';
 import {http, HttpResponse} from 'msw';
 
-import {createUser} from '../fakers';
-import {createFakeJWT, verifyFakeJWT} from '../utils/token';
-
 import {mockMembers} from './mockUser';
 
 import {RequestSignIn, RequestSignUp, ResponseToken} from '@/api/auth';
 import {ResponseMembers} from '@/api/member';
 import {ResponseTodayQuestion} from '@/api/quetions';
 import {API_BASE_URL} from '@/constants/api';
+import {createUser} from '@/mocks/fakers';
+import {createFakeJWT, verifyFakeJWT} from '@/mocks/utils/token';
 
 const getHandlers = [
   http.get(API_BASE_URL + '/auth/sign-out', () => {
