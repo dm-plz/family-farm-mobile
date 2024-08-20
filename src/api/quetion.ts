@@ -52,7 +52,7 @@ type BodyPatchAnswer = {
 };
 
 async function patchAnswer(param: ParamPatchAnswer, body: BodyPatchAnswer) {
-  const apiUrl = createUrl(questionApis.patchAnser, { param });
+  const apiUrl = createUrl(questionApis.patchAnswer, { param });
   return await kyInstance.patch(apiUrl, { json: body }).json();
 }
 

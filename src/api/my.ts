@@ -20,14 +20,14 @@ type ParamPatchMy = { userId: string };
 
 async function patchMy(param: ParamPatchMy) {
   const apiUrl = createUrl(myApis.patchMy, { param });
-  return await kyInstance.patch(apiUrl).json<ResponseGetMy>();
+  return await kyInstance.patch(apiUrl).json();
 }
 
 type ParamWithdraw = { userId: string };
 
 async function withdraw(param: ParamWithdraw) {
   const apiUrl = createUrl(myApis.withdraw, { param });
-  return await kyInstance.delete(apiUrl).json<ResponseGetMy>();
+  return await kyInstance.patch(apiUrl).json();
 }
 
 export { getMy, patchMy, withdraw };

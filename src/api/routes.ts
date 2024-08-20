@@ -11,7 +11,7 @@ export const questionApis = {
   getQuestion: 'question/:family-id',
   postAnswer: 'question/answer',
   getAnswer: 'question/answer/:question-history-id',
-  patchAnser: 'question/answer/:answer-id',
+  patchAnswer: 'question/answer/:answer-id',
   getList: 'question/answer/:family-id',
   cheerUp: 'question/alert/cheer-up',
 };
