@@ -1,7 +1,8 @@
 export const authApis = {
   signIn: 'auth/oauth/log-in',
-  signOut: 'auth/oauth/sign-out',
+  signOut: 'auth/oauth/sign-out/:user-id',
   signUp: 'auth/oauth/sign-up',
+  reIssueToken: 'auth/toekn/reissuance',
   validateFamilyCode: 'auth/validate/family-code',
   reRegistrationAlertToken: 'auth/alert-token/re-registration',
 };
