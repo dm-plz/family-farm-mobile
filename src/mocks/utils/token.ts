@@ -2,8 +2,6 @@ import {Buffer} from 'buffer';
 
 import {faker} from '@faker-js/faker';
 
-import {Member} from '@/types';
-
 const SECRET_KEY = 'secret-key';
 
 function base64Encode(str: string) {
@@ -14,10 +12,8 @@ function base64Decode(str: string) {
   return Buffer.from(str, 'base64').toString('utf-8');
 }
 
-export function createFakeJWT(
-  payload: Member,
-  expiresInSeconds: number = 60 * 60,
-) {
+export function createFakeToken(isRefresh = false) {
+  const expiresInSeconds = isRefresh ? 24 * 60 * 60 : 60 * 60;
   const header = {
     alg: 'HS256',
     typ: 'JWT',
@@ -30,7 +26,6 @@ export function createFakeJWT(
       iat: currentTime,
       exp: currentTime + expiresInSeconds,
       noncee: faker.string.uuid(),
-      ...payload,
     }),
   );
   const signature = base64Encode(
@@ -38,24 +33,29 @@ export function createFakeJWT(
   );
 
   const token = `${encodedHeader}.${encodedPayload}.${signature}`;
+
   return token;
 }
 
-export function verifyFakeJWT(token: string) {
+type FakeTokens = {accessToken: string | null; refreshToken: string | null};
+
+let myFakeTokens: FakeTokens = {
+  accessToken: null,
+  refreshToken: null,
+};
+
+export function setFakeToken(tokens: Partial<FakeTokens>) {
+  myFakeTokens = {...myFakeTokens, ...tokens};
+}
+
+export function verifyFakeToken(token: string) {
   try {
     const parts = token.split('.');
     if (parts.length !== 3) {
       return false;
     }
 
-    const [encodedHeader, encodedPayload, signature] = parts;
-    const validSignature = base64Encode(
-      `${encodedHeader}.${encodedPayload}.${SECRET_KEY}`,
-    );
-
-    if (signature !== validSignature) {
-      return false;
-    }
+    const [, encodedPayload] = parts;
 
     const payload = JSON.parse(base64Decode(encodedPayload));
 
@@ -64,7 +64,9 @@ export function verifyFakeJWT(token: string) {
       return false; // 토큰이 만료됨
     }
 
-    return true;
+    return (
+      token === myFakeTokens.accessToken || token === myFakeTokens.refreshToken
+    );
   } catch (error) {
     return false;
   }
