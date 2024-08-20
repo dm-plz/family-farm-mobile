@@ -2,18 +2,17 @@ import {faker} from '@faker-js/faker';
 
 import {getRandom} from './util';
 
-import {birthType, roles} from '@/constants';
-import type {Member} from '@/types';
+import {birthType} from '@/constants';
+import {oauthAgents} from '@/mocks/constants';
+import type {UserInfo} from '@/types';
 import {formatDate} from '@/utils';
 
-export function createUser(isHost: boolean): Member {
+export function createUser(): UserInfo {
   return {
     nickName: faker.person.fullName(),
-    groupRole: getRandom(roles),
     birth: formatDate(faker.date.birthdate()),
     birthType: getRandom(birthType),
-    email: faker.internet.email(),
-    signUpDate: faker.date.past(),
-    isHost,
+    OAuthProvider: getRandom(oauthAgents),
+    createAt: faker.date.past(),
   };
 }
