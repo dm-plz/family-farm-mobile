@@ -1,10 +1,10 @@
 import {kyInstance} from './ky';
+import {authApis} from './routes';
 
-import {BirthType, GoupRole, OAuthAgent} from '@/types';
-//NOTE: 아직 BE에서 토큰 재발급 관련 API 미기획
-// import {getEncryptStorage} from '@/utils';
+import {AlertToken, BirthType, GoupRole, OAuthAgent} from '@/types';
+import {createUrl} from '@/utils/url';
 
-type RequestSignUp = {
+type BodySignUp = {
   nickName: string;
   OAuthProvider: OAuthAgent;
   birth: Date;
@@ -12,11 +12,7 @@ type RequestSignUp = {
   email: String;
   groupRole: GoupRole;
   familyCode: null | string;
-  alertToken: {
-    deviceId: string;
-    type: 'FCM';
-    value: string;
-  };
+  alertToken: AlertToken;
 };
 
 type ResponseToken = {
@@ -25,45 +21,66 @@ type ResponseToken = {
   grantType: string;
 };
 
-async function postSignUp(body: RequestSignUp) {
-  return (await kyInstance
-    .post('auth/oauth/sign-up', {json: body})
-    .json()) as ResponseToken;
+async function postSignUp(body: BodySignUp) {
+  return await kyInstance
+    .post(authApis.signUp, {json: body})
+    .json<ResponseToken>();
 }
 
-type RequestSignIn = {
+type BodySignIn = {
   OAuthProvider: OAuthAgent;
   AuthorizationCode: string;
 };
 
-async function postSignIn(body: RequestSignIn) {
-  return (await kyInstance
-    .post('auth/oauth/sign-in', {json: body})
-    .json()) as ResponseToken;
+async function postSignIn(body: BodySignIn) {
+  return await kyInstance
+    .post(authApis.signIn, {json: body})
+    .json<ResponseToken>();
 }
 
 async function getSignOut() {
-  return await kyInstance.get('auth/sign-out').json();
+  return await kyInstance.get(authApis.signOut).json();
 }
 
-//NOTE: 아직 BE에서 토큰 재발급 관련 API 미기획
-// async function getAccessToken() {
-//   const refreshToken = await getEncryptStorage('refreshToken');
+async function reIssueToken() {
+  return await kyInstance.patch(authApis.reIssueToken).json<ResponseToken>();
+}
 
-//   return (await kyInstance
-//     .get('auth/token/refresh', {
-//       headers: {
-//         Authorization: `Bearer ${refreshToken}`,
-//       },
-//     })
-//     .json()) as ResponseToken;
-// }
+type QueryValidateFamilyCode = {
+  familyCode: string;
+};
 
+type ResponseValidateFamilyCode = {
+  isValidate: boolean;
+};
+
+async function validateFamilyCode(query: QueryValidateFamilyCode) {
+  const apiUrl = createUrl(authApis.validateFamilyCode, {query});
+  return await kyInstance.get(apiUrl).json<ResponseValidateFamilyCode>();
+}
+
+type BodyReRegistrationAlertToken = {
+  userId: number;
+} & AlertToken;
+
+async function reRegistrationAlertToken(body: BodyReRegistrationAlertToken) {
+  return await kyInstance
+    .patch(authApis.reRegistrationAlertToken, {json: body})
+    .json();
+}
 export {
   postSignUp,
   postSignIn,
   getSignOut,
-  //NOTE: 아직 BE에서 토큰 재발급 관련 API 미기획
-  // getAccessToken
+  reIssueToken,
+  validateFamilyCode,
+  reRegistrationAlertToken,
 };
-export type {RequestSignUp, ResponseToken, RequestSignIn};
+export type {
+  BodySignUp,
+  ResponseToken,
+  BodySignIn,
+  QueryValidateFamilyCode,
+  ResponseValidateFamilyCode,
+  BodyReRegistrationAlertToken,
+};
