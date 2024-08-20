@@ -17,7 +17,7 @@ export const questionApis = {
 };
 
 export const myApis = {
-  my: 'user/:user-id',
+  getMy: 'user/:user-id',
   patchMy: 'user/:user-id',
   withdraw: 'user/:user-id',
 };
