@@ -12,8 +12,8 @@ type ResponseGetQuestion = {
   isAnswered: boolean;
 } & Question;
 
-async function getQuestion({familyId}: ParamGetQuestion) {
-  const apiUrl = createUrl(questionApis.getQuestion, {param: {familyId}});
+async function getQuestion(param: ParamGetQuestion) {
+  const apiUrl = createUrl(questionApis.getQuestion, {param});
   return await kyInstance.get(apiUrl).json<ResponseGetQuestion>();
 }
 
@@ -35,9 +35,9 @@ type ResponseGetAnswer = {
   answer: Answer[];
 };
 
-async function getAnswer({questionHistoryId}: ParamGetAnswer) {
+async function getAnswer(param: ParamGetAnswer) {
   const apiUrl = createUrl(questionApis.getAnswer, {
-    param: {questionHistoryId},
+    param,
   });
   return await kyInstance.get(apiUrl).json<ResponseGetAnswer>();
 }
@@ -51,11 +51,8 @@ type BodyPatchAnswer = {
   answer: string;
 };
 
-async function patchAnswer(
-  {answerId}: ParamPatchAnswer,
-  body: BodyPatchAnswer,
-) {
-  const apiUrl = createUrl(questionApis.patchAnser, {param: {answerId}});
+async function patchAnswer(param: ParamPatchAnswer, body: BodyPatchAnswer) {
+  const apiUrl = createUrl(questionApis.patchAnser, {param});
   return await kyInstance.patch(apiUrl, {json: body}).json();
 }
 
@@ -67,8 +64,8 @@ type ResponseGetList = {
   question: Question[];
 };
 
-async function getList({familyId}: ParamGetList) {
-  const apiUrl = createUrl(questionApis.getList, {param: {familyId}});
+async function getList(param: ParamGetList) {
+  const apiUrl = createUrl(questionApis.getList, {param});
   return await kyInstance.get(apiUrl).json<ResponseGetList>();
 }
 

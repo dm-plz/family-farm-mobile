@@ -11,22 +11,22 @@ type ResponseGetMy = {
   familyCode: string;
 } & UserInfo;
 
-async function getMy({userId}: ParamGetMy) {
-  const apiUrl = createUrl(myApis.getMy, {param: {userId}});
+async function getMy(param: ParamGetMy) {
+  const apiUrl = createUrl(myApis.getMy, {param});
   return await kyInstance.get(apiUrl).json<ResponseGetMy>();
 }
 
 type ParamPatchMy = {userId: string};
 
-async function patchMy({userId}: ParamPatchMy) {
-  const apiUrl = createUrl(myApis.patchMy, {param: {userId}});
+async function patchMy(param: ParamPatchMy) {
+  const apiUrl = createUrl(myApis.patchMy, {param});
   return await kyInstance.patch(apiUrl).json<ResponseGetMy>();
 }
 
 type ParamWithdraw = {userId: string};
 
-async function withdraw({userId}: ParamWithdraw) {
-  const apiUrl = createUrl(myApis.withdraw, {param: {userId}});
+async function withdraw(param: ParamWithdraw) {
+  const apiUrl = createUrl(myApis.withdraw, {param});
   return await kyInstance.delete(apiUrl).json<ResponseGetMy>();
 }
 
