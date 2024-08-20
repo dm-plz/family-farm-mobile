@@ -1,8 +1,7 @@
 import {kyInstance} from './ky';
 import {questionApis} from './routes';
 
-import {AlertToken} from '@/types';
-import {Answer, Question} from '@/types/question';
+import {AlertToken, Answer, Question} from '@/types';
 import {createUrl} from '@/utils/url';
 
 type ParamGetQuestion = {
