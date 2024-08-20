@@ -1,4 +1,4 @@
-import {OAuthAgent} from '@/types';
+import { OAuthAgent } from '@/types';
 
 export const oauthAgents: OAuthAgent[] = [
   'NATIVE',

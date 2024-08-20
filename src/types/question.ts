@@ -1,4 +1,4 @@
-import {GoupRole} from './user';
+import { GoupRole } from './user';
 
 export type Question = {
   questionHistoryId: number;

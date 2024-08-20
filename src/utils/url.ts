@@ -1,10 +1,10 @@
-import {convertKebabToCamel} from './string';
+import { convertKebabToCamel } from './string';
 
 type OptionType = string | number | boolean;
 
 interface Options {
-  param?: {[key: string]: OptionType};
-  query?: {[key: string]: OptionType};
+  param?: { [key: string]: OptionType };
+  query?: { [key: string]: OptionType };
 }
 export function createUrl(path: string, options?: Options) {
   const pathTokens = path.split('/');

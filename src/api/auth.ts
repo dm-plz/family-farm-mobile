@@ -1,8 +1,8 @@
-import {kyInstance} from './ky';
-import {authApis} from './routes';
+import { kyInstance } from './ky';
+import { authApis } from './routes';
 
-import {AlertToken, BirthType, GoupRole, OAuthAgent} from '@/types';
-import {createUrl} from '@/utils/url';
+import { AlertToken, BirthType, GoupRole, OAuthAgent } from '@/types';
+import { createUrl } from '@/utils/url';
 
 type BodySignUp = {
   nickName: string;
@@ -23,7 +23,7 @@ type ResponseToken = {
 
 async function postSignUp(body: BodySignUp) {
   return await kyInstance
-    .post(authApis.signUp, {json: body})
+    .post(authApis.signUp, { json: body })
     .json<ResponseToken>();
 }
 
@@ -34,7 +34,7 @@ type BodySignIn = {
 
 async function postSignIn(body: BodySignIn) {
   return await kyInstance
-    .post(authApis.signIn, {json: body})
+    .post(authApis.signIn, { json: body })
     .json<ResponseToken>();
 }
 
@@ -55,7 +55,7 @@ type ResponseValidateFamilyCode = {
 };
 
 async function validateFamilyCode(query: QueryValidateFamilyCode) {
-  const apiUrl = createUrl(authApis.validateFamilyCode, {query});
+  const apiUrl = createUrl(authApis.validateFamilyCode, { query });
   return await kyInstance.get(apiUrl).json<ResponseValidateFamilyCode>();
 }
 
@@ -65,7 +65,7 @@ type BodyReRegistrationAlertToken = {
 
 async function reRegistrationAlertToken(body: BodyReRegistrationAlertToken) {
   return await kyInstance
-    .patch(authApis.reRegistrationAlertToken, {json: body})
+    .patch(authApis.reRegistrationAlertToken, { json: body })
     .json();
 }
 export {

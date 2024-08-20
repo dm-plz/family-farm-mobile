@@ -1,4 +1,4 @@
-import {UserInfo} from '@/types';
+import { UserInfo } from '@/types';
 
 //NOTE: 유저 정보를 토큰에서 얻기 위한 함수
 export function getUserFromToken(token: string): UserInfo | null {

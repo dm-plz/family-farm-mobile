@@ -1,6 +1,6 @@
-import {Buffer} from 'buffer';
+import { Buffer } from 'buffer';
 
-import {faker} from '@faker-js/faker';
+import { faker } from '@faker-js/faker';
 
 const SECRET_KEY = 'secret-key';
 
@@ -37,7 +37,7 @@ export function createFakeToken(isRefresh = false) {
   return token;
 }
 
-type FakeTokens = {accessToken: string | null; refreshToken: string | null};
+type FakeTokens = { accessToken: string | null; refreshToken: string | null };
 
 let myFakeTokens: FakeTokens = {
   accessToken: null,
@@ -45,7 +45,7 @@ let myFakeTokens: FakeTokens = {
 };
 
 export function setFakeToken(tokens: Partial<FakeTokens>) {
-  myFakeTokens = {...myFakeTokens, ...tokens};
+  myFakeTokens = { ...myFakeTokens, ...tokens };
 }
 
 export function verifyFakeToken(token: string) {

@@ -1,8 +1,8 @@
-import {kyInstance} from './ky';
-import {questionApis} from './routes';
+import { kyInstance } from './ky';
+import { questionApis } from './routes';
 
-import {AlertToken, Answer, Question} from '@/types';
-import {createUrl} from '@/utils/url';
+import { AlertToken, Answer, Question } from '@/types';
+import { createUrl } from '@/utils/url';
 
 type ParamGetQuestion = {
   familyId: string;
@@ -13,7 +13,7 @@ type ResponseGetQuestion = {
 } & Question;
 
 async function getQuestion(param: ParamGetQuestion) {
-  const apiUrl = createUrl(questionApis.getQuestion, {param});
+  const apiUrl = createUrl(questionApis.getQuestion, { param });
   return await kyInstance.get(apiUrl).json<ResponseGetQuestion>();
 }
 
@@ -24,7 +24,7 @@ type BodyPostAnswer = {
 };
 
 async function postAnswer(body: BodyPostAnswer) {
-  return await kyInstance.post(questionApis.postAnswer, {json: body}).json();
+  return await kyInstance.post(questionApis.postAnswer, { json: body }).json();
 }
 
 type ParamGetAnswer = {
@@ -52,8 +52,8 @@ type BodyPatchAnswer = {
 };
 
 async function patchAnswer(param: ParamPatchAnswer, body: BodyPatchAnswer) {
-  const apiUrl = createUrl(questionApis.patchAnser, {param});
-  return await kyInstance.patch(apiUrl, {json: body}).json();
+  const apiUrl = createUrl(questionApis.patchAnser, { param });
+  return await kyInstance.patch(apiUrl, { json: body }).json();
 }
 
 type ParamGetList = {
@@ -65,7 +65,7 @@ type ResponseGetList = {
 };
 
 async function getList(param: ParamGetList) {
-  const apiUrl = createUrl(questionApis.getList, {param});
+  const apiUrl = createUrl(questionApis.getList, { param });
   return await kyInstance.get(apiUrl).json<ResponseGetList>();
 }
 
@@ -76,10 +76,10 @@ type BodyCheerUp = {
 };
 
 async function cheerUp(body: BodyCheerUp) {
-  return await kyInstance.post(questionApis.cheerUp, {json: body}).json();
+  return await kyInstance.post(questionApis.cheerUp, { json: body }).json();
 }
 
-export {getQuestion, postAnswer, getAnswer, patchAnswer, getList, cheerUp};
+export { getQuestion, postAnswer, getAnswer, patchAnswer, getList, cheerUp };
 export type {
   ParamGetQuestion,
   ResponseGetQuestion,

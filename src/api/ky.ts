@@ -1,6 +1,6 @@
 import ky from 'ky';
 
-import {API_BASE_URL} from '@/constants/api';
+import { API_BASE_URL } from '@/constants/api';
 
 const requestHeaders: Record<string, string> = {};
 
@@ -27,4 +27,4 @@ function removeHeader(key: string) {
   delete requestHeaders[key];
 }
 
-export {kyInstance, setHeader, removeHeader};
+export { kyInstance, setHeader, removeHeader };

@@ -1,23 +1,23 @@
 //NOTE: 로그인 실패 -> 회원 가입 로직
 // import {faker} from '@faker-js/faker';
-import {http, HttpResponse} from 'msw';
+import { http, HttpResponse } from 'msw';
 
-import {getApiUrl} from '../utils/api';
+import { getApiUrl } from '../utils/api';
 
 import {
   //NOTE: 로그인 실패 -> 회원 가입 로직
   // RequestSignIn,
   ResponseToken,
 } from '@/api/auth';
-import {authApis} from '@/api/routes';
-import {createFakeToken, setFakeToken} from '@/mocks/utils/token';
+import { authApis } from '@/api/routes';
+import { createFakeToken, setFakeToken } from '@/mocks/utils/token';
 
 export default [
   http.post(getApiUrl(authApis.signUp), () => {
     const accessToken = createFakeToken();
     const refreshToken = createFakeToken(true);
 
-    setFakeToken({accessToken, refreshToken});
+    setFakeToken({ accessToken, refreshToken });
 
     const response = {
       accessToken,
@@ -25,7 +25,7 @@ export default [
       grantType: 'Bearer',
     } as ResponseToken;
 
-    return HttpResponse.json(response, {status: 201});
+    return HttpResponse.json(response, { status: 201 });
   }),
   http.post(getApiUrl(authApis.signIn), async () => {
     //NOTE: 로그인 실패 -> 회원 가입 로직
@@ -50,7 +50,7 @@ export default [
     const accessToken = createFakeToken();
     const refreshToken = createFakeToken(true);
 
-    setFakeToken({accessToken, refreshToken});
+    setFakeToken({ accessToken, refreshToken });
 
     const response = {
       accessToken,
@@ -58,13 +58,13 @@ export default [
       grantType: 'Bearer',
     } as ResponseToken;
 
-    return HttpResponse.json(response, {status: 201});
+    return HttpResponse.json(response, { status: 201 });
   }),
   http.patch(getApiUrl(authApis.signOut), () => {
     const accessToken = createFakeToken();
     const refreshToken = createFakeToken(true);
 
-    setFakeToken({accessToken, refreshToken});
+    setFakeToken({ accessToken, refreshToken });
 
     const response = {
       accessToken,
@@ -72,13 +72,13 @@ export default [
       grantType: 'Bearer',
     } as ResponseToken;
 
-    return HttpResponse.json(response, {status: 201});
+    return HttpResponse.json(response, { status: 201 });
   }),
   http.patch(getApiUrl(authApis.reIssueToken), () => {
     const accessToken = createFakeToken();
     const refreshToken = createFakeToken(true);
 
-    setFakeToken({accessToken, refreshToken});
+    setFakeToken({ accessToken, refreshToken });
 
     const response = {
       accessToken,
@@ -86,10 +86,10 @@ export default [
       grantType: 'Bearer',
     } as ResponseToken;
 
-    return HttpResponse.json(response, {status: 201});
+    return HttpResponse.json(response, { status: 201 });
   }),
   http.get(getApiUrl(authApis.validateFamilyCode), () => {
-    return HttpResponse.json({isValidate: true});
+    return HttpResponse.json({ isValidate: true });
   }),
   http.patch(getApiUrl(authApis.reRegistrationAlertToken), () => {
     return HttpResponse.json();

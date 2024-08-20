@@ -3,9 +3,9 @@ export async function initMSW() {
     return;
   }
   await import('./msw.polyfills');
-  const {server} = await import('./server');
-  server.listen({onUnhandledRequest: 'bypass'});
-  server.events.on('response:mocked', ({request, response}) => {
+  const { server } = await import('./server');
+  server.listen({ onUnhandledRequest: 'bypass' });
+  server.events.on('response:mocked', ({ request, response }) => {
     console.log(
       '%s %s received %s %s',
       request.method,
