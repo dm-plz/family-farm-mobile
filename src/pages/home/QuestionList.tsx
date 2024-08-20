@@ -1,5 +1,6 @@
 import {
   FlatList,
+  Pressable,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -29,11 +30,10 @@ interface ItemProps {
 }
 
 const Item = ({ questionHistoryId, question }: ItemProps) => (
-  // NOTE: NATIVE-WIND로 flex-row를 하면, RN이 flex-direction : row 인식을 못해서, 시뮬레이터상에 warning이 뜸.
-  <View className="mt-8" style={styles.item}>
+  <Pressable className="mt-8 flex-row">
     <Text className="mr-2">{questionHistoryId}</Text>
     <Text>{question}</Text>
-  </View>
+  </Pressable>
 );
 
 const QuestionList = () => {
@@ -42,7 +42,7 @@ const QuestionList = () => {
       <View className="mx-2 h-full">
         <MainHeader iconText="Save Icon" />
 
-        <ScrollView>
+        <ScrollView horizontal={true}>
           <FlatList
             data={questionLists}
             renderItem={({ item }) => (
@@ -58,11 +58,5 @@ const QuestionList = () => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  item: {
-    flexDirection: 'row',
-  },
-});
 
 export default QuestionList;
