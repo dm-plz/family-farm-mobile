@@ -24,12 +24,12 @@ type ResponseRefreshFamilyCode = {
   code: string;
 };
 
-async function postSurvey(param: ParamRefreshFamilyCode) {
+async function refreshFamilyCode(param: ParamRefreshFamilyCode) {
   const apiUrl = createUrl(familyApis.refreshFamilyCode, { param });
-  return await kyInstance.post(apiUrl).json<ResponseRefreshFamilyCode>();
+  return await kyInstance.patch(apiUrl).json<ResponseRefreshFamilyCode>();
 }
 
-export { getFamilyCode, postSurvey };
+export { getFamilyCode, refreshFamilyCode };
 export type {
   ParamGetFamilyCode,
   ResponseGetFamilyCode,
