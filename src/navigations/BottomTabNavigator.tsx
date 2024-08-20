@@ -5,6 +5,7 @@ import { Text } from 'react-native';
 import { colors } from '@/constants';
 import MapStackNavigator from '@/navigations/stack/MyStackNavigator';
 import Main from '@/pages/home/Main';
+import QuestionList from '@/pages/home/QuestionList';
 
 const Tab = createBottomTabNavigator();
 
@@ -31,7 +32,7 @@ export default function BottomTabNavigator() {
       />
       <Tab.Screen
         name="질문 답변"
-        component={Main}
+        component={QuestionList}
         options={{
           tabBarIcon: props => TabBarIcon(props, '질문 답변 아이콘'),
         }}
