@@ -1,17 +1,17 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+import { SafeAreaView, Text, View } from 'react-native';
 
-import MainHeader from '@/components/MainHeader';
-import {myNavigation} from '@/constants';
-import {MyStackParamList} from '@/navigations/stack/MyStackNavigator';
+import MainHeader from '@/components/my/MainHeader';
+import { myNavigation } from '@/constants';
+import { MyStackParamList } from '@/navigations/stack/MyStackNavigator';
 
 type MymyScreenProps = NativeStackScreenProps<
   MyStackParamList,
   typeof myNavigation.MY
 >;
 
-export default function My({navigation}: MymyScreenProps) {
+export default function My({ navigation }: MymyScreenProps) {
   return (
     <SafeAreaView className="h-full bg-green-100">
       <View>

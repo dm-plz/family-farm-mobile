@@ -1,25 +1,25 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React, {useState} from 'react';
-import {SafeAreaView, Text, TextInput, View} from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import React, { useState } from 'react';
+import { SafeAreaView, Text, TextInput, View } from 'react-native';
 
 import CustomButton from '@/components/CustomButton';
-import SignUpPageHeader from '@/components/sign-up-screen/SignUpPageHeader';
-import {signUpNavigation} from '@/constants';
-import {SignUpStackParamList} from '@/navigations/stack/SignUpStackNavigator';
+import StepHeader from '@/components/sign-up/StepHeader';
+import { signUpNavigation } from '@/constants';
+import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
 
-type SignUpWelcomScreenProps = NativeStackScreenProps<
+type Join1ScreenProps = NativeStackScreenProps<
   SignUpStackParamList,
   typeof signUpNavigation.JOIN_1
 >;
 
-function Join1({navigation}: SignUpWelcomScreenProps) {
+function Join1({ navigation }: Join1ScreenProps) {
   const [activeBorder, setActiveBorder] = useState(false);
 
   return (
     <SafeAreaView>
       <View className="h-full justify-between px-10 pb-10">
         <View>
-          <SignUpPageHeader currentStep={1} />
+          <StepHeader currentStep={1} />
           <View>
             <Text className="text-2xl font-bold">환영합니다!</Text>
             <Text className="text-2xl font-bold">초대를 받고 오셨나요?</Text>

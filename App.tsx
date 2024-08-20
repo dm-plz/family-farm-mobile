@@ -4,7 +4,7 @@ import React, {useEffect, useState} from 'react';
 
 import queryClient from '@/api/queryClient';
 import {initMSW} from '@/mocks/init';
-import SignUpStackNavigator from '@/navigations/stack/SignUpStackNavigator';
+import RootNavigator from '@/navigations/RootNavigator';
 
 export default function App() {
   const [isMockingEnabled, setMockingEnabled] = useState(false);
@@ -18,7 +18,7 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
-        <SignUpStackNavigator />
+        <RootNavigator />
       </NavigationContainer>
     </QueryClientProvider>
   );

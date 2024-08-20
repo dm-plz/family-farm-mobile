@@ -1,12 +1,15 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import { Text, View } from 'react-native';
 
 interface Props {
   iconText?: string;
   onPressIcon?: () => void;
 }
 
-export default function MainHeader({iconText, onPressIcon = () => {}}: Props) {
+export default function MainHeader({
+  iconText,
+  onPressIcon = () => {},
+}: Props) {
   return (
     <View className="relative mb-10">
       <Text className="text-center text-xl">Logo</Text>

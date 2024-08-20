@@ -1,7 +1,7 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import { Text, View } from 'react-native';
 
-const SignUpPageHeader = ({currentStep}: {currentStep: 1 | 2 | 3}) => {
+const StepHeader = ({ currentStep }: { currentStep: 1 | 2 | 3 }) => {
   return (
     <View className="mt-2 flex w-full flex-row items-center justify-center">
       <View className="flex h-20 w-20 items-center justify-center rounded-full border-4 border-green-600 bg-transparent">
@@ -56,4 +56,4 @@ const SignUpPageHeader = ({currentStep}: {currentStep: 1 | 2 | 3}) => {
   );
 };
 
-export default SignUpPageHeader;
+export default StepHeader;
