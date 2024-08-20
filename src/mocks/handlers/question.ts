@@ -6,6 +6,8 @@ import {
   BodyPatchAnswer,
   BodyPostAnswer,
   ParamPatchAnswer,
+  ResponseGetAnswer,
+  ResponseGetList,
   ResponseGetQuestion,
 } from '@/api/quetion';
 import { questionApis } from '@/api/routes';
@@ -18,11 +20,11 @@ const answer: Answer[] = [];
 
 export default [
   http.get(getApiUrl(questionApis.getQuestion), () => {
-    const response = {
+    const response: ResponseGetQuestion = {
       ...question[0],
       isAnswered: false,
     };
-    return HttpResponse.json<ResponseGetQuestion>(response, { status: 200 });
+    return HttpResponse.json(response);
   }),
   http.post<PathParams, BodyPostAnswer>(
     getApiUrl(questionApis.postAnswer),
@@ -35,29 +37,31 @@ export default [
         content: body.answer,
         createAt: new Date(),
       };
+
+      return HttpResponse.json(null, { status: 201 });
     },
   ),
   http.get(getApiUrl(questionApis.getAnswer), () => {
-    const response = {
+    const response: ResponseGetAnswer = {
       answer: answer,
     };
-    return HttpResponse.json(response, { status: 200 });
+    return HttpResponse.json(response);
   }),
   http.patch<ParamPatchAnswer, BodyPatchAnswer>(
-    getApiUrl(questionApis.patchAnser),
+    getApiUrl(questionApis.patchAnswer),
     async ({ request }) => {
       const body = await request.json();
       answer[0].content = body.answer;
-      return HttpResponse.json(null, { status: 200 });
+      return new HttpResponse();
     },
   ),
   http.get(getApiUrl(questionApis.getList), () => {
-    const response = {
+    const response: ResponseGetList = {
       question,
     };
-    return HttpResponse.json(response, { status: 200 });
+    return HttpResponse.json(response);
   }),
   http.post(getApiUrl(questionApis.cheerUp), () => {
-    return HttpResponse.json(null, { status: 200 });
+    return new HttpResponse();
   }),
 ];

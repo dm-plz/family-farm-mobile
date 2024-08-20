@@ -8,6 +8,7 @@ import {
   //NOTE: 로그인 실패 -> 회원 가입 로직
   // RequestSignIn,
   ResponseToken,
+  ResponseValidateFamilyCode,
 } from '@/api/auth';
 import { authApis } from '@/api/routes';
 import { createFakeToken, setFakeToken } from '@/mocks/utils/token';
@@ -19,11 +20,11 @@ export default [
 
     setFakeToken({ accessToken, refreshToken });
 
-    const response = {
+    const response: ResponseToken = {
       accessToken,
       refreshToken,
       grantType: 'Bearer',
-    } as ResponseToken;
+    };
 
     return HttpResponse.json(response, { status: 201 });
   }),
@@ -52,11 +53,11 @@ export default [
 
     setFakeToken({ accessToken, refreshToken });
 
-    const response = {
+    const response: ResponseToken = {
       accessToken,
       refreshToken,
       grantType: 'Bearer',
-    } as ResponseToken;
+    };
 
     return HttpResponse.json(response, { status: 201 });
   }),
@@ -66,11 +67,11 @@ export default [
 
     setFakeToken({ accessToken, refreshToken });
 
-    const response = {
+    const response: ResponseToken = {
       accessToken,
       refreshToken,
       grantType: 'Bearer',
-    } as ResponseToken;
+    };
 
     return HttpResponse.json(response, { status: 201 });
   }),
@@ -80,18 +81,19 @@ export default [
 
     setFakeToken({ accessToken, refreshToken });
 
-    const response = {
+    const response: ResponseToken = {
       accessToken,
       refreshToken,
       grantType: 'Bearer',
-    } as ResponseToken;
+    };
 
     return HttpResponse.json(response, { status: 201 });
   }),
   http.get(getApiUrl(authApis.validateFamilyCode), () => {
-    return HttpResponse.json({ isValidate: true });
+    const response: ResponseValidateFamilyCode = { isValidate: true };
+    return HttpResponse.json(response);
   }),
   http.patch(getApiUrl(authApis.reRegistrationAlertToken), () => {
-    return HttpResponse.json();
+    return new HttpResponse(null);
   }),
 ];
