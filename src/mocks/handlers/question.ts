@@ -2,13 +2,14 @@
 // import {faker} from '@faker-js/faker';
 import {http, HttpResponse} from 'msw';
 
+import {getApiUrl} from '../utils/api';
+
 import {ResponseGetQuestion} from '@/api/quetion';
 import {questionApis} from '@/api/routes';
-import {API_BASE_URL} from '@/constants/api';
 import {verifyFakeJWT} from '@/mocks/utils/token';
 
 export default [
-  http.get(API_BASE_URL + questionApis.getQuestion, ({request}) => {
+  http.get(getApiUrl(questionApis.getQuestion), ({request}) => {
     const Authorized = request.headers.get('Authorization');
     if (Authorized === null) {
       return new HttpResponse(null, {

@@ -2,14 +2,15 @@
 // import {faker} from '@faker-js/faker';
 import {http, HttpResponse} from 'msw';
 
+import {getApiUrl} from '../utils/api';
+
 import {RequestSignIn, RequestSignUp, ResponseToken} from '@/api/auth';
 import {authApis} from '@/api/routes';
-import {API_BASE_URL} from '@/constants/api';
 import {createUser} from '@/mocks/fakers';
 import {createFakeJWT} from '@/mocks/utils/token';
 
 export default [
-  http.post(API_BASE_URL + authApis.signIn, async ({request}) => {
+  http.post(getApiUrl(authApis.signIn), async ({request}) => {
     const body = (await request.json()) as Partial<RequestSignIn>;
     const {OAuthProvider, AuthorizationCode} = body;
     const oauthAgent = ['NATIVE', 'GOOGLE', 'NAVER', 'KAKAO', 'APPLE'];
@@ -48,13 +49,13 @@ export default [
       grantType: 'Bearer',
     } as ResponseToken);
   }),
-  http.get(API_BASE_URL + authApis.signOut, () => {
+  http.get(getApiUrl(authApis.signOut), () => {
     return new HttpResponse(null, {
       status: 204,
       statusText: 'No Content',
     });
   }),
-  http.post(API_BASE_URL + authApis.signUp, async ({request}) => {
+  http.post(getApiUrl(authApis.signUp), async ({request}) => {
     const body = (await request.json()) as RequestSignUp;
     if (
       !(
