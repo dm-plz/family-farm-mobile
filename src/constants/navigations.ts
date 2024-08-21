@@ -10,4 +10,9 @@ const myNavigation = {
   SETTING: 'My_Setting',
 } as const;
 
-export { signUpNavigation, myNavigation };
+const QustionAnswerNavigation = {
+  QUESTION_LIST: 'Question_Answer_QuestionList',
+  WRITE_ANSWER: 'Question_Answer_WriteAnswer',
+} as const;
+
+export { signUpNavigation, myNavigation, QustionAnswerNavigation };

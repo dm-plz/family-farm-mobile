@@ -12,7 +12,7 @@ export type MyStackParamList = {
 
 const Stack = createNativeStackNavigator<MyStackParamList>();
 
-function MapStackNavigator() {
+function MyStackNavigator() {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -24,4 +24,4 @@ function MapStackNavigator() {
   );
 }
 
-export default MapStackNavigator;
+export default MyStackNavigator;

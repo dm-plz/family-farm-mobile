@@ -2,10 +2,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 import { Text } from 'react-native';
 
+import QustionAnswerStackNavigator from './stack/QustionAnswerStackNavigator';
+
 import { colors } from '@/constants';
 import MapStackNavigator from '@/navigations/stack/MyStackNavigator';
 import Main from '@/pages/home/Main';
-import QuestionList from '@/pages/home/QuestionList';
 
 const Tab = createBottomTabNavigator();
 
@@ -14,13 +15,23 @@ export default function BottomTabNavigator() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: colors.YELLOW_400,
-        tabBarInactiveTintColor: colors.WHITE,
+        tabBarActiveTintColor: colors.GREEN_700,
+        tabBarInactiveTintColor: '#7E8C86',
         tabBarStyle: {
-          backgroundColor: colors.GREEN_700,
-          minHeight: 80,
-          paddingBottom: 20,
-          paddingTop: 10,
+          backgroundColor: colors.WHITE,
+          minHeight: 114,
+
+          borderTopRightRadius: 40,
+          borderTopLeftRadius: 40,
+          elevation: 8,
+          shadowColor: '#000000',
+          shadowOpacity: 0.04,
+          borderTopWidth: 0,
+        },
+
+        tabBarLabelStyle: {
+          fontWeight: 'bold',
+          fontSize: 14,
         },
       }}>
       <Tab.Screen
@@ -32,13 +43,13 @@ export default function BottomTabNavigator() {
       />
       <Tab.Screen
         name="질문 답변"
-        component={QuestionList}
+        component={QustionAnswerStackNavigator}
         options={{
           tabBarIcon: props => TabBarIcon(props, '질문 답변 아이콘'),
         }}
       />
       <Tab.Screen
-        name="마이"
+        name="마이페이지"
         component={MapStackNavigator}
         options={{
           tabBarIcon: props => TabBarIcon(props, '마이 아이콘'),
