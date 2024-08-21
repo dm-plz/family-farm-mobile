@@ -58,7 +58,7 @@ const RenderQusetion = ({ item, navigation }: RenderQusetionProps) => {
     <Pressable
       className="mt-2 border-b border-[#F7F7F7] py-2"
       onPress={() => {
-        navigation.navigate(QustionAnswerNavigation.WRITE_ANSWER, item);
+        navigation.navigate(QustionAnswerNavigation.VIEW_ANSWER, item);
       }}>
       <View className="h-[40] w-[114] flex-row items-center justify-start">
         {isTodayQuestion && (

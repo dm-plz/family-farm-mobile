@@ -15,3 +15,10 @@ export const showBottomTab = {
 export const nonShowBottomTab = {
   display: 'none',
 };
+
+export const questionAnswerHeaderStyle = {
+  headerShown: true,
+  title: ' ',
+  headerTintColor: '#1BB876',
+  headerBackTitleVisible: false,
+};

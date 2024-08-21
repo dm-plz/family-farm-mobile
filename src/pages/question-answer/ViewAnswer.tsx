@@ -6,17 +6,16 @@ import { Pressable } from 'react-native-gesture-handler';
 import MyIcon from '@/components/question-answer/MyIcon';
 import { QustionAnswerNavigation } from '@/constants';
 import { QustionAnswerStackParamList } from '@/navigations/stack/QustionAnswerStackNavigator';
-import useDayjs from '@/util/dayjs';
 
-type WriteAnswerScreenProps = NativeStackScreenProps<
+type ViewAnswerScreenProps = NativeStackScreenProps<
   QustionAnswerStackParamList,
-  typeof QustionAnswerNavigation.WRITE_ANSWER
+  typeof QustionAnswerNavigation.VIEW_ANSWER
 >;
 
 // BUG: Sending 'onAnimatedValueUpdate' 해결해야함.
 // NOTE: 인증기능 구현되면, (나) 기능에 로직 추가해야함.
 
-const WriteAnswer = ({ navigation, route }: WriteAnswerScreenProps) => {
+const ViewAnswer = ({ navigation, route }: ViewAnswerScreenProps) => {
   const [QuestionItem] = useState(route.params);
 
   return (
@@ -26,7 +25,7 @@ const WriteAnswer = ({ navigation, route }: WriteAnswerScreenProps) => {
       <MyIcon groupRole={'daughter'} />
       <View className="h-full">
         <View className="mb-[40]">
-          {/* BUG:  break-words 작동 안함. 해결해야함.*/}
+          {/* BUG:  break-words 속성 안먹음. 해결해야함.*/}
           <Text className="w-1/2 text-2xl font-bold leading-9">
             {QuestionItem.question}
           </Text>
@@ -37,7 +36,7 @@ const WriteAnswer = ({ navigation, route }: WriteAnswerScreenProps) => {
 
         <FlatList
           data={answerItem}
-          renderItem={({ item }: { item: answerItemProps }) => (
+          renderItem={({ item }: { item: AnswerItemProps }) => (
             <RenderAnswer item={item} navigation={navigation} />
           )}
           keyExtractor={item => item.id}
@@ -47,9 +46,9 @@ const WriteAnswer = ({ navigation, route }: WriteAnswerScreenProps) => {
   );
 };
 
-export default WriteAnswer;
+export default ViewAnswer;
 
-interface answerItemProps {
+export interface AnswerItemProps {
   nickname: string;
   groupRole: string;
   emoji: string | null;
@@ -58,7 +57,7 @@ interface answerItemProps {
   id: string;
 }
 
-const answerItem: answerItemProps[] = [
+const answerItem: AnswerItemProps[] = [
   {
     nickname: '신가은',
     groupRole: 'Daughter',
@@ -86,24 +85,32 @@ const answerItem: answerItemProps[] = [
 ];
 
 interface RenderAnswerProps {
-  item: answerItemProps;
-  navigation: WriteAnswerScreenProps['navigation'];
+  item: AnswerItemProps;
+  navigation: ViewAnswerScreenProps['navigation'];
 }
 
 const RenderAnswer = ({ item, navigation }: RenderAnswerProps) => {
-  const today = useDayjs('2024-08-20').format('YYYY-MM-DD');
+  // const writeAnswerButtonHandler = path => {
+  //   const isToday = true;
 
-  const answerHandler = (createAt: string) => {
-    const isToday = today === createAt.slice(0, 10);
+  //질문이 온 날짜와, 답변하는 날짜가 같다면, "오늘의 기분을 기록해 주세요."로 이동.
+  //"오늘의 기분을 기록해 주세요." 페이지에서, 등록완료 버튼을 누르면, 질문에서 요구하는 답변 형식에 따라 페이지를 이동시킨다.
+  //"오늘의 기분을 기록해 주세요." 페이지에서, 안할래요 버튼을 눌러도, 질문에서 요구하는 답변 형식에 따라 페이지를 이동시킨다.
+  //이동되는 페이지는 "AnswerWithStringVocie" or "AnswerWithImage"다.
 
-    if (isToday) {
-      // 오늘의 기분으로
-      navigation.navigate('');
-    } else {
-      //
-      navigation.navigate('');
-    }
-  };
+  //질문이 온 날짜와, 답변하는 날짜가 다른경우, "응원하기 버튼을 띄운다."
+  //응원하기 버튼에서 "조금 떨려"버튼을 누르면, 아무 반응없이 그냥 꺼진다.
+  //응원하기 버튼에서 "마음 보내기"버튼을 누르면, 질문에서 요구하는 답변 혁식에 따라 페이지를 이동시킨다.
+  //이동되는 페이지는 "AnswerWithStringVocie" or "AnswerWithImage"다.
+
+  //질문에서 요구하는 답변 형식이 string/voice 일 경우 "AnswerWithStringVoice" 로 이동
+  //질문에서 요구하는 답변 형식이 image 일 경우 "AnswerWithImage" 로 이동
+
+  // if (isToday) {
+
+  //     return navigation.navigate(path)}
+  // } else if ()
+  // };
 
   return (
     <View className="justify-center border-b border-[#F7F7F7] py-4">
@@ -122,9 +129,12 @@ const RenderAnswer = ({ item, navigation }: RenderAnswerProps) => {
           {item.content === null ? (
             <Pressable
               className="h-[36] w-[120] items-center justify-center rounded-full bg-[#1BB876]"
-              onPress={() => {
-                answerHandler(item.createAt);
-              }}>
+              onPress={() =>
+                navigation.navigate(
+                  QustionAnswerNavigation.ANSWER_WITH_FEELING,
+                  item,
+                )
+              }>
               <Text className="font-bold text-white">답변하기</Text>
             </Pressable>
           ) : (
@@ -135,3 +145,26 @@ const RenderAnswer = ({ item, navigation }: RenderAnswerProps) => {
     </View>
   );
 };
+
+// 응원하기 버튼 함수
+// const showCheerButton = () => {
+//   const today = useDayjs('2024-08-21').format('YYYY-MM-DD');
+//   const isToday = today === questionItem.createAt.slice(0, 10);
+
+//   useEffect(() => {
+//     if (!isToday) {
+//       Alert.alert(
+//         `우리 가족
+//       항상 사랑하고 응원해`,
+//         '',
+//         [
+//           {
+//             text: '조금 떨려',
+//             onPress: () => {},
+//           },
+//           { text: '마음 보내기', onPress: () => {} },
+//         ],
+//       );
+//     }
+//   }, [isToday]);
+// }

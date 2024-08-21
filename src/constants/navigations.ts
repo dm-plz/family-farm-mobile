@@ -12,7 +12,10 @@ const myNavigation = {
 
 const QustionAnswerNavigation = {
   QUESTION_LIST: 'Question_Answer_QuestionList',
-  WRITE_ANSWER: 'Question_Answer_WriteAnswer',
+  VIEW_ANSWER: 'Question_Answer_ViewAnswer',
+  ANSWER_WITH_FEELING: 'Question_Answer_AnswerWithFeeling',
+  ANSWER_WITH_IMAGE: 'Question_Answer_AnswerWithImage',
+  ANSWER_WITH_StringVoice: 'Question_Answer_AnswerWithStringVoice',
 } as const;
 
 export { signUpNavigation, myNavigation, QustionAnswerNavigation };
