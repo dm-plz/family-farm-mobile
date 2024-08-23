@@ -12,7 +12,20 @@
           "package_name": "com.familyfarmrn"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "686661822188-s6ncq8rrrmthulnbsu7240gclfos3i5v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.familyfarmrn",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "686661822188-g09au2cca8vhjbbsq14c2aq5cd54j2h0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyD95wgxvVQBP7m_DFxJzfCxUrwqfzBsZ3w"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "686661822188-g09au2cca8vhjbbsq14c2aq5cd54j2h0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "686661822188-oulmfo3ohbbs2b26q0bst9ldufdr8rnt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.FamilyFarmRN"
+              }
+            }
+          ]
         }
       }
     }
