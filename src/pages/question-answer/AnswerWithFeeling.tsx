@@ -1,3 +1,5 @@
+// NOTE: QNAA03
+// NOTE: QNAA04-T*, QNAA03-T*는 화면이 같음.
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Pressable, SafeAreaView, Text, View } from 'react-native';
 
@@ -9,11 +11,9 @@ type AnswerWithFeelingScreenProps = NativeStackScreenProps<
   typeof QustionAnswerNavigation.ANSWER_WITH_FEELING
 >;
 
-const AnswerWithFeeling = ({
-  navigation,
-  route,
-}: AnswerWithFeelingScreenProps) => {
+const AnswerWithFeeling = ({ navigation }: AnswerWithFeelingScreenProps) => {
   const navigateHandler = () => {
+    //  답변에서 요구하는 형식에따라 분기 처리해야함
     navigation.navigate(QustionAnswerNavigation.ANSWER_WITH_StringVoice);
     //navigation.navigate(QustionAnswerNavigation.ANSWER_WITH_IMAGE);
   };

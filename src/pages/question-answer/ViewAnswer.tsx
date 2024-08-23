@@ -1,3 +1,6 @@
+// NOTE: QNAA02
+// NOTE: 기획과 디자인, BE로직이 확정되면 재작업 해야함.
+
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useState } from 'react';
 import { Dimensions, FlatList, SafeAreaView, Text, View } from 'react-native';
@@ -12,7 +15,7 @@ type ViewAnswerScreenProps = NativeStackScreenProps<
   typeof QustionAnswerNavigation.VIEW_ANSWER
 >;
 
-// BUG: Sending 'onAnimatedValueUpdate' 해결해야함.
+// BUG: Sending 'onAnimatedValueUpdate' 해결해야함. (네비게이션 로직 확정 할 수 있을때 작업예정 (be))
 // NOTE: 인증기능 구현되면, (나) 기능에 로직 추가해야함.
 
 const ViewAnswer = ({ navigation, route }: ViewAnswerScreenProps) => {
@@ -145,6 +148,9 @@ const RenderAnswer = ({ item, navigation }: RenderAnswerProps) => {
     </View>
   );
 };
+
+// 디자인 파일 나오면 반영 예정
+// 오늘의 질문과, 사용자가 답변하는 날짜가 다른 경우, 응원하기 버튼이 출력된다고 함.
 
 // 응원하기 버튼 함수
 // const showCheerButton = () => {

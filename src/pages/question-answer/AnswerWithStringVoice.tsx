@@ -1,3 +1,5 @@
+//NOTE: QNAA04
+
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Pressable, SafeAreaView, Text, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
