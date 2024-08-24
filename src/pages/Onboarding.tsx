@@ -1,10 +1,14 @@
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-} from '@react-native-google-signin/google-signin';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
-import { Image, Platform, Pressable, Text, View } from 'react-native';
+import {
+  NativeModules,
+  Image,
+  Platform,
+  Pressable,
+  Text,
+  View,
+} from 'react-native';
 
 import { signUpNavigation } from '@/constants';
 import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
@@ -21,8 +25,20 @@ GoogleSignin.configure({
   offlineAccess: true,
 });
 
+const { KakaoLoginModule } = NativeModules;
+
 function Onboarding({ navigation }: OnboardingProps) {
   const isIOS = Platform.OS === 'ios';
+
+  const handleLogin = () => {
+    KakaoLoginModule.signInWithKakao()
+      .then((token: any) => {
+        console.log(token);
+      })
+      .catch((error: Error) => {
+        console.log(error);
+      });
+  };
 
   const googleSignin = async () => {
     try {
@@ -45,7 +61,9 @@ function Onboarding({ navigation }: OnboardingProps) {
         />
       </View>
       <View className="flex basis-1/3 flex-col px-10">
-        <Pressable className="mb-4 w-full bg-yellow-200 px-4 py-6">
+        <Pressable
+          className="mb-4 w-full bg-yellow-200 px-4 py-6"
+          onPress={handleLogin}>
           <Text>카카오 로그인</Text>
         </Pressable>
         <Pressable
