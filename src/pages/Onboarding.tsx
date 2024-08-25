@@ -18,7 +18,7 @@ type OnboardingProps = NativeStackScreenProps<
 >;
 
 //XXX: 배포까지 완료된 후에 Firestore를 통한 구글 로그인 방식 제거해야 함
-
+//TODO: ios, android kakao sign in 에러 처리를 동일하게 할 수 있도록 수정 필요
 const { KakaoLoginModule } = NativeModules;
 
 function Onboarding({ navigation }: OnboardingProps) {

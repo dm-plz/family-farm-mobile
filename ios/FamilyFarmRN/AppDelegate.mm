@@ -1,6 +1,7 @@
 #import "AppDelegate.h"
 
 #import <React/RCTBundleURLProvider.h>
+#import "KakaoLoginModule.h"
 
 @implementation AppDelegate
 
@@ -12,6 +13,17 @@
   self.initialProps = @{};
 
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
+}
+
+// Kakao URL 처리 추가
+- (BOOL)application:(UIApplication *)app
+     openURL:(NSURL *)url
+     options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+ if([KakaoLoginModule isKakaoTalkLoginUrl:url]) {
+    return [KakaoLoginModule handleOpenUrl: url];
+ }
+
+ return NO;
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
