@@ -9,7 +9,7 @@ import {
   ResponseGetAnswer,
   ResponseGetList,
   ResponseGetQuestion,
-} from '@/api/quetion';
+} from '@/api/question';
 import { questionApis } from '@/api/routes';
 import { Answer, Question } from '@/types';
 
