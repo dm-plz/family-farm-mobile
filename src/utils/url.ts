@@ -1,5 +1,3 @@
-import { convertKebabToCamel } from './string';
-
 type OptionType = string | number | boolean;
 
 interface Options {
@@ -9,9 +7,9 @@ interface Options {
 export function createUrl(path: string, options?: Options) {
   const pathTokens = path.split('/');
   const replacedPathTokens = pathTokens.map(token => {
-    const camelCaseToken = convertKebabToCamel(token.slice(1));
+    const paramKey = token.slice(1);
     const optionsParam = options?.param ?? {};
-    const matchedParam = optionsParam[camelCaseToken];
+    const matchedParam = optionsParam[paramKey];
 
     if (token[0] === ':' && matchedParam) {
       return matchedParam;
