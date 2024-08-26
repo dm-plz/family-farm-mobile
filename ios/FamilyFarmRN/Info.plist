@@ -20,13 +20,40 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>$(KAKAO_URL_SCHEME)</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.686661822188-7dgk7pmg3t17b678js7k3jektt4p7612</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>KAKAO_APP_KEY</key>
+	<string>$(KAKAO_API_KEY)</string>
+	<key>KAKAO_APP_SCHEME</key>
+	<string>$(KAKAO_URL_SCHEME)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>kakaokompassauth</string>
+		<string>kakaolink</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-	  <!-- Do not change NSAllowsArbitraryLoads to true, or you will risk app rejection! -->
 		<key>NSAllowsArbitraryLoads</key>
 		<false/>
 		<key>NSAllowsLocalNetworking</key>
@@ -48,25 +75,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>CFBundleURLTypes</key>
-	<array>
-			<dict>
-				<key>CFBundleTypeRole</key>
-				<string>Editor</string>
-				<key>CFBundleURLSchemes</key>
-				<array>
-					<string>$(KAKAO_URL_SCHEME)</string>
-				</array>
-			</dict>
-	</array>
-	<key>KAKAO_APP_KEY</key>
-	<string>$(KAKAO_API_KEY)</string>
-  <key>KAKAO_APP_SCHEME</key>
-  <string>$(KAKAO_URL_SCHEME)</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-			<string>kakaokompassauth</string>
-			<string>kakaolink</string>
-	</array>
 </dict>
 </plist>
