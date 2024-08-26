@@ -121,12 +121,18 @@ const RenderAnswer = ({ item, navigation }: RenderAnswerProps) => {
         <View className="ml-2 mr-4 items-center justify-center">
           <MyIcon groupRole={item.groupRole} />
         </View>
-        <View className="space-y-2">
-          <View className="flex-row space-x-1">
-            <Text className="text-[#878C90]">{item.groupRole[0]}</Text>
-            {item.groupRole === 'Daughter' && (
-              <Text className="text-[#1BB876]">(나)</Text>
-            )}
+        <View className="flex-1 space-y-2">
+          <View className="flex-row items-center justify-between">
+            <View className="flex-row space-x-2">
+              <Text className="text-[#878C90]">{item.groupRole[0]}</Text>
+              {item.groupRole === 'Daughter' && (
+                <Text className="text-[#1BB876]">(나)</Text>
+              )}
+            </View>
+            <View className="mr-2 flex-row space-x-4">
+              <Text className="text-[#878c90]">Icon</Text>
+              <Text className="text-[#878c90]">수정하기</Text>
+            </View>
           </View>
           <Text className="font-bold">{item.nickname}</Text>
           {item.content === null ? (
