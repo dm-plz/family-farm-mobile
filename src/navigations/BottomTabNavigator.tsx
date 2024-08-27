@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 import { Text } from 'react-native';
 
-import QustionAnswerStackNavigator from './stack/QustionAnswerStackNavigator';
+import QuestionAnswerStackNavigator from './stack/QuestionAnswerStackNavigator';
 
 import { colors } from '@/constants';
 import MapStackNavigator from '@/navigations/stack/MyStackNavigator';
@@ -43,7 +43,7 @@ export default function BottomTabNavigator() {
       />
       <Tab.Screen
         name="질문 답변"
-        component={QustionAnswerStackNavigator}
+        component={QuestionAnswerStackNavigator}
         options={{
           tabBarIcon: props => TabBarIcon(props, '질문 답변 아이콘'),
         }}

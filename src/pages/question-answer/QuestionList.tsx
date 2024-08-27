@@ -11,16 +11,16 @@ import {
 } from 'react-native';
 
 import MyIcon from '@/components/question-answer/MyIcon';
-import { QustionAnswerNavigation } from '@/constants';
-import { QustionAnswerStackParamList } from '@/navigations/stack/QustionAnswerStackNavigator';
+import { QuestionAnswerNavigation } from '@/constants';
+import { QuestionAnswerStackParamList } from '@/navigations/stack/QuestionAnswerStackNavigator';
 import dayjs from '@/util/dayjs';
 
-type QustionListScreenProps = NativeStackScreenProps<
-  QustionAnswerStackParamList,
-  typeof QustionAnswerNavigation.QUESTION_LIST
+type QuestionListScreenProps = NativeStackScreenProps<
+  QuestionAnswerStackParamList,
+  typeof QuestionAnswerNavigation.QUESTION_LIST
 >;
 
-const QuestionList = ({ navigation }: QustionListScreenProps) => {
+const QuestionList = ({ navigation }: QuestionListScreenProps) => {
   return (
     <SafeAreaView style={{ height: Dimensions.get('window').height }}>
       <MyIcon groupRole={'daughter'} />
@@ -49,7 +49,7 @@ export default QuestionList;
 
 interface RenderQusetionProps {
   item: QuestionItemProps;
-  navigation: QustionListScreenProps['navigation'];
+  navigation: QuestionListScreenProps['navigation'];
 }
 
 const RenderQusetion = ({ item, navigation }: RenderQusetionProps) => {
@@ -60,7 +60,7 @@ const RenderQusetion = ({ item, navigation }: RenderQusetionProps) => {
     <Pressable
       className="mt-2 border-b border-[#F7F7F7] py-2"
       onPress={() => {
-        navigation.navigate(QustionAnswerNavigation.VIEW_ANSWER, item);
+        navigation.navigate(QuestionAnswerNavigation.VIEW_ANSWER, item);
       }}>
       <View className="h-[40] w-[114] flex-row items-center justify-start">
         {isTodayQuestion && (

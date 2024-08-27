@@ -13,7 +13,7 @@ import {
   colors,
   nonShowBottomTab,
   questionAnswerHeaderStyle,
-  QustionAnswerNavigation,
+  QuestionAnswerNavigation as QuestionAnswerNavigation,
   showBottomTab,
 } from '@/constants';
 import AnswerWithFeeling from '@/pages/question-answer/AnswerWithFeeling';
@@ -26,30 +26,30 @@ import ViewAnswer, {
   AnswerItemProps,
 } from '@/pages/question-answer/ViewAnswer';
 
-export type QustionAnswerStackParamList = {
-  [QustionAnswerNavigation.QUESTION_LIST]: undefined;
-  [QustionAnswerNavigation.VIEW_ANSWER]: QuestionItemProps;
-  [QustionAnswerNavigation.ANSWER_WITH_FEELING]: AnswerItemProps;
-  [QustionAnswerNavigation.ANSWER_WITH_IMAGE]: undefined;
-  [QustionAnswerNavigation.ANSWER_WITH_StringVoice]: undefined;
+export type QuestionAnswerStackParamList = {
+  [QuestionAnswerNavigation.QUESTION_LIST]: undefined;
+  [QuestionAnswerNavigation.VIEW_ANSWER]: QuestionItemProps;
+  [QuestionAnswerNavigation.ANSWER_WITH_FEELING]: AnswerItemProps;
+  [QuestionAnswerNavigation.ANSWER_WITH_IMAGE]: undefined;
+  [QuestionAnswerNavigation.ANSWER_WITH_StringVoice]: undefined;
 };
 
-type QustionAnswerStackNavigatorProps = {
+type QuestionAnswerStackNavigatorProps = {
   navigation: StackNavigationProp<ParamListBase>;
   route: RouteProp<ParamListBase>;
 };
 
-const Stack = createStackNavigator<QustionAnswerStackParamList>();
+const Stack = createStackNavigator<QuestionAnswerStackParamList>();
 
-const QustionAnswerStackNavigator = ({
+const QuestionAnswerStackNavigator = ({
   navigation,
   route,
-}: QustionAnswerStackNavigatorProps) => {
+}: QuestionAnswerStackNavigatorProps) => {
   useLayoutEffect(() => {
     const screens = {
-      [QustionAnswerNavigation.ANSWER_WITH_FEELING]: 1,
-      [QustionAnswerNavigation.ANSWER_WITH_IMAGE]: 2,
-      [QustionAnswerNavigation.ANSWER_WITH_StringVoice]: 3,
+      [QuestionAnswerNavigation.ANSWER_WITH_FEELING]: 1,
+      [QuestionAnswerNavigation.ANSWER_WITH_IMAGE]: 2,
+      [QuestionAnswerNavigation.ANSWER_WITH_StringVoice]: 3,
     };
     const routeName = getFocusedRouteNameFromRoute(route);
 
@@ -77,25 +77,25 @@ const QustionAnswerStackNavigator = ({
         headerShown: false,
       }}>
       <Stack.Screen
-        name={QustionAnswerNavigation.QUESTION_LIST}
+        name={QuestionAnswerNavigation.QUESTION_LIST}
         component={QuestionList}
       />
       <Stack.Screen
-        name={QustionAnswerNavigation.VIEW_ANSWER}
+        name={QuestionAnswerNavigation.VIEW_ANSWER}
         component={ViewAnswer}
       />
       <Stack.Screen
-        name={QustionAnswerNavigation.ANSWER_WITH_FEELING}
+        name={QuestionAnswerNavigation.ANSWER_WITH_FEELING}
         options={questionAnswerHeaderStyle}
         component={AnswerWithFeeling}
       />
       <Stack.Screen
-        name={QustionAnswerNavigation.ANSWER_WITH_IMAGE}
+        name={QuestionAnswerNavigation.ANSWER_WITH_IMAGE}
         options={questionAnswerHeaderStyle}
         component={AnswerWithImage}
       />
       <Stack.Screen
-        name={QustionAnswerNavigation.ANSWER_WITH_StringVoice}
+        name={QuestionAnswerNavigation.ANSWER_WITH_StringVoice}
         options={questionAnswerHeaderStyle}
         component={AnswerWithStringVoice}
       />
@@ -103,4 +103,4 @@ const QustionAnswerStackNavigator = ({
   );
 };
 
-export default QustionAnswerStackNavigator;
+export default QuestionAnswerStackNavigator;

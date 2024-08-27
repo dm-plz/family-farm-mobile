@@ -7,12 +7,12 @@ import { Dimensions, FlatList, SafeAreaView, Text, View } from 'react-native';
 import { Pressable } from 'react-native-gesture-handler';
 
 import MyIcon from '@/components/question-answer/MyIcon';
-import { QustionAnswerNavigation } from '@/constants';
-import { QustionAnswerStackParamList } from '@/navigations/stack/QustionAnswerStackNavigator';
+import { QuestionAnswerNavigation } from '@/constants';
+import { QuestionAnswerStackParamList } from '@/navigations/stack/QuestionAnswerStackNavigator';
 
 type ViewAnswerScreenProps = NativeStackScreenProps<
-  QustionAnswerStackParamList,
-  typeof QustionAnswerNavigation.VIEW_ANSWER
+  QuestionAnswerStackParamList,
+  typeof QuestionAnswerNavigation.VIEW_ANSWER
 >;
 
 // BUG: Sending 'onAnimatedValueUpdate' 해결해야함. (네비게이션 로직 확정 할 수 있을때 작업예정 (be))
@@ -140,7 +140,7 @@ const RenderAnswer = ({ item, navigation }: RenderAnswerProps) => {
               className="h-[36] w-[120] items-center justify-center rounded-full bg-[#1BB876]"
               onPress={() =>
                 navigation.navigate(
-                  QustionAnswerNavigation.ANSWER_WITH_FEELING,
+                  QuestionAnswerNavigation.ANSWER_WITH_FEELING,
                   item,
                 )
               }>
