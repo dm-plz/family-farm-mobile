@@ -4,12 +4,12 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Pressable, SafeAreaView, Text, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
-import { QustionAnswerNavigation } from '@/constants';
-import { QustionAnswerStackParamList } from '@/navigations/stack/QustionAnswerStackNavigator';
+import { QuestionAnswerNavigation } from '@/constants';
+import { QuestionAnswerStackParamList } from '@/navigations/stack/QuestionAnswerStackNavigator';
 
 type AnswerWithStringVoiceScreenProps = NativeStackScreenProps<
-  QustionAnswerStackParamList,
-  typeof QustionAnswerNavigation.ANSWER_WITH_StringVoice
+  QuestionAnswerStackParamList,
+  typeof QuestionAnswerNavigation.ANSWER_WITH_StringVoice
 >;
 
 const AnswerWithStringVoice = ({}: AnswerWithStringVoiceScreenProps) => {

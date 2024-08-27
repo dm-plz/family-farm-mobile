@@ -13,7 +13,7 @@ import {
 import MyIcon from '@/components/question-answer/MyIcon';
 import { QuestionAnswerNavigation } from '@/constants';
 import { QuestionAnswerStackParamList } from '@/navigations/stack/QuestionAnswerStackNavigator';
-import dayjs from '@/utils/InstanceDayjs';
+import dayjs from '@/utils/dayjs';
 
 type QuestionListScreenProps = NativeStackScreenProps<
   QuestionAnswerStackParamList,

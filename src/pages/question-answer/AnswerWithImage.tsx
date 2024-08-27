@@ -2,12 +2,12 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Pressable, SafeAreaView, Text, View } from 'react-native';
 
-import { QustionAnswerNavigation } from '@/constants';
-import { QustionAnswerStackParamList } from '@/navigations/stack/QustionAnswerStackNavigator';
+import { QuestionAnswerNavigation } from '@/constants';
+import { QuestionAnswerStackParamList } from '@/navigations/stack/QuestionAnswerStackNavigator';
 
 type AnswerWithImageScreenProps = NativeStackScreenProps<
-  QustionAnswerStackParamList,
-  typeof QustionAnswerNavigation.ANSWER_WITH_IMAGE
+  QuestionAnswerStackParamList,
+  typeof QuestionAnswerNavigation.ANSWER_WITH_IMAGE
 >;
 
 const AnswerWithImage = ({}: AnswerWithImageScreenProps) => {
