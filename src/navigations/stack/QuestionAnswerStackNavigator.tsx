@@ -1,12 +1,10 @@
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import {
   getFocusedRouteNameFromRoute,
   ParamListBase,
   RouteProp,
 } from '@react-navigation/native';
-import {
-  createStackNavigator,
-  StackNavigationProp,
-} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import { useLayoutEffect } from 'react';
 
 import {
@@ -35,7 +33,7 @@ export type QuestionAnswerStackParamList = {
 };
 
 type QuestionAnswerStackNavigatorProps = {
-  navigation: StackNavigationProp<ParamListBase>;
+  navigation: BottomTabNavigationProp<ParamListBase>;
   route: RouteProp<ParamListBase>;
 };
 
@@ -45,6 +43,7 @@ const QuestionAnswerStackNavigator = ({
   navigation,
   route,
 }: QuestionAnswerStackNavigatorProps) => {
+  // bottomTabNavigator 숨기는 코드
   useLayoutEffect(() => {
     const screens = {
       [QuestionAnswerNavigation.ANSWER_WITH_FEELING]: 1,
@@ -54,7 +53,7 @@ const QuestionAnswerStackNavigator = ({
     const routeName = getFocusedRouteNameFromRoute(route);
 
     if (routeName && routeName in screens) {
-      // BUG: tabBarStyle 타입 지정이 안됨
+      // FIXME: tabBarStyle 타입 지정이 안됨
       navigation.setOptions({ tabBarStyle: nonShowBottomTab });
     } else {
       navigation.setOptions({
