@@ -13,7 +13,7 @@ import {
 import MyIcon from '@/components/question-answer/MyIcon';
 import { QustionAnswerNavigation } from '@/constants';
 import { QustionAnswerStackParamList } from '@/navigations/stack/QustionAnswerStackNavigator';
-import useDayjs from '@/util/dayjs';
+import dayjs from '@/util/dayjs';
 
 type QustionListScreenProps = NativeStackScreenProps<
   QustionAnswerStackParamList,
@@ -53,7 +53,7 @@ interface RenderQusetionProps {
 }
 
 const RenderQusetion = ({ item, navigation }: RenderQusetionProps) => {
-  const today = useDayjs('2024-08-20').format('YYYY-MM-DD');
+  const today = dayjs('2024-08-20').format('YYYY-MM-DD');
   const isTodayQuestion = today === item.date;
 
   return (

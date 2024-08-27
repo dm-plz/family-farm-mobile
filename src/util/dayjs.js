@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
 
-const useDayjs = date => dayjs(date);
+const dayjs = date => dayjs(date);
 
-export default useDayjs;
+export default dayjs;
