@@ -28,7 +28,7 @@ const ViewAnswer = ({ navigation, route }: ViewAnswerScreenProps) => {
       <MyIcon groupRole={'daughter'} />
       <View className="h-full">
         <View className="mb-[40]">
-          {/* BUG:  break-words 속성 안먹음. 해결해야함.*/}
+          {/* XXX:  break-words 속성 안먹음. 해결해야함.*/}
           <Text className="w-1/2 text-2xl font-bold leading-9">
             {QuestionItem.question}
           </Text>
