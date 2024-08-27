@@ -15,7 +15,7 @@ type ViewAnswerScreenProps = NativeStackScreenProps<
   typeof QuestionAnswerNavigation.VIEW_ANSWER
 >;
 
-// BUG: Sending 'onAnimatedValueUpdate' 해결해야함. (네비게이션 로직 확정 할 수 있을때 작업예정 (be))
+// FIXME: Sending 'onAnimatedValueUpdate' 해결해야함. (네비게이션 로직 확정 할 수 있을때 작업예정 (be))
 // NOTE: 인증기능 구현되면, (나) 기능에 로직 추가해야함.
 
 const ViewAnswer = ({ navigation, route }: ViewAnswerScreenProps) => {
