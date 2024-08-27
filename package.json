@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-google-signin/google-signin": "^12.2.1",
     "@react-navigation/bottom-tabs": "^6.6.1",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
@@ -20,6 +21,7 @@
     "nativewind": "^2.0.11",
     "react": "18.2.0",
     "react-native": "0.74.3",
+    "react-native-app-auth": "^8.0.0",
     "react-native-config": "^1.5.2",
     "react-native-encrypted-storage": "^4.0.3",
     "react-native-gesture-handler": "^2.18.1",
