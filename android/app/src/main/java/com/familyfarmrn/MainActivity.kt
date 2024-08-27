@@ -6,6 +6,10 @@ import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnable
 import com.facebook.react.defaults.DefaultReactActivityDelegate
 
 import android.os.Bundle;
+import android.util.Log
+import com.familyfarmrn.KakaoLoginModule.Companion.TAG
+import com.kakao.sdk.common.KakaoSdk
+import com.kakao.sdk.common.util.Utility
 
 class MainActivity : ReactActivity() {
 
@@ -24,5 +28,8 @@ class MainActivity : ReactActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(null)
+
+    KakaoSdk.init(this, resources.getString(R.string.kakao_app_key))
+    Log.d(TAG, "key hash : ${Utility.getKeyHash(this)}")
   }
 }
