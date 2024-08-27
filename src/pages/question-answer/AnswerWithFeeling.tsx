@@ -3,18 +3,18 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Pressable, SafeAreaView, Text, View } from 'react-native';
 
-import { QustionAnswerNavigation } from '@/constants';
-import { QustionAnswerStackParamList } from '@/navigations/stack/QustionAnswerStackNavigator';
+import { QuestionAnswerNavigation } from '@/constants';
+import { QuestionAnswerStackParamList } from '@/navigations/stack/QuestionAnswerStackNavigator';
 
 type AnswerWithFeelingScreenProps = NativeStackScreenProps<
-  QustionAnswerStackParamList,
-  typeof QustionAnswerNavigation.ANSWER_WITH_FEELING
+  QuestionAnswerStackParamList,
+  typeof QuestionAnswerNavigation.ANSWER_WITH_FEELING
 >;
 
 const AnswerWithFeeling = ({ navigation }: AnswerWithFeelingScreenProps) => {
   const navigateHandler = () => {
     //  답변에서 요구하는 형식에따라 분기 처리해야함
-    navigation.navigate(QustionAnswerNavigation.ANSWER_WITH_StringVoice);
+    navigation.navigate(QuestionAnswerNavigation.ANSWER_WITH_StringVoice);
     //navigation.navigate(QustionAnswerNavigation.ANSWER_WITH_IMAGE);
   };
 
@@ -31,7 +31,7 @@ const AnswerWithFeeling = ({ navigation }: AnswerWithFeelingScreenProps) => {
             </Text>
           </View>
           <View className="items-center">
-            {/* BUG: 이모지 탈모 해결해야함 */}
+            {/* FIXME: 이모지 탈모 해결해야함 */}
             {/* NOTE: 컴포넌트 만들어야함 */}
             {/* NOTE: GRID 없어서, 시간관계상 이걸로 구현함 */}
             <EmojiContainer />
