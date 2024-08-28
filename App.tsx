@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import queryClient from '@/api/queryClient';
 import { initMSW } from '@/mocks/init';
 import RootNavigator from '@/navigations/RootNavigator';
+import './gesture-handler';
 
 export default function App() {
   const [isMockingEnabled, setMockingEnabled] = useState(false);
