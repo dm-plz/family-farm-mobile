@@ -92,6 +92,24 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
     completionHandler();
 }
 
+// 앱이 백그라운드에 있을 때 푸시 알림을 처리하는 메서드
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+    fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+  // If you are receiving a notification message while your app is in the background,
+  // this callback will not be fired till the user taps on the notification launching the application.
+  // TODO: Handle data of notification
+
+  // With swizzling disabled you must let Messaging know about the message, for Analytics
+  // [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
+
+  // ...
+
+  // Print full message.
+  NSLog(@"%@", userInfo);
+
+  completionHandler(UIBackgroundFetchResultNewData);
+}
+
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
