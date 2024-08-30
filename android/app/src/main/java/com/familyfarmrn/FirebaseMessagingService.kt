@@ -18,12 +18,26 @@ class FirebaseMessagingService : FirebaseMessagingService() {
         remoteMessage.notification?.let {
             Log.d("MyFirebaseMsgService", "Message Notification Body: ${it.body}")
         }
+
+        FirebaseEventEmitter.sendEvent(
+            FirebaseMessagingSerializer.remoteMessageMapToEvent(
+                FirebaseMessagingSerializer.remoteMessageToWritableMap(remoteMessage),
+                true
+            )
+        )
     }
 
     override fun onNewToken(token: String) {
+
+        FirebaseEventEmitter.sendEvent(FirebaseMessagingSerializer.newTokenToTokenEvent(token));
         Log.d("MyFirebaseMsgService", "Refreshed token: $token")
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side,
         // send the Instance ID token to your app server.
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        Log.d("MyFirebaseMsgService", "Service started")
     }
 }

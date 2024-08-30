@@ -70,21 +70,6 @@ class MainActivity : ReactActivity() {
 
     askNotificationPermission()
 
-    FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
-      if (!task.isSuccessful) {
-        Log.w("MyApp", "Fetching FCM registration token failed", task.exception)
-        return@addOnCompleteListener
-      }
-
-      // Get new FCM registration token
-      val token = task.result
-
-      // Log and toast
-//      val msg = getString(R.string.msg_token_fmt, token)
-      Log.d("MyApp", token)
-//      Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
-    }
-
     KakaoSdk.init(this, resources.getString(R.string.kakao_app_key))
   }
 }
