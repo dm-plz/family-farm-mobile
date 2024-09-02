@@ -87,7 +87,7 @@ object FirebaseEventEmitter {
 
     @MainThread
     private fun emit(event: NativeEvent): Boolean {
-        Log.d("MyFirebaseMsgService", "emit called")
+        Log.d("MyFirebaseMsgService", "emit called ${event.getEventName()}")
         if (!jsReady || reactContext == null || !reactContext.hasActiveReactInstance()) {
             return false
         }

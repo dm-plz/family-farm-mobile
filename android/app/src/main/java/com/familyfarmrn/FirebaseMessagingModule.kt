@@ -3,6 +3,7 @@ package com.familyfarmrn
 import com.facebook.react.bridge.*
 import com.google.firebase.messaging.FirebaseMessaging
 
+
 class FirebaseMessagingModule(reactContext: ReactApplicationContext) :
     ReactContextBaseJavaModule(reactContext) {
     companion object {
@@ -23,5 +24,20 @@ class FirebaseMessagingModule(reactContext: ReactApplicationContext) :
                 promise.reject("NO_ACTIVITY", "Current activity is null.")
             }
         }
+    }
+
+    @ReactMethod
+    fun eventsNotifyReady(ready: Boolean) {
+        FirebaseEventEmitter.notifyJsReady(ready)
+    }
+
+    @ReactMethod
+    fun eventsAddListener(eventName: String) {
+        FirebaseEventEmitter.addListener(eventName)
+    }
+
+    @ReactMethod
+    fun eventsRemoveListener(eventName: String, all: Boolean) {
+        FirebaseEventEmitter.removeListener(eventName, all)
     }
 }
