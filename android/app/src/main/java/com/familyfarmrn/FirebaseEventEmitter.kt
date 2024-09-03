@@ -75,10 +75,11 @@ object FirebaseEventEmitter {
     @MainThread
     private fun sendQueuedEvents() {
         synchronized(jsListeners) {
-            val eventsCopy = ArrayList(queuedEvents)
-            for (event in eventsCopy) {
+            val iterator = queuedEvents.iterator()
+            while (iterator.hasNext()) {
+                val event = iterator.next()
                 if (jsListeners.containsKey(event.getEventName())) {
-                    queuedEvents.remove(event)
+                    iterator.remove()
                     sendEvent(event)
                 }
             }
