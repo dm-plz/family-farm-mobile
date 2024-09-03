@@ -41,7 +41,7 @@ object FirebaseEventEmitter {
         }
     }
 
-    fun addListener(eventName: String?) {
+    fun addListener(eventName: String) {
         synchronized(jsListeners) {
             jsListenerCount++
             if (jsListeners.containsKey(eventName)) {
@@ -56,7 +56,7 @@ object FirebaseEventEmitter {
         handler.post(this::sendQueuedEvents)
     }
 
-    fun removeListener(eventName: String?, all: Boolean) {
+    fun removeListener(eventName: String, all: Boolean) {
         synchronized(jsListeners) {
             if (jsListeners.containsKey(eventName)) {
                 val listenersForEvent = jsListeners[eventName]!!
