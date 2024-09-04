@@ -16,6 +16,12 @@
 		3439D9CB2C7CD1BA00960F0E /* KakaoLoginModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 3439D9C92C7CD1B900960F0E /* KakaoLoginModule.m */; };
 		3439D9CD2C7CD2B800960F0E /* AppleLoginModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3439D9CC2C7CD2B800960F0E /* AppleLoginModule.swift */; };
 		3439D9CF2C7CD37200960F0E /* AppleLoginModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 3439D9CE2C7CD37200960F0E /* AppleLoginModule.m */; };
+		3445E9912C868823007BA664 /* FirebaseMessagingModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 3445E9902C868823007BA664 /* FirebaseMessagingModule.m */; };
+		347A70052C869EC900C0F9A1 /* FirebaseMessagingModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347A70042C869EC900C0F9A1 /* FirebaseMessagingModule.swift */; };
+		347A70092C86A41D00C0F9A1 /* FirebaseEventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347A70082C86A41D00C0F9A1 /* FirebaseEventEmitter.swift */; };
+		34A5F84C2C8690790039DABD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 34A5F84B2C8690790039DABD /* FirebaseAnalytics */; };
+		34D5200E2C87843500939863 /* FirebaseEventModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5200D2C87843500939863 /* FirebaseEventModule.m */; };
+		34D520132C88471B00939863 /* FirebaseMessaginSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D520112C88471B00939863 /* FirebaseMessaginSerializer.m */; };
 		34FF2B4F2C800A0A00D2FEF4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34FF2B4E2C800A0A00D2FEF4 /* GoogleService-Info.plist */; };
 		34FF2B522C800C2500D2FEF4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF2B512C800C2500D2FEF4 /* FirebaseAnalytics */; };
 		34FF2B542C8013DB00D2FEF4 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF2B532C8013DB00D2FEF4 /* FirebaseCrashlytics */; };
@@ -57,6 +63,14 @@
 		3439D9CC2C7CD2B800960F0E /* AppleLoginModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginModule.swift; sourceTree = "<group>"; };
 		3439D9CE2C7CD37200960F0E /* AppleLoginModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppleLoginModule.m; sourceTree = "<group>"; };
 		3439D9D02C7CD54800960F0E /* FamilyFarmRN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = FamilyFarmRN.entitlements; path = FamilyFarmRN/FamilyFarmRN.entitlements; sourceTree = "<group>"; };
+		3445E9902C868823007BA664 /* FirebaseMessagingModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirebaseMessagingModule.m; sourceTree = "<group>"; };
+		347A70042C869EC900C0F9A1 /* FirebaseMessagingModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseMessagingModule.swift; sourceTree = "<group>"; };
+		347A70082C86A41D00C0F9A1 /* FirebaseEventEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseEventEmitter.swift; sourceTree = "<group>"; };
+		347A700F2C870DA200C0F9A1 /* FirebaseEventModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirebaseEventModule.h; sourceTree = "<group>"; };
+		347A70102C87673600C0F9A1 /* FirebaseMessagingModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirebaseMessagingModule.h; sourceTree = "<group>"; };
+		34D5200D2C87843500939863 /* FirebaseEventModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirebaseEventModule.m; sourceTree = "<group>"; };
+		34D520112C88471B00939863 /* FirebaseMessaginSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseMessaginSerializer.m; sourceTree = "<group>"; };
+		34D520122C88471B00939863 /* FirebaseMessaginSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseMessaginSerializer.h; sourceTree = "<group>"; };
 		34FF2B4E2C800A0A00D2FEF4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-FamilyFarmRN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FamilyFarmRN.debug.xcconfig"; path = "Target Support Files/Pods-FamilyFarmRN/Pods-FamilyFarmRN.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-FamilyFarmRN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FamilyFarmRN.release.xcconfig"; path = "Target Support Files/Pods-FamilyFarmRN/Pods-FamilyFarmRN.release.xcconfig"; sourceTree = "<group>"; };
@@ -73,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34A5F84C2C8690790039DABD /* FirebaseAnalytics in Frameworks */,
 				7699B88040F8A987B510C191 /* libPods-FamilyFarmRN-FamilyFarmRNTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,6 +129,8 @@
 		13B07FAE1A68108700A75B9A /* FamilyFarmRN */ = {
 			isa = PBXGroup;
 			children = (
+				34D520122C88471B00939863 /* FirebaseMessaginSerializer.h */,
+				34D520112C88471B00939863 /* FirebaseMessaginSerializer.m */,
 				34FF2B4E2C800A0A00D2FEF4 /* GoogleService-Info.plist */,
 				3439D9D02C7CD54800960F0E /* FamilyFarmRN.entitlements */,
 				3439D9C82C7CD1B900960F0E /* FamilyFarmRN-Bridging-Header.h */,
@@ -130,6 +147,12 @@
 				B458123ECC2F7765BA020ACA /* PrivacyInfo.xcprivacy */,
 				3439D9CC2C7CD2B800960F0E /* AppleLoginModule.swift */,
 				3439D9CE2C7CD37200960F0E /* AppleLoginModule.m */,
+				3445E9902C868823007BA664 /* FirebaseMessagingModule.m */,
+				347A70102C87673600C0F9A1 /* FirebaseMessagingModule.h */,
+				347A70042C869EC900C0F9A1 /* FirebaseMessagingModule.swift */,
+				347A70082C86A41D00C0F9A1 /* FirebaseEventEmitter.swift */,
+				34D5200D2C87843500939863 /* FirebaseEventModule.m */,
+				347A700F2C870DA200C0F9A1 /* FirebaseEventModule.h */,
 			);
 			name = FamilyFarmRN;
 			sourceTree = "<group>";
@@ -206,6 +229,9 @@
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
 			name = FamilyFarmRNTests;
+			packageProductDependencies = (
+				34A5F84B2C8690790039DABD /* FirebaseAnalytics */,
+			);
 			productName = FamilyFarmRNTests;
 			productReference = 00E356EE1AD99517003FC87E /* FamilyFarmRNTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -443,11 +469,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34D5200E2C87843500939863 /* FirebaseEventModule.m in Sources */,
 				3439D9CF2C7CD37200960F0E /* AppleLoginModule.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				3445E9912C868823007BA664 /* FirebaseMessagingModule.m in Sources */,
+				34D520132C88471B00939863 /* FirebaseMessaginSerializer.m in Sources */,
 				3439D9CA2C7CD1B900960F0E /* KakaoLoginModule.swift in Sources */,
+				347A70052C869EC900C0F9A1 /* FirebaseMessagingModule.swift in Sources */,
 				3439D9CB2C7CD1BA00960F0E /* KakaoLoginModule.m in Sources */,
+				347A70092C86A41D00C0F9A1 /* FirebaseEventEmitter.swift in Sources */,
 				3439D9CD2C7CD2B800960F0E /* AppleLoginModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,10 +680,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/YourProjectName/FamilyFarmRN-Bridging-Header.h";
@@ -727,10 +755,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/YourProjectName/FamilyFarmRN-Bridging-Header.h";
@@ -783,6 +808,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		34A5F84B2C8690790039DABD /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34FF2B502C800C2500D2FEF4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
 		34FF2B512C800C2500D2FEF4 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 34FF2B502C800C2500D2FEF4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
