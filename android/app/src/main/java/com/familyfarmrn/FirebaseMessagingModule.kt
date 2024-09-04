@@ -19,7 +19,7 @@ class FirebaseMessagingModule(reactContext: ReactApplicationContext) :
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 promise.resolve(task.result)
-                FirebaseEventEmitter.sendEvent(FirebaseMessagingSerializer.newTokenToTokenEvent("123123"))
+                FirebaseEventEmitter.sendEvent(FirebaseMessagingSerializer.newTokenToTokenEvent(task.result))
             } else {
                 promise.reject("NO_ACTIVITY", "Current activity is null.")
             }
