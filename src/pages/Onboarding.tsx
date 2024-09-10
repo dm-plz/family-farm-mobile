@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import {
@@ -9,6 +10,7 @@ import {
   View,
 } from 'react-native';
 
+import { postSignIn, postSignUp } from '@/api/auth';
 import { signUpNavigation } from '@/constants';
 import useAuth from '@/hooks/queries/useAuth';
 import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
@@ -34,6 +36,17 @@ function Onboarding({ navigation }: OnboardingProps) {
         try {
           console.log('카카오 로그인 완료');
           console.log('코드 : ', code);
+
+          const result = await postSignIn({
+            OAuthProvider: 'KAKAO',
+            AuthorizationCode: code,
+          });
+
+          console.log(result);
+          //코드가 들어오면, sign-in으로 post.
+
+          //뒤로가기 눌렀을때 스토리지 검색해서 최신 순으로 최근 로그인 방법 구현함.
+          //개인 정보 입력하고 사인업 완료 후에, 엑세스 토큰을 받아옴.
         } catch (error) {
           console.error(error);
         }
