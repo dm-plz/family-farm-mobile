@@ -1,11 +1,11 @@
 import React from 'react';
 
-import useAuth from '@/hooks/useAuth';
+import useAuth from '@/hooks/queries/useAuth';
 import BottomTabNavigator from '@/navigations/BottomTabNavigator';
 import SignUpStackNavigator from '@/navigations/stack/SignUpStackNavigator';
 
 export default function RootNavigator() {
-  const { isLogin } = useAuth();
+  const { isSignedIn } = useAuth();
 
-  return <>{isLogin ? <BottomTabNavigator /> : <SignUpStackNavigator />}</>;
+  return <>{isSignedIn ? <BottomTabNavigator /> : <SignUpStackNavigator />}</>;
 }

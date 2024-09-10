@@ -1,8 +1,8 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import {
-  NativeModules,
   Image,
+  NativeModules,
   Platform,
   Pressable,
   Text,
@@ -10,22 +10,33 @@ import {
 } from 'react-native';
 
 import { signUpNavigation } from '@/constants';
+import useAuth from '@/hooks/queries/useAuth';
 import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
 import { signInWithGoogle } from '@/utils/oauth';
+
 type OnboardingProps = NativeStackScreenProps<
   SignUpStackParamList,
   typeof signUpNavigation.ONBOARDING
 >;
 
-//XXX: 배포까지 완료된 후에 Firestore를 통한 구글 로그인 방식 제거해야 함
-//TODO: ios, android kakao sign in 에러 처리를 동일하게 할 수 있도록 수정 필요
-const { KakaoLoginModule, AppleLoginModule } = NativeModules;
-
 function Onboarding({ navigation }: OnboardingProps) {
+  //XXX: 배포까지 완료된 후에 Firestore를 통한 구글 로그인 방식 제거해야 함
+  //TODO: ios, android kakao sign in 에러 처리를 동일하게 할 수 있도록 수정 필요
+  const {
+    KakaoLoginModule: kakaoSignInModule,
+    AppleLoginModule: AppleSignInModule,
+  } = NativeModules;
+
   const handleKakaoSignIn = () => {
-    KakaoLoginModule.signInWithKakao()
-      .then((token: any) => {
-        console.log(token);
+    kakaoSignInModule
+      .signInWithKakao()
+      .then(async (code: string) => {
+        try {
+          console.log('카카오 로그인 완료');
+          console.log('코드 : ', code);
+        } catch (error) {
+          console.error(error);
+        }
       })
       .catch((error: Error) => {
         console.log(error);
@@ -44,7 +55,7 @@ function Onboarding({ navigation }: OnboardingProps) {
   const handleAppleSignIn = async () => {
     try {
       const { idToken }: { idToken: string } =
-        await AppleLoginModule.loginWithApple();
+        await AppleSignInModule.loginWithApple();
       console.log('Apple Login Success:', idToken);
     } catch (error) {
       console.error('Apple Login Failed:', error);
@@ -68,13 +79,13 @@ function Onboarding({ navigation }: OnboardingProps) {
         </Pressable>
         <Pressable
           className="mb-4 w-full bg-green-200 px-4 py-6"
-          onPress={handleGoogleSignIn}>
+          onPress={() => {}}>
           <Text>구글 로그인</Text>
         </Pressable>
         {Platform.OS === 'ios' && (
           <Pressable
             className="w-full bg-blue-200 px-4 py-6"
-            onPress={handleAppleSignIn}>
+            onPress={() => {}}>
             <Text>IOS</Text>
           </Pressable>
         )}

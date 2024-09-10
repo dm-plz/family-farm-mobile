@@ -68,6 +68,7 @@ async function reRegistrationAlertToken(body: BodyReRegistrationAlertToken) {
     .patch(authApis.reRegistrationAlertToken, { json: body })
     .json();
 }
+
 export {
   postSignUp,
   postSignIn,
