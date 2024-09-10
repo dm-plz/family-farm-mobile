@@ -1,51 +1,26 @@
 {
   "project_info": {
-    "project_number": "686661822188",
-    "project_id": "family-farm-test",
-    "storage_bucket": "family-farm-test.appspot.com"
+    "project_number": "297990896037",
+    "project_id": "dm-plz-family-farm",
+    "storage_bucket": "dm-plz-family-farm.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:686661822188:android:90fc1e639749dc7568a7c9",
+        "mobilesdk_app_id": "1:297990896037:android:8c12cd437d446caf5c104c",
         "android_client_info": {
           "package_name": "com.familyfarmrn"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "686661822188-s6ncq8rrrmthulnbsu7240gclfos3i5v.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.familyfarmrn",
-            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
-          }
-        },
-        {
-          "client_id": "686661822188-g09au2cca8vhjbbsq14c2aq5cd54j2h0.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD95wgxvVQBP7m_DFxJzfCxUrwqfzBsZ3w"
+          "current_key": "AIzaSyDvIJnD3PMGBr0V9X7fRzCkcxOXqDFOg6Q"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "686661822188-g09au2cca8vhjbbsq14c2aq5cd54j2h0.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "686661822188-oulmfo3ohbbs2b26q0bst9ldufdr8rnt.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "org.reactjs.native.example.FamilyFarmRN"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
