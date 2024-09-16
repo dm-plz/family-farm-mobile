@@ -1,5 +1,5 @@
 export const authApis = {
-  signIn: 'auth/oauth/log-in',
+  signIn: 'auth/sign-in/oidc',
   signOut: 'auth/oauth/sign-out/:userId',
   signUp: 'auth/oauth/sign-up',
   reIssueToken: 'auth/toekn/reissuance',
