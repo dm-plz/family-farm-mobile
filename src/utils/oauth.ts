@@ -22,11 +22,11 @@ export async function signInWithGoogle() {
 
 GoogleSignin.configure({
   webClientId:
-    '686661822188-ssphqtvtlmbh47blonom8gopba75rlbu.apps.googleusercontent.com',
+    '686661822188-s6ncq8rrrmthulnbsu7240gclfos3i5v.apps.googleusercontent.com',
   scopes: ['openid'],
   offlineAccess: true,
   iosClientId:
-    '686661822188-7dgk7pmg3t17b678js7k3jektt4p7612.apps.googleusercontent.com',
+    '686661822188-oulmfo3ohbbs2b26q0bst9ldufdr8rnt.apps.googleusercontent.com',
 });
 
 export async function signIn() {
