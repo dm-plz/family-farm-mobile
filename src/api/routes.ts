@@ -1,33 +1,33 @@
-export const authApis = {
-  signIn: 'auth/sign-in/oidc',
-  signOut: 'auth/oauth/sign-out/:userId',
-  signUp: 'auth/oauth/sign-up',
-  reIssueToken: 'auth/toekn/reissuance',
-  validateFamilyCode: 'auth/validate/family-code',
-  reRegistrationAlertToken: 'auth/alert-token/re-registration',
-};
+export const AUTH_APIS = {
+  SIGN_IN: 'auth/sign-in/oidc',
+  SIGN_OUT: 'auth/sign-out',
+  SIGN_UP: 'auth/sign-up/oidc',
+  REISSUE_TOKEN: 'auth/token/reissuance',
+  VALIDATE_FAMILY_CODE: 'auth/validate/family-code',
+  PATCH_FCM_TOKEN: 'auth/alert-token/re-registration',
+} as const;
 
-export const questionApis = {
-  getQuestion: 'question/:familyId',
-  postAnswer: 'question/answer',
-  getAnswer: 'question/answer/:questionHistoryId',
-  patchAnswer: 'question/answer/:answerId',
-  getList: 'question/answer/:familyId',
-  cheerUp: 'question/alert/cheer-up',
-};
+export const QUESTION_APIS = {
+  GET_QUESTION: 'question/:familyId',
+  GET_ANSWER: 'question/answer/:questionHistoryId',
+  POST_ANSWER: 'question/answer',
+  PATCH_ANSWER: 'question/answer/:answerId',
+  GET_LIST: 'question/answer/:familyId',
+  CHEER_UP: 'question/alert/cheer-up',
+} as const;
 
-export const myApis = {
-  getMy: 'user/:userId',
-  patchMy: 'user/:userId',
-  withdraw: 'user/:userId',
-};
+export const MY_APIS = {
+  GET_MY: 'user',
+  PATCH_MY: 'user/:userId',
+  WITHDRAW: 'user/:userId',
+} as const;
 
-export const surveyApis = {
-  getSurvey: 'survey/:userId',
-  postSurvey: 'survey/:userId',
-};
+export const SURVEY_APIS = {
+  GET_SURVEY: 'survey/:userId',
+  POST_SURVEY: 'survey/:userId',
+} as const;
 
-export const familyApis = {
-  getFamilyCode: 'family/code',
-  refreshFamilyCode: 'family/code/:familyId',
-};
+export const FAMILY_APIS = {
+  GET_FAMILY_CODE: 'family/code',
+  REFRESH_FAMILY_CODE: 'family/code/:familyId',
+} as const;

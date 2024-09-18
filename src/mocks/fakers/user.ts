@@ -9,10 +9,10 @@ import { formatDate } from '@/utils';
 
 export function createUser(): UserInfo {
   return {
-    nickName: faker.person.fullName(),
+    nickname: faker.person.fullName(),
+    OAuthProvider: getRandom(oauthAgents),
     birth: formatDate(faker.date.birthdate()),
     birthType: getRandom(birthType),
-    OAuthProvider: getRandom(oauthAgents),
-    createAt: faker.date.past(),
+    createAt: faker.date.past().toString(),
   };
 }

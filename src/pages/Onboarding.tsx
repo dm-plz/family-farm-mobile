@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import {
@@ -10,7 +9,6 @@ import {
   View,
 } from 'react-native';
 
-import { postSignIn, postSignUp } from '@/api/auth';
 import { signUpNavigation } from '@/constants';
 import useAuth from '@/hooks/queries/useAuth';
 import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
@@ -29,34 +27,39 @@ function Onboarding({ navigation }: OnboardingProps) {
     AppleLoginModule: AppleSignInModule,
   } = NativeModules;
 
-  const handleKakaoSignIn = () => {
+  const { kakaoSignInMutation } = useAuth();
+
+  const handlePressKakaoSignIn = async () => {
+    const fcmToken = '임시 fcm Token';
+
+    if (!fcmToken) {
+      console.log('FCM이 없습니다!');
+      return;
+    }
+
     kakaoSignInModule
       .signInWithKakao()
-      .then(async (code: string) => {
+      .then(async (idToken: string) => {
         try {
-          console.log('카카오 로그인 완료');
-          console.log('코드 : ', code);
-
-          const result = await postSignIn({
-            OAuthProvider: 'KAKAO',
-            AuthorizationCode: code,
-          });
-
-          console.log(result);
-          //코드가 들어오면, sign-in으로 post.
-
-          //뒤로가기 눌렀을때 스토리지 검색해서 최신 순으로 최근 로그인 방법 구현함.
-          //개인 정보 입력하고 사인업 완료 후에, 엑세스 토큰을 받아옴.
+          console.log('FCM토큰 : ', fcmToken);
+          if (fcmToken !== null) {
+            kakaoSignInMutation.mutate({
+              OAuthProvider: 'KAKAO',
+              idToken,
+              fcmToken,
+            });
+          }
         } catch (error) {
-          console.error(error);
+          console.error(error); //유저가 카카오 로그인하다가 취소를 누르거나 빠져나온 경우.
         }
       })
       .catch((error: Error) => {
-        console.log(error);
+        // 카카오 토큰 자체를 못받아오는 경우.
+        console.log('에러', error);
       });
   };
 
-  const handleGoogleSignIn = async () => {
+  const handlePressGoogleSignIn = async () => {
     try {
       const { idToken } = await signInWithGoogle();
       console.log(idToken ?? 'idToken is null');
@@ -65,7 +68,7 @@ function Onboarding({ navigation }: OnboardingProps) {
     }
   };
 
-  const handleAppleSignIn = async () => {
+  const handlePressAppleSignIn = async () => {
     try {
       const { idToken }: { idToken: string } =
         await AppleSignInModule.loginWithApple();
@@ -87,18 +90,18 @@ function Onboarding({ navigation }: OnboardingProps) {
       <View className="flex basis-1/3 flex-col px-10">
         <Pressable
           className="mb-4 w-full bg-yellow-200 px-4 py-6"
-          onPress={handleKakaoSignIn}>
+          onPress={handlePressKakaoSignIn}>
           <Text>카카오 로그인</Text>
         </Pressable>
         <Pressable
           className="mb-4 w-full bg-green-200 px-4 py-6"
-          onPress={() => {}}>
+          onPress={handlePressGoogleSignIn}>
           <Text>구글 로그인</Text>
         </Pressable>
         {Platform.OS === 'ios' && (
           <Pressable
             className="w-full bg-blue-200 px-4 py-6"
-            onPress={() => {}}>
+            onPress={handlePressAppleSignIn}>
             <Text>IOS</Text>
           </Pressable>
         )}

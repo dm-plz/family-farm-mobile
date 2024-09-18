@@ -3,8 +3,9 @@ import { http, HttpResponse } from 'msw';
 import { createUser } from '../fakers';
 import { getApiUrl } from '../utils/api';
 
-import { ParamPatchMy, ResponseGetMy } from '@/api/my';
-import { myApis } from '@/api/routes';
+import { ParamPatchMy } from '@/api/my';
+import { MY_APIS } from '@/api/routes';
+import { ResponseGetMy } from '@/types';
 
 const fakeFamily = [
   createUser(),
@@ -15,7 +16,7 @@ const fakeFamily = [
 ];
 
 export default [
-  http.get(getApiUrl(myApis.getMy), () => {
+  http.get(getApiUrl(MY_APIS.GET_MY), () => {
     const response: ResponseGetMy = {
       ...fakeFamily[0],
       family: fakeFamily,
@@ -23,10 +24,10 @@ export default [
     };
     return HttpResponse.json(response, { status: 200 });
   }),
-  http.patch<ParamPatchMy>(getApiUrl(myApis.patchMy), () => {
+  http.patch<ParamPatchMy>(getApiUrl(MY_APIS.PATCH_MY), () => {
     throw new Error('this api is not ready');
   }),
-  http.patch(getApiUrl(myApis.withdraw), () => {
+  http.patch(getApiUrl(MY_APIS.WITHDRAW), () => {
     throw new Error('this api is not ready');
   }),
 ];

@@ -3,16 +3,16 @@ import { http, HttpResponse } from 'msw';
 import { getApiUrl } from '../utils/api';
 
 import { ResponseGetFamilyCode } from '@/api/family';
-import { familyApis } from '@/api/routes';
+import { FAMILY_APIS } from '@/api/routes';
 
 export default [
-  http.get(getApiUrl(familyApis.getFamilyCode), () => {
+  http.get(getApiUrl(FAMILY_APIS.GET_FAMILY_CODE), () => {
     const response: ResponseGetFamilyCode = {
       code: 'fake family code',
     };
     return HttpResponse.json(response);
   }),
-  http.patch(getApiUrl(familyApis.refreshFamilyCode), () => {
+  http.patch(getApiUrl(FAMILY_APIS.REFRESH_FAMILY_CODE), () => {
     const response: ResponseGetFamilyCode = {
       code: 'fake family code',
     };

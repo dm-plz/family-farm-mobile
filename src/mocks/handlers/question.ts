@@ -10,7 +10,7 @@ import {
   ResponseGetList,
   ResponseGetQuestion,
 } from '@/api/question';
-import { questionApis } from '@/api/routes';
+import { QUESTION_APIS } from '@/api/routes';
 import { Answer, Question } from '@/types';
 
 const question: Question[] = [
@@ -19,7 +19,7 @@ const question: Question[] = [
 const answer: Answer[] = [];
 
 export default [
-  http.get(getApiUrl(questionApis.getQuestion), () => {
+  http.get(getApiUrl(QUESTION_APIS.GET_QUESTION), () => {
     const response: ResponseGetQuestion = {
       ...question[0],
       isAnswered: false,
@@ -27,7 +27,7 @@ export default [
     return HttpResponse.json(response);
   }),
   http.post<PathParams, BodyPostAnswer>(
-    getApiUrl(questionApis.postAnswer),
+    getApiUrl(QUESTION_APIS.PATCH_ANSWER),
     async ({ request }) => {
       const body = await request.json();
       answer[0] = {
@@ -41,27 +41,27 @@ export default [
       return HttpResponse.json(null, { status: 201 });
     },
   ),
-  http.get(getApiUrl(questionApis.getAnswer), () => {
+  http.get(getApiUrl(QUESTION_APIS.GET_ANSWER), () => {
     const response: ResponseGetAnswer = {
       answer: answer,
     };
     return HttpResponse.json(response);
   }),
   http.patch<ParamPatchAnswer, BodyPatchAnswer>(
-    getApiUrl(questionApis.patchAnswer),
+    getApiUrl(QUESTION_APIS.PATCH_ANSWER),
     async ({ request }) => {
       const body = await request.json();
       answer[0].content = body.answer;
       return new HttpResponse();
     },
   ),
-  http.get(getApiUrl(questionApis.getList), () => {
+  http.get(getApiUrl(QUESTION_APIS.GET_LIST), () => {
     const response: ResponseGetList = {
       question,
     };
     return HttpResponse.json(response);
   }),
-  http.post(getApiUrl(questionApis.cheerUp), () => {
+  http.post(getApiUrl(QUESTION_APIS.CHEER_UP), () => {
     return new HttpResponse();
   }),
 ];

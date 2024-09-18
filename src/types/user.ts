@@ -5,10 +5,15 @@ import { birthType, roles } from '@/constants';
 export type GoupRole = (typeof roles)[number];
 export type BirthType = (typeof birthType)[number];
 
-export type UserInfo = {
-  nickName: string;
+export interface UserInfo {
+  nickname: string;
+  OAuthProvider: OAuthAgent;
   birth: string;
   birthType: BirthType;
-  OAuthProvider: OAuthAgent;
-  createAt: Date;
-};
+  createAt: string;
+}
+
+export interface ResponseGetMy extends UserInfo {
+  family: UserInfo[];
+  familyCode: string;
+}

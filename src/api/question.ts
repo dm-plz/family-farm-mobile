@@ -1,5 +1,5 @@
 import { kyInstance } from './ky';
-import { questionApis } from './routes';
+import { QUESTION_APIS } from './routes';
 
 import { AlertToken, Answer, Question } from '@/types';
 import { createUrl } from '@/utils/url';
@@ -13,7 +13,7 @@ type ResponseGetQuestion = {
 } & Question;
 
 async function getQuestion(param: ParamGetQuestion) {
-  const apiUrl = createUrl(questionApis.getQuestion, { param });
+  const apiUrl = createUrl(QUESTION_APIS.GET_QUESTION, { param });
   return await kyInstance.get(apiUrl).json<ResponseGetQuestion>();
 }
 
@@ -24,7 +24,9 @@ type BodyPostAnswer = {
 };
 
 async function postAnswer(body: BodyPostAnswer) {
-  return await kyInstance.post(questionApis.postAnswer, { json: body }).json();
+  return await kyInstance
+    .post(QUESTION_APIS.PATCH_ANSWER, { json: body })
+    .json();
 }
 
 type ParamGetAnswer = {
@@ -36,7 +38,7 @@ type ResponseGetAnswer = {
 };
 
 async function getAnswer(param: ParamGetAnswer) {
-  const apiUrl = createUrl(questionApis.getAnswer, {
+  const apiUrl = createUrl(QUESTION_APIS.GET_ANSWER, {
     param,
   });
   return await kyInstance.get(apiUrl).json<ResponseGetAnswer>();
@@ -52,7 +54,7 @@ type BodyPatchAnswer = {
 };
 
 async function patchAnswer(param: ParamPatchAnswer, body: BodyPatchAnswer) {
-  const apiUrl = createUrl(questionApis.patchAnswer, { param });
+  const apiUrl = createUrl(QUESTION_APIS.PATCH_ANSWER, { param });
   return await kyInstance.patch(apiUrl, { json: body }).json();
 }
 
@@ -65,7 +67,7 @@ type ResponseGetList = {
 };
 
 async function getList(param: ParamGetList) {
-  const apiUrl = createUrl(questionApis.getList, { param });
+  const apiUrl = createUrl(QUESTION_APIS.GET_LIST, { param });
   return await kyInstance.get(apiUrl).json<ResponseGetList>();
 }
 
@@ -76,7 +78,7 @@ type BodyCheerUp = {
 };
 
 async function cheerUp(body: BodyCheerUp) {
-  return await kyInstance.post(questionApis.cheerUp, { json: body }).json();
+  return await kyInstance.post(QUESTION_APIS.CHEER_UP, { json: body }).json();
 }
 
 export { getQuestion, postAnswer, getAnswer, patchAnswer, getList, cheerUp };

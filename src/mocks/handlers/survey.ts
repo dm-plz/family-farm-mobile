@@ -2,7 +2,7 @@ import { http, HttpResponse } from 'msw';
 
 import { getApiUrl } from '../utils/api';
 
-import { surveyApis } from '@/api/routes';
+import { SURVEY_APIS } from '@/api/routes';
 import { ResponseGetSurvey } from '@/api/survey';
 import { Survey } from '@/types';
 
@@ -22,13 +22,13 @@ const fakeSurveys: Survey[] = [
 ];
 
 export default [
-  http.get(getApiUrl(surveyApis.getSurvey), () => {
+  http.get(getApiUrl(SURVEY_APIS.GET_SURVEY), () => {
     const response: ResponseGetSurvey = {
       survey: fakeSurveys,
     };
     return HttpResponse.json(response);
   }),
-  http.post(getApiUrl(surveyApis.postSurvey), () => {
+  http.post(getApiUrl(SURVEY_APIS.POST_SURVEY), () => {
     return new HttpResponse({ status: 201 });
   }),
 ];

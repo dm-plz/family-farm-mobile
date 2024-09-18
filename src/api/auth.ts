@@ -1,7 +1,9 @@
 import { kyInstance } from './ky';
-import { authApis } from './routes';
+import { AUTH_APIS } from './routes';
 
+import { storageKeys } from '@/constants';
 import { AlertToken, BirthType, GoupRole, OAuthAgent } from '@/types';
+import { getEncryptStorage } from '@/utils';
 import { createUrl } from '@/utils/url';
 
 type BodySignUp = {
@@ -18,32 +20,58 @@ type BodySignUp = {
 type ResponseToken = {
   accessToken: string;
   refreshToken: string;
-  grantType: string;
+  grantType: 'Bearer';
+};
+
+type ResponseSub = {
+  code: string;
+  message: string;
+  data: {
+    sub: string;
+  };
 };
 
 async function postSignUp(body: BodySignUp) {
   return await kyInstance
-    .post(authApis.signUp, { json: body })
+    .post(AUTH_APIS.SIGN_UP, { json: body })
     .json<ResponseToken>();
 }
 
 type BodySignIn = {
   OAuthProvider: OAuthAgent;
-  AuthorizationCode: string;
+  idToken: string;
+  fcmToken: string;
 };
 
 async function postSignIn(body: BodySignIn) {
+  const response = await kyInstance.post(AUTH_APIS.SIGN_IN, {
+    json: body,
+    throwHttpErrors: false,
+  });
+
+  if (response.status === 201) {
+    return response.json<ResponseToken>();
+  } else {
+    return response.json<ResponseSub>();
+  }
+}
+
+async function reIssueToken() {
+  const refreshToken = await getEncryptStorage(storageKeys.REFRESH_TOKEN);
+  if (!refreshToken) {
+    throw new Error();
+  }
   return await kyInstance
-    .post(authApis.signIn, { json: body })
+    .patch(AUTH_APIS.REISSUE_TOKEN, {
+      json: {
+        refreshToken,
+      },
+    })
     .json<ResponseToken>();
 }
 
 async function getSignOut() {
-  return await kyInstance.get(authApis.signOut).json();
-}
-
-async function reIssueToken() {
-  return await kyInstance.patch(authApis.reIssueToken).json<ResponseToken>();
+  return await kyInstance.get(AUTH_APIS.SIGN_OUT).json();
 }
 
 type QueryValidateFamilyCode = {
@@ -55,17 +83,17 @@ type ResponseValidateFamilyCode = {
 };
 
 async function validateFamilyCode(query: QueryValidateFamilyCode) {
-  const apiUrl = createUrl(authApis.validateFamilyCode, { query });
+  const apiUrl = createUrl(AUTH_APIS.VALIDATE_FAMILY_CODE, { query });
   return await kyInstance.get(apiUrl).json<ResponseValidateFamilyCode>();
 }
 
-type BodyReRegistrationAlertToken = {
+type BodyPatchFcmToken = {
   userId: number;
 } & AlertToken;
 
-async function reRegistrationAlertToken(body: BodyReRegistrationAlertToken) {
+async function patchFcmToken(body: BodyPatchFcmToken) {
   return await kyInstance
-    .patch(authApis.reRegistrationAlertToken, { json: body })
+    .patch(AUTH_APIS.PATCH_FCM_TOKEN, { json: body })
     .json();
 }
 
@@ -73,9 +101,9 @@ export {
   postSignUp,
   postSignIn,
   getSignOut,
-  reIssueToken,
   validateFamilyCode,
-  reRegistrationAlertToken,
+  patchFcmToken,
+  reIssueToken,
 };
 export type {
   BodySignUp,
@@ -83,5 +111,6 @@ export type {
   BodySignIn,
   QueryValidateFamilyCode,
   ResponseValidateFamilyCode,
-  BodyReRegistrationAlertToken,
+  BodyPatchFcmToken,
+  ResponseSub,
 };
