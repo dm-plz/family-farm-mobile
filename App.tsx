@@ -4,13 +4,12 @@ import React, { useEffect, useState } from 'react';
 import ReactNativeModule, { NativeModules } from 'react-native';
 
 import queryClient from '@/api/queryClient';
+import { storageKeys } from '@/constants';
 import { initMSW } from '@/mocks/init';
 import RootNavigator from '@/navigations/RootNavigator';
+import { setEncryptStorage } from '@/utils';
 
 import './gesture-handler';
-import { setEncryptStorage } from '@/utils';
-import { storageKeys } from '@/constants';
-
 // NOTE: Firebase Messaging을 위한 Module 불러오기
 const { FirebaseMessagingModule, FirebaseEventModule } = NativeModules;
 
