@@ -8,6 +8,8 @@ import { initMSW } from '@/mocks/init';
 import RootNavigator from '@/navigations/RootNavigator';
 
 import './gesture-handler';
+import { setEncryptStorage } from '@/utils';
+import { storageKeys } from '@/constants';
 
 // NOTE: Firebase Messaging을 위한 Module 불러오기
 const { FirebaseMessagingModule, FirebaseEventModule } = NativeModules;
@@ -40,22 +42,22 @@ export default function App() {
     const eventListener2 = eventEmitter.addListener(
       'messaging_notification_opened',
       (event: string) => {
-        console.log(event);
+        // console.log(event);
       },
     );
     //NOTE: 앱을 사용중일 때 푸시 알림을 받았을 때 발생
     const eventListener3 = eventEmitter.addListener(
       'messaging_message_received',
       (event: string) => {
-        console.log(event);
+        // console.log(event);
       },
     );
 
     initMSW().then(() => setMockingEnabled(true));
 
     //NOTE: 발급 받은 토큰을 확인하고 싶을 때 사용
-    FirebaseMessagingModule.getToken().then((token: string) => {
-      console.log('Firebase Token:', token);
+    FirebaseMessagingModule.getToken().then(async (token: string) => {
+      await setEncryptStorage(storageKeys.FCM_TOKEN, token);
     });
 
     //NOTE: eventListener를 필수적으로 제거해야 함. 그렇지 않으면 메모리 누수 발생으로 인해 앱이 종료될 수 있음
