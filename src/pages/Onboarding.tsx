@@ -9,9 +9,10 @@ import {
   View,
 } from 'react-native';
 
-import { signUpNavigation } from '@/constants';
+import { signUpNavigation, storageKeys } from '@/constants';
 import useAuth from '@/hooks/queries/useAuth';
 import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
+import { getEncryptStorage } from '@/utils';
 import { signInWithGoogle } from '@/utils/oauth';
 
 type OnboardingProps = NativeStackScreenProps<
@@ -30,33 +31,24 @@ function Onboarding({ navigation }: OnboardingProps) {
   const { kakaoSignInMutation } = useAuth();
 
   const handlePressKakaoSignIn = async () => {
-    const fcmToken = '임시 fcm Token';
+    const fcmToken = await getEncryptStorage(storageKeys.FCM_TOKEN);
 
     if (!fcmToken) {
       console.log('FCM이 없습니다!');
       return;
     }
 
-    kakaoSignInModule
-      .signInWithKakao()
-      .then(async (idToken: string) => {
-        try {
-          console.log('FCM토큰 : ', fcmToken);
-          if (fcmToken !== null) {
-            kakaoSignInMutation.mutate({
-              OAuthProvider: 'KAKAO',
-              idToken,
-              fcmToken,
-            });
-          }
-        } catch (error) {
-          console.error(error); //유저가 카카오 로그인하다가 취소를 누르거나 빠져나온 경우.
-        }
-      })
-      .catch((error: Error) => {
-        // 카카오 토큰 자체를 못받아오는 경우.
-        console.log('에러', error);
+    try {
+      const idToken: string = await kakaoSignInModule.signInWithKakao();
+
+      kakaoSignInMutation.mutate({
+        OAuthProvider: 'KAKAO',
+        idToken,
+        fcmToken,
       });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handlePressGoogleSignIn = async () => {
