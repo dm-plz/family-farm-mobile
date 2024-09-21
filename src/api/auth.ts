@@ -70,6 +70,7 @@ async function reIssueToken() {
     .json<ResponseToken>();
 }
 
+// XXX: 두번 클릭해야 로그아웃이 됨.
 async function getSignOut() {
   return await kyInstance.get(AUTH_APIS.SIGN_OUT).json();
 }
