@@ -8,6 +8,7 @@ const queryKeys = {
 
 const storageKeys = {
   REFRESH_TOKEN: 'refreshToken',
+  FCM_TOKEN: 'fcmToken',
 } as const;
 
 export { queryKeys, storageKeys };
