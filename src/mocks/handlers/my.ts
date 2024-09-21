@@ -16,7 +16,16 @@ const fakeFamily = [
 ];
 
 export default [
-  http.get(getApiUrl(MY_APIS.GET_MY), () => {
+  http.get(getApiUrl(MY_APIS.GET_MY), ({ request }) => {
+    const authHeader = request.headers.get('Authorization');
+
+    if (!authHeader) {
+      return HttpResponse.json(
+        { message: 'Authorization header is missing or invalid' },
+        { status: 401 },
+      );
+    }
+
     const response: ResponseGetMy = {
       ...fakeFamily[0],
       family: fakeFamily,
