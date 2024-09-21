@@ -94,8 +94,8 @@ function useGetRefreshToken() {
 
 function useGetMy(queryOptions?: UseQueryCustomOptions) {
   return useQuery({
-    queryFn: getMy,
     queryKey: [queryKeys.AUTH, queryKeys.GET_MY],
+    queryFn: getMy,
     ...queryOptions,
   });
 }
