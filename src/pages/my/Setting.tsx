@@ -4,6 +4,7 @@ import { Alert, Button, SafeAreaView, Text, View } from 'react-native';
 
 import MainHeader from '@/components/my/MainHeader';
 import { myNavigation } from '@/constants';
+import useAuth from '@/hooks/queries/useAuth';
 import { MyStackParamList } from '@/navigations/stack/MyStackNavigator';
 
 type SettingScreenProps = NativeStackScreenProps<
@@ -11,6 +12,7 @@ type SettingScreenProps = NativeStackScreenProps<
   typeof myNavigation.SETTING
 >;
 export default function Setting({ navigation }: SettingScreenProps) {
+  const { signOutMutation } = useAuth();
   const showAlert = () => {
     Alert.alert(
       '로그아웃 확인',
@@ -20,7 +22,13 @@ export default function Setting({ navigation }: SettingScreenProps) {
           text: '취소',
           onPress: () => {},
         },
-        { text: '로그아웃', onPress: () => {}, style: 'destructive' },
+        {
+          text: '로그아웃',
+          onPress: () => {
+            signOutMutation.mutate(null);
+          },
+          style: 'destructive',
+        },
       ],
       { cancelable: false },
     );
