@@ -77,13 +77,15 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>PretendardBlack.ttf</string>
-		<string>PretendardBold.ttf</string>
-		<string>PretendardExtraBold.ttf</string>
-		<string>PretendardExtraLight.ttf</string>
-		<string>PretendardLight.ttf</string>
-		<string>PretendardRegular.ttf</string>
-		<string>PretendardThin.ttf</string>
+		<string>PretendardBlack.otf</string>
+		<string>PretendardBold.otf</string>
+		<string>PretendardExtraBold.otf</string>
+		<string>PretendardExtraLight.otf</string>
+		<string>PretendardLight.otf</string>
+		<string>PretendardMedium.otf</string>
+		<string>PretendardRegular.otf</string>
+		<string>PretendardSemiBold.otf</string>
+		<string>PretendardThin.otf</string>
 	</array>
 </dict>
 </plist>

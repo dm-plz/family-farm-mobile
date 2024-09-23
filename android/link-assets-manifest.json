@@ -2,32 +2,40 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "src/assets/fonts/PretendardBlack.ttf",
-      "sha1": "efdd3af40aad863d177cecb58698dee4d96e5dd2"
+      "path": "src/assets/fonts/PretendardBlack.otf",
+      "sha1": "b9162985d25a21b393185c6139d283fba46fd739"
     },
     {
-      "path": "src/assets/fonts/PretendardBold.ttf",
-      "sha1": "5014ee949529efb25dc8d2555fb8d4586f43e058"
+      "path": "src/assets/fonts/PretendardBold.otf",
+      "sha1": "bd4ac82cc26cf93c89cfbfbbba8825c5198b5b99"
     },
     {
-      "path": "src/assets/fonts/PretendardExtraBold.ttf",
-      "sha1": "7fa8f67e3a7a377341c8028468121212050eb681"
+      "path": "src/assets/fonts/PretendardExtraBold.otf",
+      "sha1": "ea07e7375c62c8386f77431f0f62a2cbdea34618"
     },
     {
-      "path": "src/assets/fonts/PretendardExtraLight.ttf",
-      "sha1": "e6f5c192eb5472551669e177f55b0ebae6e03dd1"
+      "path": "src/assets/fonts/PretendardExtraLight.otf",
+      "sha1": "4cc979a7edca4de7b9c392529493cdd0409d9dd1"
     },
     {
-      "path": "src/assets/fonts/PretendardLight.ttf",
-      "sha1": "1714361a51ce1fd7f0700b16a735022946f5cd27"
+      "path": "src/assets/fonts/PretendardLight.otf",
+      "sha1": "207a94ca77a34bba0b6cec41286bde3cbeecb7f1"
     },
     {
-      "path": "src/assets/fonts/PretendardRegular.ttf",
-      "sha1": "f5e25d12ff08ff058acd8a64d5f9b5f9c92b9d17"
+      "path": "src/assets/fonts/PretendardMedium.otf",
+      "sha1": "eba1a37734a9c4fe3d84f540ce8d812d366b2b22"
     },
     {
-      "path": "src/assets/fonts/PretendardThin.ttf",
-      "sha1": "cadc88516dbaaf19e0009f2d0c1e36329fe25c7f"
+      "path": "src/assets/fonts/PretendardRegular.otf",
+      "sha1": "e205ef0a314d9da4e1a9382e0e65a25900a9ac7b"
+    },
+    {
+      "path": "src/assets/fonts/PretendardSemiBold.otf",
+      "sha1": "916a62152b7fd08ff43d239de04303a465521fe6"
+    },
+    {
+      "path": "src/assets/fonts/PretendardThin.otf",
+      "sha1": "72cf55b4d2ea4adc75123f33ca839c10cabfaab4"
     }
   ]
 }
