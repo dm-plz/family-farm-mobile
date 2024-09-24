@@ -2,6 +2,16 @@
 module.exports = {
   content: ['./App.{js,jsx,ts,tsx}', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
+    fontSize: {
+      h1: 24,
+      h2: 18,
+      h3: 16,
+      h4: 14,
+      body1: 13,
+      body2: 12,
+      body3: 11,
+      body4: 10,
+    },
     colors: {
       gray: {
         0: '#ffffff',
