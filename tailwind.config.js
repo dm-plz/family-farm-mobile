@@ -31,7 +31,7 @@ module.exports = {
       },
       secondary: '#ff2b64',
       success: '#00a862',
-      error: 'a83c00',
+      error: '#a83c00',
     },
     extend: {},
   },
