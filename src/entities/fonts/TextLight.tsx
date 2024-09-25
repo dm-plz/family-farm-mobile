@@ -1,8 +1,6 @@
 import { Text, type TextProps } from 'react-native';
 
-import { isIOS } from '@/utils/platform';
-
-const FONT_FAMILY = isIOS() ? 'Pretendard-Light' : 'PretendardLight';
+import { DEFAULT_FONT_LIGHT } from '@/constants/font';
 
 export default function TextLight({
   children,
@@ -12,7 +10,7 @@ export default function TextLight({
 }: TextProps & { className: string }) {
   return (
     <Text
-      style={[style, { fontFamily: FONT_FAMILY }]}
+      style={[style, { fontFamily: DEFAULT_FONT_LIGHT }]}
       className={className}
       {...props}>
       {children}

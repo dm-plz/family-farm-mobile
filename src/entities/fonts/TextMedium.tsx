@@ -1,8 +1,6 @@
 import { Text, type TextProps } from 'react-native';
 
-import { isIOS } from '@/utils/platform';
-
-const FONT_FAMILY = isIOS() ? 'Pretendard-Medium' : 'PretendardMedium';
+import { DEFAULT_FONT_MEDIUM } from '@/constants/font';
 
 export default function TextMedium({
   children,
@@ -12,7 +10,7 @@ export default function TextMedium({
 }: TextProps & { className: string }) {
   return (
     <Text
-      style={[style, { fontFamily: FONT_FAMILY }]}
+      style={[style, { fontFamily: DEFAULT_FONT_MEDIUM }]}
       className={className}
       {...props}>
       {children}

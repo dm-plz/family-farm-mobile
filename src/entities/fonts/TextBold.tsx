@@ -1,8 +1,6 @@
 import { Text, type TextProps } from 'react-native';
 
-import { isIOS } from '@/utils/platform';
-
-const FONT_FAMILY = isIOS() ? 'Pretendard-Bold' : 'PretendardBold';
+import { DEFAULT_FONT_BOLD } from '@/constants/font';
 
 export default function TextBold({
   children,
@@ -12,7 +10,7 @@ export default function TextBold({
 }: TextProps & { className: string }) {
   return (
     <Text
-      style={[style, { fontFamily: FONT_FAMILY }]}
+      style={[style, { fontFamily: DEFAULT_FONT_BOLD }]}
       className={className}
       {...props}>
       {children}

@@ -1,8 +1,6 @@
 import { Text, type TextProps } from 'react-native';
 
-import { isIOS } from '@/utils/platform';
-
-const FONT_FAMILY = isIOS() ? 'Pretendard-Black' : 'PretendardBlack';
+import { DEFAULT_FONT_BLACK } from '@/constants/font';
 
 export default function TextBlack({
   children,
@@ -12,7 +10,7 @@ export default function TextBlack({
 }: TextProps & { className: string }) {
   return (
     <Text
-      style={[style, { fontFamily: FONT_FAMILY }]}
+      style={[style, { fontFamily: DEFAULT_FONT_BLACK }]}
       className={className}
       {...props}>
       {children}

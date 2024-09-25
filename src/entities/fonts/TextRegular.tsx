@@ -1,8 +1,6 @@
 import { Text, type TextProps } from 'react-native';
 
-import { isIOS } from '@/utils/platform';
-
-const FONT_FAMILY = isIOS() ? 'Pretendard-Regular' : 'PretendardRegular';
+import { DEFAULT_FONT_REGULAR } from '@/constants/font';
 
 export default function TextRegular({
   children,
@@ -12,7 +10,7 @@ export default function TextRegular({
 }: TextProps & { className: string }) {
   return (
     <Text
-      style={[style, { fontFamily: FONT_FAMILY }]}
+      style={[style, { fontFamily: DEFAULT_FONT_REGULAR }]}
       className={className}
       {...props}>
       {children}

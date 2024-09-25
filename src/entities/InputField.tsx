@@ -1,5 +1,6 @@
 import { TextInput, TextInputProps, View } from 'react-native';
 
+import { DEFAULT_FONT_REGULAR } from '@/constants/font';
 import { TextRegular } from '@/entities/fonts';
 
 export interface InputFieldProps {
@@ -31,7 +32,6 @@ function deriveTwClassByStatus({
   return '';
 }
 
-//TODO: 텍스트 폰트 및 크기 별도로 분리한 뒤 넣기
 export default function InputField({
   disable,
   editable,
@@ -52,7 +52,7 @@ export default function InputField({
       <TextInput
         className={`border-gray-25 h-[52] rounded-xl border bg-gray-100 px-5 py-4 ${deriveTwClassByStatus({ disable, error, success })} ${className}`}
         editable={!disable && editable !== false}
-        style={[{ fontFamily: 'Pretendard-Regular' }, style]}
+        style={[{ fontFamily: DEFAULT_FONT_REGULAR }, style]}
         placeholder="텍스트를 입력해주세요"
         {...props}
       />

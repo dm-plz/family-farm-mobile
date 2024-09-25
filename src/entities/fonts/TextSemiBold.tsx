@@ -1,8 +1,6 @@
 import { Text, type TextProps } from 'react-native';
 
-import { isIOS } from '@/utils/platform';
-
-const FONT_FAMILY = isIOS() ? 'Pretendard-SemiBold' : 'PretendardSemiBold';
+import { DEFAULT_FONT_SEMI_BOLD } from '@/constants/font';
 
 export default function TextSemiBold({
   children,
@@ -12,7 +10,7 @@ export default function TextSemiBold({
 }: TextProps & { className: string }) {
   return (
     <Text
-      style={[style, { fontFamily: FONT_FAMILY }]}
+      style={[style, { fontFamily: DEFAULT_FONT_SEMI_BOLD }]}
       className={className}
       {...props}>
       {children}
