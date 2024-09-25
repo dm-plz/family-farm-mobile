@@ -1,6 +1,6 @@
 import { TextInput, TextInputProps, View } from 'react-native';
 
-import { TextRegular } from '@/components/fonts';
+import { TextRegular } from '@/entities/fonts';
 
 export interface InputFieldProps {
   disable?: boolean;
