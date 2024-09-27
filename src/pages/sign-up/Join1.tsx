@@ -1,10 +1,13 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Text, TextInput, View } from 'react-native';
 
+import { kyInstance } from '@/api/ky';
+import { AUTH_APIS } from '@/api/routes';
 import CustomButton from '@/components/CustomButton';
 import StepHeader from '@/components/sign-up/StepHeader';
-import { signUpNavigation } from '@/constants';
+import { queryKeys, signUpNavigation } from '@/constants';
 import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
 
 type Join1ScreenProps = NativeStackScreenProps<
@@ -12,8 +15,36 @@ type Join1ScreenProps = NativeStackScreenProps<
   typeof signUpNavigation.JOIN_1
 >;
 
+interface ValidateResponse {
+  isValidate: boolean;
+}
+
 function Join1({ navigation }: Join1ScreenProps) {
   const [activeBorder, setActiveBorder] = useState(false);
+  const [familyCode, setFamilyCode] = useState('');
+
+  const { data, isError, isLoading, isSuccess, refetch } = useQuery({
+    queryKey: [queryKeys.VALIDATE_INVITE_CODE],
+    queryFn: async () => {
+      console.log('쿼리 실행!');
+      return await kyInstance
+        .get(AUTH_APIS.VALIDATE_FAMILY_CODE, {
+          searchParams: { familyCode },
+        })
+        .json<ValidateResponse>();
+    },
+    enabled: false,
+  });
+
+  const handleInputChange = (text: string) => {
+    setFamilyCode(text);
+  };
+
+  useEffect(() => {
+    if (familyCode.length === 8) {
+      refetch();
+    }
+  }, [familyCode, refetch]);
 
   return (
     <SafeAreaView>
@@ -34,16 +65,28 @@ function Join1({ navigation }: Join1ScreenProps) {
               setActiveBorder(true);
             }}
             onBlur={() => setActiveBorder(false)}
+            onChangeText={handleInputChange}
+            value={familyCode}
+            maxLength={8}
+            autoCapitalize="none"
+            autoCorrect={false}
           />
-          <Text className="text-sm text-red-400">
-            코드가 조회되지 않습니다. 다시 확인해 주세요.
-          </Text>
+          {data?.isValidate === false && familyCode.length === 8 && (
+            <Text className="text-sm text-red-400">
+              코드가 조회되지 않습니다. 다시 확인해 주세요.
+            </Text>
+          )}
 
           <CustomButton twClass="mt-2">입력완료</CustomButton>
         </View>
 
+        {/* 컴포넌트 변경후, bg-slate-200이 아니라, disable로 변경 예정 */}
         <CustomButton
-          twClass="bg-sky-300"
+          twClass={
+            data?.isValidate && familyCode.length === 8
+              ? 'bg-sky-300'
+              : 'bg-slate-200'
+          }
           onPress={() => navigation.navigate(signUpNavigation.JOIN_2)}>
           제가 가족중 처음이에요!
         </CustomButton>

@@ -42,11 +42,12 @@ function Onboarding({ navigation }: OnboardingProps) {
       const idToken: string = await kakaoSignInModule.signInWithKakao();
 
       kakaoSignInMutation.mutate({
-        OAuthProvider: 'KAKAO',
+        oauthProvider: 'kakao',
         idToken,
         fcmToken,
       });
     } catch (error) {
+      // 유저가 로그인 중 뒤로가기 버튼을 누르거나, 카카오 모듈 자체에 오류가 나는 경우
       console.error(error);
     }
   };

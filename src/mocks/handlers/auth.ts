@@ -79,9 +79,9 @@ export default [
       status: 403,
     });
 
-    // NOTE: 회원가입을 위해, 랜덤으로 resultWithStatus403을 리턴함.
-    // NOTE: 현재는 테스트를 위해 0을 설정함.
-    return Math.random() > 0 ? resultWithStatus201 : resultWithStatus403;
+    // NOTE: 우리 앱의 경우, 회원가입 여부에 따라 ResponseStatus가 달라짐.
+    // NOTE: status201의 경우, 회원가입이 된 경우이며, 403은 회원가입이 안된 경우임.
+    return Math.random() > 1 ? resultWithStatus201 : resultWithStatus403;
   }),
   http.get(getApiUrl(AUTH_APIS.SIGN_OUT), () => {
     const accessToken = createFakeToken();

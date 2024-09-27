@@ -3,8 +3,8 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import ReactNativeModule, { NativeModules } from 'react-native';
 
-import queryClient from '@/api/queryClient';
 import { storageKeys } from '@/constants';
+import queryClient from '@/hooks/queries/queryClient';
 import { initMSW } from '@/mocks/init';
 import RootNavigator from '@/navigations/RootNavigator';
 import { setEncryptStorage } from '@/utils';

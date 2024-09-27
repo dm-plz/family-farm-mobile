@@ -2,13 +2,13 @@ import { kyInstance } from './ky';
 import { AUTH_APIS } from './routes';
 
 import { storageKeys } from '@/constants';
-import { AlertToken, BirthType, GoupRole, OAuthAgent } from '@/types';
+import { AlertToken, BirthType, GoupRole, oauthAgent } from '@/types';
 import { getEncryptStorage } from '@/utils';
 import { createUrl } from '@/utils/url';
 
 type BodySignUp = {
   nickName: string;
-  OAuthProvider: OAuthAgent;
+  OAuthProvider: oauthAgent;
   birth: Date;
   birthType: BirthType;
   email: String;
@@ -38,7 +38,7 @@ async function postSignUp(body: BodySignUp) {
 }
 
 type BodySignIn = {
-  OAuthProvider: OAuthAgent;
+  oauthProvider: oauthAgent;
   idToken: string;
   fcmToken: string;
 };
@@ -59,7 +59,9 @@ async function postSignIn(body: BodySignIn) {
 async function reIssueToken() {
   const refreshToken = await getEncryptStorage(storageKeys.REFRESH_TOKEN);
   if (!refreshToken) {
-    throw new Error();
+    const error = new Error('저장된 리프레시 토큰이 없습니다');
+    error.name = '[auth.ts -> reIssueToken] : ';
+    throw error;
   }
   return await kyInstance
     .patch(AUTH_APIS.REISSUE_TOKEN, {

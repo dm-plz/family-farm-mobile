@@ -1,4 +1,4 @@
-import { OAuthAgent } from './auth';
+import { oauthAgent } from './auth';
 
 import { birthType, roles } from '@/constants';
 
@@ -7,7 +7,7 @@ export type BirthType = (typeof birthType)[number];
 
 export interface UserInfo {
   nickname: string;
-  OAuthProvider: OAuthAgent;
+  OAuthProvider: oauthAgent;
   birth: string;
   birthType: BirthType;
   createAt: string;

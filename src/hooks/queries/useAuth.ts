@@ -1,6 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { MutationFunction, useMutation, useQuery } from '@tanstack/react-query';
+import {
+  MutationFunction,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { useEffect } from 'react';
 
 import {
@@ -13,7 +18,6 @@ import {
 } from '@/api/auth';
 import { removeHeader, setHeader } from '@/api/ky';
 import { getMy } from '@/api/my';
-import queryClient from '@/api/queryClient';
 import { queryKeys, signUpNavigation, storageKeys } from '@/constants';
 import { numbers } from '@/constants/numbers';
 import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
@@ -25,6 +29,8 @@ function useSignIn<T>(
   mutationOptions?: UseMutationCustomOptions,
 ) {
   const navigation = useNavigation<StackNavigationProp<SignUpStackParamList>>();
+
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: signInAPI,
@@ -38,6 +44,8 @@ function useSignIn<T>(
       } else {
         // 비회원인 경우
         const { sub } = responseBody.data;
+
+        setEncryptStorage(storageKeys.SUB, sub);
 
         navigation.navigate(signUpNavigation.JOIN_1);
       }
@@ -54,6 +62,8 @@ function useSignIn<T>(
   });
 }
 function useSignOut(mutationOptions?: UseMutationCustomOptions) {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: getSignOut,
     onSuccess: async () => {
