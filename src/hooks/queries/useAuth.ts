@@ -12,7 +12,9 @@ import {
   BodySignIn,
   getSignOut,
   postSignIn,
+  postSignUp,
   reIssueToken,
+  ResponseSignUp,
   ResponseSub,
   ResponseToken,
 } from '@/api/auth';
@@ -61,6 +63,7 @@ function useSignIn<T>(
     ...mutationOptions,
   });
 }
+
 function useSignOut(mutationOptions?: UseMutationCustomOptions) {
   const queryClient = useQueryClient();
 
@@ -114,6 +117,32 @@ function useKaKaoSignIn(mutationOptions?: UseMutationCustomOptions) {
   return useSignIn<BodySignIn>(postSignIn, mutationOptions);
 }
 
+function useSignUp(mutationOptions?: UseMutationCustomOptions) {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: postSignUp,
+    onSuccess: async (responseBody: ResponseSignUp) => {
+      const { familyCode, accessToken, refreshToken } = responseBody;
+
+      if (familyCode) {
+        setEncryptStorage(storageKeys.FAMILY_CODE, familyCode);
+      }
+
+      removeEncryptStorage(storageKeys.SUB);
+      setHeader('Authorization', `Bearer ${accessToken}`);
+      setEncryptStorage(storageKeys.REFRESH_TOKEN, refreshToken);
+      queryClient.refetchQueries({
+        queryKey: [queryKeys.AUTH, queryKeys.GET_ACCESS_TOKEN],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [queryKeys.AUTH, queryKeys.GET_MY],
+      });
+    },
+    ...mutationOptions,
+  });
+}
+
 function useAuth() {
   const refreshTokenQuery = useGetRefreshToken();
   const getMyQuery = useGetMy({
@@ -124,7 +153,9 @@ function useAuth() {
   const kakaoSignInMutation = useKaKaoSignIn();
   const signOutMutation = useSignOut();
 
-  return { isSignedIn, kakaoSignInMutation, signOutMutation };
+  const signUpMutation = useSignUp();
+
+  return { isSignedIn, kakaoSignInMutation, signOutMutation, signUpMutation };
 }
 
 export default useAuth;

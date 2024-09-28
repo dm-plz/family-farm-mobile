@@ -1,10 +1,15 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import { SafeAreaView, Text, View } from 'react-native';
 
+import { kyInstance } from '@/api/ky';
+import { AUTH_APIS } from '@/api/routes';
 import CustomButton from '@/components/CustomButton';
 import StepHeader from '@/components/sign-up/StepHeader';
-import { signUpNavigation } from '@/constants';
+import { queryKeys, signUpNavigation } from '@/constants';
+import useAuth from '@/hooks/queries/useAuth';
+import { useSignUpStore } from '@/hooks/useSignUpStore';
 import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
 
 type Join3ScreenProps = NativeStackScreenProps<
@@ -14,6 +19,12 @@ type Join3ScreenProps = NativeStackScreenProps<
 
 function Join3({}: Join3ScreenProps) {
   const isHost = false;
+  const { signUpMutation } = useAuth();
+  const { signUpStore } = useSignUpStore();
+
+  const handleOnPressStart = () => {
+    signUpMutation.mutate(signUpStore);
+  };
 
   return (
     <SafeAreaView>
@@ -45,8 +56,8 @@ function Join3({}: Join3ScreenProps) {
             </View>
           )}
         </View>
-        {/* TODO: Oauth 구현 이후, 이 시작하기 버튼을 누르면, UseAuth의 isLogin이 True로 바뀌어야 함. */}
-        <CustomButton>시작하기</CustomButton>
+
+        <CustomButton onPress={handleOnPressStart}>시작하기</CustomButton>
       </View>
     </SafeAreaView>
   );

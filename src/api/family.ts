@@ -1,5 +1,5 @@
 import { kyInstance } from './ky';
-import { familyApis } from './routes';
+import { FAMILY_APIS } from './routes';
 
 import { createUrl } from '@/utils/url';
 
@@ -12,7 +12,7 @@ type ResponseGetFamilyCode = {
 };
 
 async function getFamilyCode(param: ParamGetFamilyCode) {
-  const apiUrl = createUrl(familyApis.getFamilyCode, { param });
+  const apiUrl = createUrl(FAMILY_APIS.GET_FAMILY_CODE, { param });
   return await kyInstance.get(apiUrl).json<ResponseGetFamilyCode>();
 }
 
@@ -25,7 +25,7 @@ type ResponseRefreshFamilyCode = {
 };
 
 async function refreshFamilyCode(param: ParamRefreshFamilyCode) {
-  const apiUrl = createUrl(familyApis.refreshFamilyCode, { param });
+  const apiUrl = createUrl(FAMILY_APIS.REFRESH_FAMILY_CODE, { param });
   return await kyInstance.patch(apiUrl).json<ResponseRefreshFamilyCode>();
 }
 

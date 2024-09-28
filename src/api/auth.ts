@@ -2,22 +2,28 @@ import { kyInstance } from './ky';
 import { AUTH_APIS } from './routes';
 
 import { storageKeys } from '@/constants';
-import { AlertToken, BirthType, GoupRole, oauthAgent } from '@/types';
+import { AlertToken, oauthAgent } from '@/types';
 import { getEncryptStorage } from '@/utils';
 import { createUrl } from '@/utils/url';
 
 type BodySignUp = {
-  nickName: string;
-  OAuthProvider: oauthAgent;
-  birth: Date;
-  birthType: BirthType;
-  email: String;
-  groupRole: GoupRole;
+  nickname: string;
+  birth: string;
+  birthType: string;
+  sub: string;
   familyCode: null | string;
+  groupRole: string;
   alertToken: AlertToken;
 };
 
 type ResponseToken = {
+  accessToken: string;
+  refreshToken: string;
+  grantType: 'Bearer';
+};
+
+export type ResponseSignUp = {
+  familyCode?: string;
   accessToken: string;
   refreshToken: string;
   grantType: 'Bearer';
@@ -34,7 +40,7 @@ type ResponseSub = {
 async function postSignUp(body: BodySignUp) {
   return await kyInstance
     .post(AUTH_APIS.SIGN_UP, { json: body })
-    .json<ResponseToken>();
+    .json<ResponseSignUp>();
 }
 
 type BodySignIn = {

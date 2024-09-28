@@ -12,7 +12,7 @@ import {
 import { signUpNavigation, storageKeys } from '@/constants';
 import useAuth from '@/hooks/queries/useAuth';
 import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
-import { getEncryptStorage } from '@/utils';
+import { getEncryptStorage, setEncryptStorage } from '@/utils';
 import { signInWithGoogle } from '@/utils/oauth';
 
 type OnboardingProps = NativeStackScreenProps<
@@ -39,6 +39,7 @@ function Onboarding({ navigation }: OnboardingProps) {
     }
 
     try {
+      setEncryptStorage(storageKeys.RECENT_OAUTH_PROVIDER, 'kakao');
       const idToken: string = await kakaoSignInModule.signInWithKakao();
 
       kakaoSignInMutation.mutate({

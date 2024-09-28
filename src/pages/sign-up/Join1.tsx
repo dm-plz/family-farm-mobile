@@ -23,10 +23,9 @@ function Join1({ navigation }: Join1ScreenProps) {
   const [activeBorder, setActiveBorder] = useState(false);
   const [familyCode, setFamilyCode] = useState('');
 
-  const { data, isError, isLoading, isSuccess, refetch } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: [queryKeys.VALIDATE_INVITE_CODE],
     queryFn: async () => {
-      console.log('쿼리 실행!');
       return await kyInstance
         .get(AUTH_APIS.VALIDATE_FAMILY_CODE, {
           searchParams: { familyCode },
@@ -80,7 +79,7 @@ function Join1({ navigation }: Join1ScreenProps) {
           <CustomButton twClass="mt-2">입력완료</CustomButton>
         </View>
 
-        {/* 컴포넌트 변경후, bg-slate-200이 아니라, disable로 변경 예정 */}
+        {/* NOTE: 컴포넌트 변경후, bg-slate-200이 아니라, disable로 변경 예정 */}
         <CustomButton
           twClass={
             data?.isValidate && familyCode.length === 8
