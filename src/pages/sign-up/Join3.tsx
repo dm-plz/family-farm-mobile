@@ -1,13 +1,10 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import { SafeAreaView, Text, View } from 'react-native';
 
-import { kyInstance } from '@/api/ky';
-import { AUTH_APIS } from '@/api/routes';
 import CustomButton from '@/components/CustomButton';
 import StepHeader from '@/components/sign-up/StepHeader';
-import { queryKeys, signUpNavigation } from '@/constants';
+import { signUpNavigation } from '@/constants';
 import useAuth from '@/hooks/queries/useAuth';
 import { useSignUpStore } from '@/hooks/useSignUpStore';
 import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
