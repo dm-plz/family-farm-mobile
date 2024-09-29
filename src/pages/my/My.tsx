@@ -1,7 +1,7 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { Image, SafeAreaView, StyleSheet, View } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList, Pressable } from 'react-native-gesture-handler';
 
 import { myNavigation } from '@/constants';
 import GradientBackground from '@/entities/background/GradientBackground';
@@ -13,17 +13,20 @@ type MymyScreenProps = NativeStackScreenProps<
   typeof myNavigation.MY
 >;
 
-export default function My(_: MymyScreenProps) {
+export default function My({ navigation }: MymyScreenProps) {
   return (
     <GradientBackground>
       <SafeAreaView className="h-full">
         <View className="relative h-14 py-4">
           <TextBold className="text-center text-h2">가은's family</TextBold>
-          <Image
-            source={require('@/assets/img/icon-setting.png')}
+          <Pressable
             className="absolute right-0 top-4 mr-6 h-5 w-5"
-            resizeMode="contain"
-          />
+            onPress={() => navigation.navigate(myNavigation.SETTING)}>
+            <Image
+              source={require('@/assets/img/icon-setting.png')}
+              resizeMode="contain"
+            />
+          </Pressable>
         </View>
         <FlatList
           style={styles.familyList}
