@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
 interface CustomCheckBoxProps {
   children?: React.ReactNode;
@@ -17,14 +17,8 @@ export default function CustomCheckBox({
       onPress={() => {
         setCheckbox(state => !state);
       }}>
-      <View className="h-6 w-6 items-center justify-center border border-black bg-white">
-        {isChecked && (
-          <Image
-            source={require('../assets/img/orange.png')}
-            className="h-4 w-4"
-            resizeMode="contain"
-          />
-        )}
+      <View className="border-black bg-white h-6 w-6 items-center justify-center border">
+        {isChecked && <Text>체크</Text>}
       </View>
 
       {children && (

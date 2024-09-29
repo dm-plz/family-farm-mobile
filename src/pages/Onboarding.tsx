@@ -54,26 +54,22 @@ function Onboarding({ navigation }: OnboardingProps) {
   return (
     <View className="h-full">
       <View className="flex basis-2/3 flex-row items-center justify-center">
-        <Image
-          source={require('../assets/img/orange.png')}
-          className="h-40 w-40"
-          resizeMode="contain"
-        />
+        <Text>오렌지 있던 자리</Text>
       </View>
       <View className="flex basis-1/3 flex-col px-10">
         <Pressable
-          className="mb-4 w-full bg-yellow-200 px-4 py-6"
+          className="bg-yellow-200 mb-4 w-full px-4 py-6"
           onPress={handleKakaoSignIn}>
           <Text>카카오 로그인</Text>
         </Pressable>
         <Pressable
-          className="mb-4 w-full bg-green-200 px-4 py-6"
+          className="bg-green-200 mb-4 w-full px-4 py-6"
           onPress={handleGoogleSignIn}>
           <Text>구글 로그인</Text>
         </Pressable>
         {Platform.OS === 'ios' && (
           <Pressable
-            className="w-full bg-blue-200 px-4 py-6"
+            className="bg-blue-200 w-full px-4 py-6"
             onPress={handleAppleSignIn}>
             <Text>IOS</Text>
           </Pressable>
@@ -81,7 +77,7 @@ function Onboarding({ navigation }: OnboardingProps) {
 
         {__DEV__ && (
           <Pressable
-            className="mt-4 w-full bg-green-200 px-4 py-6"
+            className="bg-green-200 mt-4 w-full px-4 py-6"
             onPress={() => {
               navigation.navigate(signUpNavigation.JOIN_1);
             }}>
