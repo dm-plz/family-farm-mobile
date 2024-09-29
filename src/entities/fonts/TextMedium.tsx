@@ -7,7 +7,7 @@ export default function TextMedium({
   style,
   className,
   ...props
-}: TextProps & { className: string }) {
+}: TextProps & { className?: string }) {
   return (
     <Text
       style={[style, { fontFamily: DEFAULT_FONT_MEDIUM }]}

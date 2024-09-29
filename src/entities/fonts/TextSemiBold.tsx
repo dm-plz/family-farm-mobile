@@ -7,7 +7,7 @@ export default function TextSemiBold({
   style,
   className,
   ...props
-}: TextProps & { className: string }) {
+}: TextProps & { className?: string }) {
   return (
     <Text
       style={[style, { fontFamily: DEFAULT_FONT_SEMI_BOLD }]}

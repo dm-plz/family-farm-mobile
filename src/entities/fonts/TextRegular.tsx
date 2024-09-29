@@ -7,7 +7,7 @@ export default function TextRegular({
   style,
   className,
   ...props
-}: TextProps & { className: string }) {
+}: TextProps & { className?: string }) {
   return (
     <Text
       style={[style, { fontFamily: DEFAULT_FONT_REGULAR }]}
