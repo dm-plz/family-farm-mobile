@@ -3,7 +3,7 @@ import { TextInput, TextInputProps, View } from 'react-native';
 import { DEFAULT_FONT_REGULAR } from '@/constants/font';
 import { TextRegular } from '@/entities/fonts';
 
-export interface InputFieldProps {
+export interface CustomInputProps {
   disable?: boolean;
   error?: boolean;
   errorMessage?: string;
@@ -16,7 +16,7 @@ function deriveTwClassByStatus({
   disable,
   error,
   success,
-}: Omit<InputFieldProps, 'errorMessage' | 'successMessage'>) {
+}: Omit<CustomInputProps, 'errorMessage' | 'successMessage'>) {
   if (disable) {
     return '';
   }
@@ -32,7 +32,7 @@ function deriveTwClassByStatus({
   return '';
 }
 
-export default function InputField({
+export default function CustomInput({
   disable,
   editable,
   error,
@@ -42,7 +42,7 @@ export default function InputField({
   className = '',
   style,
   ...props
-}: TextInputProps & InputFieldProps) {
+}: TextInputProps & CustomInputProps) {
   if (success && error) {
     throw new Error('Cannot have both success and error');
   }
@@ -50,17 +50,17 @@ export default function InputField({
   return (
     <View>
       <TextInput
-        className={`border-gray-25 h-[52] rounded-xl border bg-gray-100 px-5 py-4 ${deriveTwClassByStatus({ disable, error, success })} ${className}`}
+        className={`h-[52] rounded-xl border border-gray-25 bg-gray-100 px-5 py-4 ${deriveTwClassByStatus({ disable, error, success })} ${className}`}
         editable={!disable && editable !== false}
         style={[{ fontFamily: DEFAULT_FONT_REGULAR }, style]}
         placeholder="텍스트를 입력해주세요"
         {...props}
       />
       {error && errorMessage && (
-        <TextRegular className="text-error mt-4">{errorMessage}</TextRegular>
+        <TextRegular className="mt-4 text-error">{errorMessage}</TextRegular>
       )}
       {success && successMessage && (
-        <TextRegular className="text-success mt-4">
+        <TextRegular className="mt-4 text-success">
           {successMessage}
         </TextRegular>
       )}
