@@ -1,10 +1,11 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import { Text } from 'react-native';
+import { Image, View } from 'react-native';
 
 import QuestionAnswerStackNavigator from './stack/QuestionAnswerStackNavigator';
 
 import { colors } from '@/constants';
+import { TextMedium } from '@/entities/fonts';
 import MapStackNavigator from '@/navigations/stack/MyStackNavigator';
 import Main from '@/pages/home/Main';
 
@@ -15,59 +16,100 @@ export default function BottomTabNavigator() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: colors.GREEN_700,
+        tabBarActiveTintColor: colors.primary[100],
         tabBarInactiveTintColor: '#7E8C86',
         tabBarStyle: {
-          backgroundColor: colors.WHITE,
+          backgroundColor: colors.white,
           minHeight: 114,
-
           borderTopRightRadius: 40,
           borderTopLeftRadius: 40,
-          elevation: 8,
-          shadowColor: '#000000',
+          paddingHorizontal: 58,
+          paddingTop: 12,
+          paddingBottom: 42,
+          shadowColor: 'rgba(0, 0, 0)',
+          shadowOffset: { width: 0, height: -4 },
+          shadowRadius: 20,
           shadowOpacity: 0.04,
           borderTopWidth: 0,
+          elevation: 8, //NOTE: For Android shadow
         },
 
         tabBarLabelStyle: {
-          fontWeight: 'bold',
-          fontSize: 14,
+          display: 'none',
         },
       }}>
       <Tab.Screen
         name="홈"
         component={Main}
         options={{
-          tabBarIcon: props => TabBarIcon(props, '홈 아이콘'),
+          tabBarIcon: HomeTabBarIcon,
         }}
       />
       <Tab.Screen
         name="질문 답변"
         component={QuestionAnswerStackNavigator}
         options={{
-          tabBarIcon: props => TabBarIcon(props, '질문 답변 아이콘'),
+          tabBarIcon: MainTabBarIcon,
         }}
       />
       <Tab.Screen
         name="마이페이지"
         component={MapStackNavigator}
         options={{
-          tabBarIcon: props => TabBarIcon(props, '마이 아이콘'),
+          tabBarIcon: MyTabBarIcon,
         }}
       />
     </Tab.Navigator>
   );
 }
 
-function TabBarIcon(
-  {
-    color,
-  }: {
-    focused: boolean;
-    color: string;
-    size: number;
-  },
-  text: string,
-) {
-  return <Text style={{ color }}>{text}</Text>;
+interface TabBarIconProps {
+  focused: boolean;
+  color: string;
+  size: number;
+}
+
+function HomeTabBarIcon(props: TabBarIconProps) {
+  return (
+    <View className="flex w-20 flex-col items-center space-y-0.5">
+      <Image
+        source={require('@/assets/img/icon-home.png')}
+        className="h-6 w-6"
+        resizeMode="contain"
+        style={[{ tintColor: props.color }]}
+      />
+      <TextMedium style={{ color: props.color }} className="text-center">
+        홈
+      </TextMedium>
+    </View>
+  );
+}
+
+function MainTabBarIcon(_: TabBarIconProps) {
+  return (
+    <View className="w-[60] rounded-full bg-primary-100 p-4">
+      <Image
+        source={require('@/assets/img/icon-message.png')}
+        className="h-7 w-7"
+        resizeMode="contain"
+        style={[{ tintColor: colors.white }]}
+      />
+    </View>
+  );
+}
+
+function MyTabBarIcon(props: TabBarIconProps) {
+  return (
+    <View className="flex w-20 flex-col items-center space-y-0.5">
+      <Image
+        source={require('@/assets/img/icon-my.png')}
+        className="h-6 w-6"
+        resizeMode="contain"
+        style={[{ tintColor: props.color }]}
+      />
+      <TextMedium style={{ color: props.color }} className="text-center">
+        마이페이지
+      </TextMedium>
+    </View>
+  );
 }
