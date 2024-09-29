@@ -4,7 +4,6 @@ import { DEFAULT_FONT_REGULAR } from '@/constants/font';
 import { TextRegular } from '@/entities/fonts';
 
 export interface CustomInputProps {
-  disable?: boolean;
   error?: boolean;
   errorMessage?: string;
   success?: boolean;
@@ -13,11 +12,15 @@ export interface CustomInputProps {
 }
 
 function deriveTwClassByStatus({
-  disable,
+  editable,
   error,
   success,
-}: Omit<CustomInputProps, 'errorMessage' | 'successMessage'>) {
-  if (disable) {
+}: {
+  editable?: boolean;
+  error?: boolean;
+  success?: boolean;
+}) {
+  if (editable === false) {
     return '';
   }
 
@@ -33,7 +36,6 @@ function deriveTwClassByStatus({
 }
 
 export default function CustomInput({
-  disable,
   editable,
   error,
   errorMessage,
@@ -50,8 +52,8 @@ export default function CustomInput({
   return (
     <View>
       <TextInput
-        className={`h-[52] rounded-xl border border-gray-25 bg-gray-100 px-5 py-4 ${deriveTwClassByStatus({ disable, error, success })} ${className}`}
-        editable={!disable && editable !== false}
+        className={`h-[52] rounded-xl border border-gray-25 bg-gray-100 px-5 py-4 ${deriveTwClassByStatus({ editable, error, success })} ${className}`}
+        editable={editable !== false}
         style={[{ fontFamily: DEFAULT_FONT_REGULAR }, style]}
         placeholder="텍스트를 입력해주세요"
         {...props}
