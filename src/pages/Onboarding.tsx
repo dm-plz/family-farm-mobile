@@ -28,17 +28,17 @@ function Onboarding({ navigation }: OnboardingProps) {
     AppleLoginModule: AppleSignInModule,
   } = NativeModules;
 
-  const { kakaoSignInMutation } = useAuth();
+  const { kakaoSignInMutation, googleSignInMutation, appleSignInMutation } =
+    useAuth();
 
   const handlePressKakaoSignIn = async () => {
-    const fcmToken = await getEncryptStorage(storageKeys.FCM_TOKEN);
-
-    if (!fcmToken) {
-      console.log('FCM이 없습니다!');
-      return;
-    }
-
     try {
+      const fcmToken = await getEncryptStorage(storageKeys.FCM_TOKEN);
+
+      if (!fcmToken) {
+        console.log('FCM이 없습니다!');
+        return;
+      }
       setEncryptStorage(storageKeys.RECENT_OAUTH_PROVIDER, 'kakao');
       const idToken: string = await kakaoSignInModule.signInWithKakao();
 
@@ -55,8 +55,29 @@ function Onboarding({ navigation }: OnboardingProps) {
 
   const handlePressGoogleSignIn = async () => {
     try {
+      const fcmToken = await getEncryptStorage(storageKeys.FCM_TOKEN);
+
+      if (!fcmToken) {
+        console.log('FCM이 없습니다!');
+        return;
+      }
+      setEncryptStorage(storageKeys.RECENT_OAUTH_PROVIDER, 'google');
+      // BUG: signInWithGoogle() 실행하면 그냥 바로 시뮬레이터가 꺼짐.
       const { idToken } = await signInWithGoogle();
-      console.log(idToken ?? 'idToken is null');
+
+      // 위 버그 때문에, 임시로 idToken값을 설정함.
+      // const idToken = 'sdfiansdp';
+
+      if (!idToken) {
+        console.log('ID TOKEN이 없습니다.');
+        return;
+      }
+
+      googleSignInMutation.mutate({
+        oauthProvider: 'google',
+        idToken,
+        fcmToken,
+      });
     } catch (error) {
       console.error(error);
     }
@@ -64,9 +85,27 @@ function Onboarding({ navigation }: OnboardingProps) {
 
   const handlePressAppleSignIn = async () => {
     try {
+      const fcmToken = await getEncryptStorage(storageKeys.FCM_TOKEN);
+
+      if (!fcmToken) {
+        console.log('FCM이 없습니다!');
+        return;
+      }
+      setEncryptStorage(storageKeys.RECENT_OAUTH_PROVIDER, 'apple');
+
       const { idToken }: { idToken: string } =
         await AppleSignInModule.loginWithApple();
-      console.log('Apple Login Success:', idToken);
+
+      if (!idToken) {
+        console.log('ID TOKEN이 없습니다.');
+        return;
+      }
+
+      appleSignInMutation.mutate({
+        oauthProvider: 'apple',
+        idToken,
+        fcmToken,
+      });
     } catch (error) {
       console.error('Apple Login Failed:', error);
     }

@@ -117,6 +117,14 @@ function useKaKaoSignIn(mutationOptions?: UseMutationCustomOptions) {
   return useSignIn<BodySignIn>(postSignIn, mutationOptions);
 }
 
+function useGoogleSignIn(mutationOptions?: UseMutationCustomOptions) {
+  return useSignIn<BodySignIn>(postSignIn, mutationOptions);
+}
+
+function useAppleSignIn(mutationOptions?: UseMutationCustomOptions) {
+  return useSignIn<BodySignIn>(postSignIn, mutationOptions);
+}
+
 function useSignUp(mutationOptions?: UseMutationCustomOptions) {
   const queryClient = useQueryClient();
 
@@ -151,11 +159,21 @@ function useAuth() {
 
   const isSignedIn = getMyQuery.isSuccess;
   const kakaoSignInMutation = useKaKaoSignIn();
+  const googleSignInMutation = useGoogleSignIn();
+  const appleSignInMutation = useAppleSignIn();
+
   const signOutMutation = useSignOut();
 
   const signUpMutation = useSignUp();
 
-  return { isSignedIn, kakaoSignInMutation, signOutMutation, signUpMutation };
+  return {
+    isSignedIn,
+    kakaoSignInMutation,
+    googleSignInMutation,
+    appleSignInMutation,
+    signOutMutation,
+    signUpMutation,
+  };
 }
 
 export default useAuth;
