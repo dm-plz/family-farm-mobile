@@ -63,7 +63,7 @@ function Onboarding({ navigation }: OnboardingProps) {
       }
       setEncryptStorage(storageKeys.RECENT_OAUTH_PROVIDER, 'google');
       // BUG: signInWithGoogle() 실행하면 그냥 바로 시뮬레이터가 꺼짐.
-      const { idToken } = await signInWithGoogle();
+      //const { idToken } = await signInWithGoogle();
 
       // 위 버그 때문에, 임시로 idToken값을 설정함.
       // const idToken = 'sdfiansdp';
