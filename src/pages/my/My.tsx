@@ -4,7 +4,7 @@ import { Image, SafeAreaView, StyleSheet, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 import MainHeader from '@/components/my/MainHeader';
-import { myNavigation } from '@/constants';
+import { colors, myNavigation } from '@/constants';
 import GradientBackground from '@/entities/background/GradientBackground';
 import { TextRegular, TextSemiBold } from '@/entities/fonts';
 import { MyStackParamList } from '@/navigations/stack/MyStackNavigator';
@@ -26,6 +26,8 @@ export default function My({ navigation }: MymyScreenProps) {
               <Image
                 source={require('@/assets/img/icon-setting.png')}
                 resizeMode="contain"
+                className="h-5 w-5"
+                tintColor={colors.primary[100]}
               />
             ),
           }}

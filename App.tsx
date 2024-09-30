@@ -9,6 +9,7 @@ import { initMSW } from '@/mocks/init';
 import RootNavigator from '@/navigations/RootNavigator';
 import './gesture-handler';
 
+//TODO: Gradient 배경 사용 여부에 따라 Tab 배경을 변경해야 함
 export default function App() {
   const [isMockingEnabled, setMockingEnabled] = useState(false);
 
