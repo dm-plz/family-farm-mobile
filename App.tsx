@@ -33,7 +33,7 @@ export default function App() {
     const eventListener = eventEmitter.addListener(
       'messaging_token_refresh',
       (event: string) => {
-        console.log(event);
+        // console.log(event);
       },
     );
     //NOTE: 알림을 통해 앱을 열었을 때 발생
