@@ -66,7 +66,7 @@ function Onboarding({ navigation }: OnboardingProps) {
       //const { idToken } = await signInWithGoogle();
 
       // 위 버그 때문에, 임시로 idToken값을 설정함.
-      // const idToken = 'sdfiansdp';
+      const idToken = 'sdfiansdp';
 
       if (!idToken) {
         console.log('ID TOKEN이 없습니다.');
