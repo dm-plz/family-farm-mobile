@@ -1,11 +1,12 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { Image, SafeAreaView, StyleSheet, View } from 'react-native';
-import { FlatList, Pressable } from 'react-native-gesture-handler';
+import { FlatList } from 'react-native-gesture-handler';
 
+import MainHeader from '@/components/my/MainHeader';
 import { myNavigation } from '@/constants';
 import GradientBackground from '@/entities/background/GradientBackground';
-import { TextBold, TextRegular, TextSemiBold } from '@/entities/fonts';
+import { TextRegular, TextSemiBold } from '@/entities/fonts';
 import { MyStackParamList } from '@/navigations/stack/MyStackNavigator';
 
 type MymyScreenProps = NativeStackScreenProps<
@@ -17,17 +18,18 @@ export default function My({ navigation }: MymyScreenProps) {
   return (
     <GradientBackground>
       <SafeAreaView className="h-full">
-        <View className="relative h-14 py-4">
-          <TextBold className="text-center text-h2">가은's family</TextBold>
-          <Pressable
-            className="absolute right-0 top-4 mr-6 h-5 w-5"
-            onPress={() => navigation.navigate(myNavigation.SETTING)}>
-            <Image
-              source={require('@/assets/img/icon-setting.png')}
-              resizeMode="contain"
-            />
-          </Pressable>
-        </View>
+        <MainHeader
+          title="가은's family"
+          right={{
+            onPress: () => navigation.navigate(myNavigation.SETTING),
+            icon: (
+              <Image
+                source={require('@/assets/img/icon-setting.png')}
+                resizeMode="contain"
+              />
+            ),
+          }}
+        />
         <FlatList
           style={styles.familyList}
           ItemSeparatorComponent={FamliyListSeperator}
