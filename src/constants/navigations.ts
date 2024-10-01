@@ -8,6 +8,7 @@ const signUpNavigation = {
 const myNavigation = {
   MY: 'My_My',
   SETTING: 'My_Setting',
+  PROFILE: 'My_Profile',
 } as const;
 
 const QuestionAnswerNavigation = {
