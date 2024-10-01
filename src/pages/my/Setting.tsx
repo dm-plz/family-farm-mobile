@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import {
   Alert,
   Image,
+  Pressable,
   SafeAreaView,
   StyleSheet,
   Switch,
@@ -37,6 +38,7 @@ export default function Setting({ navigation }: SettingScreenProps) {
   const [isAlarm, setIsAlram] = useState(false);
   const [isMarketing, setIsMarketing] = useState(false);
 
+  //FIXME: onPress 작동 안하는 중
   return (
     <SafeAreaView className="bg-white h-full">
       <MainHeader
@@ -53,26 +55,28 @@ export default function Setting({ navigation }: SettingScreenProps) {
         }}
         title="설정"
       />
-      <View className="mx-5 my-5 flex flex-row items-center">
-        <Image
-          source={require('@/assets/img/default-user-profile.png')}
-          className="mr-2 h-12 w-12"
-          resizeMode="contain"
-        />
-        <View>
-          <TextBold className="text-h3">가은님</TextBold>
+      <Pressable onPress={() => navigation.navigate(myNavigation.PROFILE)}>
+        <View className="mx-5 my-5 flex flex-row items-center">
+          <Image
+            source={require('@/assets/img/default-user-profile.png')}
+            className="mr-2 h-12 w-12"
+            resizeMode="contain"
+          />
+          <View>
+            <TextBold className="text-h3">가은님</TextBold>
+          </View>
+          <Image
+            source={require('@/assets/img/icon-arrow-left.png')}
+            resizeMode="contain"
+            className="ml-auto h-5 w-5 rotate-180"
+            tintColor={colors.primary[100]}
+          />
         </View>
-        <Image
-          source={require('@/assets/img/icon-arrow-left.png')}
-          resizeMode="contain"
-          className="ml-auto h-5 w-5 rotate-180"
-          tintColor={colors.primary[100]}
-        />
-      </View>
+      </Pressable>
       <View>
         <TextBold className="mb-1 ml-5 text-h3">알람 설정</TextBold>
         <View className="flex flex-row items-center border-b border-gray-25 px-5 py-3">
-          <TextRegular className="text-body1">PUSH 알림</TextRegular>
+          <TextRegular>PUSH 알림</TextRegular>
           <Switch
             trackColor={{
               false: colors.gray[100],
@@ -88,7 +92,7 @@ export default function Setting({ navigation }: SettingScreenProps) {
           />
         </View>
         <View className="flex flex-row items-center border-b border-gray-25 px-5 py-3">
-          <TextRegular className="text-body1">마케팅 정보 알림</TextRegular>
+          <TextRegular>마케팅 정보 알림</TextRegular>
           <Switch
             trackColor={{
               false: colors.gray[100],
@@ -107,7 +111,7 @@ export default function Setting({ navigation }: SettingScreenProps) {
       <View className="mt-5">
         <TextBold className="mb-1 ml-5 text-h3">문의하기</TextBold>
         <View className="flex flex-row items-center border-b border-gray-25 px-5 py-3">
-          <TextRegular className="text-body1">자주 묻는 질문</TextRegular>
+          <TextRegular>자주 묻는 질문</TextRegular>
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}
             resizeMode="contain"
@@ -116,7 +120,7 @@ export default function Setting({ navigation }: SettingScreenProps) {
           />
         </View>
         <View className="flex flex-row items-center border-b border-gray-25 px-5 py-3">
-          <TextRegular className="text-body1">1:1 문의하기</TextRegular>
+          <TextRegular>1:1 문의하기</TextRegular>
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}
             resizeMode="contain"
@@ -128,7 +132,7 @@ export default function Setting({ navigation }: SettingScreenProps) {
       <View className="mt-5">
         <TextBold className="mb-1 ml-5 text-h3">약관 및 정책</TextBold>
         <View className="flex flex-row items-center border-b border-gray-25 px-5 py-3">
-          <TextRegular className="text-body1">이용 약관</TextRegular>
+          <TextRegular>이용 약관</TextRegular>
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}
             resizeMode="contain"
@@ -137,7 +141,7 @@ export default function Setting({ navigation }: SettingScreenProps) {
           />
         </View>
         <View className="flex flex-row items-center border-b border-gray-25 px-5 py-3">
-          <TextRegular className="text-body1">개인 정보 처리 방침</TextRegular>
+          <TextRegular>개인 정보 처리 방침</TextRegular>
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}
             resizeMode="contain"
@@ -146,7 +150,7 @@ export default function Setting({ navigation }: SettingScreenProps) {
           />
         </View>
         <View className="flex flex-row items-center border-b border-gray-25 px-5 py-3">
-          <TextRegular className="text-body1">위치 정보 이용 약관</TextRegular>
+          <TextRegular>위치 정보 이용 약관</TextRegular>
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}
             resizeMode="contain"

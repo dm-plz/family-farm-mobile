@@ -21,7 +21,7 @@ export default function My({ navigation }: MymyScreenProps) {
         <MainHeader
           title="가은's family"
           right={{
-            onPress: () => navigation.navigate(myNavigation.SETTING),
+            onPress: () => navigation.push(myNavigation.SETTING),
             icon: (
               <Image
                 source={require('@/assets/img/icon-setting.png')}

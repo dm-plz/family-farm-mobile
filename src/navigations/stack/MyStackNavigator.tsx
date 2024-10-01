@@ -3,11 +3,13 @@ import React from 'react';
 
 import { myNavigation } from '@/constants';
 import My from '@/pages/my/My';
+import Profile from '@/pages/my/Profile';
 import Setting from '@/pages/my/Setting';
 
 export type MyStackParamList = {
   [myNavigation.MY]: undefined;
   [myNavigation.SETTING]: undefined;
+  [myNavigation.PROFILE]: undefined;
 };
 
 const Stack = createNativeStackNavigator<MyStackParamList>();
@@ -20,6 +22,7 @@ function MyStackNavigator() {
       }}>
       <Stack.Screen name={myNavigation.MY} component={My} />
       <Stack.Screen name={myNavigation.SETTING} component={Setting} />
+      <Stack.Screen name={myNavigation.PROFILE} component={Profile} />
     </Stack.Navigator>
   );
 }
