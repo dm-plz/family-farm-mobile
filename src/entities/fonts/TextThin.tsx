@@ -11,7 +11,7 @@ export default function TextThin({
   return (
     <Text
       style={[style, { fontFamily: DEFAULT_FONT_THIN }]}
-      className={className}
+      className={`text-black text-body1 ${className}`}
       {...props}>
       {children}
     </Text>

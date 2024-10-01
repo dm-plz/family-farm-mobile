@@ -11,7 +11,7 @@ export default function TextExtraBold({
   return (
     <Text
       style={[style, { fontFamily: DEFAULT_FONT_EXTRA_BOLD }]}
-      className={className}
+      className={`text-black text-body1 ${className}`}
       {...props}>
       {children}
     </Text>

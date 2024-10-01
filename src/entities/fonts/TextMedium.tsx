@@ -11,7 +11,7 @@ export default function TextMedium({
   return (
     <Text
       style={[style, { fontFamily: DEFAULT_FONT_MEDIUM }]}
-      className={className}
+      className={`text-black text-body1 ${className}`}
       {...props}>
       {children}
     </Text>
