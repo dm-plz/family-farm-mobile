@@ -3,6 +3,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import ReactNativeModule, { NativeModules } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import SplashScreen from 'react-native-splash-screen';
 
 import queryClient from '@/api/queryClient';
 import GradientEndBackground from '@/entities/background/GradientEndBackground';
@@ -25,6 +26,12 @@ FirebaseMessagingModule.eventsAddListener('messaging_message_received');
 
 export default function App() {
   const [isMockingEnabled, setMockingEnabled] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 1000); //스플래시 활성화 시간
+  });
 
   useEffect(() => {
     const eventEmitter = new ReactNativeModule.NativeEventEmitter(
