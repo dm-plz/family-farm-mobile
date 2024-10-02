@@ -83,6 +83,7 @@ function HomeTabBarIcon(props: TabBarIconProps) {
   );
 }
 
+//FIXME: Shadow 누락 됨
 function MainTabBarIcon(_: TabBarIconProps) {
   return (
     <View className="w-[60] rounded-full bg-primary-100 p-4">
