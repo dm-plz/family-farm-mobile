@@ -3,8 +3,7 @@ import { TextInput, TextInputProps, View } from 'react-native';
 import { DEFAULT_FONT_REGULAR } from '@/constants/font';
 import { TextRegular } from '@/entities/fonts';
 
-export interface InputFieldProps {
-  disable?: boolean;
+export interface CustomInputProps {
   error?: boolean;
   errorMessage?: string;
   success?: boolean;
@@ -13,11 +12,15 @@ export interface InputFieldProps {
 }
 
 function deriveTwClassByStatus({
-  disable,
+  editable,
   error,
   success,
-}: Omit<InputFieldProps, 'errorMessage' | 'successMessage'>) {
-  if (disable) {
+}: {
+  editable?: boolean;
+  error?: boolean;
+  success?: boolean;
+}) {
+  if (editable === false) {
     return '';
   }
 
@@ -32,8 +35,7 @@ function deriveTwClassByStatus({
   return '';
 }
 
-export default function InputField({
-  disable,
+export default function CustomInput({
   editable,
   error,
   errorMessage,
@@ -42,7 +44,7 @@ export default function InputField({
   className = '',
   style,
   ...props
-}: TextInputProps & InputFieldProps) {
+}: TextInputProps & CustomInputProps) {
   if (success && error) {
     throw new Error('Cannot have both success and error');
   }
@@ -50,17 +52,17 @@ export default function InputField({
   return (
     <View>
       <TextInput
-        className={`border-gray-25 h-[52] rounded-xl border bg-gray-100 px-5 py-4 ${deriveTwClassByStatus({ disable, error, success })} ${className}`}
-        editable={!disable && editable !== false}
+        className={`h-[52] rounded-xl border border-gray-25 bg-gray-100 px-5 py-4 ${deriveTwClassByStatus({ editable, error, success })} ${className}`}
+        editable={editable !== false}
         style={[{ fontFamily: DEFAULT_FONT_REGULAR }, style]}
         placeholder="텍스트를 입력해주세요"
         {...props}
       />
       {error && errorMessage && (
-        <TextRegular className="text-error mt-4">{errorMessage}</TextRegular>
+        <TextRegular className="mt-4 text-error">{errorMessage}</TextRegular>
       )}
       {success && successMessage && (
-        <TextRegular className="text-success mt-4">
+        <TextRegular className="mt-4 text-success">
           {successMessage}
         </TextRegular>
       )}
