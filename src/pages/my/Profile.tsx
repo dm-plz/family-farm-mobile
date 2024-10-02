@@ -6,6 +6,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import MainHeader from '@/components/my/MainHeader';
 import { colors, myNavigation } from '@/constants';
 import SafeDisplayView from '@/entities/common/SafeDisplayView';
+import CustomInput from '@/entities/CustomInput';
 import {
   TextBold,
   TextMedium,
@@ -75,10 +76,14 @@ export default function Setting({ navigation }: ProfileScreenProps) {
           />
         </View>
       </View>
-      <View>
-        <TextSemiBold className="text-body2 text-gray-300">
+      <View className="mx-4 my-5">
+        <TextSemiBold className="mb-3 text-body2 text-gray-300">
           이름 또는 닉네임
         </TextSemiBold>
+        <CustomInput
+          success={true}
+          successMessage="사용 가능한 이름 또는 닉네임 입니다."
+        />
       </View>
       <View className="mx-5">
         <TextSemiBold className="mb-2 text-body2 text-gray-300">
