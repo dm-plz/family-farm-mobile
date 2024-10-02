@@ -4,14 +4,12 @@ import {
   Alert,
   Image,
   Pressable,
-  SafeAreaView,
   StyleSheet,
   Switch,
   View,
 } from 'react-native';
 
-import MainHeader from '@/components/my/MainHeader';
-import { bottomTabNavigation, colors, myNavigation } from '@/constants';
+import { routeNames, colors } from '@/constants';
 import SafeDisplayViewWithHeader from '@/entities/common/SafeDisplayWithHeader';
 import { TextBold, TextMedium, TextRegular } from '@/entities/fonts';
 import { BottomTabNavigation } from '@/navigations/BottomTabNavigator';
@@ -19,7 +17,7 @@ import { MyStackParamList } from '@/navigations/stack/MyStackNavigator';
 
 type SettingScreenProps = NativeStackScreenProps<
   MyStackParamList & BottomTabNavigation,
-  typeof myNavigation.SETTING
+  typeof routeNames.SETTING
 >;
 export default function Setting({ navigation }: SettingScreenProps) {
   // TODO: Modal Page 구현 후 적용
@@ -44,7 +42,7 @@ export default function Setting({ navigation }: SettingScreenProps) {
   return (
     <SafeDisplayViewWithHeader
       leftButton={{
-        onPress: () => navigation.navigate(bottomTabNavigation.MY),
+        onPress: () => navigation.navigate(routeNames.MY),
         icon: (
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}
@@ -56,7 +54,7 @@ export default function Setting({ navigation }: SettingScreenProps) {
       }}
       title="설정"
       className="bg-white h-full">
-      <Pressable onPress={() => navigation.navigate(myNavigation.PROFILE)}>
+      <Pressable onPress={() => navigation.navigate(routeNames.MY_PROFILE)}>
         <View className="mx-5 my-5 flex flex-row items-center">
           <Image
             source={require('@/assets/img/default-user-profile.png')}

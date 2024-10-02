@@ -2,7 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import { Alert, Image, Pressable, View } from 'react-native';
 
-import { colors, myNavigation } from '@/constants';
+import { colors, routeNames } from '@/constants';
 import SafeDisplayViewWithHeader from '@/entities/common/SafeDisplayWithHeader';
 import CustomInput from '@/entities/CustomInput';
 import {
@@ -15,7 +15,7 @@ import { MyStackParamList } from '@/navigations/stack/MyStackNavigator';
 
 type ProfileScreenProps = NativeStackScreenProps<
   MyStackParamList,
-  typeof myNavigation.PROFILE
+  typeof routeNames.MY_PROFILE
 >;
 export default function Setting({ navigation }: ProfileScreenProps) {
   // TODO: Modal Page 구현 후 적용

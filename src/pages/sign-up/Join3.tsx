@@ -4,12 +4,12 @@ import { SafeAreaView, Text, View } from 'react-native';
 
 import CustomButton from '@/components/CustomButton';
 import StepHeader from '@/components/sign-up/StepHeader';
-import { signUpNavigation } from '@/constants';
+import { routeNames } from '@/constants';
 import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
 
 type Join3ScreenProps = NativeStackScreenProps<
   SignUpStackParamList,
-  typeof signUpNavigation.JOIN_3
+  typeof routeNames.JOIN3
 >;
 
 function Join3({}: Join3ScreenProps) {
@@ -20,7 +20,7 @@ function Join3({}: Join3ScreenProps) {
       <View className="flex h-full flex-col justify-between px-10 pb-8">
         <StepHeader currentStep={3} />
         <View className="flex h-[40%] flex-col items-center justify-around">
-          <View className="flex h-20 w-60 items-center justify-center bg-slate-200">
+          <View className="bg-slate-200 flex h-20 w-60 items-center justify-center">
             <Text className="text-center">로고</Text>
           </View>
           {isHost ? (
@@ -29,7 +29,7 @@ function Join3({}: Join3ScreenProps) {
                 <Text className="text-center font-bold">{`가은님,
       가족에게 초대장 코드를 보내보세요!`}</Text>
               </View>
-              <View className="flex h-20 w-60 items-center justify-center bg-green-300">
+              <View className="bg-green-300 flex h-20 w-60 items-center justify-center">
                 <Text className="text-center">초대장 보내기</Text>
               </View>
               <View className="flex items-center justify-center">

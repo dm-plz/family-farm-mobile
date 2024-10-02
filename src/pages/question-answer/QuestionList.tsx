@@ -11,13 +11,13 @@ import {
 } from 'react-native';
 
 import MyIcon from '@/components/question-answer/MyIcon';
-import { QuestionAnswerNavigation } from '@/constants';
+import { routeNames } from '@/constants';
 import { QuestionAnswerStackParamList } from '@/navigations/stack/QuestionAnswerStackNavigator';
 import dayjs from '@/utils/dayjs';
 
 type QuestionListScreenProps = NativeStackScreenProps<
   QuestionAnswerStackParamList,
-  typeof QuestionAnswerNavigation.QUESTION_LIST
+  typeof routeNames.QUESTION_LIST
 >;
 
 const QuestionList = ({ navigation }: QuestionListScreenProps) => {
@@ -60,7 +60,7 @@ const RenderQusetion = ({ item, navigation }: RenderQusetionProps) => {
     <Pressable
       className="mt-2 border-b border-[#F7F7F7] py-2"
       onPress={() => {
-        navigation.navigate(QuestionAnswerNavigation.VIEW_ANSWER, item);
+        navigation.navigate(routeNames.VIEW_ANSWER, item);
       }}>
       <View className="h-[40] w-[114] flex-row items-center justify-start">
         {isTodayQuestion && (

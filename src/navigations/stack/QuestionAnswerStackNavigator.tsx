@@ -12,6 +12,7 @@ import {
   nonShowBottomTab,
   questionAnswerHeaderStyle,
   QuestionAnswerNavigation as QuestionAnswerNavigation,
+  routeNames,
   showBottomTab,
 } from '@/constants';
 import AnswerWithFeeling from '@/pages/question-answer/AnswerWithFeeling';
@@ -25,11 +26,11 @@ import ViewAnswer, {
 } from '@/pages/question-answer/ViewAnswer';
 
 export type QuestionAnswerStackParamList = {
-  [QuestionAnswerNavigation.QUESTION_LIST]: undefined;
-  [QuestionAnswerNavigation.VIEW_ANSWER]: QuestionItemProps;
-  [QuestionAnswerNavigation.ANSWER_WITH_FEELING]: AnswerItemProps;
-  [QuestionAnswerNavigation.ANSWER_WITH_IMAGE]: undefined;
-  [QuestionAnswerNavigation.ANSWER_WITH_StringVoice]: undefined;
+  [routeNames.QUESTION_LIST]: undefined;
+  [routeNames.VIEW_ANSWER]: QuestionItemProps;
+  [routeNames.ANSWER_WITH_FEELING]: AnswerItemProps;
+  [routeNames.ANSWER_WITH_IMAGE]: undefined;
+  [routeNames.ANSWER_WITH_STRING_VOICE]: undefined;
 };
 
 type QuestionAnswerStackNavigatorProps = {

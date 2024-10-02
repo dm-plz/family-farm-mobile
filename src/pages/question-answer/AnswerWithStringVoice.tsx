@@ -4,12 +4,12 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Pressable, SafeAreaView, Text, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
-import { QuestionAnswerNavigation } from '@/constants';
+import { routeNames } from '@/constants';
 import { QuestionAnswerStackParamList } from '@/navigations/stack/QuestionAnswerStackNavigator';
 
 type AnswerWithStringVoiceScreenProps = NativeStackScreenProps<
   QuestionAnswerStackParamList,
-  typeof QuestionAnswerNavigation.ANSWER_WITH_StringVoice
+  typeof routeNames.ANSWER_WITH_STRING_VOICE
 >;
 
 const AnswerWithStringVoice = ({}: AnswerWithStringVoiceScreenProps) => {
@@ -25,23 +25,23 @@ const AnswerWithStringVoice = ({}: AnswerWithStringVoiceScreenProps) => {
         <View className="flex-1">
           <View className="h-1/2">
             <View className="mb-4 flex-row">
-              <View className="h-14 flex-1 items-center justify-center border-b-2 border-slate-600">
+              <View className="border-slate-600 h-14 flex-1 items-center justify-center border-b-2">
                 <Text>텍스트</Text>
               </View>
-              <View className="h-14 flex-1 items-center justify-center border-b border-slate-200">
+              <View className="border-slate-200 h-14 flex-1 items-center justify-center border-b">
                 <Text>음성</Text>
               </View>
             </View>
             <TextInput
               placeholder="편하게 입력해 보세요"
-              className="rounded-xl bg-slate-200 p-4"
+              className="bg-slate-200 rounded-xl p-4"
               multiline={true}
             />
           </View>
         </View>
         <View className="mb-4 justify-end">
-          <Pressable className="flex h-12 flex-col items-center justify-center rounded-2xl bg-green-600">
-            <Text className="font-bold text-white">저장하기</Text>
+          <Pressable className="bg-green-600 flex h-12 flex-col items-center justify-center rounded-2xl">
+            <Text className="text-white font-bold">저장하기</Text>
           </Pressable>
         </View>
       </View>

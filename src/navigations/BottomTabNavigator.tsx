@@ -7,14 +7,17 @@ import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import QuestionAnswerStackNavigator from './stack/QuestionAnswerStackNavigator';
 
-import { bottomTabNavigation, colors } from '@/constants';
+import { colors, routeNames } from '@/constants';
 import { TextMedium } from '@/entities/fonts';
 import MapStackNavigator from '@/navigations/stack/MyStackNavigator';
 import Main from '@/pages/home/Main';
 import { My } from '@/pages/my';
 
 export type BottomTabNavigation = {
-  [K in (typeof bottomTabNavigation)[keyof typeof bottomTabNavigation]]: undefined;
+  [routeNames.HOME]: undefined;
+  [routeNames.Q_A]: undefined;
+  [routeNames.MY]: undefined;
+  [routeNames.SETTING]: undefined;
 };
 
 const Tab = createBottomTabNavigator<BottomTabNavigation>();
@@ -33,28 +36,28 @@ export default function BottomTabNavigator() {
         },
       }}>
       <Tab.Screen
-        name={bottomTabNavigation.HOME}
+        name={routeNames.HOME}
         component={Main}
         options={{
           tabBarIcon: HomeTabBarIcon,
         }}
       />
       <Tab.Screen
-        name={bottomTabNavigation.Q_A}
+        name={routeNames.Q_A}
         component={QuestionAnswerStackNavigator}
         options={{
           tabBarIcon: MainTabBarIcon,
         }}
       />
       <Tab.Screen
-        name={bottomTabNavigation.MY}
+        name={routeNames.MY}
         component={My}
         options={{
           tabBarIcon: MyTabBarIcon,
         }}
       />
       <Tab.Screen
-        name={bottomTabNavigation.SETTING}
+        name={routeNames.SETTING}
         component={MapStackNavigator}
         options={{}}
       />
@@ -115,7 +118,7 @@ function MyTabBarIcon(props: TabBarIconProps) {
 
 function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const currentRouteName = state.routes[state.index].name;
-  const hideTabBarRouteNames: string[] = [bottomTabNavigation.SETTING];
+  const hideTabBarRouteNames: string[] = [routeNames.SETTING];
 
   if (hideTabBarRouteNames.includes(currentRouteName)) {
     return null;

@@ -1,20 +1,13 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
-import {
-  NativeModules,
-  Image,
-  Platform,
-  Pressable,
-  Text,
-  View,
-} from 'react-native';
+import { NativeModules, Platform, Pressable, Text, View } from 'react-native';
 
-import { signUpNavigation } from '@/constants';
+import { routeNames } from '@/constants';
 import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
 import { signInWithGoogle } from '@/utils/oauth';
 type OnboardingProps = NativeStackScreenProps<
   SignUpStackParamList,
-  typeof signUpNavigation.ONBOARDING
+  typeof routeNames.ON_BOARDING
 >;
 
 //XXX: 배포까지 완료된 후에 Firestore를 통한 구글 로그인 방식 제거해야 함
@@ -79,7 +72,7 @@ function Onboarding({ navigation }: OnboardingProps) {
           <Pressable
             className="bg-green-200 mt-4 w-full px-4 py-6"
             onPress={() => {
-              navigation.navigate(signUpNavigation.JOIN_1);
+              navigation.navigate(routeNames.JOIN1);
             }}>
             {/*TODO:로그인 로직 구현 완료 이후 버튼 로직 수정  */}
             <Text>Join 화면 진입</Text>

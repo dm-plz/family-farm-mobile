@@ -3,7 +3,7 @@ import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
-import { bottomTabNavigation, colors } from '@/constants';
+import { routeNames, colors } from '@/constants';
 import GradientBackground from '@/entities/background/GradientBackground';
 import SafeDisplayViewWithHeader from '@/entities/common/SafeDisplayWithHeader';
 import { TextRegular, TextSemiBold } from '@/entities/fonts';
@@ -11,7 +11,7 @@ import { BottomTabNavigation } from '@/navigations/BottomTabNavigator';
 
 type MymyScreenProps = BottomTabScreenProps<
   BottomTabNavigation,
-  typeof bottomTabNavigation.MY
+  typeof routeNames.MY
 >;
 
 export default function My({ navigation }: MymyScreenProps) {
@@ -21,7 +21,7 @@ export default function My({ navigation }: MymyScreenProps) {
         className="h-full"
         title="가은's family"
         rightButton={{
-          onPress: () => navigation.navigate(bottomTabNavigation.SETTING),
+          onPress: () => navigation.navigate(routeNames.SETTING),
           icon: (
             <Image
               source={require('@/assets/img/icon-setting.png')}

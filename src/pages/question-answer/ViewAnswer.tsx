@@ -7,12 +7,12 @@ import { Dimensions, FlatList, SafeAreaView, Text, View } from 'react-native';
 import { Pressable } from 'react-native-gesture-handler';
 
 import MyIcon from '@/components/question-answer/MyIcon';
-import { QuestionAnswerNavigation } from '@/constants';
+import { routeNames } from '@/constants';
 import { QuestionAnswerStackParamList } from '@/navigations/stack/QuestionAnswerStackNavigator';
 
 type ViewAnswerScreenProps = NativeStackScreenProps<
   QuestionAnswerStackParamList,
-  typeof QuestionAnswerNavigation.VIEW_ANSWER
+  typeof routeNames.VIEW_ANSWER
 >;
 
 // FIXME: Sending 'onAnimatedValueUpdate' 해결해야함. (네비게이션 로직 확정 할 수 있을때 작업예정 (be))
@@ -29,7 +29,7 @@ const ViewAnswer = ({ navigation, route }: ViewAnswerScreenProps) => {
       <View className="h-full">
         <View className="mb-[40]">
           {/* XXX:  break-words 속성 안먹음. 해결해야함.*/}
-          <Text className="w-1/2 text-2xl font-bold leading-9">
+          <Text className="text-2xl w-1/2 font-bold leading-9">
             {QuestionItem.question}
           </Text>
           <Text className="mt-4 text-[#666666]">
@@ -139,12 +139,9 @@ const RenderAnswer = ({ item, navigation }: RenderAnswerProps) => {
             <Pressable
               className="h-[36] w-[120] items-center justify-center rounded-full bg-[#1BB876]"
               onPress={() =>
-                navigation.navigate(
-                  QuestionAnswerNavigation.ANSWER_WITH_FEELING,
-                  item,
-                )
+                navigation.navigate(routeNames.ANSWER_WITH_FEELING, item)
               }>
-              <Text className="font-bold text-white">답변하기</Text>
+              <Text className="text-white font-bold">답변하기</Text>
             </Pressable>
           ) : (
             <Text>{item.content}</Text>

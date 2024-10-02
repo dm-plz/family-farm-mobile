@@ -4,12 +4,12 @@ import { SafeAreaView, Text, TextInput, View } from 'react-native';
 
 import CustomButton from '@/components/CustomButton';
 import StepHeader from '@/components/sign-up/StepHeader';
-import { signUpNavigation } from '@/constants';
+import { routeNames } from '@/constants';
 import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
 
 type Join1ScreenProps = NativeStackScreenProps<
   SignUpStackParamList,
-  typeof signUpNavigation.JOIN_1
+  typeof routeNames.JOIN1
 >;
 
 function Join1({ navigation }: Join1ScreenProps) {
@@ -28,7 +28,7 @@ function Join1({ navigation }: Join1ScreenProps) {
             </Text>
           </View>
           <TextInput
-            className={`mt-4 h-16 w-full rounded-md border-2 bg-white p-4 ${activeBorder ? 'border-violet-300' : 'border-slate-200'}`}
+            className={`bg-white mt-4 h-16 w-full rounded-md border-2 p-4 ${activeBorder ? 'border-violet-300' : 'border-slate-200'}`}
             placeholder="코드 8자리를 입력해 주세요"
             onFocus={() => {
               setActiveBorder(true);
@@ -44,7 +44,7 @@ function Join1({ navigation }: Join1ScreenProps) {
 
         <CustomButton
           twClass="bg-sky-300"
-          onPress={() => navigation.navigate(signUpNavigation.JOIN_2)}>
+          onPress={() => navigation.navigate(routeNames.JOIN2)}>
           제가 가족중 처음이에요!
         </CustomButton>
       </View>
