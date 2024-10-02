@@ -7,9 +7,9 @@ import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import QuestionAnswerStackNavigator from './stack/QuestionAnswerStackNavigator';
 
-import { colors, routeNames } from '@/constants';
+import { colors, MY_STACK_NAV_KEY, routeNames } from '@/constants';
 import { TextMedium } from '@/entities/fonts';
-import MapStackNavigator from '@/navigations/stack/MyStackNavigator';
+import MyStackNavigator from '@/navigations/stack/MyStackNavigator';
 import Main from '@/pages/home/Main';
 import { My } from '@/pages/my';
 
@@ -17,7 +17,7 @@ export type BottomTabNavigation = {
   [routeNames.HOME]: undefined;
   [routeNames.Q_A]: undefined;
   [routeNames.MY]: undefined;
-  [routeNames.SETTING]: undefined;
+  [MY_STACK_NAV_KEY]: undefined;
 };
 
 const Tab = createBottomTabNavigator<BottomTabNavigation>();
@@ -56,11 +56,7 @@ export default function BottomTabNavigator() {
           tabBarIcon: MyTabBarIcon,
         }}
       />
-      <Tab.Screen
-        name={routeNames.SETTING}
-        component={MapStackNavigator}
-        options={{}}
-      />
+      <Tab.Screen name={MY_STACK_NAV_KEY} component={MyStackNavigator} />
     </Tab.Navigator>
   );
 }
@@ -118,7 +114,7 @@ function MyTabBarIcon(props: TabBarIconProps) {
 
 function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const currentRouteName = state.routes[state.index].name;
-  const hideTabBarRouteNames: string[] = [routeNames.SETTING];
+  const hideTabBarRouteNames: string[] = [MY_STACK_NAV_KEY];
 
   if (hideTabBarRouteNames.includes(currentRouteName)) {
     return null;

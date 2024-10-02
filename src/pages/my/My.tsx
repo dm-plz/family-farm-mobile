@@ -2,7 +2,7 @@ import { type BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
-import { routeNames, colors } from '@/constants';
+import { routeNames, colors, MY_STACK_NAV_KEY } from '@/constants';
 import GradientBackground from '@/entities/background/GradientBackground';
 import SafeDisplayViewWithHeader from '@/entities/common/SafeDisplayWithHeader';
 import { TextRegular, TextSemiBold } from '@/entities/fonts';
@@ -27,7 +27,7 @@ export default function My({ navigation }: MymyScreenProps) {
         scrollViewStyle={styles.screen}
         title="가은's family"
         rightButton={{
-          onPress: () => navigation.navigate(routeNames.SETTING),
+          onPress: () => navigation.navigate(MY_STACK_NAV_KEY),
           icon: (
             <Image
               source={require('@/assets/img/icon-setting.png')}

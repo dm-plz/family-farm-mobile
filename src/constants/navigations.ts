@@ -14,3 +14,5 @@ export const routeNames = {
   ANSWER_WITH_IMAGE: 'AnswerWithImage',
   ANSWER_WITH_STRING_VOICE: 'AnswerWithStringVoice',
 } as const;
+
+export const MY_STACK_NAV_KEY = 'MyStackNavigator';
