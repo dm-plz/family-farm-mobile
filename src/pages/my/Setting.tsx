@@ -12,6 +12,7 @@ import {
 
 import MainHeader from '@/components/my/MainHeader';
 import { bottomTabNavigation, colors, myNavigation } from '@/constants';
+import SafeDisplayViewWithHeader from '@/entities/common/SafeDisplayWithHeader';
 import { TextBold, TextMedium, TextRegular } from '@/entities/fonts';
 import { BottomTabNavigation } from '@/navigations/BottomTabNavigator';
 import { MyStackParamList } from '@/navigations/stack/MyStackNavigator';
@@ -41,21 +42,20 @@ export default function Setting({ navigation }: SettingScreenProps) {
 
   //FIXME: onPress 작동 안하는 중
   return (
-    <SafeAreaView className="bg-white h-full">
-      <MainHeader
-        left={{
-          onPress: () => navigation.navigate(bottomTabNavigation.MY),
-          icon: (
-            <Image
-              source={require('@/assets/img/icon-arrow-left.png')}
-              resizeMode="contain"
-              className="h-5 w-5"
-              tintColor={colors.primary[100]}
-            />
-          ),
-        }}
-        title="설정"
-      />
+    <SafeDisplayViewWithHeader
+      leftButton={{
+        onPress: () => navigation.navigate(bottomTabNavigation.MY),
+        icon: (
+          <Image
+            source={require('@/assets/img/icon-arrow-left.png')}
+            resizeMode="contain"
+            className="h-5 w-5"
+            tintColor={colors.primary[100]}
+          />
+        ),
+      }}
+      title="설정"
+      className="bg-white h-full">
       <Pressable onPress={() => navigation.navigate(myNavigation.PROFILE)}>
         <View className="mx-5 my-5 flex flex-row items-center">
           <Image
@@ -166,7 +166,7 @@ export default function Setting({ navigation }: SettingScreenProps) {
       <View className="ml-5 mt-5">
         <TextMedium className="text-body2 text-gray-300">탈퇴하기</TextMedium>
       </View>
-    </SafeAreaView>
+    </SafeDisplayViewWithHeader>
   );
 }
 

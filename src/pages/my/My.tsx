@@ -1,11 +1,11 @@
 import { type BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import { Image, SafeAreaView, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
-import MainHeader from '@/components/my/MainHeader';
 import { bottomTabNavigation, colors } from '@/constants';
 import GradientBackground from '@/entities/background/GradientBackground';
+import SafeDisplayViewWithHeader from '@/entities/common/SafeDisplayWithHeader';
 import { TextRegular, TextSemiBold } from '@/entities/fonts';
 import { BottomTabNavigation } from '@/navigations/BottomTabNavigator';
 
@@ -17,21 +17,20 @@ type MymyScreenProps = BottomTabScreenProps<
 export default function My({ navigation }: MymyScreenProps) {
   return (
     <GradientBackground>
-      <SafeAreaView className="h-full">
-        <MainHeader
-          title="가은's family"
-          right={{
-            onPress: () => navigation.navigate(bottomTabNavigation.SETTING),
-            icon: (
-              <Image
-                source={require('@/assets/img/icon-setting.png')}
-                resizeMode="contain"
-                className="h-5 w-5"
-                tintColor={colors.primary[100]}
-              />
-            ),
-          }}
-        />
+      <SafeDisplayViewWithHeader
+        className="h-full"
+        title="가은's family"
+        rightButton={{
+          onPress: () => navigation.navigate(bottomTabNavigation.SETTING),
+          icon: (
+            <Image
+              source={require('@/assets/img/icon-setting.png')}
+              resizeMode="contain"
+              className="h-5 w-5"
+              tintColor={colors.primary[100]}
+            />
+          ),
+        }}>
         <FlatList
           style={styles.familyList}
           ItemSeparatorComponent={FamliyListSeperator}
@@ -84,7 +83,7 @@ export default function My({ navigation }: MymyScreenProps) {
             />
           </View>
         </View>
-      </SafeAreaView>
+      </SafeDisplayViewWithHeader>
     </GradientBackground>
   );
 }

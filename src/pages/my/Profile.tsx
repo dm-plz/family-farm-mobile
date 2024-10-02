@@ -1,11 +1,9 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import { Alert, Image, Pressable, View } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
 
-import MainHeader from '@/components/my/MainHeader';
 import { colors, myNavigation } from '@/constants';
-import SafeDisplayView from '@/entities/common/SafeDisplayView';
+import SafeDisplayViewWithHeader from '@/entities/common/SafeDisplayWithHeader';
 import CustomInput from '@/entities/CustomInput';
 import {
   TextBold,
@@ -39,20 +37,19 @@ export default function Setting({ navigation }: ProfileScreenProps) {
   const [selectedRole, setSelectedRole] = useState<string>('아빠');
 
   return (
-    <SafeDisplayView className="bg-white h-full pb-10">
-      <MainHeader
-        left={{
-          onPress: () => navigation.goBack(),
-          icon: (
-            <Image
-              source={require('@/assets/img/icon-arrow-left.png')}
-              resizeMode="contain"
-              className="h-5 w-5"
-              tintColor={colors.primary[100]}
-            />
-          ),
-        }}
-      />
+    <SafeDisplayViewWithHeader
+      leftButton={{
+        onPress: () => navigation.goBack(),
+        icon: (
+          <Image
+            source={require('@/assets/img/icon-arrow-left.png')}
+            resizeMode="contain"
+            className="h-5 w-5"
+            tintColor={colors.primary[100]}
+          />
+        ),
+      }}
+      className="bg-white h-full pb-10">
       <View className="ml-5 mt-2">
         <TextBold className="text-h1">나의 정보를</TextBold>
         <TextBold className="text-h1">수정해 주세요.</TextBold>
@@ -165,6 +162,6 @@ export default function Setting({ navigation }: ProfileScreenProps) {
       <Pressable className="mx-5 my-2 mt-7 h-12 rounded-xl bg-primary-100 px-9 py-[14]">
         <TextBold className="text-white text-h4">수정 완료</TextBold>
       </Pressable>
-    </SafeDisplayView>
+    </SafeDisplayViewWithHeader>
   );
 }
