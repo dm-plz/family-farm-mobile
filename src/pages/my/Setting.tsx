@@ -1,13 +1,6 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
-import {
-  Alert,
-  Image,
-  Pressable,
-  StyleSheet,
-  Switch,
-  View,
-} from 'react-native';
+import { Image, Pressable, StyleSheet, Switch, View } from 'react-native';
 
 import { routeNames, colors } from '@/constants';
 import SafeDisplayViewWithHeader from '@/entities/common/SafeDisplayWithHeader';
@@ -20,27 +13,12 @@ type SettingScreenProps = NativeStackScreenProps<
   typeof routeNames.SETTING
 >;
 export default function Setting({ navigation }: SettingScreenProps) {
-  // TODO: Modal Page 구현 후 적용
-  const showAlert = () => {
-    Alert.alert(
-      '로그아웃 확인',
-      '로그아웃하시겠어요?',
-      [
-        {
-          text: '취소',
-          onPress: () => {},
-        },
-        { text: '로그아웃', onPress: () => {}, style: 'destructive' },
-      ],
-      { cancelable: false },
-    );
-  };
   const [isAlarm, setIsAlram] = useState(false);
   const [isMarketing, setIsMarketing] = useState(false);
 
-  //FIXME: onPress 작동 안하는 중
   return (
     <SafeDisplayViewWithHeader
+      safeAreaStyle={styles.container}
       leftButton={{
         onPress: () => navigation.navigate(routeNames.MY),
         icon: (
@@ -52,8 +30,7 @@ export default function Setting({ navigation }: SettingScreenProps) {
           />
         ),
       }}
-      title="설정"
-      className="bg-white h-full">
+      title="설정">
       <Pressable onPress={() => navigation.navigate(routeNames.MY_PROFILE)}>
         <View className="mx-5 my-5 flex flex-row items-center">
           <Image
@@ -169,6 +146,10 @@ export default function Setting({ navigation }: SettingScreenProps) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
   switch: {
     transform: [{ scaleX: 0.7 }, { scaleY: 0.7 }],
     marginLeft: 'auto',

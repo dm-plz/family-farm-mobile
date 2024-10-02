@@ -1,7 +1,6 @@
 import { type BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
 
 import { routeNames, colors } from '@/constants';
 import GradientBackground from '@/entities/background/GradientBackground';
@@ -15,10 +14,17 @@ type MymyScreenProps = BottomTabScreenProps<
 >;
 
 export default function My({ navigation }: MymyScreenProps) {
+  const familyInfoes = [
+    { date: '1994.09.16', name: '가은', role: '딸' },
+    { date: '1994.09.16', name: '수', role: '엄마' },
+    { date: '1994.09.16', name: '규', role: '아빠' },
+  ];
+
   return (
     <GradientBackground>
       <SafeDisplayViewWithHeader
-        className="h-full"
+        safeAreaStyle={styles.container}
+        scrollViewStyle={styles.screen}
         title="가은's family"
         rightButton={{
           onPress: () => navigation.navigate(routeNames.SETTING),
@@ -31,16 +37,11 @@ export default function My({ navigation }: MymyScreenProps) {
             />
           ),
         }}>
-        <FlatList
-          style={styles.familyList}
-          ItemSeparatorComponent={FamliyListSeperator}
-          data={[
-            { date: '1994.09.16', name: '가은', role: '딸' },
-            { date: '1994.09.16', name: '수', role: '엄마' },
-            { date: '1994.09.16', name: '규', role: '아빠' },
-          ]}
-          renderItem={({ item }) => (
-            <View className="flex flex-row">
+        <View className="px-4">
+          {familyInfoes.map((item, index) => (
+            <View
+              className={`flex flex-row py-3 ${index !== familyInfoes.length - 1 ? 'border-b border-gray-25' : ''}`}
+              key={item.name}>
               <Image
                 source={require('@/assets/img/default-user-profile.png')}
                 className="mr-5 h-14 w-14"
@@ -63,9 +64,8 @@ export default function My({ navigation }: MymyScreenProps) {
                 />
               </View>
             </View>
-          )}
-          keyExtractor={item => item.name}
-        />
+          ))}
+        </View>
         <View
           className="mx-auto mb-4 flex w-[340] flex-row justify-between rounded-2xl px-5 py-4 shadow-md"
           style={styles.familyCodeCard}>
@@ -88,11 +88,14 @@ export default function My({ navigation }: MymyScreenProps) {
   );
 }
 
-function FamliyListSeperator() {
-  return <View className="my-5 border border-gray-25" />;
-}
-
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  screen: {
+    flexGrow: 1,
+    justifyContent: 'space-between',
+  },
   familyList: {
     paddingHorizontal: 25,
     marginTop: 28,

@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
-import { Alert, Image, Pressable, View } from 'react-native';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { colors, routeNames } from '@/constants';
 import SafeDisplayViewWithHeader from '@/entities/common/SafeDisplayWithHeader';
@@ -18,22 +18,6 @@ type ProfileScreenProps = NativeStackScreenProps<
   typeof routeNames.MY_PROFILE
 >;
 export default function Setting({ navigation }: ProfileScreenProps) {
-  // TODO: Modal Page 구현 후 적용
-  const showAlert = () => {
-    Alert.alert(
-      '로그아웃 확인',
-      '로그아웃하시겠어요?',
-      [
-        {
-          text: '취소',
-          onPress: () => {},
-        },
-        { text: '로그아웃', onPress: () => {}, style: 'destructive' },
-      ],
-      { cancelable: false },
-    );
-  };
-
   const [selectedRole, setSelectedRole] = useState<string>('아빠');
 
   return (
@@ -49,7 +33,7 @@ export default function Setting({ navigation }: ProfileScreenProps) {
           />
         ),
       }}
-      className="bg-white h-full pb-10">
+      safeAreaStyle={styles.container}>
       <View className="ml-5 mt-2">
         <TextBold className="text-h1">나의 정보를</TextBold>
         <TextBold className="text-h1">수정해 주세요.</TextBold>
@@ -165,3 +149,11 @@ export default function Setting({ navigation }: ProfileScreenProps) {
     </SafeDisplayViewWithHeader>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.white,
+    flex: 1,
+    paddingBottom: 40,
+  },
+});
