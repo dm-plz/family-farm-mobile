@@ -11,12 +11,13 @@ import {
 } from 'react-native';
 
 import MainHeader from '@/components/my/MainHeader';
-import { colors, myNavigation } from '@/constants';
+import { bottomTabNavigation, colors, myNavigation } from '@/constants';
 import { TextBold, TextMedium, TextRegular } from '@/entities/fonts';
+import { BottomTabNavigation } from '@/navigations/BottomTabNavigator';
 import { MyStackParamList } from '@/navigations/stack/MyStackNavigator';
 
 type SettingScreenProps = NativeStackScreenProps<
-  MyStackParamList,
+  MyStackParamList & BottomTabNavigation,
   typeof myNavigation.SETTING
 >;
 export default function Setting({ navigation }: SettingScreenProps) {
@@ -43,7 +44,7 @@ export default function Setting({ navigation }: SettingScreenProps) {
     <SafeAreaView className="bg-white h-full">
       <MainHeader
         left={{
-          onPress: () => navigation.goBack(),
+          onPress: () => navigation.navigate(bottomTabNavigation.MY),
           icon: (
             <Image
               source={require('@/assets/img/icon-arrow-left.png')}

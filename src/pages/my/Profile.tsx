@@ -37,7 +37,6 @@ export default function Setting({ navigation }: ProfileScreenProps) {
 
   const [selectedRole, setSelectedRole] = useState<string>('아빠');
 
-  //FIXME: onPress 작동 안하는 중
   return (
     <SafeDisplayView className="bg-white h-full pb-10">
       <MainHeader

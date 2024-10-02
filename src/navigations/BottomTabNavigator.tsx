@@ -1,63 +1,62 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {
+  createBottomTabNavigator,
+  type BottomTabBarProps,
+} from '@react-navigation/bottom-tabs';
 import React from 'react';
-import { Image, View } from 'react-native';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import QuestionAnswerStackNavigator from './stack/QuestionAnswerStackNavigator';
 
-import { colors } from '@/constants';
+import { bottomTabNavigation, colors } from '@/constants';
 import { TextMedium } from '@/entities/fonts';
 import MapStackNavigator from '@/navigations/stack/MyStackNavigator';
 import Main from '@/pages/home/Main';
+import { My } from '@/pages/my';
 
-const Tab = createBottomTabNavigator();
+export type BottomTabNavigation = {
+  [K in (typeof bottomTabNavigation)[keyof typeof bottomTabNavigation]]: undefined;
+};
+
+const Tab = createBottomTabNavigator<BottomTabNavigation>();
 
 export default function BottomTabNavigator() {
   return (
     <Tab.Navigator
+      tabBar={CustomTabBar}
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: colors.primary[100],
         tabBarInactiveTintColor: '#7E8C86',
-        tabBarStyle: {
-          backgroundColor: colors.white,
-          minHeight: 114,
-          borderTopRightRadius: 40,
-          borderTopLeftRadius: 40,
-          paddingHorizontal: 58,
-          paddingTop: 12,
-          paddingBottom: 42,
-          shadowColor: 'rgba(0, 0, 0)',
-          shadowOffset: { width: 0, height: -4 },
-          shadowRadius: 20,
-          shadowOpacity: 0.04,
-          borderTopWidth: 0,
-          elevation: 8, //NOTE: For Android shadow
-        },
 
         tabBarLabelStyle: {
           display: 'none',
         },
       }}>
       <Tab.Screen
-        name="홈"
+        name={bottomTabNavigation.HOME}
         component={Main}
         options={{
           tabBarIcon: HomeTabBarIcon,
         }}
       />
       <Tab.Screen
-        name="질문 답변"
+        name={bottomTabNavigation.Q_A}
         component={QuestionAnswerStackNavigator}
         options={{
           tabBarIcon: MainTabBarIcon,
         }}
       />
       <Tab.Screen
-        name="마이페이지"
-        component={MapStackNavigator}
+        name={bottomTabNavigation.MY}
+        component={My}
         options={{
           tabBarIcon: MyTabBarIcon,
         }}
+      />
+      <Tab.Screen
+        name={bottomTabNavigation.SETTING}
+        component={MapStackNavigator}
+        options={{}}
       />
     </Tab.Navigator>
   );
@@ -113,3 +112,88 @@ function MyTabBarIcon(props: TabBarIconProps) {
     </View>
   );
 }
+
+function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
+  const currentRouteName = state.routes[state.index].name;
+  const hideTabBarRouteNames: string[] = [bottomTabNavigation.SETTING];
+
+  if (hideTabBarRouteNames.includes(currentRouteName)) {
+    return null;
+  }
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.tabContainer}>
+        {state.routes.map((route, index) => {
+          const { options } = descriptors[route.key];
+          const {
+            tabBarIcon,
+            tabBarActiveTintColor = colors.primary[100],
+            tabBarInactiveTintColor = '#7E8C86',
+          } = options;
+
+          if (tabBarIcon === undefined) {
+            return null;
+          }
+
+          const focused = state.index === index;
+          const color = focused
+            ? tabBarActiveTintColor
+            : tabBarInactiveTintColor;
+
+          return (
+            <Pressable
+              key={route.key}
+              onPress={() => navigation.navigate(route.name)}>
+              {tabBarIcon({ focused: focused, color: color, size: 0 })}
+            </Pressable>
+          );
+        })}
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.white,
+    minHeight: 114,
+  },
+  tabContainer: {
+    flexDirection: 'row',
+    height: 60,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flex: 1,
+    backgroundColor: colors.white,
+    borderTopRightRadius: 40,
+    borderTopLeftRadius: 40,
+    paddingHorizontal: 58,
+    paddingTop: 12,
+    paddingBottom: 42,
+    shadowColor: 'rgba(0, 0, 0)',
+    shadowOffset: { width: 0, height: -4 },
+    shadowRadius: 20,
+    shadowOpacity: 0.04,
+    borderTopWidth: 0,
+    elevation: 8, //NOTE: For Android shadow
+  },
+  tabButton: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+  },
+  label: {
+    fontSize: 16,
+    color: '#999',
+  },
+  activeLabel: {
+    fontSize: 16,
+    color: '#000',
+    fontWeight: 'bold',
+  },
+  activeTab: {
+    backgroundColor: '#ddd',
+  },
+});

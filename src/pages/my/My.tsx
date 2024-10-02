@@ -1,17 +1,17 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { type BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import React from 'react';
 import { Image, SafeAreaView, StyleSheet, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 import MainHeader from '@/components/my/MainHeader';
-import { colors, myNavigation } from '@/constants';
+import { bottomTabNavigation, colors } from '@/constants';
 import GradientBackground from '@/entities/background/GradientBackground';
 import { TextRegular, TextSemiBold } from '@/entities/fonts';
-import { MyStackParamList } from '@/navigations/stack/MyStackNavigator';
+import { BottomTabNavigation } from '@/navigations/BottomTabNavigator';
 
-type MymyScreenProps = NativeStackScreenProps<
-  MyStackParamList,
-  typeof myNavigation.MY
+type MymyScreenProps = BottomTabScreenProps<
+  BottomTabNavigation,
+  typeof bottomTabNavigation.MY
 >;
 
 export default function My({ navigation }: MymyScreenProps) {
@@ -21,7 +21,7 @@ export default function My({ navigation }: MymyScreenProps) {
         <MainHeader
           title="가은's family"
           right={{
-            onPress: () => navigation.push(myNavigation.SETTING),
+            onPress: () => navigation.navigate(bottomTabNavigation.SETTING),
             icon: (
               <Image
                 source={require('@/assets/img/icon-setting.png')}

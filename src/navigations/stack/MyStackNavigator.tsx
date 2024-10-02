@@ -2,12 +2,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
 import { myNavigation } from '@/constants';
-import My from '@/pages/my/My';
-import Profile from '@/pages/my/Profile';
-import Setting from '@/pages/my/Setting';
+import { Setting, Profile } from '@/pages/my';
 
 export type MyStackParamList = {
-  [myNavigation.MY]: undefined;
   [myNavigation.SETTING]: undefined;
   [myNavigation.PROFILE]: undefined;
 };
@@ -20,7 +17,6 @@ function MyStackNavigator() {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name={myNavigation.MY} component={My} />
       <Stack.Screen name={myNavigation.SETTING} component={Setting} />
       <Stack.Screen name={myNavigation.PROFILE} component={Profile} />
     </Stack.Navigator>
