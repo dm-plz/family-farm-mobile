@@ -7,11 +7,11 @@ export default function TextBlack({
   style,
   className,
   ...props
-}: TextProps & { className: string }) {
+}: TextProps & { className?: string }) {
   return (
     <Text
       style={[style, { fontFamily: DEFAULT_FONT_BLACK }]}
-      className={className}
+      className={`text-black text-body1 ${className}`}
       {...props}>
       {children}
     </Text>

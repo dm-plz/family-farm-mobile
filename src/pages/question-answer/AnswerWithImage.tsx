@@ -2,12 +2,12 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Pressable, SafeAreaView, Text, View } from 'react-native';
 
-import { QuestionAnswerNavigation } from '@/constants';
+import { routeNames } from '@/constants';
 import { QuestionAnswerStackParamList } from '@/navigations/stack/QuestionAnswerStackNavigator';
 
 type AnswerWithImageScreenProps = NativeStackScreenProps<
   QuestionAnswerStackParamList,
-  typeof QuestionAnswerNavigation.ANSWER_WITH_IMAGE
+  typeof routeNames.ANSWER_WITH_IMAGE
 >;
 
 const AnswerWithImage = ({}: AnswerWithImageScreenProps) => {
@@ -21,13 +21,13 @@ const AnswerWithImage = ({}: AnswerWithImageScreenProps) => {
           <Text>가족들에게 공유해 보세요</Text>
         </View>
         <View className="flex-1">
-          <View className="h-1/2 bg-slate-200">
+          <View className="bg-slate-200 h-1/2">
             <Text>이미지 사진 박스</Text>
           </View>
         </View>
         <View className="mb-4 justify-end">
-          <Pressable className="flex h-12 flex-col items-center justify-center rounded-2xl bg-green-600">
-            <Text className="font-bold text-white">저장하기</Text>
+          <Pressable className="bg-green-600 flex h-12 flex-col items-center justify-center rounded-2xl">
+            <Text className="text-white font-bold">저장하기</Text>
           </Pressable>
         </View>
       </View>

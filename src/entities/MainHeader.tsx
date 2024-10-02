@@ -3,38 +3,34 @@ import { Pressable, PressableProps, View } from 'react-native';
 
 import { TextBold } from '@/entities/fonts';
 
-export interface MainHeaderProps {
+interface Props {
   title?: string;
-  leftButton?: {
+  left?: {
     onPress: PressableProps['onPress'];
     icon: ReactNode;
   };
-  rightButton?: {
+  right?: {
     onPress: PressableProps['onPress'];
     icon: ReactNode;
   };
 }
 
-export default function MainHeader({
-  title,
-  leftButton,
-  rightButton,
-}: MainHeaderProps) {
+export default function MainHeader({ title, left, right }: Props) {
   return (
     <View className="relative h-14 py-4">
-      {leftButton && (
+      {left && (
         <Pressable
           className="absolute left-4 top-1/2 z-10 h-5 w-5 translate-y-2"
-          onPress={leftButton.onPress}>
-          {leftButton.icon}
+          onPress={left.onPress}>
+          {left.icon}
         </Pressable>
       )}
       <TextBold className="text-center text-h2">{title}</TextBold>
-      {rightButton && (
+      {right && (
         <Pressable
           className="absolute right-4 top-1/2 z-10 h-5 w-5 translate-y-2 transform"
-          onPress={rightButton.onPress}>
-          {rightButton.icon}
+          onPress={right.onPress}>
+          {right.icon}
         </Pressable>
       )}
     </View>

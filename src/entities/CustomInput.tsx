@@ -21,7 +21,7 @@ function deriveTwClassByStatus({
   success?: boolean;
 }) {
   if (editable === false) {
-    return '';
+    return 'bg-gray-100';
   }
 
   if (error) {
@@ -50,19 +50,18 @@ export default function CustomInput({
   }
 
   return (
-    <View>
+    <View className={className} style={[style]} {...props}>
       <TextInput
-        className={`h-[52] rounded-xl border border-gray-25 bg-gray-100 px-5 py-4 ${deriveTwClassByStatus({ editable, error, success })} ${className}`}
+        className={`h-[52] rounded-xl border border-gray-25 px-5 py-4 ${deriveTwClassByStatus({ editable, error, success })} `}
         editable={editable !== false}
-        style={[{ fontFamily: DEFAULT_FONT_REGULAR }, style]}
+        style={[{ fontFamily: DEFAULT_FONT_REGULAR }]}
         placeholder="텍스트를 입력해주세요"
-        {...props}
       />
       {error && errorMessage && (
-        <TextRegular className="mt-4 text-error">{errorMessage}</TextRegular>
+        <TextRegular className="mt-3 text-error">{errorMessage}</TextRegular>
       )}
       {success && successMessage && (
-        <TextRegular className="mt-4 text-success">
+        <TextRegular className="mt-3 text-success">
           {successMessage}
         </TextRegular>
       )}

@@ -3,18 +3,18 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Pressable, SafeAreaView, Text, View } from 'react-native';
 
-import { QuestionAnswerNavigation } from '@/constants';
+import { routeNames } from '@/constants';
 import { QuestionAnswerStackParamList } from '@/navigations/stack/QuestionAnswerStackNavigator';
 
 type AnswerWithFeelingScreenProps = NativeStackScreenProps<
   QuestionAnswerStackParamList,
-  typeof QuestionAnswerNavigation.ANSWER_WITH_FEELING
+  typeof routeNames.ANSWER_WITH_FEELING
 >;
 
 const AnswerWithFeeling = ({ navigation }: AnswerWithFeelingScreenProps) => {
   const navigateHandler = () => {
     //  답변에서 요구하는 형식에따라 분기 처리해야함
-    navigation.navigate(QuestionAnswerNavigation.ANSWER_WITH_StringVoice);
+    navigation.navigate(routeNames.ANSWER_WITH_STRING_VOICE);
     //navigation.navigate(QustionAnswerNavigation.ANSWER_WITH_IMAGE);
   };
 
@@ -48,7 +48,7 @@ const AnswerWithFeeling = ({ navigation }: AnswerWithFeelingScreenProps) => {
               navigateHandler();
             }}
             className="h-[48] flex-1 items-center justify-center rounded-xl bg-[#1BB876]">
-            <Text className="font-bold text-white">결정했어요</Text>
+            <Text className="text-white font-bold">결정했어요</Text>
           </Pressable>
         </View>
       </View>
@@ -59,13 +59,13 @@ const AnswerWithFeeling = ({ navigation }: AnswerWithFeelingScreenProps) => {
 const EmojiContainer = () => {
   return (
     <View className="mb-4 flex-row space-x-4">
-      <View className="h-[104] w-[104] flex-row items-center justify-center bg-red-200">
+      <View className="bg-red-200 h-[104] w-[104] flex-row items-center justify-center">
         <Text className="text-5xl">😃</Text>
       </View>
-      <View className="h-[104] w-[104] flex-row items-center justify-center bg-red-200">
+      <View className="bg-red-200 h-[104] w-[104] flex-row items-center justify-center">
         <Text className="text-5xl">😃</Text>
       </View>
-      <View className="h-[104] w-[104] flex-row items-center justify-center bg-red-200">
+      <View className="bg-red-200 h-[104] w-[104] flex-row items-center justify-center">
         <Text className="text-5xl">😃</Text>
       </View>
     </View>

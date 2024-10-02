@@ -1,13 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
-import { myNavigation } from '@/constants';
-import My from '@/pages/my/My';
-import Setting from '@/pages/my/Setting';
+import { routeNames } from '@/constants';
+import { Setting, Profile } from '@/pages/my';
 
 export type MyStackParamList = {
-  [myNavigation.MY]: undefined;
-  [myNavigation.SETTING]: undefined;
+  [routeNames.SETTING]: undefined;
+  [routeNames.MY_PROFILE]: undefined;
 };
 
 const Stack = createNativeStackNavigator<MyStackParamList>();
@@ -18,8 +17,8 @@ function MyStackNavigator() {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name={myNavigation.MY} component={My} />
-      <Stack.Screen name={myNavigation.SETTING} component={Setting} />
+      <Stack.Screen name={routeNames.SETTING} component={Setting} />
+      <Stack.Screen name={routeNames.MY_PROFILE} component={Profile} />
     </Stack.Navigator>
   );
 }

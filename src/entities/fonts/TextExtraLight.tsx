@@ -7,11 +7,11 @@ export default function TextExtraLight({
   style,
   className,
   ...props
-}: TextProps & { className: string }) {
+}: TextProps & { className?: string }) {
   return (
     <Text
       style={[style, { fontFamily: DEFAULT_FONT_EXTRA_LIGHT }]}
-      className={className}
+      className={`text-black text-body1 ${className}`}
       {...props}>
       {children}
     </Text>

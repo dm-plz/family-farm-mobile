@@ -5,12 +5,12 @@ import { SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
 import CustomCheckBox from '@/components/CheckBox';
 import CustomButton from '@/components/CustomButton';
 import StepHeader from '@/components/sign-up/StepHeader';
-import { signUpNavigation } from '@/constants';
+import { routeNames } from '@/constants';
 import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
 
 type Join2ScreenProps = NativeStackScreenProps<
   SignUpStackParamList,
-  typeof signUpNavigation.JOIN_2
+  typeof routeNames.JOIN2
 >;
 
 function Join2({ navigation }: Join2ScreenProps) {
@@ -27,7 +27,7 @@ function Join2({ navigation }: Join2ScreenProps) {
               <Text className="mt-6 font-bold">이름을 입력해 주세요</Text>
             </View>
             <TextInput
-              className="mt-4 h-12 w-full rounded-md border-2 border-slate-200 bg-white p-4"
+              className="border-slate-200 bg-white mt-4 h-12 w-full rounded-md border-2 p-4"
               placeholder="이름이나 닉네임을 입력해 주세요"
             />
             <Text className="text-sm text-red-400">
@@ -59,7 +59,7 @@ function Join2({ navigation }: Join2ScreenProps) {
             <View>
               <Text className="mt-4 font-bold">생년월일을 선택해 주세요</Text>
               <TextInput
-                className="mt-4 h-12 w-full rounded-md border-2 border-slate-200 bg-white p-4"
+                className="border-slate-200 bg-white mt-4 h-12 w-full rounded-md border-2 p-4"
                 placeholder="YYYY년 MM월 DD일"
               />
 
@@ -78,7 +78,7 @@ function Join2({ navigation }: Join2ScreenProps) {
             </CustomButton>
             <CustomButton
               onPress={() => {
-                navigation.navigate(signUpNavigation.JOIN_3);
+                navigation.navigate(routeNames.JOIN3);
               }}>
               다음
             </CustomButton>

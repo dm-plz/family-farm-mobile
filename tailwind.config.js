@@ -13,8 +13,9 @@ module.exports = {
       body4: 10,
     },
     colors: {
+      white: '#ffffff',
+      black: '#000000',
       gray: {
-        0: '#ffffff',
         25: '#f7f7f7',
         50: '#f1f1f1',
         100: '#e1e1e1',
@@ -25,8 +26,6 @@ module.exports = {
       },
       primary: {
         100: '#1bb876',
-        'gradient-init': '#1bb876',
-        'gradient-end': '#1bb892',
         8: '#1bb876',
       },
       secondary: '#ff2b64',

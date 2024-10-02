@@ -28,3 +28,4 @@ Hello World만 남김
 ### NativeWind
 
 [Native-Wind](https://www.nativewind.dev/)
+[react-native-linear-gradient](https://github.com/react-native-linear-gradient/react-native-linear-gradient)
