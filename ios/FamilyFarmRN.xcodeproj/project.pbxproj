@@ -31,9 +31,6 @@
 		34FF2B582C8013DB00D2FEF4 /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF2B572C8013DB00D2FEF4 /* FirebaseInAppMessaging-Beta */; };
 		34FF2B5A2C8013DB00D2FEF4 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF2B592C8013DB00D2FEF4 /* FirebaseMessaging */; };
 		34FF2B5C2C8013DB00D2FEF4 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF2B5B2C8013DB00D2FEF4 /* FirebaseRemoteConfig */; };
-		521B4AA880A584DD21173F04 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B458123ECC2F7765BA020ACA /* PrivacyInfo.xcprivacy */; };
-		7699B88040F8A987B510C191 /* libPods-FamilyFarmRN-FamilyFarmRNTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-FamilyFarmRN-FamilyFarmRNTests.a */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		4AC18A60DDBC465EB0E5008C /* PretendardBlack.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1A155EE638444356A02CE60F /* PretendardBlack.otf */; };
 		521B4AA880A584DD21173F04 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B458123ECC2F7765BA020ACA /* PrivacyInfo.xcprivacy */; };
 		56CB8226530B4D568A088EC0 /* PretendardRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6FD8322041F7429D81BAFFDE /* PretendardRegular.otf */; };
@@ -60,9 +57,9 @@
 		00E356EE1AD99517003FC87E /* FamilyFarmRNTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FamilyFarmRNTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* FamilyFarmRNTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FamilyFarmRNTests.m; sourceTree = "<group>"; };
-		02267AF4179B40C88E48B4AF /* PretendardExtraLight.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = PretendardExtraLight.otf; path = ../src/assets/fonts/PretendardExtraLight.otf; sourceTree = "<group>"; };
-		0610CCEBA3534FBBB73EEBF2 /* PretendardMedium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = PretendardMedium.otf; path = ../src/assets/fonts/PretendardMedium.otf; sourceTree = "<group>"; };
-		0F4CA721E6504070B6DBF552 /* PretendardExtraBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = PretendardExtraBold.otf; path = ../src/assets/fonts/PretendardExtraBold.otf; sourceTree = "<group>"; };
+		02267AF4179B40C88E48B4AF /* PretendardExtraLight.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = PretendardExtraLight.otf; path = ../src/assets/fonts/PretendardExtraLight.otf; sourceTree = "<group>"; };
+		0610CCEBA3534FBBB73EEBF2 /* PretendardMedium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = PretendardMedium.otf; path = ../src/assets/fonts/PretendardMedium.otf; sourceTree = "<group>"; };
+		0F4CA721E6504070B6DBF552 /* PretendardExtraBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = PretendardExtraBold.otf; path = ../src/assets/fonts/PretendardExtraBold.otf; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* FamilyFarmRN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FamilyFarmRN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = FamilyFarmRN/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = FamilyFarmRN/AppDelegate.mm; sourceTree = "<group>"; };
@@ -70,9 +67,9 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = FamilyFarmRN/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = FamilyFarmRN/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = FamilyFarmRN/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		14A8656F82564411BCD0F033 /* PretendardThin.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = PretendardThin.otf; path = ../src/assets/fonts/PretendardThin.otf; sourceTree = "<group>"; };
+		14A8656F82564411BCD0F033 /* PretendardThin.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = PretendardThin.otf; path = ../src/assets/fonts/PretendardThin.otf; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-FamilyFarmRN-FamilyFarmRNTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FamilyFarmRN-FamilyFarmRNTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A155EE638444356A02CE60F /* PretendardBlack.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = PretendardBlack.otf; path = ../src/assets/fonts/PretendardBlack.otf; sourceTree = "<group>"; };
+		1A155EE638444356A02CE60F /* PretendardBlack.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = PretendardBlack.otf; path = ../src/assets/fonts/PretendardBlack.otf; sourceTree = "<group>"; };
 		3439D9C62C7CD1B900960F0E /* KakaoLoginModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KakaoLoginModule.h; sourceTree = "<group>"; };
 		3439D9C72C7CD1B900960F0E /* KakaoLoginModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KakaoLoginModule.swift; sourceTree = "<group>"; };
 		3439D9C82C7CD1B900960F0E /* FamilyFarmRN-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FamilyFarmRN-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -93,13 +90,13 @@
 		5709B34CF0A7D63546082F79 /* Pods-FamilyFarmRN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FamilyFarmRN.release.xcconfig"; path = "Target Support Files/Pods-FamilyFarmRN/Pods-FamilyFarmRN.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-FamilyFarmRN-FamilyFarmRNTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FamilyFarmRN-FamilyFarmRNTests.debug.xcconfig"; path = "Target Support Files/Pods-FamilyFarmRN-FamilyFarmRNTests/Pods-FamilyFarmRN-FamilyFarmRNTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-FamilyFarmRN.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FamilyFarmRN.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6FD8322041F7429D81BAFFDE /* PretendardRegular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = PretendardRegular.otf; path = ../src/assets/fonts/PretendardRegular.otf; sourceTree = "<group>"; };
+		6FD8322041F7429D81BAFFDE /* PretendardRegular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = PretendardRegular.otf; path = ../src/assets/fonts/PretendardRegular.otf; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = FamilyFarmRN/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-FamilyFarmRN-FamilyFarmRNTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FamilyFarmRN-FamilyFarmRNTests.release.xcconfig"; path = "Target Support Files/Pods-FamilyFarmRN-FamilyFarmRNTests/Pods-FamilyFarmRN-FamilyFarmRNTests.release.xcconfig"; sourceTree = "<group>"; };
-		89EC788F3FA7424CA065591E /* PretendardBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = PretendardBold.otf; path = ../src/assets/fonts/PretendardBold.otf; sourceTree = "<group>"; };
-		8DB98892F02F4D8A9B0E559B /* PretendardSemiBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = PretendardSemiBold.otf; path = ../src/assets/fonts/PretendardSemiBold.otf; sourceTree = "<group>"; };
+		89EC788F3FA7424CA065591E /* PretendardBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = PretendardBold.otf; path = ../src/assets/fonts/PretendardBold.otf; sourceTree = "<group>"; };
+		8DB98892F02F4D8A9B0E559B /* PretendardSemiBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = PretendardSemiBold.otf; path = ../src/assets/fonts/PretendardSemiBold.otf; sourceTree = "<group>"; };
 		B458123ECC2F7765BA020ACA /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = FamilyFarmRN/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		CFFDE822FC184280816063AC /* PretendardLight.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = PretendardLight.otf; path = ../src/assets/fonts/PretendardLight.otf; sourceTree = "<group>"; };
+		CFFDE822FC184280816063AC /* PretendardLight.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = PretendardLight.otf; path = ../src/assets/fonts/PretendardLight.otf; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -245,7 +242,6 @@
 				14A8656F82564411BCD0F033 /* PretendardThin.otf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -728,10 +724,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/YourProjectName/FamilyFarmRN-Bridging-Header.h";
@@ -806,10 +799,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/YourProjectName/FamilyFarmRN-Bridging-Header.h";
