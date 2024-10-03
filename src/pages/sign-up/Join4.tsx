@@ -1,8 +1,9 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { colors, routeNames } from '@/constants';
+import SelectableText from '@/entities/common/SelectableText';
 import CustomInput from '@/entities/CustomInput';
 import { TextBold, TextRegular } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
@@ -14,6 +15,7 @@ type Join2ScreenProps = NativeStackScreenProps<
 >;
 
 function Join4({ navigation }: Join2ScreenProps) {
+  const [isLuna, setIsLuna] = useState(false);
   return (
     <SafeScreenWithHeader
       safeAreaStyle={[styles.safeArea]}
@@ -34,18 +36,24 @@ function Join4({ navigation }: Join2ScreenProps) {
           <TextBold className="text-h1">나의 정보를</TextBold>
           <TextBold className="text-h1">입력해 주세요.</TextBold>
           <TextRegular className="mt-2 text-gray-400">
-            이름 또는 닉네임을 알려주세요.
+            생년월일 6자리를 입력해 주세요
           </TextRegular>
         </View>
         <View className="mt-10">
-          <TextRegular className="text-gray-400">이름 또는 닉네임</TextRegular>
-          <CustomInput
-            className="mt-3"
-            error={false}
-            errorMessage="중복된 이름 또는 닉네임 입니다."
-            success={true}
-            successMessage="사용 가능한 이름 또는 닉네임 입니다."
-          />
+          <TextRegular className="text-gray-400">생년월일 (6자리)</TextRegular>
+          <View className="flex-row items-start">
+            <CustomInput
+              className="mt-3 flex-1"
+              error={true}
+              errorMessage="YYMMDD 형식에 맞춰 작성해주세요."
+            />
+            <SelectableText
+              className="ml-3 mt-4"
+              text="음력"
+              isSelected={isLuna}
+              onPress={() => setIsLuna(!isLuna)}
+            />
+          </View>
         </View>
         <Pressable
           className="my-2 mt-auto flex-row items-center justify-center rounded-xl bg-primary-100 px-9 py-3"
