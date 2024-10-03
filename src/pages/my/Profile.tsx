@@ -5,12 +5,8 @@ import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { colors, routeNames } from '@/constants';
 import SafeDisplayViewWithHeader from '@/entities/common/SafeDisplayWithHeader';
 import CustomInput from '@/entities/CustomInput';
-import {
-  TextBold,
-  TextMedium,
-  TextRegular,
-  TextSemiBold,
-} from '@/entities/fonts';
+import { TextBold, TextRegular, TextSemiBold } from '@/entities/fonts';
+import RoleSelector from '@/entities/RoleSelector';
 import { MyStackParamList } from '@/navigations/stack/MyStackNavigator';
 
 type ProfileScreenProps = NativeStackScreenProps<
@@ -66,83 +62,12 @@ export default function Setting({ navigation }: ProfileScreenProps) {
           successMessage="사용 가능한 이름 또는 닉네임 입니다."
         />
       </View>
-      <View className="mx-5">
-        <TextSemiBold className="mb-2 text-body2 text-gray-300">
-          나의 역할
-        </TextSemiBold>
-        <Pressable
-          className={`mt-2 flex h-[52] flex-row justify-between rounded-xl border border-gray-50 px-5 py-4 ${selectedRole === '아빠' ? 'border-success bg-success/5' : ''}`}
-          onPress={() => {
-            setSelectedRole('아빠');
-          }}>
-          <TextMedium
-            className={` ${selectedRole === '아빠' ? 'text-success' : ''}`}>
-            {'아빠'}
-          </TextMedium>
-          <Image
-            source={require('@/assets/img/icon-check-circle.png')}
-            resizeMode="contain"
-            className="h-5 w-5"
-            tintColor={
-              selectedRole === '아빠' ? colors.primary[100] : colors.gray[100]
-            }
-          />
-        </Pressable>
-        <Pressable
-          className={`mt-2 flex h-[52] flex-row justify-between rounded-xl border border-gray-50 px-5 py-4 ${selectedRole === '엄마' ? 'border-success bg-success/5' : ''}`}
-          onPress={() => {
-            setSelectedRole('엄마');
-          }}>
-          <TextMedium
-            className={` ${selectedRole === '엄마' ? 'text-success' : ''}`}>
-            {'엄마'}
-          </TextMedium>
-          <Image
-            source={require('@/assets/img/icon-check-circle.png')}
-            resizeMode="contain"
-            className="h-5 w-5"
-            tintColor={
-              selectedRole === '엄마' ? colors.primary[100] : colors.gray[100]
-            }
-          />
-        </Pressable>
-        <Pressable
-          className={`mt-2 flex h-[52] flex-row justify-between rounded-xl border border-gray-50 px-5 py-4 ${selectedRole === '아들' ? 'border-success bg-success/5' : ''}`}
-          onPress={() => {
-            setSelectedRole('아들');
-          }}>
-          <TextMedium
-            className={` ${selectedRole === '아들' ? 'text-success' : ''}`}>
-            {'아들'}
-          </TextMedium>
-          <Image
-            source={require('@/assets/img/icon-check-circle.png')}
-            resizeMode="contain"
-            className="h-5 w-5"
-            tintColor={
-              selectedRole === '아들' ? colors.primary[100] : colors.gray[100]
-            }
-          />
-        </Pressable>
-        <Pressable
-          className={`mt-2 flex h-[52] flex-row justify-between rounded-xl border border-gray-50 px-5 py-4 ${selectedRole === '딸' ? 'border-success bg-success/5' : ''}`}
-          onPress={() => {
-            setSelectedRole('딸');
-          }}>
-          <TextMedium
-            className={` ${selectedRole === '딸' ? 'text-success' : ''}`}>
-            {'딸'}
-          </TextMedium>
-          <Image
-            source={require('@/assets/img/icon-check-circle.png')}
-            resizeMode="contain"
-            className="h-5 w-5"
-            tintColor={
-              selectedRole === '딸' ? colors.primary[100] : colors.gray[100]
-            }
-          />
-        </Pressable>
-      </View>
+      <RoleSelector
+        className="mx-5"
+        roles={['아빠', '엄마', '아들', '딸']}
+        selectedRole={selectedRole}
+        setSelectedRole={setSelectedRole}
+      />
       <Pressable className="mx-5 my-2 mt-7 h-12 rounded-xl bg-primary-100 px-9 py-[14]">
         <TextBold className="text-white text-h4">수정 완료</TextBold>
       </Pressable>
