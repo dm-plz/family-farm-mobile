@@ -1,8 +1,10 @@
 import { GestureResponderEvent, Image, Pressable } from 'react-native';
+import { PressableProps } from 'react-native-gesture-handler';
 
 import { TextRegular } from '../fonts';
 
 import { colors } from '@/constants';
+import { StylingProps } from '@/types/props';
 
 interface SelectableTextProps {
   isSelected: boolean;
@@ -10,9 +12,18 @@ interface SelectableTextProps {
   text: string;
 }
 
-function SelectableText({ isSelected, onPress, text }: SelectableTextProps) {
+function SelectableText({
+  isSelected,
+  onPress,
+  text,
+  className,
+  style,
+}: SelectableTextProps & StylingProps<PressableProps>) {
   return (
-    <Pressable className="mt-auto flex-row items-center p-3" onPress={onPress}>
+    <Pressable
+      className={`flex-row items-center ${className}`}
+      style={[style]}
+      onPress={onPress}>
       <Image
         source={require('@/assets/img/icon-check-circle.png')}
         resizeMode="contain"

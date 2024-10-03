@@ -52,6 +52,7 @@ function Join3({ navigation }: Join3ScreenProps) {
           setSelectedRole={setSelectedRole}
         />
         <SelectableText
+          className="mt-auto p-3"
           text="제가 가족 중 처음이에요"
           isSelected={isFirstInFamily}
           onPress={() => setIsFirstInFamily(!isFirstInFamily)}
