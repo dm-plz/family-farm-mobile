@@ -4,7 +4,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import { ClassNameProps } from '@/types/props';
 
-export default function SafeDisplayView({
+export default function SafeScreen({
   children,
   className,
   ...props

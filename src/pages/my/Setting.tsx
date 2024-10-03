@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { Image, Pressable, StyleSheet, Switch, View } from 'react-native';
 
 import { routeNames, colors } from '@/constants';
-import SafeDisplayViewWithHeader from '@/entities/common/SafeDisplayWithHeader';
 import { TextBold, TextMedium, TextRegular } from '@/entities/fonts';
+import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { BottomTabNavigation } from '@/navigations/BottomTabNavigator';
 import { MyStackParamList } from '@/navigations/stack/MyStackNavigator';
 
@@ -17,7 +17,7 @@ export default function Setting({ navigation }: SettingScreenProps) {
   const [isMarketing, setIsMarketing] = useState(false);
 
   return (
-    <SafeDisplayViewWithHeader
+    <SafeScreenWithHeader
       safeAreaStyle={styles.container}
       leftButton={{
         onPress: () => navigation.navigate(routeNames.MY),
@@ -141,7 +141,7 @@ export default function Setting({ navigation }: SettingScreenProps) {
       <View className="ml-5 mt-5">
         <TextMedium className="text-body2 text-gray-300">탈퇴하기</TextMedium>
       </View>
-    </SafeDisplayViewWithHeader>
+    </SafeScreenWithHeader>
   );
 }
 

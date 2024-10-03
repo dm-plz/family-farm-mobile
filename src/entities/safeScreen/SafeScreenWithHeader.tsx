@@ -4,13 +4,13 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import MainHeader, { type MainHeaderProps } from '@/components/my/MainHeader';
 
-type SafeDisplayViewWithHeader = PropsWithChildren &
+type SafeScreenWithHeader = PropsWithChildren &
   MainHeaderProps & {
     safeAreaStyle?: StyleProp<ViewStyle>;
     scrollViewStyle?: StyleProp<ViewStyle>;
   };
 
-export default function SafeDisplayViewWithHeader({
+export default function SafeScreenWithHeader({
   children,
   title,
   leftButton,
@@ -18,7 +18,7 @@ export default function SafeDisplayViewWithHeader({
   safeAreaStyle,
   scrollViewStyle,
   ...props
-}: SafeDisplayViewWithHeader) {
+}: SafeScreenWithHeader) {
   return (
     <SafeAreaView {...props} style={safeAreaStyle}>
       <MainHeader

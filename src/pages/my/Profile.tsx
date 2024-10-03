@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { colors, routeNames } from '@/constants';
-import SafeDisplayViewWithHeader from '@/entities/common/SafeDisplayWithHeader';
 import CustomInput from '@/entities/CustomInput';
 import { TextBold, TextRegular, TextSemiBold } from '@/entities/fonts';
 import RoleSelector from '@/entities/RoleSelector';
+import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { MyStackParamList } from '@/navigations/stack/MyStackNavigator';
 
 type ProfileScreenProps = NativeStackScreenProps<
@@ -17,7 +17,7 @@ export default function Setting({ navigation }: ProfileScreenProps) {
   const [selectedRole, setSelectedRole] = useState<string>('아빠');
 
   return (
-    <SafeDisplayViewWithHeader
+    <SafeScreenWithHeader
       leftButton={{
         onPress: () => navigation.goBack(),
         icon: (
@@ -71,7 +71,7 @@ export default function Setting({ navigation }: ProfileScreenProps) {
       <Pressable className="mx-5 my-2 mt-7 h-12 rounded-xl bg-primary-100 px-9 py-[14]">
         <TextBold className="text-white text-h4">수정 완료</TextBold>
       </Pressable>
-    </SafeDisplayViewWithHeader>
+    </SafeScreenWithHeader>
   );
 }
 

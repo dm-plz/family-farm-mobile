@@ -5,9 +5,9 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import CustomButton from '@/components/CustomButton';
 import StepHeader from '@/components/sign-up/StepHeader';
 import { colors, routeNames } from '@/constants';
-import SafeDisplayViewWithHeader from '@/entities/common/SafeDisplayWithHeader';
 import { TextBold, TextRegular } from '@/entities/fonts';
 import RoleSelector from '@/entities/RoleSelector';
+import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
 
 type Join3ScreenProps = NativeStackScreenProps<
@@ -22,7 +22,7 @@ function Join3({ navigation }: Join3ScreenProps) {
   const [isFirstInFamily, setIsFirstInFamily] = useState<boolean>(false);
 
   return (
-    <SafeDisplayViewWithHeader
+    <SafeScreenWithHeader
       safeAreaStyle={[styles.safeArea]}
       scrollViewStyle={[styles.scrollView]}
       leftButton={{
@@ -100,7 +100,7 @@ function Join3({ navigation }: Join3ScreenProps) {
         {/* TODO: Oauth 구현 이후, 이 시작하기 버튼을 누르면, UseAuth의 isLogin이 True로 바뀌어야 함. */}
         <CustomButton>시작하기</CustomButton>
       </View>
-    </SafeDisplayViewWithHeader>
+    </SafeScreenWithHeader>
   );
 }
 

@@ -3,9 +3,9 @@ import React from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { colors, routeNames } from '@/constants';
-import SafeDisplayViewWithHeader from '@/entities/common/SafeDisplayWithHeader';
 import CustomInput from '@/entities/CustomInput';
 import { TextBold, TextRegular } from '@/entities/fonts';
+import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
 
 type Join1ScreenProps = NativeStackScreenProps<
@@ -15,7 +15,7 @@ type Join1ScreenProps = NativeStackScreenProps<
 
 function Join1({ navigation }: Join1ScreenProps) {
   return (
-    <SafeDisplayViewWithHeader
+    <SafeScreenWithHeader
       safeAreaStyle={[styles.safeArea]}
       scrollViewStyle={[styles.scrollView]}
       leftButton={{
@@ -62,7 +62,7 @@ function Join1({ navigation }: Join1ScreenProps) {
           <TextBold className="text-white text-h4">입력 완료</TextBold>
         </Pressable>
       </View>
-    </SafeDisplayViewWithHeader>
+    </SafeScreenWithHeader>
   );
 }
 
