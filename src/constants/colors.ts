@@ -14,6 +14,8 @@ const colors = {
     100: '#1bb876',
     8: '#1bb876',
   },
+  kakaoColor: '#FEE500',
+  appleColor: '#222222',
   secondary: '#ff2b64',
   success: '#00a862',
   error: '#a83c00',
