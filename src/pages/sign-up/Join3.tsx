@@ -5,6 +5,7 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import CustomButton from '@/components/CustomButton';
 import StepHeader from '@/components/sign-up/StepHeader';
 import { colors, routeNames } from '@/constants';
+import SelectableText from '@/entities/common/SelectableText';
 import { TextBold, TextRegular } from '@/entities/fonts';
 import RoleSelector from '@/entities/RoleSelector';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
@@ -50,19 +51,11 @@ function Join3({ navigation }: Join3ScreenProps) {
           selectedRole={selectedRole}
           setSelectedRole={setSelectedRole}
         />
-        <Pressable
-          className="mt-auto flex-row items-center p-3"
-          onPress={() => setIsFirstInFamily(!isFirstInFamily)}>
-          <Image
-            source={require('@/assets/img/icon-check-circle.png')}
-            resizeMode="contain"
-            className="mr-2 h-5 w-5"
-            tintColor={isFirstInFamily ? colors.primary[100] : colors.gray[100]}
-          />
-          <TextRegular className="text-gray-400">
-            제가 가족 중 처음이에요
-          </TextRegular>
-        </Pressable>
+        <SelectableText
+          text="제가 가족 중 처음이에요"
+          isSelected={isFirstInFamily}
+          onPress={() => setIsFirstInFamily(!isFirstInFamily)}
+        />
         <Pressable
           className="my-2 flex-row items-center justify-center rounded-xl bg-primary-100 px-9 py-3"
           onPress={() => navigation.navigate(routeNames.JOIN4)}>
