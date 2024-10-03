@@ -1,8 +1,9 @@
-import { Image, Pressable, View } from 'react-native';
+import { Image, Pressable, View, type ViewStyle } from 'react-native';
 
 import { TextMedium, TextSemiBold } from './fonts';
 
 import { colors } from '@/constants';
+import { StylingProps } from '@/types/props';
 
 //FIXME: role 타입을 제대로 선언해야 함
 interface RoleSelectorProps {
@@ -17,9 +18,11 @@ function RoleSelector({
   roles,
   setSelectedRole,
   selectedRole,
-}: RoleSelectorProps) {
+  style,
+  className,
+}: RoleSelectorProps & StylingProps<ViewStyle>) {
   return (
-    <View>
+    <View className={className} style={[style]}>
       <TextSemiBold className="mb-2 text-body2 text-gray-300">
         나의 역할
       </TextSemiBold>
