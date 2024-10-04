@@ -16,6 +16,12 @@ const colors = {
   },
   kakaoColor: '#FEE500',
   appleColor: '#222222',
+  gradient: {
+    base: '#3cb37199',
+    middleLight: '#e8eae8ff',
+    middleDark: '#e8e8e833',
+    top: '#FFFFFFcf',
+  },
   secondary: '#ff2b64',
   success: '#00a862',
   error: '#a83c00',

@@ -3,6 +3,7 @@ import { PropsWithChildren, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
+import { colors } from '@/constants';
 import { useBackGroundStore } from '@/store/stores';
 
 export default function GradientBackground({ children }: PropsWithChildren) {
@@ -21,7 +22,7 @@ export default function GradientBackground({ children }: PropsWithChildren) {
     <View style={styles.container}>
       <View style={styles.backgroundColorLayer}>
         <LinearGradient
-          colors={['rgba(232, 234, 232, 1)', 'rgba(232, 232, 232, 0.2)']}
+          colors={[colors.gradient.middleLight, colors.gradient.middleDark]}
           locations={[0.6, 1.0]}
           start={{ x: 0, y: 0 }}
           end={{ x: 0, y: 1 }}
@@ -39,13 +40,13 @@ const styles = StyleSheet.create({
   },
   backgroundColorLayer: {
     flex: 1,
-    backgroundColor: '#3cb37199',
+    backgroundColor: colors.gradient.base,
   },
   gradient: {
     flex: 1,
   },
   innerContent: {
     flex: 1,
-    backgroundColor: '#FFFFFFcf',
+    backgroundColor: colors.gradient.top,
   },
 });
