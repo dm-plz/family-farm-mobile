@@ -2,16 +2,18 @@ import {
   createBottomTabNavigator,
   type BottomTabBarProps,
 } from '@react-navigation/bottom-tabs';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import QuestionAnswerStackNavigator from './stack/QuestionAnswerStackNavigator';
 
 import { colors, MY_STACK_NAV_KEY, routeNames } from '@/constants';
+import GradientEndBackground from '@/entities/background/GradientEndBackground';
 import { TextMedium } from '@/entities/fonts';
 import MyStackNavigator from '@/navigations/stack/MyStackNavigator';
 import Main from '@/pages/home/Main';
 import { My } from '@/pages/my';
+import { useBackGroundStore } from '@/store/stores';
 
 export type BottomTabNavigation = {
   [routeNames.HOME]: undefined;
@@ -113,6 +115,15 @@ function MyTabBarIcon(props: TabBarIconProps) {
   );
 }
 
+function CustomTabBarWrapper({ children }: PropsWithChildren) {
+  const { outOfSafeAreaBackgroundMode } = useBackGroundStore();
+  return outOfSafeAreaBackgroundMode === 'default' ? (
+    <View>{children}</View>
+  ) : (
+    <GradientEndBackground>{children}</GradientEndBackground>
+  );
+}
+
 function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const currentRouteName = state.routes[state.index].name;
   const hideTabBarRouteNames: string[] = [MY_STACK_NAV_KEY];
@@ -122,41 +133,42 @@ function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.tabContainer}>
-        {state.routes.map((route, index) => {
-          const { options } = descriptors[route.key];
-          const {
-            tabBarIcon,
-            tabBarActiveTintColor = colors.primary[100],
-            tabBarInactiveTintColor = '#7E8C86',
-          } = options;
+    <CustomTabBarWrapper>
+      <View style={styles.container}>
+        <View style={styles.tabContainer}>
+          {state.routes.map((route, index) => {
+            const { options } = descriptors[route.key];
+            const {
+              tabBarIcon,
+              tabBarActiveTintColor = colors.primary[100],
+              tabBarInactiveTintColor = '#7E8C86',
+            } = options;
 
-          if (tabBarIcon === undefined) {
-            return null;
-          }
+            if (tabBarIcon === undefined) {
+              return null;
+            }
 
-          const focused = state.index === index;
-          const color = focused
-            ? tabBarActiveTintColor
-            : tabBarInactiveTintColor;
+            const focused = state.index === index;
+            const color = focused
+              ? tabBarActiveTintColor
+              : tabBarInactiveTintColor;
 
-          return (
-            <Pressable
-              key={route.key}
-              onPress={() => navigation.navigate(route.name)}>
-              {tabBarIcon({ focused: focused, color: color, size: 0 })}
-            </Pressable>
-          );
-        })}
+            return (
+              <Pressable
+                key={route.key}
+                onPress={() => navigation.navigate(route.name)}>
+                {tabBarIcon({ focused: focused, color: color, size: 0 })}
+              </Pressable>
+            );
+          })}
+        </View>
       </View>
-    </View>
+    </CustomTabBarWrapper>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.white,
     minHeight: 114,
   },
   tabContainer: {
@@ -174,7 +186,7 @@ const styles = StyleSheet.create({
     shadowColor: 'rgba(0, 0, 0)',
     shadowOffset: { width: 0, height: -4 },
     shadowRadius: 20,
-    shadowOpacity: 0.04,
+    shadowOpacity: 0.12,
     borderTopWidth: 0,
     elevation: 8, //NOTE: For Android shadow
   },

@@ -6,7 +6,6 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import SplashScreen from 'react-native-splash-screen';
 
 import queryClient from '@/api/queryClient';
-import GradientEndBackground from '@/entities/background/GradientEndBackground';
 import { initMSW } from '@/mocks/init';
 import RootNavigator from '@/navigations/RootNavigator';
 
@@ -83,11 +82,9 @@ export default function App() {
   return (
     <GestureHandlerRootView>
       <QueryClientProvider client={queryClient}>
-        <GradientEndBackground>
-          <NavigationContainer>
-            <RootNavigator />
-          </NavigationContainer>
-        </GradientEndBackground>
+        <NavigationContainer>
+          <RootNavigator />
+        </NavigationContainer>
       </QueryClientProvider>
     </GestureHandlerRootView>
   );

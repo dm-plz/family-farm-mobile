@@ -13,20 +13,16 @@ export default function GradientEndBackground({ children }: PropsWithChildren) {
   );
 }
 
+//TODO: 상수로 변경
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: {},
   backgroundColorLayer: {
-    flex: 1,
-    backgroundColor: 'rgba(60, 179, 113, 0.6)',
+    backgroundColor: '#3cb37199',
   },
   gradient: {
-    flex: 1,
     backgroundColor: 'rgba(232, 232, 232, 0.2)',
   },
   innerContent: {
-    flex: 1,
-    backgroundColor: '#FFFFFFca',
+    backgroundColor: '#FFFFFFcf',
   },
 });

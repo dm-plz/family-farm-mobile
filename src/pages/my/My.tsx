@@ -40,7 +40,7 @@ export default function My({ navigation }: MymyScreenProps) {
         <View className="px-4">
           {familyInfoes.map((item, index) => (
             <View
-              className={`flex flex-row py-3 ${index !== familyInfoes.length - 1 ? 'border-b border-gray-25' : ''}`}
+              className={`flex flex-row py-3 ${index !== familyInfoes.length - 1 ? 'border-b border-gray-50' : ''}`}
               key={item.name}>
               <Image
                 source={require('@/assets/img/default-user-profile.png')}
