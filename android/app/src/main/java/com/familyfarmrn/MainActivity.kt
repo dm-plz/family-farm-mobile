@@ -12,6 +12,7 @@ import android.util.Log
 import com.familyfarmrn.KakaoLoginModule.Companion.TAG
 import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.util.Utility
+import org.devio.rn.splashscreen.SplashScreen;
 
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
@@ -66,10 +67,9 @@ class MainActivity : ReactActivity() {
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
+    SplashScreen.show(this)
     super.onCreate(null)
-
     askNotificationPermission()
-
     KakaoSdk.init(this, resources.getString(R.string.kakao_app_key))
   }
 }

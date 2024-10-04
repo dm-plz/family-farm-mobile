@@ -4,8 +4,8 @@ import { Image, StyleSheet, View } from 'react-native';
 
 import { routeNames, colors, MY_STACK_NAV_KEY } from '@/constants';
 import GradientBackground from '@/entities/background/GradientBackground';
-import SafeDisplayViewWithHeader from '@/entities/common/SafeDisplayWithHeader';
 import { TextRegular, TextSemiBold } from '@/entities/fonts';
+import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { BottomTabNavigation } from '@/navigations/BottomTabNavigator';
 
 type MymyScreenProps = BottomTabScreenProps<
@@ -22,7 +22,7 @@ export default function My({ navigation }: MymyScreenProps) {
 
   return (
     <GradientBackground>
-      <SafeDisplayViewWithHeader
+      <SafeScreenWithHeader
         safeAreaStyle={styles.container}
         scrollViewStyle={styles.screen}
         title="가은's family"
@@ -40,7 +40,7 @@ export default function My({ navigation }: MymyScreenProps) {
         <View className="px-4">
           {familyInfoes.map((item, index) => (
             <View
-              className={`flex flex-row py-3 ${index !== familyInfoes.length - 1 ? 'border-b border-gray-25' : ''}`}
+              className={`flex flex-row py-3 ${index !== familyInfoes.length - 1 ? 'border-b border-gray-50' : ''}`}
               key={item.name}>
               <Image
                 source={require('@/assets/img/default-user-profile.png')}
@@ -83,7 +83,7 @@ export default function My({ navigation }: MymyScreenProps) {
             />
           </View>
         </View>
-      </SafeDisplayViewWithHeader>
+      </SafeScreenWithHeader>
     </GradientBackground>
   );
 }

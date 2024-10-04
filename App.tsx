@@ -3,15 +3,14 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import ReactNativeModule, { NativeModules } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import SplashScreen from 'react-native-splash-screen';
 
 import queryClient from '@/api/queryClient';
-import GradientEndBackground from '@/entities/background/GradientEndBackground';
 import { initMSW } from '@/mocks/init';
 import RootNavigator from '@/navigations/RootNavigator';
 
 import './gesture-handler';
 
-//TODO: Gradient 배경 사용 여부에 따라 Tab 배경을 변경해야 함
 // NOTE: Firebase Messaging을 위한 Module 불러오기
 const { FirebaseMessagingModule, FirebaseEventModule } = NativeModules;
 
@@ -25,6 +24,12 @@ FirebaseMessagingModule.eventsAddListener('messaging_message_received');
 
 export default function App() {
   const [isMockingEnabled, setMockingEnabled] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 1000); //스플래시 활성화 시간
+  });
 
   useEffect(() => {
     const eventEmitter = new ReactNativeModule.NativeEventEmitter(
@@ -76,11 +81,9 @@ export default function App() {
   return (
     <GestureHandlerRootView>
       <QueryClientProvider client={queryClient}>
-        <GradientEndBackground>
-          <NavigationContainer>
-            <RootNavigator />
-          </NavigationContainer>
-        </GradientEndBackground>
+        <NavigationContainer>
+          <RootNavigator />
+        </NavigationContainer>
       </QueryClientProvider>
     </GestureHandlerRootView>
   );

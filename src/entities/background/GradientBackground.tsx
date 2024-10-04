@@ -1,13 +1,28 @@
-import { PropsWithChildren } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+import { PropsWithChildren, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
+import { colors } from '@/constants';
+import { useBackGroundStore } from '@/store/stores';
+
 export default function GradientBackground({ children }: PropsWithChildren) {
+  const { setDefaultBackgroundMode, setGradientBackgroundMode } =
+    useBackGroundStore();
+
+  useFocusEffect(
+    useCallback(() => {
+      setGradientBackgroundMode();
+
+      return () => setDefaultBackgroundMode();
+    }, [setGradientBackgroundMode, setDefaultBackgroundMode]),
+  );
+
   return (
     <View style={styles.container}>
       <View style={styles.backgroundColorLayer}>
         <LinearGradient
-          colors={['rgba(232, 234, 232, 1)', 'rgba(232, 232, 232, 0.2)']}
+          colors={[colors.gradient.middleLight, colors.gradient.middleDark]}
           locations={[0.6, 1.0]}
           start={{ x: 0, y: 0 }}
           end={{ x: 0, y: 1 }}
@@ -25,13 +40,13 @@ const styles = StyleSheet.create({
   },
   backgroundColorLayer: {
     flex: 1,
-    backgroundColor: 'rgba(60, 179, 113, 0.6)',
+    backgroundColor: colors.gradient.base,
   },
   gradient: {
     flex: 1,
   },
   innerContent: {
     flex: 1,
-    backgroundColor: '#FFFFFFca',
+    backgroundColor: colors.gradient.top,
   },
 });

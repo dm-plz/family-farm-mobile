@@ -7,6 +7,8 @@ export const routeNames = {
   JOIN1: 'Join1',
   JOIN2: 'Join2',
   JOIN3: 'Join3',
+  JOIN4: 'Join4',
+  JOIN5: 'Join5',
   MY_PROFILE: 'MyProfile',
   QUESTION_LIST: 'QuestionList',
   VIEW_ANSWER: 'ViewAnser',

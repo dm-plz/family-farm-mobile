@@ -1,8 +1,18 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
-import { NativeModules, Platform, Pressable, Text, View } from 'react-native';
+import {
+  Image,
+  ImageBackground,
+  NativeModules,
+  Platform,
+  Pressable,
+  SafeAreaView,
+  StyleSheet,
+  View,
+} from 'react-native';
 
-import { routeNames } from '@/constants';
+import { colors, routeNames } from '@/constants';
+import { TextMedium, TextSemiBold } from '@/entities/fonts';
 import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
 import { signInWithGoogle } from '@/utils/oauth';
 type OnboardingProps = NativeStackScreenProps<
@@ -45,42 +55,84 @@ function Onboarding({ navigation }: OnboardingProps) {
   };
 
   return (
-    <View className="h-full">
-      <View className="flex basis-2/3 flex-row items-center justify-center">
-        <Text>오렌지 있던 자리</Text>
-      </View>
-      <View className="flex basis-1/3 flex-col px-10">
-        <Pressable
-          className="bg-yellow-200 mb-4 w-full px-4 py-6"
-          onPress={handleKakaoSignIn}>
-          <Text>카카오 로그인</Text>
-        </Pressable>
-        <Pressable
-          className="bg-green-200 mb-4 w-full px-4 py-6"
-          onPress={handleGoogleSignIn}>
-          <Text>구글 로그인</Text>
-        </Pressable>
-        {Platform.OS === 'ios' && (
-          <Pressable
-            className="bg-blue-200 w-full px-4 py-6"
-            onPress={handleAppleSignIn}>
-            <Text>IOS</Text>
-          </Pressable>
-        )}
-
-        {__DEV__ && (
-          <Pressable
-            className="bg-green-200 mt-4 w-full px-4 py-6"
-            onPress={() => {
-              navigation.navigate(routeNames.JOIN1);
-            }}>
-            {/*TODO:로그인 로직 구현 완료 이후 버튼 로직 수정  */}
-            <Text>Join 화면 진입</Text>
-          </Pressable>
-        )}
-      </View>
-    </View>
+    <ImageBackground
+      source={require('@/assets/img/launch-screen-background.png')}
+      className="relative h-full">
+      <View className="bg-black/20 absolute left-0 top-0 h-full w-full" />
+      <SafeAreaView className="h-full pb-11">
+        <Image
+          source={require('@/assets/img/launch-screen-title.png')}
+          className="mx-auto"
+          style={[styles.titleImage]}
+        />
+        <View className="mx-auto mt-auto w-80">
+          <TextMedium className="text-white text-center opacity-60">
+            Sign ip with Social Networkd
+          </TextMedium>
+          <View className="my-4">
+            <Pressable
+              className="bg-white flex h-11 flex-row items-center rounded-lg px-4"
+              onPress={handleGoogleSignIn}>
+              <Image
+                source={require('@/assets/img/google-logo.png')}
+                className="h-5 w-5"
+                style={[]}
+              />
+              <TextSemiBold className="mx-auto">
+                Google 계정으로 로그인
+              </TextSemiBold>
+            </Pressable>
+            <Pressable
+              className="my-3 flex h-11 flex-row items-center rounded-lg px-4"
+              style={[styles.kakaoLoginButton]}
+              onPress={handleKakaoSignIn}>
+              <Image
+                source={require('@/assets/img/kakao-logo.png')}
+                className="h-5 w-5"
+              />
+              <TextSemiBold className="mx-auto">
+                Kakao 계정으로 로그인
+              </TextSemiBold>
+            </Pressable>
+            {Platform.OS === 'ios' && (
+              <Pressable
+                className="flex h-11 flex-row items-center rounded-lg px-4"
+                onPress={handleAppleSignIn}
+                style={[styles.appleLoginButton]}>
+                <Image
+                  source={require('@/assets/img/apple-logo.png')}
+                  className="h-5 w-5"
+                  style={[]}
+                />
+                <TextSemiBold className="text-white mx-auto">
+                  Apple 계정으로 로그인
+                </TextSemiBold>
+              </Pressable>
+            )}
+          </View>
+          <View className="flex flex-row justify-center">
+            <TextMedium className="text-white">이용약관</TextMedium>
+            <TextMedium className="text-white mx-1 opacity-40">|</TextMedium>
+            <TextMedium className="text-white">개인정보처리방침</TextMedium>
+          </View>
+        </View>
+      </SafeAreaView>
+    </ImageBackground>
   );
 }
+
+const styles = StyleSheet.create({
+  titleImage: {
+    width: 184.5,
+    height: 49.5,
+    marginTop: 120,
+  },
+  kakaoLoginButton: {
+    backgroundColor: colors.kakaoColor,
+  },
+  appleLoginButton: {
+    backgroundColor: colors.appleColor,
+  },
+});
 
 export default Onboarding;

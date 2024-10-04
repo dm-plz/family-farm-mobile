@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">FamilyFarmRN</string>
     <string name="default_notification_channel_id">default_channel</string>
+    <string name="launch_screen_relative_layout_description">launch screen relative layout</string>
+    <string name="launch_screen_background_image_description">launch screen background image</string>
+    <string name="launch_screen_title_description">launch screen title</string>
 </resources>

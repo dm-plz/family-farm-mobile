@@ -1,6 +1,8 @@
 import { PropsWithChildren } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import { colors } from '@/constants';
+
 export default function GradientEndBackground({ children }: PropsWithChildren) {
   return (
     <View style={styles.container}>
@@ -14,19 +16,14 @@ export default function GradientEndBackground({ children }: PropsWithChildren) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: {},
   backgroundColorLayer: {
-    flex: 1,
-    backgroundColor: 'rgba(60, 179, 113, 0.6)',
+    backgroundColor: colors.gradient.base,
   },
   gradient: {
-    flex: 1,
-    backgroundColor: 'rgba(232, 232, 232, 0.2)',
+    backgroundColor: colors.gradient.middleDark,
   },
   innerContent: {
-    flex: 1,
-    backgroundColor: '#FFFFFFca',
+    backgroundColor: colors.gradient.top,
   },
 });

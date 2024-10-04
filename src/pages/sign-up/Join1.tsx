@@ -1,10 +1,11 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
-import { SafeAreaView, Text, TextInput, View } from 'react-native';
+import React from 'react';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 
-import CustomButton from '@/components/CustomButton';
-import StepHeader from '@/components/sign-up/StepHeader';
-import { routeNames } from '@/constants';
+import { colors, routeNames } from '@/constants';
+import CustomInput from '@/entities/CustomInput';
+import { TextBold, TextRegular } from '@/entities/fonts';
+import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
 
 type Join1ScreenProps = NativeStackScreenProps<
@@ -13,42 +14,66 @@ type Join1ScreenProps = NativeStackScreenProps<
 >;
 
 function Join1({ navigation }: Join1ScreenProps) {
-  const [activeBorder, setActiveBorder] = useState(false);
-
   return (
-    <SafeAreaView>
-      <View className="h-full justify-between px-10 pb-10">
-        <View>
-          <StepHeader currentStep={1} />
-          <View>
-            <Text className="text-2xl font-bold">환영합니다!</Text>
-            <Text className="text-2xl font-bold">초대를 받고 오셨나요?</Text>
-            <Text className="mt-4 font-bold">
-              전달받은 초대 코드를 입력해 주세요.
-            </Text>
-          </View>
-          <TextInput
-            className={`bg-white mt-4 h-16 w-full rounded-md border-2 p-4 ${activeBorder ? 'border-violet-300' : 'border-slate-200'}`}
-            placeholder="코드 8자리를 입력해 주세요"
-            onFocus={() => {
-              setActiveBorder(true);
-            }}
-            onBlur={() => setActiveBorder(false)}
+    <SafeScreenWithHeader
+      safeAreaStyle={[styles.safeArea]}
+      scrollViewStyle={[styles.scrollView]}
+      leftButton={{
+        onPress: () => navigation.navigate(routeNames.ON_BOARDING),
+        icon: (
+          <Image
+            source={require('@/assets/img/icon-arrow-left.png')}
+            resizeMode="contain"
+            className="h-5 w-5"
+            tintColor={colors.primary[100]}
           />
-          <Text className="text-sm text-red-400">
-            코드가 조회되지 않습니다. 다시 확인해 주세요.
-          </Text>
-
-          <CustomButton twClass="mt-2">입력완료</CustomButton>
+        ),
+      }}>
+      <View className="h-full px-5">
+        <View className="mt-2">
+          <TextBold className="text-h1">환영합니다!</TextBold>
+          <TextBold className="text-h1">초대를 받고 오셨나요?</TextBold>
+          <TextRegular className="mt-2 text-gray-400">
+            전달받은 초대 코드를 입력해 주세요.
+          </TextRegular>
         </View>
-
-        <CustomButton
-          twClass="bg-sky-300"
+        <View className="mt-10">
+          <TextRegular className="text-gray-400">초대 코드 (8자리)</TextRegular>
+          <CustomInput
+            className="mt-3"
+            error={true}
+            errorMessage="코드가 조회되지 않습니다. 다시 확인해 주세요."
+          />
+          <Pressable className="mt-5 rounded-xl bg-gray-300 px-9 py-3">
+            <TextBold className="text-white text-center text-h4">
+              입력 완료
+            </TextBold>
+          </Pressable>
+        </View>
+        <Pressable
+          className="my-2 mt-auto flex-row items-center justify-center rounded-xl bg-primary-100 px-9 py-3"
           onPress={() => navigation.navigate(routeNames.JOIN2)}>
-          제가 가족중 처음이에요!
-        </CustomButton>
+          <Image
+            source={require('@/assets/img/icon-check-circle.png')}
+            resizeMode="contain"
+            className="mr-2 h-5 w-5"
+            tintColor={colors.white}
+          />
+          <TextBold className="text-white text-h4">입력 완료</TextBold>
+        </Pressable>
       </View>
-    </SafeAreaView>
+    </SafeScreenWithHeader>
   );
 }
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
+  scrollView: {
+    flex: 1,
+  },
+});
+
 export default Join1;
