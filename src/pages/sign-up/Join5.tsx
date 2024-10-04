@@ -11,6 +11,7 @@ import {
 } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
+import { useAuthStore } from '@/store/stores';
 
 type Join2ScreenProps = NativeStackScreenProps<
   SignUpStackParamList,
@@ -18,6 +19,8 @@ type Join2ScreenProps = NativeStackScreenProps<
 >;
 
 function Join5(_: Join2ScreenProps) {
+  const { setIsLogin } = useAuthStore();
+
   return (
     <SafeScreenWithHeader
       safeAreaStyle={[styles.safeArea]}
@@ -66,7 +69,9 @@ function Join5(_: Join2ScreenProps) {
       </View>
       <Pressable
         className="mx-5 mb-2 mt-5 rounded-xl bg-gray-500 px-9 py-4"
-        onPress={() => {}}>
+        onPress={() => {
+          setIsLogin(true);
+        }}>
         <TextBold className="text-white text-center text-h4">홈으로</TextBold>
       </Pressable>
     </SafeScreenWithHeader>
