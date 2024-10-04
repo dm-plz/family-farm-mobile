@@ -60,6 +60,7 @@ function Join2({ navigation }: Join2ScreenProps) {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
+    backgroundColor: colors.white,
   },
   scrollView: {
     flex: 1,

@@ -23,7 +23,7 @@ const Stack = createNativeStackNavigator<SignUpStackParamList>();
 function SignUpStackNavigator() {
   return (
     <Stack.Navigator
-      initialRouteName={routeNames.JOIN5}
+      initialRouteName={routeNames.JOIN4}
       screenOptions={{ headerShown: false }}>
       <Stack.Screen name={routeNames.ON_BOARDING} component={Onboarding} />
       <Stack.Screen name={routeNames.JOIN1} component={Join1} />

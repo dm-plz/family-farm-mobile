@@ -5,7 +5,7 @@ import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { colors, routeNames } from '@/constants';
 import SelectableText from '@/entities/common/SelectableText';
 import CustomInput from '@/entities/CustomInput';
-import { TextBold, TextRegular } from '@/entities/fonts';
+import { TextBold, TextRegular, TextSemiBold } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
 
@@ -40,15 +40,17 @@ function Join4({ navigation }: Join2ScreenProps) {
           </TextRegular>
         </View>
         <View className="mt-10">
-          <TextRegular className="text-gray-400">생년월일 (6자리)</TextRegular>
-          <View className="flex-row items-start">
+          <TextSemiBold className="text-body2 text-gray-300">
+            생년월일 (6자리)
+          </TextSemiBold>
+          <View className="flex-row items-start pt-3">
             <CustomInput
-              className="mt-3 flex-1"
+              className="flex-1"
               error={true}
               errorMessage="YYMMDD 형식에 맞춰 작성해주세요."
             />
             <SelectableText
-              className="ml-3 mt-4"
+              className="ml-3 pt-4"
               text="음력"
               isSelected={isLuna}
               onPress={() => setIsLuna(!isLuna)}
@@ -68,6 +70,7 @@ function Join4({ navigation }: Join2ScreenProps) {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
+    backgroundColor: colors.white,
   },
   scrollView: {
     flex: 1,

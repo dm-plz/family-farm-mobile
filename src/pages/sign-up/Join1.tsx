@@ -69,6 +69,7 @@ function Join1({ navigation }: Join1ScreenProps) {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
+    backgroundColor: colors.white,
   },
   scrollView: {
     flex: 1,
