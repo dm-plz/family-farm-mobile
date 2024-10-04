@@ -85,10 +85,11 @@ function HomeTabBarIcon(props: TabBarIconProps) {
   );
 }
 
-//FIXME: Shadow 누락 됨
 function MainTabBarIcon(_: TabBarIconProps) {
   return (
-    <View className="w-[60] rounded-full bg-primary-100 p-4">
+    <View
+      className="w-[60] rounded-full bg-primary-100 p-4"
+      style={[styles.mainButton]}>
       <Image
         source={require('@/assets/img/icon-message.png')}
         className="h-7 w-7"
@@ -195,6 +196,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
+  },
+  mainButton: {
+    shadowColor: '#1bb876',
+    shadowOpacity: 0.12,
+    shadowOffset: { width: 0, height: 16 },
+    shadowRadius: 16,
+    elevation: 8,
   },
   label: {
     fontSize: 16,
