@@ -26,7 +26,8 @@ module.exports = {
       },
       primary: {
         100: '#1bb876',
-        8: '#1bb876',
+        8: '#1bb87614',
+        4: '#1bb8760a',
       },
       secondary: '#ff2b64',
       success: '#00a862',
