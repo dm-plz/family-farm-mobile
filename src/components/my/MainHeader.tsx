@@ -24,7 +24,7 @@ export default function MainHeader({
     <View className="relative h-14 py-4">
       {leftButton && (
         <Pressable
-          className="absolute left-4 top-1/2 z-10 h-5 w-5 translate-y-2"
+          className="absolute left-5 top-1/2 z-10 h-5 w-5 translate-y-2"
           onPress={leftButton.onPress}>
           {leftButton.icon}
         </Pressable>
@@ -32,7 +32,7 @@ export default function MainHeader({
       <TextBold className="text-center text-h2">{title}</TextBold>
       {rightButton && (
         <Pressable
-          className="absolute right-4 top-1/2 z-10 h-5 w-5 translate-y-2 transform"
+          className="absolute right-5 top-1/2 z-10 h-5 w-5 translate-y-2 transform"
           onPress={rightButton.onPress}>
           {rightButton.icon}
         </Pressable>
