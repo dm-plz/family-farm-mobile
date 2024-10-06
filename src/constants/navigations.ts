@@ -1,7 +1,6 @@
 export const routeNames = {
   HOME: 'Home',
   QUESTION_LIST: 'QuetionList',
-  Q_A: 'QnA',
   MY: 'My',
   SETTING: 'Setting',
   ON_BOARDING: 'OnBoarding',
@@ -11,6 +10,7 @@ export const routeNames = {
   JOIN4: 'Join4',
   JOIN5: 'Join5',
   MY_PROFILE: 'MyProfile',
+  RECORD_EMOTION: 'RECORD_EMOTION',
   VIEW_ANSWER: 'ViewAnser',
   ANSWER_WITH_FEELING: 'AnswerWithFeeling',
   ANSWER_WITH_IMAGE: 'AnswerWithImage',
@@ -18,3 +18,4 @@ export const routeNames = {
 } as const;
 
 export const MY_STACK_NAV_KEY = 'MyStackNavigator';
+export const ANSWER_STACK_NAV_KEY = 'AnswerStackNavigator';

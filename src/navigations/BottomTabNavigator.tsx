@@ -5,12 +5,15 @@ import {
 import React, { PropsWithChildren } from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
-import QuestionAnswerStackNavigator from './stack/QuestionAnswerStackNavigator';
-
-import { colors, MY_STACK_NAV_KEY, routeNames } from '@/constants';
+import {
+  colors,
+  routeNames,
+  ANSWER_STACK_NAV_KEY,
+  MY_STACK_NAV_KEY,
+} from '@/constants';
 import GradientEndBackground from '@/entities/background/GradientEndBackground';
 import { TextMedium } from '@/entities/fonts';
-import MyStackNavigator from '@/navigations/stack/MyStackNavigator';
+import { AnswerStackNavigator, MyStackNavigator } from '@/navigations/stack';
 import Main from '@/pages/home/Main';
 import { My } from '@/pages/my';
 import QuestionList from '@/pages/question-answer/QuestionList';
@@ -19,7 +22,7 @@ import { useBackGroundStore } from '@/store/stores';
 export type BottomTabNavigation = {
   [routeNames.HOME]: undefined;
   [routeNames.QUESTION_LIST]: undefined;
-  [routeNames.Q_A]: undefined;
+  [ANSWER_STACK_NAV_KEY]: undefined;
   [routeNames.MY]: undefined;
   [MY_STACK_NAV_KEY]: undefined;
 };
@@ -30,7 +33,7 @@ export default function BottomTabNavigator() {
   return (
     <Tab.Navigator
       tabBar={CustomTabBar}
-      initialRouteName={routeNames.QUESTION_LIST}
+      initialRouteName={ANSWER_STACK_NAV_KEY}
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: colors.primary[100],
@@ -55,10 +58,6 @@ export default function BottomTabNavigator() {
         }}
       />
       <Tab.Screen
-        name={routeNames.Q_A}
-        component={QuestionAnswerStackNavigator}
-      />
-      <Tab.Screen
         name={routeNames.MY}
         component={My}
         options={{
@@ -66,6 +65,10 @@ export default function BottomTabNavigator() {
         }}
       />
       <Tab.Screen name={MY_STACK_NAV_KEY} component={MyStackNavigator} />
+      <Tab.Screen
+        name={ANSWER_STACK_NAV_KEY}
+        component={AnswerStackNavigator}
+      />
     </Tab.Navigator>
   );
 }
@@ -134,7 +137,10 @@ function CustomTabBarWrapper({ children }: PropsWithChildren) {
 
 function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const currentRouteName = state.routes[state.index].name;
-  const hideTabBarRouteNames: string[] = [MY_STACK_NAV_KEY];
+  const hideTabBarRouteNames: string[] = [
+    MY_STACK_NAV_KEY,
+    ANSWER_STACK_NAV_KEY,
+  ];
 
   if (hideTabBarRouteNames.includes(currentRouteName)) {
     return null;
