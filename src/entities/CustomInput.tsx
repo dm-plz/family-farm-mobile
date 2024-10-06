@@ -41,8 +41,9 @@ export default function CustomInput({
   errorMessage,
   success,
   successMessage,
-  className = '',
+  className,
   style,
+  placeholder = '',
   ...props
 }: TextInputProps & CustomInputProps) {
   if (success && error) {
@@ -55,7 +56,7 @@ export default function CustomInput({
         className={`h-[52] rounded-xl border border-gray-25 px-5 py-4 ${deriveTwClassByStatus({ editable, error, success })} `}
         editable={editable !== false}
         style={[{ fontFamily: DEFAULT_FONT_REGULAR }]}
-        placeholder="텍스트를 입력해주세요"
+        placeholder={placeholder}
       />
       {error && errorMessage && (
         <TextRegular className="mt-3 text-error">{errorMessage}</TextRegular>
