@@ -18,15 +18,12 @@ import {
 import AnswerWithFeeling from '@/pages/question-answer/AnswerWithFeeling';
 import AnswerWithImage from '@/pages/question-answer/AnswerWithImage';
 import AnswerWithStringVoice from '@/pages/question-answer/AnswerWithStringVoice';
-import QuestionList, {
-  QuestionItemProps,
-} from '@/pages/question-answer/QuestionList';
+import { QuestionItemProps } from '@/pages/question-answer/QuestionList';
 import ViewAnswer, {
   AnswerItemProps,
 } from '@/pages/question-answer/ViewAnswer';
 
 export type QuestionAnswerStackParamList = {
-  [routeNames.QUESTION_LIST]: undefined;
   [routeNames.VIEW_ANSWER]: QuestionItemProps;
   [routeNames.ANSWER_WITH_FEELING]: AnswerItemProps;
   [routeNames.ANSWER_WITH_IMAGE]: undefined;
@@ -76,10 +73,6 @@ const QuestionAnswerStackNavigator = ({
         },
         headerShown: false,
       }}>
-      <Stack.Screen
-        name={QuestionAnswerNavigation.QUESTION_LIST}
-        component={QuestionList}
-      />
       <Stack.Screen
         name={QuestionAnswerNavigation.VIEW_ANSWER}
         component={ViewAnswer}

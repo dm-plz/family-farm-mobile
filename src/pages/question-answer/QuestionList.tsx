@@ -1,109 +1,106 @@
-//NOTE: QNAA-01
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { Image, StyleSheet, View } from 'react-native';
 
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { colors, routeNames } from '@/constants';
 import {
-  Dimensions,
-  FlatList,
-  Pressable,
-  SafeAreaView,
-  Text,
-  View,
-} from 'react-native';
+  TextBold,
+  TextExtraBold,
+  TextLight,
+  TextRegular,
+  TextSemiBold,
+} from '@/entities/fonts';
+import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
+import { BottomTabNavigation } from '@/navigations/BottomTabNavigator';
 
-import MyIcon from '@/components/question-answer/MyIcon';
-import { routeNames } from '@/constants';
-import { QuestionAnswerStackParamList } from '@/navigations/stack/QuestionAnswerStackNavigator';
-import dayjs from '@/utils/dayjs';
-
-type QuestionListScreenProps = NativeStackScreenProps<
-  QuestionAnswerStackParamList,
+type QuestionListProps = BottomTabScreenProps<
+  BottomTabNavigation,
   typeof routeNames.QUESTION_LIST
 >;
 
-const QuestionList = ({ navigation }: QuestionListScreenProps) => {
+const QuestionList = ({ navigation }: QuestionListProps) => {
   return (
-    <SafeAreaView style={{ height: Dimensions.get('window').height }}>
-      <MyIcon groupRole={'daughter'} />
-      <View className="mx-[21] h-full">
-        <View className="flex-1">
-          <Text className="text-2xl font-bold">지금까지 질문</Text>
-          <Text className="mt-5 text-[#666666]">
+    <SafeScreenWithHeader
+      safeAreaStyle={styles.safeArea}
+      scrollViewStyle={styles.scroll}
+      rightButton={{
+        onPress: () => {},
+        icon: (
+          <View className="relative">
+            <View className="absolute -top-0.5 right-0 h-1.5 w-1.5 rounded-full bg-secondary" />
+            <Image
+              source={require('@/assets/img/icon-bell.png')}
+              resizeMode="contain"
+              className="h-5 w-5"
+              tintColor={colors.primary[100]}
+            />
+          </View>
+        ),
+      }}>
+      <View className="px-5">
+        <View className="mt-1">
+          <TextBold className="text-h1">지금까지 질문</TextBold>
+          <TextRegular className="mt-2 text-gray-400">
             매일 매일 새로운 질문에 답변을 입력하세요
-          </Text>
+          </TextRegular>
         </View>
-
-        <FlatList
-          className="flex-[8]"
-          data={sortItemDescending(questionItem)}
-          renderItem={({ item }: { item: QuestionItemProps }) => (
-            <RenderQusetion item={item} navigation={navigation} />
-          )}
-          keyExtractor={item => item.questionHistoryId.toString()}
-        />
+        <View className="mt-10">
+          <View className="border-b border-gray-100 pb-4">
+            <View className="flex-row items-center">
+              <View className="mr-2 rounded-3xl bg-secondary px-2 py-1">
+                <TextSemiBold className="text-body4 font-bold text-[#FFFFFF]">
+                  Today
+                </TextSemiBold>
+              </View>
+              <TextLight className="text-body3">2024. 08. 18</TextLight>
+            </View>
+            <View className="mt-2 flex-row">
+              <TextExtraBold className="mr-2 text-h4 text-primary-100">
+                Q.
+              </TextExtraBold>
+              <TextSemiBold className="text-h4">
+                가장 기억에 남는 추억의 장소 사진을 공유해 볼까요?
+              </TextSemiBold>
+            </View>
+          </View>
+          <View className="mt-4 border-b border-gray-100 pb-4">
+            <View className="flex-row items-center">
+              <TextLight className="text-body3">2024. 08. 17</TextLight>
+            </View>
+            <View className="mt-2 flex-row">
+              <TextExtraBold className="mr-2 text-h4 text-primary-100">
+                Q.
+              </TextExtraBold>
+              <TextSemiBold className="text-h4 text-gray-300">
+                지금 이순간 제일 듣고 싶은 문장/단어가 무엇인가요?
+              </TextSemiBold>
+            </View>
+          </View>
+          <View className="mt-4 border-b border-gray-100 pb-4">
+            <View className="flex-row items-center">
+              <TextLight className="text-body3">2024. 08. 19</TextLight>
+            </View>
+            <View className="mt-2 flex-row">
+              <TextExtraBold className="mr-2 text-h4 text-primary-100">
+                Q.
+              </TextExtraBold>
+              <TextSemiBold className="text-h4 text-gray-300">
+                요즘 제일 먹고 싶은 음식이 무엇인가요?
+              </TextSemiBold>
+            </View>
+          </View>
+        </View>
       </View>
-    </SafeAreaView>
+    </SafeScreenWithHeader>
   );
 };
 
 export default QuestionList;
 
-interface RenderQusetionProps {
-  item: QuestionItemProps;
-  navigation: QuestionListScreenProps['navigation'];
-}
-
-const RenderQusetion = ({ item, navigation }: RenderQusetionProps) => {
-  const today = dayjs('2024-08-20').format('YYYY-MM-DD');
-  const isTodayQuestion = today === item.date;
-
-  return (
-    <Pressable
-      className="mt-2 border-b border-[#F7F7F7] py-2"
-      onPress={() => {
-        navigation.navigate(routeNames.VIEW_ANSWER, item);
-      }}>
-      <View className="h-[40] w-[114] flex-row items-center justify-start">
-        {isTodayQuestion && (
-          <View className="mr-2 rounded-full bg-[#FF2B64] p-[4px]">
-            <Text className="text-[10px] font-bold text-[#FFFFFF]">Today</Text>
-          </View>
-        )}
-        <Text className="text-[11px] text-[#878C90]">{item.date}</Text>
-      </View>
-      <View className="flex-row">
-        <Text className="mr-2 font-bold text-[#1BB874]">Q.</Text>
-        <Text className={isTodayQuestion ? 'font-bold' : 'text-[#999999]'}>
-          {item.question}
-        </Text>
-      </View>
-    </Pressable>
-  );
-};
-
-export interface QuestionItemProps {
-  questionHistoryId: number;
-  question: string;
-  date: string;
-}
-
-const questionItem: QuestionItemProps[] = [
-  {
-    questionHistoryId: 1,
-    question: '요즘 제일 먹고 싶은 음식이 무엇인가요?',
-    date: '2024-08-10',
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
   },
-  {
-    questionHistoryId: 2,
-    question: '지금 이 순간 제일 듣고 싶은 말이 무엇 인가요?',
-    date: '2024-08-13',
+  scroll: {
+    flexGrow: 1,
   },
-  {
-    questionHistoryId: 3,
-    question: '가장 기억에 남는 추억의 장소 사진을 공유해 볼까요?',
-    date: '2024-08-20',
-  },
-];
-
-const sortItemDescending = (arry: QuestionItemProps[]) => {
-  return arry.sort((a, b) => b.questionHistoryId - a.questionHistoryId);
-};
+});

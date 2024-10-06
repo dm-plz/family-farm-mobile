@@ -13,10 +13,12 @@ import { TextMedium } from '@/entities/fonts';
 import MyStackNavigator from '@/navigations/stack/MyStackNavigator';
 import Main from '@/pages/home/Main';
 import { My } from '@/pages/my';
+import QuestionList from '@/pages/question-answer/QuestionList';
 import { useBackGroundStore } from '@/store/stores';
 
 export type BottomTabNavigation = {
   [routeNames.HOME]: undefined;
+  [routeNames.QUESTION_LIST]: undefined;
   [routeNames.Q_A]: undefined;
   [routeNames.MY]: undefined;
   [MY_STACK_NAV_KEY]: undefined;
@@ -28,6 +30,7 @@ export default function BottomTabNavigator() {
   return (
     <Tab.Navigator
       tabBar={CustomTabBar}
+      initialRouteName={routeNames.QUESTION_LIST}
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: colors.primary[100],
@@ -45,11 +48,15 @@ export default function BottomTabNavigator() {
         }}
       />
       <Tab.Screen
-        name={routeNames.Q_A}
-        component={QuestionAnswerStackNavigator}
+        name={routeNames.QUESTION_LIST}
+        component={QuestionList}
         options={{
           tabBarIcon: MainTabBarIcon,
         }}
+      />
+      <Tab.Screen
+        name={routeNames.Q_A}
+        component={QuestionAnswerStackNavigator}
       />
       <Tab.Screen
         name={routeNames.MY}

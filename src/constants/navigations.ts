@@ -1,5 +1,6 @@
 export const routeNames = {
   HOME: 'Home',
+  QUESTION_LIST: 'QuetionList',
   Q_A: 'QnA',
   MY: 'My',
   SETTING: 'Setting',
@@ -10,7 +11,6 @@ export const routeNames = {
   JOIN4: 'Join4',
   JOIN5: 'Join5',
   MY_PROFILE: 'MyProfile',
-  QUESTION_LIST: 'QuestionList',
   VIEW_ANSWER: 'ViewAnser',
   ANSWER_WITH_FEELING: 'AnswerWithFeeling',
   ANSWER_WITH_IMAGE: 'AnswerWithImage',
