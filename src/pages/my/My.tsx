@@ -73,9 +73,9 @@ export default function My({ navigation }: MymyScreenProps) {
             <TextRegular className="mb-1 text-gray-300">
               우리 가족 코드
             </TextRegular>
-            <TextSemiBold className="text-black text-h3">AS12F56E</TextSemiBold>
+            <TextSemiBold className="text-h3 text-black">AS12F56E</TextSemiBold>
           </View>
-          <View className="bg-white flex h-10 w-10 items-center justify-center rounded-full">
+          <View className="flex h-10 w-10 items-center justify-center rounded-full bg-white">
             <Image
               source={require('@/assets/img/icon-copy.png')}
               className="h-4 w-4"

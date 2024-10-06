@@ -39,7 +39,7 @@ function Join5(_: Join2ScreenProps) {
           가은님, 가족과 소중한 추억 쌓으러 가볼까요?
         </TextLight>
       </View>
-      <View className="bg-white mx-auto mt-auto w-[340] rounded-3xl border border-primary-8 px-5 py-4">
+      <View className="mx-auto mt-auto w-[340] rounded-3xl border border-primary-8 bg-white px-5 py-4">
         <View
           className="flex flex-row items-center justify-between"
           style={styles.familyCodeCard}>
@@ -47,11 +47,11 @@ function Join5(_: Join2ScreenProps) {
             <TextRegular className="text-body2 text-gray-300">
               우리 가족 코드
             </TextRegular>
-            <TextSemiBold className="text-black mt-1 text-h3">
+            <TextSemiBold className="mt-1 text-h3 text-black">
               AS12F56E
             </TextSemiBold>
           </View>
-          <View className="bg-white border-primary-4 mt-2 flex h-10 w-10 items-center justify-center rounded-full border p-3">
+          <View className="mt-2 flex h-10 w-10 items-center justify-center rounded-full border border-primary-4 bg-white p-3">
             <Image
               source={require('@/assets/img/icon-copy.png')}
               className="h-4 w-4"
@@ -62,7 +62,7 @@ function Join5(_: Join2ScreenProps) {
         <Pressable
           className="mt-2 rounded-3xl bg-primary-100 px-9 py-3"
           onPress={() => {}}>
-          <TextBold className="text-white text-center text-body3">
+          <TextBold className="text-center text-body3 text-white">
             초대하기
           </TextBold>
         </Pressable>
@@ -72,7 +72,7 @@ function Join5(_: Join2ScreenProps) {
         onPress={() => {
           setIsLogin(true);
         }}>
-        <TextBold className="text-white text-center text-h4">홈으로</TextBold>
+        <TextBold className="text-center text-h4 text-white">홈으로</TextBold>
       </Pressable>
     </SafeScreenWithHeader>
   );
