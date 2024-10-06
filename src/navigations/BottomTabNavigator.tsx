@@ -16,15 +16,17 @@ import { TextMedium } from '@/entities/fonts';
 import { AnswerStackNavigator, MyStackNavigator } from '@/navigations/stack';
 import Main from '@/pages/home/Main';
 import { My } from '@/pages/my';
+import FamilyAnswer from '@/pages/question-answer/FamilyAnswer';
 import QuestionList from '@/pages/question-answer/QuestionList';
 import { useBackGroundStore } from '@/store/stores';
 
 export type BottomTabNavigation = {
   [routeNames.HOME]: undefined;
   [routeNames.QUESTION_LIST]: undefined;
-  [ANSWER_STACK_NAV_KEY]: undefined;
   [routeNames.MY]: undefined;
   [MY_STACK_NAV_KEY]: undefined;
+  [ANSWER_STACK_NAV_KEY]: undefined;
+  [routeNames.FAMILY_ANSWER]: undefined;
 };
 
 const Tab = createBottomTabNavigator<BottomTabNavigation>();
@@ -33,7 +35,7 @@ export default function BottomTabNavigator() {
   return (
     <Tab.Navigator
       tabBar={CustomTabBar}
-      initialRouteName={ANSWER_STACK_NAV_KEY}
+      initialRouteName={routeNames.FAMILY_ANSWER}
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: colors.primary[100],
@@ -69,6 +71,7 @@ export default function BottomTabNavigator() {
         name={ANSWER_STACK_NAV_KEY}
         component={AnswerStackNavigator}
       />
+      <Tab.Screen name={routeNames.FAMILY_ANSWER} component={FamilyAnswer} />
     </Tab.Navigator>
   );
 }
@@ -81,14 +84,16 @@ interface TabBarIconProps {
 
 function HomeTabBarIcon(props: TabBarIconProps) {
   return (
-    <View className="flex w-20 flex-col items-center space-y-0.5">
+    <View className="w-20 items-center space-y-0.5">
       <Image
         source={require('@/assets/img/icon-home.png')}
-        className="h-6 w-6"
+        className="h-6 w-6 px-[3] py-0.5"
         resizeMode="contain"
         style={[{ tintColor: props.color }]}
       />
-      <TextMedium style={{ color: props.color }} className="text-center">
+      <TextMedium
+        style={{ color: props.color }}
+        className="text-center text-body4 leading-3">
         홈
       </TextMedium>
     </View>
@@ -112,14 +117,16 @@ function MainTabBarIcon(_: TabBarIconProps) {
 
 function MyTabBarIcon(props: TabBarIconProps) {
   return (
-    <View className="flex w-20 flex-col items-center space-y-0.5">
+    <View className="w-20 items-center space-y-0.5">
       <Image
         source={require('@/assets/img/icon-my.png')}
-        className="h-6 w-6"
+        className="h-6 w-6 px-0.5 py-[5]"
         resizeMode="contain"
         style={[{ tintColor: props.color }]}
       />
-      <TextMedium style={{ color: props.color }} className="text-center">
+      <TextMedium
+        style={{ color: props.color }}
+        className="text-center text-body4 leading-3">
         마이페이지
       </TextMedium>
     </View>

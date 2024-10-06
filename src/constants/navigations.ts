@@ -12,6 +12,7 @@ export const routeNames = {
   MY_PROFILE: 'MyProfile',
   RECORD_EMOTION: 'RecordEmotion',
   DESCRIPTIVE_ANSWER: 'DescriptiveAnswer',
+  FAMILY_ANSWER: 'FamilyAnswer',
   VIEW_ANSWER: 'ViewAnser',
   ANSWER_WITH_FEELING: 'AnswerWithFeeling',
   ANSWER_WITH_IMAGE: 'AnswerWithImage',
