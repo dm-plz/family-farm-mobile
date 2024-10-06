@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 
+import { ErrorTypes } from '@/constants/error';
+
 type AuthStoreState = { isLogin: boolean };
 type AuthStoreActions = {
   setIsLogin: (isLogin: AuthStoreState['isLogin']) => void;
@@ -37,4 +39,17 @@ export const useBackGroundStore = create<BackGroundStore>(set => ({
         outOfSafeAreaBackgroundMode: 'gradient',
       };
     }),
+}));
+
+type ErrorStoreState = { errorType: ErrorTypes | null };
+type ErrorStoreActions = {
+  setErrorType: (type: ErrorTypes | null) => void;
+};
+type ErrorStore = ErrorStoreState & ErrorStoreActions;
+export const useErrorStore = create<ErrorStore>(set => ({
+  errorType: null,
+  setErrorType: errorType =>
+    set(() => ({
+      errorType,
+    })),
 }));
