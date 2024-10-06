@@ -45,7 +45,7 @@ export default function Setting({ navigation }: ProfileScreenProps) {
           resizeMode="contain"
           className="h-[120] w-[120] rounded-full"
         />
-        <View className="bg-white absolute bottom-0 right-0 rounded-full border border-gray-50">
+        <View className="absolute bottom-0 right-0 rounded-full border border-gray-50 bg-white">
           <Image
             source={require('@/assets/img/icon-camera.png')}
             resizeMode="contain"
@@ -69,7 +69,7 @@ export default function Setting({ navigation }: ProfileScreenProps) {
         setSelectedRole={setSelectedRole}
       />
       <Pressable className="mx-5 my-2 mt-7 h-12 rounded-xl bg-primary-100 px-9 py-[14]">
-        <TextBold className="text-white text-h4">수정 완료</TextBold>
+        <TextBold className="text-h4 text-white">수정 완료</TextBold>
       </Pressable>
     </SafeScreenWithHeader>
   );

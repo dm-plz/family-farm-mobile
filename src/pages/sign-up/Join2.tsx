@@ -50,7 +50,7 @@ function Join2({ navigation }: Join2ScreenProps) {
         <Pressable
           className="my-2 mt-auto flex-row items-center justify-center rounded-xl bg-primary-100 px-9 py-3"
           onPress={() => navigation.navigate(routeNames.JOIN3)}>
-          <TextBold className="text-white text-h4">입력 완료</TextBold>
+          <TextBold className="text-h4 text-white">입력 완료</TextBold>
         </Pressable>
       </View>
     </SafeScreenWithHeader>

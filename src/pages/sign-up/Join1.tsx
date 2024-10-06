@@ -45,7 +45,7 @@ function Join1({ navigation }: Join1ScreenProps) {
             errorMessage="코드가 조회되지 않습니다. 다시 확인해 주세요."
           />
           <Pressable className="mt-5 rounded-xl bg-gray-300 px-9 py-3">
-            <TextBold className="text-white text-center text-h4">
+            <TextBold className="text-center text-h4 text-white">
               입력 완료
             </TextBold>
           </Pressable>
@@ -59,7 +59,7 @@ function Join1({ navigation }: Join1ScreenProps) {
             className="mr-2 h-5 w-5"
             tintColor={colors.white}
           />
-          <TextBold className="text-white text-h4">입력 완료</TextBold>
+          <TextBold className="text-h4 text-white">입력 완료</TextBold>
         </Pressable>
       </View>
     </SafeScreenWithHeader>
