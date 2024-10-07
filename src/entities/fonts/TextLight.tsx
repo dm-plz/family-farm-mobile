@@ -11,7 +11,7 @@ export default function TextLight({
   return (
     <Text
       style={[style, { fontFamily: DEFAULT_FONT_LIGHT }]}
-      className={`text-black text-body1 ${className}`}
+      className={`text-body1 leading-5 text-gray-500 ${className}`}
       {...props}>
       {children}
     </Text>
