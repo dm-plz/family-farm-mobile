@@ -26,10 +26,3 @@ export const settingRouteNames = {
   SETTING: 'Setting',
   PROFILE: 'Profile',
 } as const;
-
-export const routeNames = {
-  VIEW_ANSWER: 'ViewAnser',
-  ANSWER_WITH_FEELING: 'AnswerWithFeeling',
-  ANSWER_WITH_IMAGE: 'AnswerWithImage',
-  ANSWER_WITH_STRING_VOICE: 'AnswerWithStringVoice',
-} as const;
