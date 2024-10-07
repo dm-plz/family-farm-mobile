@@ -6,9 +6,9 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import SplashScreen from 'react-native-splash-screen';
 
 import queryClient from '@/api/queryClient';
+import ConfirmModal from '@/entities/ConfirmModal';
 import { initMSW } from '@/mocks/init';
 import RootNavigator from '@/navigations/RootNavigator';
-
 import './gesture-handler';
 
 // NOTE: Firebase Messaging을 위한 Module 불러오기
@@ -84,6 +84,7 @@ export default function App() {
         <NavigationContainer>
           <RootNavigator />
         </NavigationContainer>
+        <ConfirmModal />
       </QueryClientProvider>
     </GestureHandlerRootView>
   );
