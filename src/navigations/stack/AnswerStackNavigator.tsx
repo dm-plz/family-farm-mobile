@@ -1,12 +1,12 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { routeNames } from '@/constants';
-import DescriptiveAnswer from '@/pages/question-answer/DescriptiveAnswer';
-import RecordEmotion from '@/pages/question-answer/RecordEmotion';
+import { answerRouteNames } from '@/constants';
+import DescriptiveAnswerScreen from '@/screen/question-answer/DescriptiveAnswerScreen';
+import RecordEmotionScreen from '@/screen/question-answer/RecordEmotionScreen';
 
 export type AnswerStackNavigatorParams = {
-  [routeNames.RECORD_EMOTION]: undefined;
-  [routeNames.DESCRIPTIVE_ANSWER]: undefined;
+  [answerRouteNames.RECORD_EMOTION]: undefined;
+  [answerRouteNames.DESCRIPTIVE_ANSWER]: undefined;
 };
 
 const Stack = createStackNavigator<AnswerStackNavigatorParams>();
@@ -14,15 +14,15 @@ const Stack = createStackNavigator<AnswerStackNavigatorParams>();
 function AnswerStackNavigator() {
   return (
     <Stack.Navigator
-      initialRouteName={routeNames.DESCRIPTIVE_ANSWER}
+      initialRouteName={answerRouteNames.RECORD_EMOTION}
       screenOptions={{ headerShown: false }}>
       <Stack.Screen
-        name={routeNames.RECORD_EMOTION}
-        component={RecordEmotion}
+        name={answerRouteNames.RECORD_EMOTION}
+        component={RecordEmotionScreen}
       />
       <Stack.Screen
-        name={routeNames.DESCRIPTIVE_ANSWER}
-        component={DescriptiveAnswer}
+        name={answerRouteNames.DESCRIPTIVE_ANSWER}
+        component={DescriptiveAnswerScreen}
       />
     </Stack.Navigator>
   );

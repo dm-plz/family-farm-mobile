@@ -7,35 +7,39 @@ import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import {
   colors,
-  routeNames,
-  ANSWER_STACK_NAV_KEY,
-  MY_STACK_NAV_KEY,
+  answerRouteNames,
+  defaultRouteNames,
+  settingRouteNames,
 } from '@/constants';
 import GradientEndBackground from '@/entities/background/GradientEndBackground';
 import { TextMedium } from '@/entities/fonts';
-import { AnswerStackNavigator, MyStackNavigator } from '@/navigations/stack';
-import Main from '@/pages/home/Main';
-import { My } from '@/pages/my';
-import FamilyAnswer from '@/pages/question-answer/FamilyAnswer';
-import QuestionList from '@/pages/question-answer/QuestionList';
+import {
+  AnswerStackNavigator,
+  SettingStackNavigator,
+} from '@/navigations/stack';
+import { AlarmScreen, HomeScreen } from '@/screen/home';
+import { MyScreen } from '@/screen/my';
+import FamilyAnswerScreen from '@/screen/question-answer/FamilyAnswerScreen';
+import QuestionListScreen from '@/screen/question-answer/QuestionListScreen';
 import { useBackGroundStore } from '@/store/stores';
 
-export type BottomTabNavigation = {
-  [routeNames.HOME]: undefined;
-  [routeNames.QUESTION_LIST]: undefined;
-  [routeNames.MY]: undefined;
-  [MY_STACK_NAV_KEY]: undefined;
-  [ANSWER_STACK_NAV_KEY]: undefined;
-  [routeNames.FAMILY_ANSWER]: undefined;
+export type DefaultTabNavigation = {
+  [defaultRouteNames.HOME]: undefined;
+  [defaultRouteNames.QUESTION_LIST]: undefined;
+  [defaultRouteNames.MY]: undefined;
+  [defaultRouteNames.FAMILY_ANSWER]: undefined;
+  [defaultRouteNames.ALARM]: undefined;
+  [answerRouteNames.NAVIGATOR_NAME]: undefined;
+  [settingRouteNames.NAVIGATOR_NAME]: undefined;
 };
 
-const Tab = createBottomTabNavigator<BottomTabNavigation>();
+const DefaultTab = createBottomTabNavigator<DefaultTabNavigation>();
 
-export default function BottomTabNavigator() {
+export default function DefaultTabNavigator() {
   return (
-    <Tab.Navigator
+    <DefaultTab.Navigator
       tabBar={CustomTabBar}
-      initialRouteName={routeNames.FAMILY_ANSWER}
+      initialRouteName={defaultRouteNames.HOME}
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: colors.primary[100],
@@ -45,34 +49,44 @@ export default function BottomTabNavigator() {
           display: 'none',
         },
       }}>
-      <Tab.Screen
-        name={routeNames.HOME}
-        component={Main}
+      <DefaultTab.Screen
+        name={defaultRouteNames.HOME}
+        component={HomeScreen}
         options={{
           tabBarIcon: HomeTabBarIcon,
         }}
       />
-      <Tab.Screen
-        name={routeNames.QUESTION_LIST}
-        component={QuestionList}
+      <DefaultTab.Screen
+        name={defaultRouteNames.QUESTION_LIST}
+        component={QuestionListScreen}
         options={{
           tabBarIcon: MainTabBarIcon,
         }}
       />
-      <Tab.Screen
-        name={routeNames.MY}
-        component={My}
+      <DefaultTab.Screen
+        name={defaultRouteNames.MY}
+        component={MyScreen}
         options={{
           tabBarIcon: MyTabBarIcon,
         }}
       />
-      <Tab.Screen name={MY_STACK_NAV_KEY} component={MyStackNavigator} />
-      <Tab.Screen
-        name={ANSWER_STACK_NAV_KEY}
+      <DefaultTab.Screen
+        name={defaultRouteNames.FAMILY_ANSWER}
+        component={FamilyAnswerScreen}
+      />
+      <DefaultTab.Screen
+        name={defaultRouteNames.ALARM}
+        component={AlarmScreen}
+      />
+      <DefaultTab.Screen
+        name={settingRouteNames.NAVIGATOR_NAME}
+        component={SettingStackNavigator}
+      />
+      <DefaultTab.Screen
+        name={answerRouteNames.NAVIGATOR_NAME}
         component={AnswerStackNavigator}
       />
-      <Tab.Screen name={routeNames.FAMILY_ANSWER} component={FamilyAnswer} />
-    </Tab.Navigator>
+    </DefaultTab.Navigator>
   );
 }
 
@@ -145,8 +159,8 @@ function CustomTabBarWrapper({ children }: PropsWithChildren) {
 function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const currentRouteName = state.routes[state.index].name;
   const hideTabBarRouteNames: string[] = [
-    MY_STACK_NAV_KEY,
-    ANSWER_STACK_NAV_KEY,
+    settingRouteNames.NAVIGATOR_NAME,
+    answerRouteNames.NAVIGATOR_NAME,
   ];
 
   if (hideTabBarRouteNames.includes(currentRouteName)) {
@@ -207,7 +221,7 @@ const styles = StyleSheet.create({
     shadowColor: 'rgba(0, 0, 0)',
     shadowOffset: { width: 0, height: -4 },
     shadowRadius: 20,
-    shadowOpacity: 0.12,
+    shadowOpacity: 0.04,
     borderTopWidth: 0,
     elevation: 8, //NOTE: For Android shadow
   },

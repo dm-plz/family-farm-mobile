@@ -2,7 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
-import { colors, routeNames } from '@/constants';
+import { colors, authRouteNames } from '@/constants';
 import {
   TextBold,
   TextLight,
@@ -10,15 +10,15 @@ import {
   TextSemiBold,
 } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
-import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
+import { AuthStackParams } from '@/navigations/stack/AuthStackNavigator';
 import { useAuthStore } from '@/store/stores';
 
 type Join2ScreenProps = NativeStackScreenProps<
-  SignUpStackParamList,
-  typeof routeNames.JOIN5
+  AuthStackParams,
+  typeof authRouteNames.JOIN5
 >;
 
-function Join5(_: Join2ScreenProps) {
+function Join5Screen(_: Join2ScreenProps) {
   const { setIsLogin } = useAuthStore();
 
   return (
@@ -32,7 +32,7 @@ function Join5(_: Join2ScreenProps) {
           resizeMode="contain"
           className="mx-auto h-[348] w-[224]"
         />
-        <TextBold className="text-center text-h2">
+        <TextBold className="text-center text-h2 leading-7">
           회원가입이 완료되었습니다.
         </TextBold>
         <TextLight className="text-center text-gray-300">
@@ -47,7 +47,7 @@ function Join5(_: Join2ScreenProps) {
             <TextRegular className="text-body2 text-gray-300">
               우리 가족 코드
             </TextRegular>
-            <TextSemiBold className="mt-1 text-h3 text-black">
+            <TextSemiBold className="mt-1 text-h3 leading-6 text-black">
               AS12F56E
             </TextSemiBold>
           </View>
@@ -62,7 +62,7 @@ function Join5(_: Join2ScreenProps) {
         <Pressable
           className="mt-2 rounded-3xl bg-primary-100 px-9 py-3"
           onPress={() => {}}>
-          <TextBold className="text-center text-body3 text-white">
+          <TextBold className="text-center text-body3 leading-3 text-white">
             초대하기
           </TextBold>
         </Pressable>
@@ -91,4 +91,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Join5;
+export default Join5Screen;

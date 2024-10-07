@@ -1,5 +1,5 @@
 import AnswerStackNavigator from './AnswerStackNavigator.tsx';
-import MyStackNavigator from './MyStackNavigator.tsx';
-import SignUpStackNavigator from './SignUpStackNavigator.tsx';
+import AuthStackNavigator from './AuthStackNavigator.tsx';
+import SettingStackNavigator from './SettingStackNavigator.tsx';
 
-export { AnswerStackNavigator, MyStackNavigator, SignUpStackNavigator };
+export { AnswerStackNavigator, AuthStackNavigator, SettingStackNavigator };

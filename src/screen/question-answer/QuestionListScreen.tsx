@@ -1,7 +1,7 @@
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { Image, StyleSheet, View } from 'react-native';
 
-import { colors, routeNames } from '@/constants';
+import { colors, defaultRouteNames } from '@/constants';
 import {
   TextBold,
   TextExtraBold,
@@ -10,20 +10,20 @@ import {
   TextSemiBold,
 } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
-import { BottomTabNavigation } from '@/navigations/BottomTabNavigator';
+import { DefaultTabNavigation } from '@/navigations/DefaultTabNavigator';
 
-type QuestionListProps = BottomTabScreenProps<
-  BottomTabNavigation,
-  typeof routeNames.QUESTION_LIST
+type QuestionListScreenProps = BottomTabScreenProps<
+  DefaultTabNavigation,
+  typeof defaultRouteNames.QUESTION_LIST
 >;
 
-const QuestionList = ({ navigation }: QuestionListProps) => {
+const QuestionListScreen = ({ navigation }: QuestionListScreenProps) => {
   return (
     <SafeScreenWithHeader
       safeAreaStyle={styles.safeArea}
       scrollViewStyle={styles.scroll}
       rightButton={{
-        onPress: () => {},
+        onPress: () => navigation.navigate(defaultRouteNames.ALARM),
         icon: (
           <View className="relative">
             <View className="absolute -top-0.5 right-0 h-1.5 w-1.5 rounded-full bg-secondary" />
@@ -38,7 +38,7 @@ const QuestionList = ({ navigation }: QuestionListProps) => {
       }}>
       <View className="px-5">
         <View className="mt-1">
-          <TextBold className="text-h1">지금까지 질문</TextBold>
+          <TextBold className="text-h1 leading-9">지금까지 질문</TextBold>
           <TextRegular className="mt-2 text-gray-400">
             매일 매일 새로운 질문에 답변을 입력하세요
           </TextRegular>
@@ -47,11 +47,13 @@ const QuestionList = ({ navigation }: QuestionListProps) => {
           <View className="border-b border-gray-100 pb-4">
             <View className="flex-row items-center">
               <View className="mr-2 rounded-3xl bg-secondary px-2 py-1">
-                <TextSemiBold className="text-body4 font-bold text-[#FFFFFF]">
+                <TextSemiBold className="text-body4 font-bold leading-3 text-white">
                   Today
                 </TextSemiBold>
               </View>
-              <TextLight className="text-body3">2024. 08. 18</TextLight>
+              <TextLight className="text-body3 leading-3">
+                2024. 08. 18
+              </TextLight>
             </View>
             <View className="mt-2 flex-row">
               <TextExtraBold className="mr-2 text-h4 text-primary-100">
@@ -94,7 +96,7 @@ const QuestionList = ({ navigation }: QuestionListProps) => {
   );
 };
 
-export default QuestionList;
+export default QuestionListScreen;
 
 const styles = StyleSheet.create({
   safeArea: {

@@ -2,22 +2,41 @@ import { type BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
-import { routeNames, colors, MY_STACK_NAV_KEY } from '@/constants';
+import { colors, defaultRouteNames, settingRouteNames } from '@/constants';
 import GradientBackground from '@/entities/background/GradientBackground';
 import { TextRegular, TextSemiBold } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
-import { BottomTabNavigation } from '@/navigations/BottomTabNavigator';
+import { DefaultTabNavigation } from '@/navigations/DefaultTabNavigator';
+
+type DestinationOfOtherNavigator = {
+  [settingRouteNames.NAVIGATOR_NAME]: undefined;
+};
 
 type MymyScreenProps = BottomTabScreenProps<
-  BottomTabNavigation,
-  typeof routeNames.MY
+  DefaultTabNavigation & DestinationOfOtherNavigator,
+  typeof defaultRouteNames.MY
 >;
 
-export default function My({ navigation }: MymyScreenProps) {
+export default function MyScreen({ navigation }: MymyScreenProps) {
   const familyInfoes = [
-    { date: '1994.09.16', name: '가은', role: '딸' },
-    { date: '1994.09.16', name: '수', role: '엄마' },
-    { date: '1994.09.16', name: '규', role: '아빠' },
+    {
+      birthday: '1994. 09. 16',
+      lastActivity: { date: '2024. 07.20', platform: '카카오톡' },
+      name: '가은',
+      role: '딸',
+    },
+    {
+      birthday: '1994. 09. 16',
+      lastActivity: { date: '2024. 07.20', platform: '카카오톡' },
+      name: '수',
+      role: '엄마',
+    },
+    {
+      birthday: '1994. 09. 16',
+      lastActivity: { date: '2024. 07.20', platform: '카카오톡' },
+      name: '규',
+      role: '아빠',
+    },
   ];
 
   return (
@@ -27,7 +46,7 @@ export default function My({ navigation }: MymyScreenProps) {
         scrollViewStyle={styles.screen}
         title="가은's family"
         rightButton={{
-          onPress: () => navigation.navigate(MY_STACK_NAV_KEY),
+          onPress: () => navigation.navigate(settingRouteNames.NAVIGATOR_NAME),
           icon: (
             <Image
               source={require('@/assets/img/icon-setting.png')}
@@ -50,10 +69,19 @@ export default function My({ navigation }: MymyScreenProps) {
               <View className="flex flex-col justify-between">
                 <TextRegular className="text-body3 text-gray-300">
                   {item.role}
+                  {item.role === '딸' && (
+                    <TextRegular className="text-body3 text-primary-100">
+                      &nbsp;(나)
+                    </TextRegular>
+                  )}
                 </TextRegular>
                 <TextSemiBold className="text-h3">{item.name}</TextSemiBold>
                 <TextRegular className="text-body4 text-gray-400">
-                  {item.date}
+                  {item.birthday}
+                  <TextRegular className="text-body4 text-gray-400">
+                    &nbsp;({item.lastActivity.platform} {item.lastActivity.date}
+                    )
+                  </TextRegular>
                 </TextRegular>
               </View>
               <View className="ml-auto mr-1 flex items-center justify-center">

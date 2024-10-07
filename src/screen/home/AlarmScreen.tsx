@@ -1,16 +1,24 @@
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { Image, StyleSheet, View } from 'react-native';
 
-import { colors } from '@/constants';
+import { colors, defaultRouteNames } from '@/constants';
 import { TextBold, TextLight, TextMedium, TextRegular } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
+import { DefaultTabNavigation } from '@/navigations/DefaultTabNavigator';
 
-function AlarmScreen() {
+type AlarmScreenProps = BottomTabScreenProps<
+  DefaultTabNavigation,
+  typeof defaultRouteNames.ALARM
+>;
+
+//FIXME: 이전 화면으로 가는 기능이 정상적으로 작동하지 않음
+function AlarmScreen({ navigation }: AlarmScreenProps) {
   return (
     <SafeScreenWithHeader
       safeAreaStyle={styles.safeArea}
       scrollViewStyle={styles.scroll}
       leftButton={{
-        onPress: () => {},
+        onPress: () => navigation.goBack(),
         icon: (
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}
@@ -32,21 +40,27 @@ function AlarmScreen() {
       <View>
         <View className="px-5 py-4">
           <View className="flex-row">
-            <TextBold>Peter&nbsp;</TextBold>
-            <TextLight>commented on your photo</TextLight>
+            <TextBold className="text-body2 leading-[18]">
+              Peter&nbsp;
+              <TextLight className="text-body2 leading-[18]">
+                commented on your photo
+              </TextLight>
+            </TextBold>
           </View>
-          <TextRegular className="mt-2 text-body2 text-gray-300">
+          <TextRegular className="mt-2 text-body2 leading-4 text-gray-300">
             2분 전
           </TextRegular>
         </View>
-        <View className="px-5 py-4">
-          <View className="max-w-xs flex-row">
-            <TextBold>FamilyFarm&nbsp;</TextBold>
-            <TextLight>
-              and 36 others like your round play at Meadow Spring Golf
-            </TextLight>
+        <View className="max-w-xs px-5 py-4">
+          <View className="flex-row">
+            <TextBold className="text-body2 leading-[18]">
+              FamilyFarm&nbsp;
+              <TextLight className="text-body2 leading-[18]">
+                and 36 others like your round play at Meadow Spring Golf
+              </TextLight>
+            </TextBold>
           </View>
-          <TextRegular className="mt-2 text-body2 text-gray-300">
+          <TextRegular className="mt-2 text-body2 leading-4 text-gray-300">
             10분 전
           </TextRegular>
         </View>

@@ -2,19 +2,19 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
-import { colors, routeNames } from '@/constants';
+import { authRouteNames, colors } from '@/constants';
 import SelectableText from '@/entities/common/SelectableText';
 import { TextBold, TextRegular } from '@/entities/fonts';
 import RoleSelector from '@/entities/RoleSelector';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
-import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
+import { AuthStackParams } from '@/navigations/stack/AuthStackNavigator';
 
 type Join3ScreenProps = NativeStackScreenProps<
-  SignUpStackParamList,
-  typeof routeNames.JOIN3
+  AuthStackParams,
+  typeof authRouteNames.JOIN3
 >;
 
-function Join3({ navigation }: Join3ScreenProps) {
+function Join3Screen({ navigation }: Join3ScreenProps) {
   const [selectedRole, setSelectedRole] = useState<string>('아빠');
   const [isFirstInFamily, setIsFirstInFamily] = useState<boolean>(false);
 
@@ -35,9 +35,9 @@ function Join3({ navigation }: Join3ScreenProps) {
       }}>
       <View className="h-full px-5">
         <View className="mt-2">
-          <TextBold className="text-h1">나의 정보를</TextBold>
-          <TextBold className="text-h1">입력해 주세요.</TextBold>
-          <TextRegular className="mt-2 text-gray-400">
+          <TextBold className="text-h1 leading-9">나의 정보를</TextBold>
+          <TextBold className="text-h1 leading-9">입력해 주세요.</TextBold>
+          <TextRegular className="mt-2 leading-4 text-gray-400">
             가족에서 어떤 역할을 담당하고 계신가요?
           </TextRegular>
         </View>
@@ -55,7 +55,7 @@ function Join3({ navigation }: Join3ScreenProps) {
         />
         <Pressable
           className="my-2 flex-row items-center justify-center rounded-xl bg-primary-100 px-9 py-3"
-          onPress={() => navigation.navigate(routeNames.JOIN4)}>
+          onPress={() => navigation.navigate(authRouteNames.JOIN4)}>
           <TextBold className="text-h4 text-white">입력 완료</TextBold>
         </Pressable>
       </View>
@@ -73,4 +73,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Join3;
+export default Join3Screen;

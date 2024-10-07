@@ -11,20 +11,24 @@ import {
   View,
 } from 'react-native';
 
-import { colors, routeNames } from '@/constants';
+import { authRouteNames, colors } from '@/constants';
 import { TextMedium, TextSemiBold } from '@/entities/fonts';
-import { SignUpStackParamList } from '@/navigations/stack/SignUpStackNavigator';
+import { AuthStackParams } from '@/navigations/stack/AuthStackNavigator';
 import { signInWithGoogle } from '@/utils/oauth';
-type OnboardingProps = NativeStackScreenProps<
-  SignUpStackParamList,
-  typeof routeNames.ON_BOARDING
+
+type SignInScreenProps = NativeStackScreenProps<
+  AuthStackParams,
+  typeof authRouteNames.SIGN_IN
 >;
 
 //XXX: 배포까지 완료된 후에 Firestore를 통한 구글 로그인 방식 제거해야 함
 //TODO: ios, android kakao sign in 에러 처리를 동일하게 할 수 있도록 수정 필요
 const { KakaoLoginModule, AppleLoginModule } = NativeModules;
 
-function Onboarding({ navigation }: OnboardingProps) {
+function SignInScreen({ navigation }: SignInScreenProps) {
+  function handleSignIn() {
+    navigation.navigate(authRouteNames.JOIN1);
+  }
   const handleKakaoSignIn = () => {
     KakaoLoginModule.signInWithKakao()
       .then((token: any) => {
@@ -58,7 +62,7 @@ function Onboarding({ navigation }: OnboardingProps) {
     <ImageBackground
       source={require('@/assets/img/launch-screen-background.png')}
       className="relative h-full">
-      <View className="bg-black/20 absolute left-0 top-0 h-full w-full" />
+      <View className="absolute left-0 top-0 h-full w-full bg-black/20" />
       <SafeAreaView className="h-full pb-11">
         <Image
           source={require('@/assets/img/launch-screen-title.png')}
@@ -66,17 +70,16 @@ function Onboarding({ navigation }: OnboardingProps) {
           style={[styles.titleImage]}
         />
         <View className="mx-auto mt-auto w-80">
-          <TextMedium className="text-white text-center opacity-60">
+          <TextMedium className="text-center text-white opacity-60">
             Sign ip with Social Networkd
           </TextMedium>
           <View className="my-4">
             <Pressable
-              className="bg-white flex h-11 flex-row items-center rounded-lg px-4"
-              onPress={handleGoogleSignIn}>
+              className="flex h-11 flex-row items-center rounded-lg bg-white px-4"
+              onPress={() => handleSignIn()}>
               <Image
                 source={require('@/assets/img/google-logo.png')}
                 className="h-5 w-5"
-                style={[]}
               />
               <TextSemiBold className="mx-auto">
                 Google 계정으로 로그인
@@ -85,7 +88,7 @@ function Onboarding({ navigation }: OnboardingProps) {
             <Pressable
               className="my-3 flex h-11 flex-row items-center rounded-lg px-4"
               style={[styles.kakaoLoginButton]}
-              onPress={handleKakaoSignIn}>
+              onPress={() => handleSignIn()}>
               <Image
                 source={require('@/assets/img/kakao-logo.png')}
                 className="h-5 w-5"
@@ -97,14 +100,14 @@ function Onboarding({ navigation }: OnboardingProps) {
             {Platform.OS === 'ios' && (
               <Pressable
                 className="flex h-11 flex-row items-center rounded-lg px-4"
-                onPress={handleAppleSignIn}
+                onPress={() => handleSignIn()}
                 style={[styles.appleLoginButton]}>
                 <Image
                   source={require('@/assets/img/apple-logo.png')}
                   className="h-5 w-5"
                   style={[]}
                 />
-                <TextSemiBold className="text-white mx-auto">
+                <TextSemiBold className="mx-auto text-white">
                   Apple 계정으로 로그인
                 </TextSemiBold>
               </Pressable>
@@ -112,7 +115,7 @@ function Onboarding({ navigation }: OnboardingProps) {
           </View>
           <View className="flex flex-row justify-center">
             <TextMedium className="text-white">이용약관</TextMedium>
-            <TextMedium className="text-white mx-1 opacity-40">|</TextMedium>
+            <TextMedium className="mx-1 text-white opacity-40">|</TextMedium>
             <TextMedium className="text-white">개인정보처리방침</TextMedium>
           </View>
         </View>
@@ -135,4 +138,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Onboarding;
+export default SignInScreen;

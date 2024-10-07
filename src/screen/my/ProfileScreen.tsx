@@ -2,18 +2,18 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
-import { colors, routeNames } from '@/constants';
+import { colors, settingRouteNames } from '@/constants';
 import CustomInput from '@/entities/CustomInput';
 import { TextBold, TextRegular, TextSemiBold } from '@/entities/fonts';
 import RoleSelector from '@/entities/RoleSelector';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
-import { MyStackParamList } from '@/navigations/stack/MyStackNavigator';
+import { SettingStackParams } from '@/navigations/stack/SettingStackNavigator';
 
 type ProfileScreenProps = NativeStackScreenProps<
-  MyStackParamList,
-  typeof routeNames.MY_PROFILE
+  SettingStackParams,
+  typeof settingRouteNames.PROFILE
 >;
-export default function Setting({ navigation }: ProfileScreenProps) {
+export default function ProfileScreen({ navigation }: ProfileScreenProps) {
   const [selectedRole, setSelectedRole] = useState<string>('아빠');
 
   return (
@@ -31,8 +31,8 @@ export default function Setting({ navigation }: ProfileScreenProps) {
       }}
       safeAreaStyle={styles.container}>
       <View className="ml-5 mt-2">
-        <TextBold className="text-h1">나의 정보를</TextBold>
-        <TextBold className="text-h1">수정해 주세요.</TextBold>
+        <TextBold className="text-h1 leading-9">나의 정보를</TextBold>
+        <TextBold className="text-h1 leading-9">수정해 주세요.</TextBold>
       </View>
       <View className="ml-5 mt-2">
         <TextRegular className="text-gray-400">
@@ -54,10 +54,11 @@ export default function Setting({ navigation }: ProfileScreenProps) {
         </View>
       </View>
       <View className="mx-4 my-5">
-        <TextSemiBold className="mb-3 text-body2 text-gray-300">
+        <TextSemiBold className="mb-3 text-body2 leading-4 text-gray-300">
           이름 또는 닉네임
         </TextSemiBold>
         <CustomInput
+          placeholder="이름 또는 닉네임을 입력해주세요."
           success={true}
           successMessage="사용 가능한 이름 또는 닉네임 입니다."
         />
@@ -69,7 +70,9 @@ export default function Setting({ navigation }: ProfileScreenProps) {
         setSelectedRole={setSelectedRole}
       />
       <Pressable className="mx-5 my-2 mt-7 h-12 rounded-xl bg-primary-100 px-9 py-[14]">
-        <TextBold className="text-h4 text-white">수정 완료</TextBold>
+        <TextBold className="text-center text-h4 text-white">
+          수정 완료
+        </TextBold>
       </Pressable>
     </SafeScreenWithHeader>
   );

@@ -2,17 +2,16 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import { Image, Pressable, StyleSheet, Switch, View } from 'react-native';
 
-import { routeNames, colors } from '@/constants';
+import { colors, settingRouteNames } from '@/constants';
 import { TextBold, TextMedium, TextRegular } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
-import { BottomTabNavigation } from '@/navigations/BottomTabNavigator';
-import { MyStackParamList } from '@/navigations/stack/MyStackNavigator';
+import { SettingStackParams } from '@/navigations/stack/SettingStackNavigator';
 
 type SettingScreenProps = NativeStackScreenProps<
-  MyStackParamList & BottomTabNavigation,
-  typeof routeNames.SETTING
+  SettingStackParams,
+  typeof settingRouteNames.SETTING
 >;
-export default function Setting({ navigation }: SettingScreenProps) {
+export default function SettingScreen({ navigation }: SettingScreenProps) {
   const [isAlarm, setIsAlram] = useState(false);
   const [isMarketing, setIsMarketing] = useState(false);
 
@@ -20,7 +19,7 @@ export default function Setting({ navigation }: SettingScreenProps) {
     <SafeScreenWithHeader
       safeAreaStyle={styles.container}
       leftButton={{
-        onPress: () => navigation.navigate(routeNames.MY),
+        onPress: () => navigation.goBack(),
         icon: (
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}
@@ -31,7 +30,7 @@ export default function Setting({ navigation }: SettingScreenProps) {
         ),
       }}
       title="설정">
-      <Pressable onPress={() => navigation.navigate(routeNames.MY_PROFILE)}>
+      <Pressable onPress={() => navigation.navigate(settingRouteNames.PROFILE)}>
         <View className="mx-5 my-5 flex flex-row items-center">
           <Image
             source={require('@/assets/img/default-user-profile.png')}
@@ -50,8 +49,8 @@ export default function Setting({ navigation }: SettingScreenProps) {
         </View>
       </Pressable>
       <View>
-        <TextBold className="mb-1 ml-5 text-h3">알람 설정</TextBold>
-        <View className="flex flex-row items-center border-b border-gray-25 px-5 py-3">
+        <TextBold className="ml-5 text-h3 leading-6">알람 설정</TextBold>
+        <View className="mt-4 flex flex-row items-center border-b border-gray-25 px-5 pb-3">
           <TextRegular>PUSH 알림</TextRegular>
           <Switch
             trackColor={{
@@ -85,8 +84,8 @@ export default function Setting({ navigation }: SettingScreenProps) {
         </View>
       </View>
       <View className="mt-5">
-        <TextBold className="mb-1 ml-5 text-h3">문의하기</TextBold>
-        <View className="flex flex-row items-center border-b border-gray-25 px-5 py-3">
+        <TextBold className="ml-5 text-h3 leading-6">문의하기</TextBold>
+        <View className="mt-4 flex flex-row items-center border-b border-gray-25 px-5 pb-3">
           <TextRegular>자주 묻는 질문</TextRegular>
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}
@@ -106,8 +105,8 @@ export default function Setting({ navigation }: SettingScreenProps) {
         </View>
       </View>
       <View className="mt-5">
-        <TextBold className="mb-1 ml-5 text-h3">약관 및 정책</TextBold>
-        <View className="flex flex-row items-center border-b border-gray-25 px-5 py-3">
+        <TextBold className="ml-5 text-h3 leading-6">약관 및 정책</TextBold>
+        <View className="mt-4 flex flex-row items-center border-b border-gray-25 px-5 pb-3">
           <TextRegular>이용 약관</TextRegular>
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}
@@ -136,10 +135,14 @@ export default function Setting({ navigation }: SettingScreenProps) {
         </View>
       </View>
       <View className="ml-5 mt-5">
-        <TextMedium className="text-body2 text-gray-300">로그아웃</TextMedium>
+        <TextMedium className="text-body2 leading-4 text-gray-300">
+          로그아웃
+        </TextMedium>
       </View>
       <View className="ml-5 mt-5">
-        <TextMedium className="text-body2 text-gray-300">탈퇴하기</TextMedium>
+        <TextMedium className="text-body2 leading-4 text-gray-300">
+          탈퇴하기
+        </TextMedium>
       </View>
     </SafeScreenWithHeader>
   );

@@ -1,23 +1,35 @@
-export const routeNames = {
-  HOME: 'Home',
-  QUESTION_LIST: 'QuetionList',
-  MY: 'My',
-  SETTING: 'Setting',
-  ON_BOARDING: 'OnBoarding',
+export const authRouteNames = {
+  SIGN_IN: 'SignIn',
   JOIN1: 'Join1',
   JOIN2: 'Join2',
   JOIN3: 'Join3',
   JOIN4: 'Join4',
   JOIN5: 'Join5',
-  MY_PROFILE: 'MyProfile',
-  RECORD_EMOTION: 'RecordEmotion',
-  DESCRIPTIVE_ANSWER: 'DescriptiveAnswer',
+} as const;
+
+export const defaultRouteNames = {
+  HOME: 'Home',
+  QUESTION_LIST: 'QuetionList',
+  MY: 'My',
   FAMILY_ANSWER: 'FamilyAnswer',
+  ALARM: 'Alarm',
+} as const;
+
+export const answerRouteNames = {
+  NAVIGATOR_NAME: 'AnswerStackNavigator',
+  DESCRIPTIVE_ANSWER: 'DescriptiveAnswer',
+  RECORD_EMOTION: 'RecordEmotion',
+} as const;
+
+export const settingRouteNames = {
+  NAVIGATOR_NAME: 'SettingStackNavigator',
+  SETTING: 'Setting',
+  PROFILE: 'Profile',
+} as const;
+
+export const routeNames = {
   VIEW_ANSWER: 'ViewAnser',
   ANSWER_WITH_FEELING: 'AnswerWithFeeling',
   ANSWER_WITH_IMAGE: 'AnswerWithImage',
   ANSWER_WITH_STRING_VOICE: 'AnswerWithStringVoice',
 } as const;
-
-export const MY_STACK_NAV_KEY = 'MyStackNavigator';
-export const ANSWER_STACK_NAV_KEY = 'AnswerStackNavigator';

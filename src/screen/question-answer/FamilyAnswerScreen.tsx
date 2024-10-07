@@ -1,7 +1,7 @@
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
-import { colors, routeNames } from '@/constants';
+import { answerRouteNames, colors, defaultRouteNames } from '@/constants';
 import {
   TextBold,
   TextLight,
@@ -9,20 +9,24 @@ import {
   TextSemiBold,
 } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
-import { BottomTabNavigation } from '@/navigations/BottomTabNavigator';
+import { DefaultTabNavigation } from '@/navigations/DefaultTabNavigator';
 
-type FamilyAnswerProps = BottomTabScreenProps<
-  BottomTabNavigation,
-  typeof routeNames.FAMILY_ANSWER
+type DestinationOfOtherNavigator = {
+  [answerRouteNames.DESCRIPTIVE_ANSWER]: undefined;
+};
+
+type FamilyAnswerScreenProps = BottomTabScreenProps<
+  DefaultTabNavigation & DestinationOfOtherNavigator,
+  typeof defaultRouteNames.FAMILY_ANSWER
 >;
 
-const FamilyAnswer = ({ navigation }: FamilyAnswerProps) => {
+const FamilyAnswerScreen = ({ navigation }: FamilyAnswerScreenProps) => {
   return (
     <SafeScreenWithHeader
       safeAreaStyle={styles.safeArea}
       scrollViewStyle={styles.scroll}
       rightButton={{
-        onPress: () => {},
+        onPress: () => navigation.navigate(defaultRouteNames.ALARM),
         icon: (
           <View className="relative">
             <View className="absolute -top-0.5 right-0 h-1.5 w-1.5 rounded-full bg-secondary" />
@@ -53,9 +57,20 @@ const FamilyAnswer = ({ navigation }: FamilyAnswerProps) => {
             </TextLight>
           </View>
           <View className="mt-4 border-b border-gray-25 pb-4">
-            <TextLight className="text-body3">엄마</TextLight>
+            <View className="flex-row">
+              <TextLight className="text-body3">엄마</TextLight>
+              <View className="ml-1 rounded-xl bg-primary-8 px-2 py-1">
+                <TextSemiBold className="text-body4 leading-3 text-primary-100">
+                  나
+                </TextSemiBold>
+              </View>
+            </View>
             <TextSemiBold className="mt-1">수</TextSemiBold>
-            <Pressable className="mt-1 self-start rounded-3xl bg-primary-100 px-10 py-3">
+            <Pressable
+              className="mt-1 self-start rounded-3xl bg-primary-100 px-10 py-3"
+              onPress={() =>
+                navigation.navigate(answerRouteNames.DESCRIPTIVE_ANSWER)
+              }>
               <TextBold className="text-body3 leading-3 text-white">
                 답변하기
               </TextBold>
@@ -74,7 +89,7 @@ const FamilyAnswer = ({ navigation }: FamilyAnswerProps) => {
   );
 };
 
-export default FamilyAnswer;
+export default FamilyAnswerScreen;
 
 const styles = StyleSheet.create({
   safeArea: {

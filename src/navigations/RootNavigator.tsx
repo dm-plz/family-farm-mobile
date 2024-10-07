@@ -1,8 +1,9 @@
 import React from 'react';
 
-import BottomTabNavigator from '@/navigations/BottomTabNavigator';
-import SignUpStackNavigator from '@/navigations/stack/SignUpStackNavigator';
-import ErrorScreen from '@/pages/ErrorScreen';
+import DefaultTabNavigator from './DefaultTabNavigator';
+
+import AuthStackNavigator from '@/navigations/stack/AuthStackNavigator';
+import ErrorScreen from '@/screen/ErrorScreen';
 import { useAuthStore, useErrorStore } from '@/store/stores';
 
 export default function RootNavigator() {
@@ -12,5 +13,5 @@ export default function RootNavigator() {
   if (errorType) {
     return <ErrorScreen type={400} />;
   }
-  return <>{isLogin ? <BottomTabNavigator /> : <SignUpStackNavigator />}</>;
+  return <>{isLogin ? <DefaultTabNavigator /> : <AuthStackNavigator />}</>;
 }

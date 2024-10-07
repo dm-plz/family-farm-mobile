@@ -23,7 +23,7 @@ function RoleSelector({
 }: RoleSelectorProps & StylingProps<ViewStyle>) {
   return (
     <View className={className} style={[style]}>
-      <TextSemiBold className="mb-2 text-body2 text-gray-300">
+      <TextSemiBold className="mb-2 text-body2 leading-4 text-gray-300">
         나의 역할
       </TextSemiBold>
       {roles.map(role => {
@@ -31,7 +31,7 @@ function RoleSelector({
         return (
           <Pressable
             key={role}
-            className={`mt-2 flex h-[52] flex-row justify-between rounded-xl border border-gray-50 px-5 py-4 ${isSelected ? 'border-success bg-success/5' : ''}`}
+            className={`mt-2 flex h-[52] flex-row justify-between rounded-xl border border-gray-100 px-5 py-4 ${isSelected ? 'border-success bg-success/5' : ''}`}
             onPress={() => {
               setSelectedRole(role);
             }}>
