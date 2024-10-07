@@ -18,7 +18,7 @@ export default function ProfileScreen({ navigation }: ProfileScreenProps) {
 
   return (
     <SafeScreenWithHeader
-      leftButton={{
+      left={{
         onPress: () => navigation.goBack(),
         icon: (
           <Image

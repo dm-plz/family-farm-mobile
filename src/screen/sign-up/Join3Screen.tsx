@@ -22,7 +22,7 @@ function Join3Screen({ navigation }: Join3ScreenProps) {
     <SafeScreenWithHeader
       safeAreaStyle={[styles.safeArea]}
       scrollViewStyle={[styles.scrollView]}
-      leftButton={{
+      left={{
         onPress: () => navigation.goBack(),
         icon: (
           <Image

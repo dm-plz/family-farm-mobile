@@ -18,7 +18,7 @@ export default function SettingScreen({ navigation }: SettingScreenProps) {
   return (
     <SafeScreenWithHeader
       safeAreaStyle={styles.container}
-      leftButton={{
+      left={{
         onPress: () => navigation.goBack(),
         icon: (
           <Image

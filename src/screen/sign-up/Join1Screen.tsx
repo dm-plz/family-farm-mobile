@@ -18,7 +18,7 @@ function Join1Screen({ navigation }: Join1ScreenProps) {
     <SafeScreenWithHeader
       safeAreaStyle={[styles.safeArea]}
       scrollViewStyle={[styles.scrollView]}
-      leftButton={{
+      left={{
         onPress: () => navigation.goBack(),
         icon: (
           <Image

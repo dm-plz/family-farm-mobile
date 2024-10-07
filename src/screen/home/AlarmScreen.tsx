@@ -17,7 +17,7 @@ function AlarmScreen({ navigation }: AlarmScreenProps) {
     <SafeScreenWithHeader
       safeAreaStyle={styles.safeArea}
       scrollViewStyle={styles.scroll}
-      leftButton={{
+      left={{
         onPress: () => navigation.goBack(),
         icon: (
           <Image
@@ -29,10 +29,10 @@ function AlarmScreen({ navigation }: AlarmScreenProps) {
         ),
       }}
       title="알림"
-      rightButton={{
+      right={{
         onPress: () => {},
         icon: (
-          <TextMedium className="text-body2 text-primary-100">
+          <TextMedium className="text-body2 leading-6 text-primary-100">
             읽음 처리
           </TextMedium>
         ),

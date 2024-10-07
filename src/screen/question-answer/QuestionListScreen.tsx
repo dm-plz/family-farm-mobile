@@ -22,19 +22,17 @@ const QuestionListScreen = ({ navigation }: QuestionListScreenProps) => {
     <SafeScreenWithHeader
       safeAreaStyle={styles.safeArea}
       scrollViewStyle={styles.scroll}
-      rightButton={{
+      right={{
         onPress: () => navigation.navigate(defaultRouteNames.ALARM),
         icon: (
-          <View className="relative">
-            <View className="absolute -top-0.5 right-0 h-1.5 w-1.5 rounded-full bg-secondary" />
-            <Image
-              source={require('@/assets/img/icon-bell.png')}
-              resizeMode="contain"
-              className="h-5 w-5"
-              tintColor={colors.primary[100]}
-            />
-          </View>
+          <Image
+            source={require('@/assets/img/icon-bell.png')}
+            resizeMode="contain"
+            className="h-5 w-5"
+            tintColor={colors.primary[100]}
+          />
         ),
+        showBadge: true,
       }}>
       <View className="px-5">
         <View className="mt-1">

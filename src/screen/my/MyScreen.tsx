@@ -45,7 +45,7 @@ export default function MyScreen({ navigation }: MymyScreenProps) {
         safeAreaStyle={styles.container}
         scrollViewStyle={styles.screen}
         title="가은's family"
-        rightButton={{
+        right={{
           onPress: () => navigation.navigate(settingRouteNames.NAVIGATOR_NAME),
           icon: (
             <Image

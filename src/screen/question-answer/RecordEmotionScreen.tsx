@@ -22,7 +22,7 @@ function RecordEmotionScreen({ navigation }: RecordEmotionScreenProps) {
     <SafeScreenWithHeader
       safeAreaStyle={[styles.safeArea]}
       scrollViewStyle={[styles.scroll]}
-      leftButton={{
+      left={{
         onPress: () => navigation.goBack(),
         icon: (
           <Image

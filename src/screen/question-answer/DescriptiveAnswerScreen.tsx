@@ -37,7 +37,7 @@ function DescriptiveAnswerScreen({ navigation }: DescriptiveAnswerScreenProps) {
     <SafeScreenWithHeader
       safeAreaStyle={[styles.safeArea]}
       scrollViewStyle={[styles.scroll]}
-      leftButton={{
+      left={{
         onPress: () => navigation.goBack(),
         icon: (
           <Image
@@ -60,7 +60,7 @@ function DescriptiveAnswerScreen({ navigation }: DescriptiveAnswerScreenProps) {
           가족들에게 공유해 보세요.
         </TextRegular>
       </View>
-      <View className="mt-10 max-w-xs">
+      <View className="mt-10">
         <View className="w-full flex-row">
           <View className="w-5 border-b border-gray-50" />
           <Pressable className="w-5 flex-grow border-b border-gray-50">
