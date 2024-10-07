@@ -10,6 +10,7 @@ import {
 } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { DefaultTabNavigation } from '@/navigations/DefaultTabNavigator';
+import useNavigationStore from '@/store/stores/navigationStore';
 
 type DestinationOfOtherNavigator = {
   [answerRouteNames.DESCRIPTIVE_ANSWER]: undefined;
@@ -21,12 +22,14 @@ type FamilyAnswerScreenProps = BottomTabScreenProps<
 >;
 
 const FamilyAnswerScreen = ({ navigation }: FamilyAnswerScreenProps) => {
+  const { navigate } = useNavigationStore();
+
   return (
     <SafeScreenWithHeader
       safeAreaStyle={styles.safeArea}
       scrollViewStyle={styles.scroll}
       right={{
-        onPress: () => navigation.navigate(defaultRouteNames.ALARM),
+        onPress: () => navigate(navigation, defaultRouteNames.ALARM),
         icon: (
           <Image
             source={require('@/assets/img/icon-bell.png')}
@@ -67,7 +70,7 @@ const FamilyAnswerScreen = ({ navigation }: FamilyAnswerScreenProps) => {
             <Pressable
               className="mt-1 self-start rounded-3xl bg-primary-100 px-10 py-3"
               onPress={() =>
-                navigation.navigate(answerRouteNames.DESCRIPTIVE_ANSWER)
+                navigate(navigation, answerRouteNames.ANSWER_NAVIGATOR_NAME)
               }>
               <TextBold className="text-body3 leading-3 text-white">
                 답변하기

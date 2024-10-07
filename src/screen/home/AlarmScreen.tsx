@@ -5,20 +5,22 @@ import { colors, defaultRouteNames } from '@/constants';
 import { TextBold, TextLight, TextMedium, TextRegular } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { DefaultTabNavigation } from '@/navigations/DefaultTabNavigator';
+import useNavigationStore from '@/store/stores/navigationStore';
 
 type AlarmScreenProps = BottomTabScreenProps<
   DefaultTabNavigation,
   typeof defaultRouteNames.ALARM
 >;
 
-//FIXME: 이전 화면으로 가는 기능이 정상적으로 작동하지 않음
 function AlarmScreen({ navigation }: AlarmScreenProps) {
+  const { goBack } = useNavigationStore();
+
   return (
     <SafeScreenWithHeader
       safeAreaStyle={styles.safeArea}
       scrollViewStyle={styles.scroll}
       left={{
-        onPress: () => navigation.goBack(),
+        onPress: () => goBack(navigation),
         icon: (
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}

@@ -8,6 +8,7 @@ import { TextBold, TextRegular, TextSemiBold } from '@/entities/fonts';
 import RoleSelector from '@/entities/RoleSelector';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { SettingStackParams } from '@/navigations/stack/SettingStackNavigator';
+import useNavigationStore from '@/store/stores/navigationStore';
 
 type ProfileScreenProps = NativeStackScreenProps<
   SettingStackParams,
@@ -16,10 +17,12 @@ type ProfileScreenProps = NativeStackScreenProps<
 export default function ProfileScreen({ navigation }: ProfileScreenProps) {
   const [selectedRole, setSelectedRole] = useState<string>('아빠');
 
+  const { goBack } = useNavigationStore();
+
   return (
     <SafeScreenWithHeader
       left={{
-        onPress: () => navigation.goBack(),
+        onPress: () => goBack(navigation),
         icon: (
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}

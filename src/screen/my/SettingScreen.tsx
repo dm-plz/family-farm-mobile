@@ -6,6 +6,7 @@ import { colors, settingRouteNames } from '@/constants';
 import { TextBold, TextMedium, TextRegular } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { SettingStackParams } from '@/navigations/stack/SettingStackNavigator';
+import useNavigationStore from '@/store/stores/navigationStore';
 
 type SettingScreenProps = NativeStackScreenProps<
   SettingStackParams,
@@ -15,11 +16,13 @@ export default function SettingScreen({ navigation }: SettingScreenProps) {
   const [isAlarm, setIsAlram] = useState(false);
   const [isMarketing, setIsMarketing] = useState(false);
 
+  const { navigate, goBack } = useNavigationStore();
+
   return (
     <SafeScreenWithHeader
       safeAreaStyle={styles.container}
       left={{
-        onPress: () => navigation.goBack(),
+        onPress: () => goBack(navigation),
         icon: (
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}
@@ -30,7 +33,8 @@ export default function SettingScreen({ navigation }: SettingScreenProps) {
         ),
       }}
       title="설정">
-      <Pressable onPress={() => navigation.navigate(settingRouteNames.PROFILE)}>
+      <Pressable
+        onPress={() => navigate(navigation, settingRouteNames.PROFILE)}>
         <View className="mx-5 my-5 flex flex-row items-center">
           <Image
             source={require('@/assets/img/default-user-profile.png')}

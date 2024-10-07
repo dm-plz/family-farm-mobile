@@ -10,6 +10,7 @@ import GradientBackground from '@/entities/background/GradientBackground';
 import { TextBold, TextRegular, TextSemiBold } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { DefaultTabNavigation } from '@/navigations/DefaultTabNavigator';
+import useNavigationStore from '@/store/stores/navigationStore';
 
 type HomeScreenProps = BottomTabScreenProps<
   DefaultTabNavigation,
@@ -17,13 +18,15 @@ type HomeScreenProps = BottomTabScreenProps<
 >;
 
 export default function HomeScreen({ navigation }: HomeScreenProps) {
+  const { navigate } = useNavigationStore();
+
   return (
     <GradientBackground>
       <SafeScreenWithHeader
         safeAreaStyle={styles.safeArea}
         scrollViewStyle={styles.scroll}
         right={{
-          onPress: () => navigation.navigate(defaultRouteNames.ALARM),
+          onPress: () => navigate(navigation, defaultRouteNames.ALARM),
           icon: (
             <Image
               source={require('@/assets/img/icon-bell.png')}
@@ -71,6 +74,8 @@ interface SuggestionCardProps {
 }
 
 function SuggestionCard({ hasAnsweredToday, navigation }: SuggestionCardProps) {
+  const { navigate } = useNavigationStore();
+
   const type = hasAnsweredToday ? '답변 완료' : '오늘 하루 질문';
   const content = hasAnsweredToday
     ? '우리 가족들의 답변이 궁금하다면?'
@@ -78,7 +83,7 @@ function SuggestionCard({ hasAnsweredToday, navigation }: SuggestionCardProps) {
   const actionText = hasAnsweredToday ? '보러가기' : '답변하기';
   const destination = hasAnsweredToday
     ? defaultRouteNames.FAMILY_ANSWER
-    : answerRouteNames.NAVIGATOR_NAME;
+    : answerRouteNames.ANSWER_NAVIGATOR_NAME;
   return (
     <View className="absolute bottom-5 z-10" style={[styles.bottomCard]}>
       <View className="relative rounded-3xl border border-primary-100/30 bg-white/90 py-4">
@@ -100,7 +105,7 @@ function SuggestionCard({ hasAnsweredToday, navigation }: SuggestionCardProps) {
           </TextSemiBold>
           <Pressable
             className="mx-auto mt-3 w-32 rounded-3xl bg-primary-100 px-10 py-3"
-            onPress={() => navigation.navigate(destination)}>
+            onPress={() => navigate(navigation, destination)}>
             <TextBold className="text-center text-body3 leading-3 text-white">
               {actionText}
             </TextBold>

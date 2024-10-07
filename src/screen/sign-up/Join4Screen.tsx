@@ -8,6 +8,7 @@ import CustomInput from '@/entities/CustomInput';
 import { TextBold, TextRegular, TextSemiBold } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { AuthStackParams } from '@/navigations/stack/AuthStackNavigator';
+import useNavigationStore from '@/store/stores/navigationStore';
 
 type Join2ScreenProps = NativeStackScreenProps<
   AuthStackParams,
@@ -16,12 +17,15 @@ type Join2ScreenProps = NativeStackScreenProps<
 
 function Join4Screen({ navigation }: Join2ScreenProps) {
   const [isLuna, setIsLuna] = useState(false);
+
+  const { navigate, goBack } = useNavigationStore();
+
   return (
     <SafeScreenWithHeader
       safeAreaStyle={[styles.safeArea]}
       scrollViewStyle={[styles.scrollView]}
       left={{
-        onPress: () => navigation.goBack(),
+        onPress: () => goBack(navigation),
         icon: (
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}
@@ -60,7 +64,7 @@ function Join4Screen({ navigation }: Join2ScreenProps) {
         </View>
         <Pressable
           className="my-2 mt-auto flex-row items-center justify-center rounded-xl bg-primary-100 px-9 py-3"
-          onPress={() => navigation.navigate(authRouteNames.JOIN5)}>
+          onPress={() => navigate(navigation, authRouteNames.JOIN5)}>
           <TextBold className="text-h4 text-white">입력 완료</TextBold>
         </Pressable>
       </View>

@@ -16,13 +16,27 @@ export const defaultRouteNames = {
 } as const;
 
 export const answerRouteNames = {
-  NAVIGATOR_NAME: 'AnswerStackNavigator',
-  DESCRIPTIVE_ANSWER: 'DescriptiveAnswer',
+  ANSWER_NAVIGATOR_NAME: 'AnswerStackNavigator',
   RECORD_EMOTION: 'RecordEmotion',
+  DESCRIPTIVE_ANSWER: 'DescriptiveAnswer',
 } as const;
 
 export const settingRouteNames = {
-  NAVIGATOR_NAME: 'SettingStackNavigator',
+  SETTING_NAVIGATOR_NAME: 'SettingStackNavigator',
   SETTING: 'Setting',
   PROFILE: 'Profile',
 } as const;
+
+export const undefinedRouteNames = {
+  ERROR: 'error',
+} as const;
+
+export const allRouteNames = {
+  ...authRouteNames,
+  ...defaultRouteNames,
+  ...answerRouteNames,
+  ...settingRouteNames,
+  ...undefinedRouteNames,
+};
+
+export type RouteName = (typeof allRouteNames)[keyof typeof allRouteNames];

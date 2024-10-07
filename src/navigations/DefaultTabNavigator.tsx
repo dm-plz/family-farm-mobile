@@ -1,7 +1,9 @@
 import {
+  BottomTabNavigationEventMap,
   createBottomTabNavigator,
   type BottomTabBarProps,
 } from '@react-navigation/bottom-tabs';
+import { NavigationHelpers, ParamListBase } from '@react-navigation/native';
 import React, { PropsWithChildren } from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
@@ -22,6 +24,7 @@ import { MyScreen } from '@/screen/my';
 import FamilyAnswerScreen from '@/screen/question-answer/FamilyAnswerScreen';
 import QuestionListScreen from '@/screen/question-answer/QuestionListScreen';
 import { useBackGroundStore } from '@/store/stores';
+import useNavigationStore from '@/store/stores/navigationStore';
 
 export type DefaultTabNavigation = {
   [defaultRouteNames.HOME]: undefined;
@@ -29,8 +32,8 @@ export type DefaultTabNavigation = {
   [defaultRouteNames.MY]: undefined;
   [defaultRouteNames.FAMILY_ANSWER]: undefined;
   [defaultRouteNames.ALARM]: undefined;
-  [answerRouteNames.NAVIGATOR_NAME]: undefined;
-  [settingRouteNames.NAVIGATOR_NAME]: undefined;
+  [answerRouteNames.ANSWER_NAVIGATOR_NAME]: undefined;
+  [settingRouteNames.SETTING_NAVIGATOR_NAME]: undefined;
 };
 
 const DefaultTab = createBottomTabNavigator<DefaultTabNavigation>();
@@ -49,27 +52,12 @@ export default function DefaultTabNavigator() {
           display: 'none',
         },
       }}>
-      <DefaultTab.Screen
-        name={defaultRouteNames.HOME}
-        component={HomeScreen}
-        options={{
-          tabBarIcon: HomeTabBarIcon,
-        }}
-      />
+      <DefaultTab.Screen name={defaultRouteNames.HOME} component={HomeScreen} />
       <DefaultTab.Screen
         name={defaultRouteNames.QUESTION_LIST}
         component={QuestionListScreen}
-        options={{
-          tabBarIcon: MainTabBarIcon,
-        }}
       />
-      <DefaultTab.Screen
-        name={defaultRouteNames.MY}
-        component={MyScreen}
-        options={{
-          tabBarIcon: MyTabBarIcon,
-        }}
-      />
+      <DefaultTab.Screen name={defaultRouteNames.MY} component={MyScreen} />
       <DefaultTab.Screen
         name={defaultRouteNames.FAMILY_ANSWER}
         component={FamilyAnswerScreen}
@@ -79,71 +67,82 @@ export default function DefaultTabNavigator() {
         component={AlarmScreen}
       />
       <DefaultTab.Screen
-        name={settingRouteNames.NAVIGATOR_NAME}
+        name={settingRouteNames.SETTING_NAVIGATOR_NAME}
         component={SettingStackNavigator}
       />
       <DefaultTab.Screen
-        name={answerRouteNames.NAVIGATOR_NAME}
+        name={answerRouteNames.ANSWER_NAVIGATOR_NAME}
         component={AnswerStackNavigator}
       />
     </DefaultTab.Navigator>
   );
 }
 
-interface TabBarIconProps {
-  focused: boolean;
+interface TabProps {
   color: string;
-  size: number;
+  navigation: NavigationHelpers<ParamListBase, BottomTabNavigationEventMap>;
 }
 
-function HomeTabBarIcon(props: TabBarIconProps) {
+function HomeTab({ color, navigation }: TabProps) {
+  const { navigate } = useNavigationStore();
   return (
-    <View className="w-20 items-center space-y-0.5">
-      <Image
-        source={require('@/assets/img/icon-home.png')}
-        className="h-6 w-6 px-[3] py-0.5"
-        resizeMode="contain"
-        style={[{ tintColor: props.color }]}
-      />
-      <TextMedium
-        style={{ color: props.color }}
-        className="text-center text-body4 leading-3">
-        홈
-      </TextMedium>
-    </View>
+    <Pressable onPress={() => navigate(navigation, defaultRouteNames.HOME)}>
+      <View className="w-20 items-center space-y-0.5">
+        <Image
+          source={require('@/assets/img/icon-home.png')}
+          className="h-6 w-6 px-[3] py-0.5"
+          resizeMode="contain"
+          style={[{ tintColor: color }]}
+        />
+        <TextMedium
+          style={{ color }}
+          className="text-center text-body4 leading-3">
+          홈
+        </TextMedium>
+      </View>
+    </Pressable>
   );
 }
 
-function MainTabBarIcon(_: TabBarIconProps) {
+function MainTab({ navigation }: Omit<TabProps, 'color'>) {
+  const { navigate } = useNavigationStore();
+
   return (
-    <View
-      className="w-[60] rounded-full bg-primary-100 p-4"
-      style={[styles.mainButton]}>
-      <Image
-        source={require('@/assets/img/icon-message.png')}
-        className="h-7 w-7"
-        resizeMode="contain"
-        style={[{ tintColor: colors.white }]}
-      />
-    </View>
+    <Pressable
+      onPress={() => navigate(navigation, defaultRouteNames.QUESTION_LIST)}>
+      <View
+        className="w-[60] rounded-full bg-primary-100 p-4"
+        style={[styles.mainButton]}>
+        <Image
+          source={require('@/assets/img/icon-message.png')}
+          className="h-7 w-7"
+          resizeMode="contain"
+          style={[{ tintColor: colors.white }]}
+        />
+      </View>
+    </Pressable>
   );
 }
 
-function MyTabBarIcon(props: TabBarIconProps) {
+function MyTab({ color, navigation }: TabProps) {
+  const { navigate } = useNavigationStore();
+
   return (
-    <View className="w-20 items-center space-y-0.5">
-      <Image
-        source={require('@/assets/img/icon-my.png')}
-        className="h-6 w-6 px-0.5 py-[5]"
-        resizeMode="contain"
-        style={[{ tintColor: props.color }]}
-      />
-      <TextMedium
-        style={{ color: props.color }}
-        className="text-center text-body4 leading-3">
-        마이페이지
-      </TextMedium>
-    </View>
+    <Pressable onPress={() => navigate(navigation, defaultRouteNames.MY)}>
+      <View className="w-20 items-center space-y-0.5">
+        <Image
+          source={require('@/assets/img/icon-my.png')}
+          className="h-6 w-6 px-0.5 py-[5]"
+          resizeMode="contain"
+          style={[{ tintColor: color }]}
+        />
+        <TextMedium
+          style={{ color: color }}
+          className="text-center text-body4 leading-3">
+          마이페이지
+        </TextMedium>
+      </View>
+    </Pressable>
   );
 }
 
@@ -156,11 +155,13 @@ function CustomTabBarWrapper({ children }: PropsWithChildren) {
   );
 }
 
-function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
+function CustomTabBar({ state, navigation }: BottomTabBarProps) {
   const currentRouteName = state.routes[state.index].name;
+  const tabBarActiveTintColor = colors.primary[100];
+  const tabBarInactiveTintColor = '#7E8C86';
   const hideTabBarRouteNames: string[] = [
-    settingRouteNames.NAVIGATOR_NAME,
-    answerRouteNames.NAVIGATOR_NAME,
+    settingRouteNames.SETTING_NAVIGATOR_NAME,
+    answerRouteNames.ANSWER_NAVIGATOR_NAME,
   ];
 
   if (hideTabBarRouteNames.includes(currentRouteName)) {
@@ -171,31 +172,23 @@ function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
     <CustomTabBarWrapper>
       <View style={styles.container}>
         <View style={styles.tabContainer}>
-          {state.routes.map((route, index) => {
-            const { options } = descriptors[route.key];
-            const {
-              tabBarIcon,
-              tabBarActiveTintColor = colors.primary[100],
-              tabBarInactiveTintColor = '#7E8C86',
-            } = options;
-
-            if (tabBarIcon === undefined) {
-              return null;
+          <HomeTab
+            color={
+              currentRouteName === defaultRouteNames.HOME
+                ? tabBarActiveTintColor
+                : tabBarInactiveTintColor
             }
-
-            const focused = state.index === index;
-            const color = focused
-              ? tabBarActiveTintColor
-              : tabBarInactiveTintColor;
-
-            return (
-              <Pressable
-                key={route.key}
-                onPress={() => navigation.navigate(route.name)}>
-                {tabBarIcon({ focused: focused, color: color, size: 0 })}
-              </Pressable>
-            );
-          })}
+            navigation={navigation}
+          />
+          <MainTab navigation={navigation} />
+          <MyTab
+            color={
+              currentRouteName === defaultRouteNames.MY
+                ? tabBarActiveTintColor
+                : tabBarInactiveTintColor
+            }
+            navigation={navigation}
+          />
         </View>
       </View>
     </CustomTabBarWrapper>

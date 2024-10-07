@@ -14,6 +14,7 @@ import {
 import { authRouteNames, colors } from '@/constants';
 import { TextMedium, TextSemiBold } from '@/entities/fonts';
 import { AuthStackParams } from '@/navigations/stack/AuthStackNavigator';
+import useNavigationStore from '@/store/stores/navigationStore';
 import { signInWithGoogle } from '@/utils/oauth';
 
 type SignInScreenProps = NativeStackScreenProps<
@@ -26,8 +27,10 @@ type SignInScreenProps = NativeStackScreenProps<
 const { KakaoLoginModule, AppleLoginModule } = NativeModules;
 
 function SignInScreen({ navigation }: SignInScreenProps) {
+  const { navigate } = useNavigationStore();
+
   function handleSignIn() {
-    navigation.navigate(authRouteNames.JOIN1);
+    navigate(navigation, authRouteNames.JOIN1);
   }
   const handleKakaoSignIn = () => {
     KakaoLoginModule.signInWithKakao()

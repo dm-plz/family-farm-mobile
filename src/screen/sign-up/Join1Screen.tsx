@@ -7,6 +7,7 @@ import CustomInput from '@/entities/CustomInput';
 import { TextBold, TextRegular } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { AuthStackParams } from '@/navigations/stack/AuthStackNavigator';
+import useNavigationStore from '@/store/stores/navigationStore';
 
 type Join1ScreenProps = NativeStackScreenProps<
   AuthStackParams,
@@ -14,12 +15,14 @@ type Join1ScreenProps = NativeStackScreenProps<
 >;
 
 function Join1Screen({ navigation }: Join1ScreenProps) {
+  const { navigate, goBack } = useNavigationStore();
+
   return (
     <SafeScreenWithHeader
       safeAreaStyle={[styles.safeArea]}
       scrollViewStyle={[styles.scrollView]}
       left={{
-        onPress: () => navigation.goBack(),
+        onPress: () => goBack(navigation),
         icon: (
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}
@@ -57,7 +60,7 @@ function Join1Screen({ navigation }: Join1ScreenProps) {
         </View>
         <Pressable
           className="my-2 mb-2 mt-auto flex-row items-center justify-center rounded-xl bg-primary-100 px-9 py-[14]"
-          onPress={() => navigation.navigate(authRouteNames.JOIN2)}>
+          onPress={() => navigate(navigation, authRouteNames.JOIN2)}>
           <Image
             source={require('@/assets/img/icon-check-circle.png')}
             resizeMode="contain"

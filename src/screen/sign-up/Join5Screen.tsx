@@ -2,6 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
+import useAuth from '@/business/hooks/useAuth';
 import { colors, authRouteNames } from '@/constants';
 import {
   TextBold,
@@ -11,7 +12,6 @@ import {
 } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { AuthStackParams } from '@/navigations/stack/AuthStackNavigator';
-import { useAuthStore } from '@/store/stores';
 
 type Join2ScreenProps = NativeStackScreenProps<
   AuthStackParams,
@@ -19,7 +19,7 @@ type Join2ScreenProps = NativeStackScreenProps<
 >;
 
 function Join5Screen(_: Join2ScreenProps) {
-  const { setIsLogin } = useAuthStore();
+  const { signUpSuccess } = useAuth();
 
   return (
     <SafeScreenWithHeader
@@ -69,9 +69,7 @@ function Join5Screen(_: Join2ScreenProps) {
       </View>
       <Pressable
         className="mx-5 mb-2 mt-5 rounded-xl bg-gray-500 px-9 py-4"
-        onPress={() => {
-          setIsLogin(true);
-        }}>
+        onPress={signUpSuccess}>
         <TextBold className="text-center text-h4 text-white">홈으로</TextBold>
       </Pressable>
     </SafeScreenWithHeader>

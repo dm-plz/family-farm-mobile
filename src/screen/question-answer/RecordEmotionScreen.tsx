@@ -1,10 +1,12 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useLayoutEffect } from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { answerRouteNames, colors } from '@/constants';
 import { TextBold, TextRegular } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { AnswerStackNavigatorParams } from '@/navigations/stack/AnswerStackNavigator';
+import useNavigationStore from '@/store/stores/navigationStore';
 
 const EMOTIONS = [
   ['😊', '😆', '😘'],
@@ -18,12 +20,19 @@ type RecordEmotionScreenProps = NativeStackScreenProps<
 >;
 
 function RecordEmotionScreen({ navigation }: RecordEmotionScreenProps) {
+  const { navigate, goBack } = useNavigationStore();
+
+  useLayoutEffect(() => {
+    //NOTE: skip 하고싶은 경우 사용
+    // navigation.replace(answerRouteNames.DESCRIPTIVE_ANSWER);
+  }, [navigate, navigation]);
+
   return (
     <SafeScreenWithHeader
       safeAreaStyle={[styles.safeArea]}
       scrollViewStyle={[styles.scroll]}
       left={{
-        onPress: () => navigation.goBack(),
+        onPress: () => goBack(navigation),
         icon: (
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}
@@ -58,7 +67,7 @@ function RecordEmotionScreen({ navigation }: RecordEmotionScreenProps) {
         <Pressable
           className="flex-grow rounded-xl bg-primary-8 px-9 py-3.5"
           onPress={() =>
-            navigation.navigate(answerRouteNames.DESCRIPTIVE_ANSWER)
+            navigate(navigation, answerRouteNames.DESCRIPTIVE_ANSWER)
           }>
           <TextBold className="text-center text-h4 text-primary-100">
             안할래요
@@ -67,7 +76,7 @@ function RecordEmotionScreen({ navigation }: RecordEmotionScreenProps) {
         <Pressable
           className="flex-grow rounded-xl bg-primary-100 px-9 py-3.5"
           onPress={() =>
-            navigation.navigate(answerRouteNames.DESCRIPTIVE_ANSWER)
+            navigate(navigation, answerRouteNames.DESCRIPTIVE_ANSWER)
           }>
           <TextBold className="text-center text-h4 text-white">
             결정했어요

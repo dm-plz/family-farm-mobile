@@ -13,5 +13,6 @@ export default function RootNavigator() {
   if (errorType) {
     return <ErrorScreen type={400} />;
   }
+
   return <>{isLogin ? <DefaultTabNavigator /> : <AuthStackNavigator />}</>;
 }

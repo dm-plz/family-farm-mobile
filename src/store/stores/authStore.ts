@@ -7,7 +7,7 @@ type AuthStoreActions = {
 type AuthStore = AuthStoreState & AuthStoreActions;
 
 const useAuthStore = create<AuthStore>(set => ({
-  isLogin: true,
+  isLogin: false,
   setIsLogin: isLogin => set(() => ({ isLogin })),
 }));
 

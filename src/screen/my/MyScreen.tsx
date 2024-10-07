@@ -7,9 +7,10 @@ import GradientBackground from '@/entities/background/GradientBackground';
 import { TextRegular, TextSemiBold } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { DefaultTabNavigation } from '@/navigations/DefaultTabNavigator';
+import useNavigationStore from '@/store/stores/navigationStore';
 
 type DestinationOfOtherNavigator = {
-  [settingRouteNames.NAVIGATOR_NAME]: undefined;
+  [settingRouteNames.SETTING_NAVIGATOR_NAME]: undefined;
 };
 
 type MymyScreenProps = BottomTabScreenProps<
@@ -39,6 +40,8 @@ export default function MyScreen({ navigation }: MymyScreenProps) {
     },
   ];
 
+  const { navigate } = useNavigationStore();
+
   return (
     <GradientBackground>
       <SafeScreenWithHeader
@@ -46,7 +49,8 @@ export default function MyScreen({ navigation }: MymyScreenProps) {
         scrollViewStyle={styles.screen}
         title="가은's family"
         right={{
-          onPress: () => navigation.navigate(settingRouteNames.NAVIGATOR_NAME),
+          onPress: () =>
+            navigate(navigation, settingRouteNames.SETTING_NAVIGATOR_NAME),
           icon: (
             <Image
               source={require('@/assets/img/icon-setting.png')}

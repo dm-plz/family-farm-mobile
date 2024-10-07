@@ -11,6 +11,7 @@ import {
 } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { DefaultTabNavigation } from '@/navigations/DefaultTabNavigator';
+import useNavigationStore from '@/store/stores/navigationStore';
 
 type QuestionListScreenProps = BottomTabScreenProps<
   DefaultTabNavigation,
@@ -18,12 +19,14 @@ type QuestionListScreenProps = BottomTabScreenProps<
 >;
 
 const QuestionListScreen = ({ navigation }: QuestionListScreenProps) => {
+  const { navigate } = useNavigationStore();
+
   return (
     <SafeScreenWithHeader
       safeAreaStyle={styles.safeArea}
       scrollViewStyle={styles.scroll}
       right={{
-        onPress: () => navigation.navigate(defaultRouteNames.ALARM),
+        onPress: () => navigate(navigation, defaultRouteNames.ALARM),
         icon: (
           <Image
             source={require('@/assets/img/icon-bell.png')}

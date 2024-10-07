@@ -1,14 +1,24 @@
+import { useEffect } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
+import { undefinedRouteNames } from '@/constants';
 import { ERROR_TYPES, ErrorTypes } from '@/constants/error';
 import { TextBold, TextLight } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
+import useNavigationStore from '@/store/stores/navigationStore';
 
 type ErrorProps = { type: ErrorTypes };
 
 function ErrorScreen({ type }: ErrorProps) {
   const { title, imageComponent, description1, description2 } =
     ERROR_TYPES[type];
+
+  const { moveWithFlush } = useNavigationStore();
+
+  useEffect(() => {
+    moveWithFlush(undefinedRouteNames.ERROR);
+  }, [moveWithFlush]);
+
   return (
     <SafeScreenWithHeader
       safeAreaStyle={styles.safeArea}

@@ -6,6 +6,7 @@ import CustomInput from '@/entities/CustomInput';
 import { TextBold, TextRegular } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { AnswerStackNavigatorParams } from '@/navigations/stack/AnswerStackNavigator';
+import useNavigationStore from '@/store/stores/navigationStore';
 
 type DestinationOfOtherNavigator = {
   [defaultRouteNames.FAMILY_ANSWER]: undefined;
@@ -33,12 +34,14 @@ type DescriptiveAnswerScreenProps = NativeStackScreenProps<
   질문에서 요구하는 답변 형식이 image 일 경우 "AnswerWithImage" 로 이동
  */
 function DescriptiveAnswerScreen({ navigation }: DescriptiveAnswerScreenProps) {
+  const { navigate, goBack } = useNavigationStore();
+
   return (
     <SafeScreenWithHeader
       safeAreaStyle={[styles.safeArea]}
       scrollViewStyle={[styles.scroll]}
       left={{
-        onPress: () => navigation.goBack(),
+        onPress: () => goBack(navigation),
         icon: (
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}
@@ -76,7 +79,10 @@ function DescriptiveAnswerScreen({ navigation }: DescriptiveAnswerScreenProps) {
       <View className="mb-2 mt-auto justify-center px-5">
         <Pressable
           className={`flex-grow rounded-xl bg-gray-200 px-9 py-3.5 ${'bg-primary-100'}`}
-          onPress={() => navigation.navigate(defaultRouteNames.FAMILY_ANSWER)}>
+          onPress={() => {
+            navigate(navigation, answerRouteNames.RECORD_EMOTION);
+            navigate(navigation, defaultRouteNames.FAMILY_ANSWER);
+          }}>
           <TextBold className="text-center text-h4 text-white">
             저장하기
           </TextBold>
