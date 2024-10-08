@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { authRouteNames, colors } from '@/constants';
-import SelectableText from '@/entities/common/SelectableText';
 import { TextBold, TextRegular } from '@/entities/fonts';
 import RoleSelector from '@/entities/RoleSelector';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
@@ -17,7 +16,6 @@ type Join3ScreenProps = NativeStackScreenProps<
 
 function Join3Screen({ navigation }: Join3ScreenProps) {
   const [selectedRole, setSelectedRole] = useState<string>('아빠');
-  const [isFirstInFamily, setIsFirstInFamily] = useState<boolean>(false);
 
   const { navigate, goBack } = useNavigationStore();
 
@@ -50,14 +48,8 @@ function Join3Screen({ navigation }: Join3ScreenProps) {
           selectedRole={selectedRole}
           setSelectedRole={setSelectedRole}
         />
-        <SelectableText
-          className="mt-auto p-3"
-          text="제가 가족 중 처음이에요"
-          isSelected={isFirstInFamily}
-          onPress={() => setIsFirstInFamily(!isFirstInFamily)}
-        />
         <Pressable
-          className="my-2 flex-row items-center justify-center rounded-xl bg-primary-100 px-9 py-3"
+          className="mb-2 mt-auto flex-row items-center justify-center rounded-xl bg-primary-100 px-9 py-3"
           onPress={() => navigate(navigation, authRouteNames.JOIN4)}>
           <TextBold className="text-h4 text-white">입력 완료</TextBold>
         </Pressable>
