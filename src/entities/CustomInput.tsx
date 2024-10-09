@@ -4,6 +4,7 @@ import { DEFAULT_FONT_REGULAR } from '@/constants/font';
 import { TextRegular } from '@/entities/fonts';
 
 export interface CustomInputProps {
+  disable?: boolean;
   error?: boolean;
   errorMessage?: string;
   success?: boolean;
@@ -12,15 +13,15 @@ export interface CustomInputProps {
 }
 
 function deriveTwClassByStatus({
-  editable,
+  disable: disable,
   error,
   success,
 }: {
-  editable?: boolean;
+  disable?: boolean;
   error?: boolean;
   success?: boolean;
 }) {
-  if (editable === false) {
+  if (disable === false) {
     return 'bg-gray-100';
   }
 
@@ -36,7 +37,7 @@ function deriveTwClassByStatus({
 }
 
 export default function CustomInput({
-  editable,
+  disable,
   error,
   errorMessage,
   success,
@@ -51,19 +52,19 @@ export default function CustomInput({
   }
 
   return (
-    <View className={className} style={[style]} {...props}>
+    <View className={className} style={[style]}>
       <TextInput
-        className={`h-[52] rounded-xl border border-gray-100 px-5 py-4 ${deriveTwClassByStatus({ editable, error, success })} `}
-        editable={editable !== false}
+        className={`h-[52] rounded-xl border border-gray-100 px-5 py-4 ${deriveTwClassByStatus({ disable, error, success })} `}
         style={[{ fontFamily: DEFAULT_FONT_REGULAR }]}
         placeholder={placeholder}
+        {...props}
       />
-      {error && errorMessage && (
+      {!disable && error && errorMessage && (
         <TextRegular className="mt-3 text-body3 leading-3 text-error">
           {errorMessage}
         </TextRegular>
       )}
-      {success && successMessage && (
+      {!disable && success && successMessage && (
         <TextRegular className="mt-3 text-body3 leading-3 text-success">
           {successMessage}
         </TextRegular>
