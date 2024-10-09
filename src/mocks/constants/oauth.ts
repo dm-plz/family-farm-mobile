@@ -1,9 +1,3 @@
-import { OAuthAgent } from '@/types';
+import { AuthAgent } from '@/types';
 
-export const oauthAgents: OAuthAgent[] = [
-  'NATIVE',
-  'GOOGLE',
-  'NAVER',
-  'KAKAO',
-  'APPLE',
-];
+export const oauthAgents: AuthAgent[] = ['apple', 'google', 'kakao'];
