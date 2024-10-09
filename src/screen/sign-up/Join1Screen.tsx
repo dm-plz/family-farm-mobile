@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { authRouteNames, colors } from '@/constants';
@@ -8,6 +8,7 @@ import { TextBold, TextRegular } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { AuthStackParams } from '@/navigations/stack/AuthStackNavigator';
 import useNavigationStore from '@/store/stores/navigationStore';
+import useSignupStore from '@/store/stores/signupStore';
 
 type Join1ScreenProps = NativeStackScreenProps<
   AuthStackParams,
@@ -16,6 +17,16 @@ type Join1ScreenProps = NativeStackScreenProps<
 
 function Join1Screen({ navigation }: Join1ScreenProps) {
   const { navigate, goBack } = useNavigationStore();
+  const { setInviteCode, inviteCode } = useSignupStore();
+
+  //TODO: inviteCode가 null이 아닌 경우 코드가 존재하는지 확인해야 함
+  function handleJoin1(inputCode: string | null) {
+    setInviteCode(inputCode);
+    navigate(navigation, authRouteNames.JOIN2);
+  }
+
+  const [code, setCode] = useState(inviteCode ?? '');
+  const isCompleteCode = code.length === 8;
 
   return (
     <SafeScreenWithHeader
@@ -51,8 +62,14 @@ function Join1Screen({ navigation }: Join1ScreenProps) {
             error={false}
             placeholder="초대 코드 8자리를 입력해 주세요"
             errorMessage="코드가 조회되지 않습니다. 다시 확인해 주세요."
+            value={code}
+            onChangeText={setCode}
+            maxLength={8}
           />
-          <Pressable className="mt-5 rounded-xl bg-gray-300 px-9 py-3">
+          <Pressable
+            className={`mt-5 rounded-xl px-9 py-3 ${isCompleteCode ? 'bg-primary-100' : 'bg-gray-300'}`}
+            disabled={!isCompleteCode}
+            onPress={() => handleJoin1(code)}>
             <TextBold className="text-center text-h4 text-white">
               입력 완료
             </TextBold>
@@ -60,7 +77,7 @@ function Join1Screen({ navigation }: Join1ScreenProps) {
         </View>
         <Pressable
           className="my-2 mb-2 mt-auto flex-row items-center justify-center rounded-xl bg-primary-100 px-9 py-[14]"
-          onPress={() => navigate(navigation, authRouteNames.JOIN2)}>
+          onPress={() => handleJoin1(null)}>
           <Image
             source={require('@/assets/img/icon-check-circle.png')}
             resizeMode="contain"

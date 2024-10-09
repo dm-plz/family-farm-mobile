@@ -14,6 +14,7 @@ import { authRouteNames, colors } from '@/constants';
 import { TextMedium, TextSemiBold } from '@/entities/fonts';
 import { AuthStackParams } from '@/navigations/stack/AuthStackNavigator';
 import useNavigationStore from '@/store/stores/navigationStore';
+import useSignupStore from '@/store/stores/signupStore';
 import { AuthAgent } from '@/types';
 import { isIOS } from '@/utils/platform';
 
@@ -24,11 +25,13 @@ type SignInScreenProps = NativeStackScreenProps<
 
 function SignInScreen({ navigation }: SignInScreenProps) {
   const { navigate } = useNavigationStore();
+  const { setOAuthProvider } = useSignupStore();
 
   function handleSignIn(agent: AuthAgent) {
-    authorizeWithAgent(agent).then(() =>
-      navigate(navigation, authRouteNames.JOIN1),
-    );
+    authorizeWithAgent(agent).then(() => {
+      setOAuthProvider(agent);
+      navigate(navigation, authRouteNames.JOIN1);
+    });
   }
 
   return (

@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { authRouteNames, colors } from '@/constants';
@@ -8,6 +8,7 @@ import { TextBold, TextRegular } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { AuthStackParams } from '@/navigations/stack/AuthStackNavigator';
 import useNavigationStore from '@/store/stores/navigationStore';
+import useSignupStore from '@/store/stores/signupStore';
 
 type Join2ScreenProps = NativeStackScreenProps<
   AuthStackParams,
@@ -16,6 +17,16 @@ type Join2ScreenProps = NativeStackScreenProps<
 
 function Join2Screen({ navigation }: Join2ScreenProps) {
   const { navigate, goBack } = useNavigationStore();
+  const { setNickName, nickName } = useSignupStore();
+
+  //TODO: 닉네임 중복 여부 확인 로직 들어가야 함
+  function handleJoin2(inputName: string) {
+    setNickName(inputName);
+    navigate(navigation, authRouteNames.JOIN3);
+  }
+
+  const [name, setName] = useState(nickName ?? '');
+
   return (
     <SafeScreenWithHeader
       safeAreaStyle={[styles.safeArea]}
@@ -50,11 +61,13 @@ function Join2Screen({ navigation }: Join2ScreenProps) {
             errorMessage="중복된 이름 또는 닉네임 입니다."
             success={false}
             successMessage="사용 가능한 이름 또는 닉네임 입니다."
+            value={name}
+            onChangeText={setName}
           />
         </View>
         <Pressable
           className="my-2 mt-auto flex-row items-center justify-center rounded-xl bg-primary-100 px-9 py-3"
-          onPress={() => navigate(navigation, authRouteNames.JOIN3)}>
+          onPress={() => handleJoin2(name)}>
           <TextBold className="text-h4 text-white">입력 완료</TextBold>
         </Pressable>
       </View>

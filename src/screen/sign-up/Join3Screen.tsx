@@ -8,6 +8,8 @@ import RoleSelector from '@/entities/RoleSelector';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { AuthStackParams } from '@/navigations/stack/AuthStackNavigator';
 import useNavigationStore from '@/store/stores/navigationStore';
+import useSignupStore from '@/store/stores/signupStore';
+import { FamilyRole } from '@/types';
 
 type Join3ScreenProps = NativeStackScreenProps<
   AuthStackParams,
@@ -15,9 +17,17 @@ type Join3ScreenProps = NativeStackScreenProps<
 >;
 
 function Join3Screen({ navigation }: Join3ScreenProps) {
-  const [selectedRole, setSelectedRole] = useState<string>('아빠');
-
   const { navigate, goBack } = useNavigationStore();
+  const { setFamilyRole, familyRole } = useSignupStore();
+
+  const [selectedRole, setSelectedRole] = useState<FamilyRole | undefined>(
+    familyRole,
+  );
+
+  function handleJoin3(inputRole: FamilyRole) {
+    setFamilyRole(inputRole);
+    navigate(navigation, authRouteNames.JOIN4);
+  }
 
   return (
     <SafeScreenWithHeader
@@ -49,8 +59,9 @@ function Join3Screen({ navigation }: Join3ScreenProps) {
           setSelectedRole={setSelectedRole}
         />
         <Pressable
-          className="mb-2 mt-auto flex-row items-center justify-center rounded-xl bg-primary-100 px-9 py-3"
-          onPress={() => navigate(navigation, authRouteNames.JOIN4)}>
+          className={`mb-2 mt-auto flex-row items-center justify-center rounded-xl px-9 py-3 ${selectedRole ? 'bg-primary-100' : 'bg-gray-300'}`}
+          disabled={!selectedRole}
+          onPress={() => selectedRole && handleJoin3(selectedRole)}>
           <TextBold className="text-h4 text-white">입력 완료</TextBold>
         </Pressable>
       </View>
