@@ -3,63 +3,33 @@ import React from 'react';
 import {
   Image,
   ImageBackground,
-  NativeModules,
-  Platform,
   Pressable,
   SafeAreaView,
   StyleSheet,
   View,
 } from 'react-native';
 
+import { authorizeWithAgent } from '@/business/services/authorizeService';
 import { authRouteNames, colors } from '@/constants';
 import { TextMedium, TextSemiBold } from '@/entities/fonts';
 import { AuthStackParams } from '@/navigations/stack/AuthStackNavigator';
 import useNavigationStore from '@/store/stores/navigationStore';
-import { signInWithGoogle } from '@/utils/oauth';
+import { AuthAgent } from '@/types';
+import { isIOS } from '@/utils/platform';
 
 type SignInScreenProps = NativeStackScreenProps<
   AuthStackParams,
   typeof authRouteNames.SIGN_IN
 >;
 
-//XXX: 배포까지 완료된 후에 Firestore를 통한 구글 로그인 방식 제거해야 함
-//TODO: ios, android kakao sign in 에러 처리를 동일하게 할 수 있도록 수정 필요
-const { KakaoLoginModule, AppleLoginModule } = NativeModules;
-
 function SignInScreen({ navigation }: SignInScreenProps) {
   const { navigate } = useNavigationStore();
 
-  function handleSignIn() {
-    navigate(navigation, authRouteNames.JOIN1);
+  function handleSignIn(agent: AuthAgent) {
+    authorizeWithAgent(agent).then(() =>
+      navigate(navigation, authRouteNames.JOIN1),
+    );
   }
-  const handleKakaoSignIn = () => {
-    KakaoLoginModule.signInWithKakao()
-      .then((token: any) => {
-        console.log(token);
-      })
-      .catch((error: Error) => {
-        console.log(error);
-      });
-  };
-
-  const handleGoogleSignIn = async () => {
-    try {
-      const { idToken } = await signInWithGoogle();
-      console.log(idToken ?? 'idToken is null');
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleAppleSignIn = async () => {
-    try {
-      const { idToken }: { idToken: string } =
-        await AppleLoginModule.loginWithApple();
-      console.log('Apple Login Success:', idToken);
-    } catch (error) {
-      console.error('Apple Login Failed:', error);
-    }
-  };
 
   return (
     <ImageBackground
@@ -79,7 +49,7 @@ function SignInScreen({ navigation }: SignInScreenProps) {
           <View className="my-4">
             <Pressable
               className="flex h-11 flex-row items-center rounded-lg bg-white px-4"
-              onPress={() => handleSignIn()}>
+              onPress={() => handleSignIn('google')}>
               <Image
                 source={require('@/assets/img/google-logo.png')}
                 className="h-5 w-5"
@@ -91,7 +61,7 @@ function SignInScreen({ navigation }: SignInScreenProps) {
             <Pressable
               className="my-3 flex h-11 flex-row items-center rounded-lg px-4"
               style={[styles.kakaoLoginButton]}
-              onPress={() => handleSignIn()}>
+              onPress={() => handleSignIn('kakao')}>
               <Image
                 source={require('@/assets/img/kakao-logo.png')}
                 className="h-5 w-5"
@@ -100,10 +70,10 @@ function SignInScreen({ navigation }: SignInScreenProps) {
                 Kakao 계정으로 로그인
               </TextSemiBold>
             </Pressable>
-            {Platform.OS === 'ios' && (
+            {isIOS() && (
               <Pressable
                 className="flex h-11 flex-row items-center rounded-lg px-4"
-                onPress={() => handleSignIn()}
+                onPress={() => handleSignIn('apple')}
                 style={[styles.appleLoginButton]}>
                 <Image
                   source={require('@/assets/img/apple-logo.png')}

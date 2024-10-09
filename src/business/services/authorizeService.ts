@@ -14,6 +14,7 @@ const authorizeAgents: Record<AuthAgent, () => Promise<AuthToken>> = {
   kakao: authorizeWithKakao,
 };
 
+//FIXME: 에러 처리를 어떻게 할 지 고민이 필요 함
 export async function authorizeWithAgent(agent: AuthAgent) {
   return await authorizeAgents[agent]();
 }
