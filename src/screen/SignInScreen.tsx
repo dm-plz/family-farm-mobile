@@ -1,4 +1,3 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import {
   Image,
@@ -9,30 +8,13 @@ import {
   View,
 } from 'react-native';
 
-import { authorizeWithAgent } from '@/business/services/authorizeService';
-import { authRouteNames, colors } from '@/constants';
+import useAuth from '@/business/hooks/useAuth';
+import { colors } from '@/constants';
 import { TextMedium, TextSemiBold } from '@/entities/fonts';
-import { AuthStackParams } from '@/navigations/stack/AuthStackNavigator';
-import useNavigationStore from '@/store/stores/navigationStore';
-import useSignupStore from '@/store/stores/signupStore';
-import { AuthAgent } from '@/types';
 import { isIOS } from '@/utils/platform';
 
-type SignInScreenProps = NativeStackScreenProps<
-  AuthStackParams,
-  typeof authRouteNames.SIGN_IN
->;
-
-function SignInScreen({ navigation }: SignInScreenProps) {
-  const { navigate } = useNavigationStore();
-  const { setOAuthProvider } = useSignupStore();
-
-  function handleSignIn(agent: AuthAgent) {
-    authorizeWithAgent(agent).then(() => {
-      setOAuthProvider(agent);
-      navigate(navigation, authRouteNames.JOIN1);
-    });
-  }
+function SignInScreen() {
+  const { authorize } = useAuth();
 
   return (
     <ImageBackground
@@ -52,7 +34,7 @@ function SignInScreen({ navigation }: SignInScreenProps) {
           <View className="my-4">
             <Pressable
               className="flex h-11 flex-row items-center rounded-lg bg-white px-4"
-              onPress={() => handleSignIn('google')}>
+              onPress={() => authorize('google')}>
               <Image
                 source={require('@/assets/img/google-logo.png')}
                 className="h-5 w-5"
@@ -64,7 +46,7 @@ function SignInScreen({ navigation }: SignInScreenProps) {
             <Pressable
               className="my-3 flex h-11 flex-row items-center rounded-lg px-4"
               style={[styles.kakaoLoginButton]}
-              onPress={() => handleSignIn('kakao')}>
+              onPress={() => authorize('kakao')}>
               <Image
                 source={require('@/assets/img/kakao-logo.png')}
                 className="h-5 w-5"
@@ -76,7 +58,7 @@ function SignInScreen({ navigation }: SignInScreenProps) {
             {isIOS() && (
               <Pressable
                 className="flex h-11 flex-row items-center rounded-lg px-4"
-                onPress={() => handleSignIn('apple')}
+                onPress={() => authorize('apple')}
                 style={[styles.appleLoginButton]}>
                 <Image
                   source={require('@/assets/img/apple-logo.png')}
