@@ -5,14 +5,15 @@ import { type RouteName } from '@/constants';
 export const navigationRef =
   createNavigationContainerRef<Record<RouteName, undefined>>();
 
-export function navigate(name: RouteName) {
-  if (
-    navigationRef.isReady() ||
-    !navigationRef.getState().routeNames.some(v => v === name)
-  ) {
-    return false;
+export function navigate(routeName: RouteName) {
+  if (!navigationRef.isReady()) {
+    throw new Error('Can not find connected navigation container.');
   }
 
-  navigationRef.navigate(name);
-  return true;
+  const { routes } = navigationRef.getState();
+  if (routes.find(route => route.name === routeName)) {
+    throw new Error('Tried to navigate to an unavailable route.');
+  }
+
+  navigationRef.navigate(routeName);
 }
