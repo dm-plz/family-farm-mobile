@@ -6,6 +6,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import SplashScreen from 'react-native-splash-screen';
 
 import queryClient from '@/api/queryClient';
+import { navigationRef } from '@/business/services/navigation';
 import ConfirmModal from '@/entities/ConfirmModal';
 import { initMSW } from '@/mocks/init';
 import RootNavigator from '@/navigations/RootNavigator';
@@ -81,7 +82,7 @@ export default function App() {
   return (
     <GestureHandlerRootView>
       <QueryClientProvider client={queryClient}>
-        <NavigationContainer>
+        <NavigationContainer ref={navigationRef}>
           <RootNavigator />
         </NavigationContainer>
         <ConfirmModal />
