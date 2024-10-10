@@ -1,38 +1,44 @@
 import { create } from 'zustand';
 
-import { BirthType, FamilyRole } from '@/types';
+import type { AuthAgent, BirthType, FamilyRole } from '@/types';
 
 type SignupState = Partial<{
+  agent: AuthAgent;
   inviteCode: string | null;
   nickName: string;
+  familyRole: FamilyRole;
   birthday: Date;
   birthType: BirthType;
-  familyRole: FamilyRole;
 }>;
 type SignupActions = {
+  setAuthAgent: (agent: AuthAgent) => void;
   setInviteCode: (inviteCode: string | null) => void;
   setNickName: (nickName: string) => void;
-  setBirthday: (birthday: Date, birthType: BirthType) => void;
   setFamilyRole: (familyRole: FamilyRole) => void;
+  setBirthday: (birthday: Date) => void;
+  setBirthType: (birthType: BirthType) => void;
   removeAllState: () => void;
 };
 type Signup = SignupState & SignupActions;
 
 const initSignupState = {
-  nickName: undefined,
+  agent: undefined,
   inviteCode: undefined,
+  nickName: undefined,
+  familyRole: undefined,
   birthday: undefined,
   birthType: undefined,
-  familyRole: undefined,
 };
 
 const useSignupStore = create<Signup>(set => ({
   ...initSignupState,
-  removeAllState: () => set(initSignupState),
+  setAuthAgent: agent => set({ agent }),
   setInviteCode: inviteCode => set({ inviteCode }),
   setNickName: nickName => set({ nickName }),
   setFamilyRole: familyRole => set({ familyRole }),
-  setBirthday: (birthday, birthType) => set({ birthday, birthType }),
+  setBirthday: birthday => set({ birthday }),
+  setBirthType: birthType => set({ birthType }),
+  removeAllState: () => set(initSignupState),
 }));
 
 export default useSignupStore;
