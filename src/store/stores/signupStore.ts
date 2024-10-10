@@ -3,18 +3,18 @@ import { create } from 'zustand';
 import { BirthType, FamilyRole } from '@/types';
 
 type SignupState = Partial<{
-  nickName: string;
   inviteCode: string | null;
+  nickName: string;
   birthday: Date;
   birthType: BirthType;
   familyRole: FamilyRole;
 }>;
 type SignupActions = {
-  removeAllState: () => void;
-  setNickName: (nickName: string) => void;
   setInviteCode: (inviteCode: string | null) => void;
+  setNickName: (nickName: string) => void;
   setBirthday: (birthday: Date, birthType: BirthType) => void;
   setFamilyRole: (familyRole: FamilyRole) => void;
+  removeAllState: () => void;
 };
 type Signup = SignupState & SignupActions;
 
