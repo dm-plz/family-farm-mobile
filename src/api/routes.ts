@@ -4,6 +4,7 @@ export const authApis = {
   signUp: 'auth/oauth/sign-up',
   reIssueToken: 'auth/toekn/reissuance',
   validateInviteCode: 'auth/validate/invite-code',
+  validateNickName: 'auth/validate/nick-name',
   reRegistrationAlertToken: 'auth/alert-token/re-registration',
 };
 

@@ -59,6 +59,19 @@ async function validateInviteCode(query: QueryValidateInviteCode) {
   return await kyInstance.get(apiUrl).json<ResponseValidateInviteCode>();
 }
 
+type QueryValidateNickName = {
+  nickName: string;
+};
+
+type ResponseValidateNickName = {
+  isValidate: boolean;
+};
+
+async function validateNickName(query: QueryValidateNickName) {
+  const apiUrl = createUrl(authApis.validateNickName, { query });
+  return await kyInstance.get(apiUrl).json<ResponseValidateNickName>();
+}
+
 type BodyReRegistrationAlertToken = {
   userId: number;
 } & AlertToken;
@@ -74,6 +87,7 @@ export {
   getSignOut,
   reIssueToken,
   validateInviteCode,
+  validateNickName,
   reRegistrationAlertToken,
 };
 export type {
@@ -82,5 +96,7 @@ export type {
   BodySignIn,
   QueryValidateInviteCode,
   ResponseValidateInviteCode,
+  QueryValidateNickName,
+  ResponseValidateNickName,
   BodyReRegistrationAlertToken,
 };
