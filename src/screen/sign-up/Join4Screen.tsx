@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
+import React from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { colors, authRouteNames } from '@/constants';
@@ -7,6 +7,7 @@ import { DatePicker, SelectableText } from '@/entities/common';
 import { TextBold, TextRegular, TextSemiBold } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { AuthStackParams } from '@/navigations/stack/AuthStackNavigator';
+import { useSignUp } from '@/store/queries/useAuthQuery';
 import useNavigationStore from '@/store/stores/navigationStore';
 import useSignupStore from '@/store/stores/signupStore';
 
@@ -16,17 +17,9 @@ type Join2ScreenProps = NativeStackScreenProps<
 >;
 
 function Join4Screen({ navigation }: Join2ScreenProps) {
-  const { navigate, goBack } = useNavigationStore();
-  const { setBirthday, birthday } = useSignupStore();
-
-  const [isLuna, setIsLuna] = useState(false);
-  const [date, setDate] = useState<Date | undefined>(birthday);
-
-  //TODO: 알림을 위한 token 등록을 위한 과정이 누락 됨
-  function handleJoin4(inputDay: Date, inputBirthType: boolean) {
-    setBirthday(inputDay, inputBirthType ? 'SOLAR' : 'LUNA');
-    navigate(navigation, authRouteNames.JOIN5);
-  }
+  const { goBack } = useNavigationStore();
+  const { birthday, birthType, setBirthday, setBirthType } = useSignupStore();
+  const { mutate } = useSignUp();
 
   return (
     <SafeScreenWithHeader
@@ -56,18 +49,21 @@ function Join4Screen({ navigation }: Join2ScreenProps) {
             생년월일
           </TextSemiBold>
           <View className="flex-row items-start pt-3">
-            <DatePicker date={date} onChange={setDate} />
+            <DatePicker date={birthday} onChange={setBirthday} />
             <SelectableText
               className="ml-3 pt-4"
               text="음력"
-              isSelected={isLuna}
-              onPress={() => setIsLuna(!isLuna)}
+              isSelected={birthType === 'LUNA'}
+              onPress={() =>
+                setBirthType(birthType === 'SOLAR' ? 'LUNA' : 'SOLAR')
+              }
             />
           </View>
         </View>
         <Pressable
-          className={`my-2 mt-auto flex-row items-center justify-center rounded-xl px-9 py-3 ${date ? 'bg-primary-100' : 'bg-gray-300'}`}
-          onPress={() => date && handleJoin4(date, !isLuna)}>
+          className={`my-2 mt-auto flex-row items-center justify-center rounded-xl px-9 py-3 ${birthday ? 'bg-primary-100' : 'bg-gray-300'}`}
+          disabled={!!birthday}
+          onPress={() => mutate()}>
           <TextBold className="text-h4 text-white">입력 완료</TextBold>
         </Pressable>
       </View>

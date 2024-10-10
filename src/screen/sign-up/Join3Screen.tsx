@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
+import React from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { authRouteNames, colors } from '@/constants';
@@ -9,7 +9,6 @@ import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { AuthStackParams } from '@/navigations/stack/AuthStackNavigator';
 import useNavigationStore from '@/store/stores/navigationStore';
 import useSignupStore from '@/store/stores/signupStore';
-import { FamilyRole } from '@/types';
 
 type Join3ScreenProps = NativeStackScreenProps<
   AuthStackParams,
@@ -20,12 +19,7 @@ function Join3Screen({ navigation }: Join3ScreenProps) {
   const { navigate, goBack } = useNavigationStore();
   const { setFamilyRole, familyRole } = useSignupStore();
 
-  const [selectedRole, setSelectedRole] = useState<FamilyRole | undefined>(
-    familyRole,
-  );
-
-  function handleJoin3(inputRole: FamilyRole) {
-    setFamilyRole(inputRole);
+  function handleJoin3() {
     navigate(navigation, authRouteNames.JOIN4);
   }
 
@@ -55,13 +49,13 @@ function Join3Screen({ navigation }: Join3ScreenProps) {
         <RoleSelector
           className="mt-10"
           roles={['아빠', '엄마', '딸', '아들']}
-          selectedRole={selectedRole}
-          setSelectedRole={setSelectedRole}
+          selectedRole={familyRole}
+          setSelectedRole={setFamilyRole}
         />
         <Pressable
-          className={`mb-2 mt-auto flex-row items-center justify-center rounded-xl px-9 py-3 ${selectedRole ? 'bg-primary-100' : 'bg-gray-300'}`}
-          disabled={!selectedRole}
-          onPress={() => selectedRole && handleJoin3(selectedRole)}>
+          className={`mb-2 mt-auto flex-row items-center justify-center rounded-xl px-9 py-3 ${familyRole ? 'bg-primary-100' : 'bg-gray-300'}`}
+          disabled={!familyRole}
+          onPress={() => handleJoin3()}>
           <TextBold className="text-h4 text-white">입력 완료</TextBold>
         </Pressable>
       </View>

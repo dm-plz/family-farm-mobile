@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
+import React from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { authRouteNames, colors } from '@/constants';
@@ -20,12 +20,9 @@ function Join2Screen({ navigation }: Join2ScreenProps) {
   const { navigate, goBack } = useNavigationStore();
   const { setNickName, nickName } = useSignupStore();
 
-  const [_nickName, _setNickName] = useState(nickName ?? '');
-
-  const isValidate = useValidateNickName(_nickName).data?.isValidate;
+  const isValidate = useValidateNickName(nickName).data?.isValidate;
 
   function handleJoin2() {
-    setNickName(_nickName);
     navigate(navigation, authRouteNames.JOIN3);
   }
 
@@ -63,8 +60,8 @@ function Join2Screen({ navigation }: Join2ScreenProps) {
             errorMessage="중복된 이름 또는 닉네임 입니다."
             success={isValidate}
             successMessage="사용 가능한 이름 또는 닉네임 입니다."
-            value={_nickName}
-            onChangeText={_setNickName}
+            value={nickName}
+            onChangeText={setNickName}
           />
         </View>
         <Pressable

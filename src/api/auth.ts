@@ -6,12 +6,12 @@ import { AlertToken, BirthType, FamilyRole, AuthAgent } from '@/types';
 import { createUrl } from '@/utils/url';
 
 type BodySignUp = {
-  nickName: string;
   inviteCode: null | string;
-  oAuthProvider: AuthAgent;
+  nickName: string;
+  familyRole: FamilyRole;
   birthday: Date;
   birthType: BirthType;
-  familyRole: FamilyRole;
+  oAuthProvider: AuthAgent;
   registerAlertToken: AlertToken;
 };
 
