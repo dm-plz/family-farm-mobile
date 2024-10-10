@@ -55,7 +55,7 @@ type ResponseValidateInviteCode = {
 };
 
 async function validateInviteCode(query: QueryValidateInviteCode) {
-  const apiUrl = createUrl(authApis.validateFamilyCode, { query });
+  const apiUrl = createUrl(authApis.validateInviteCode, { query });
   return await kyInstance.get(apiUrl).json<ResponseValidateInviteCode>();
 }
 

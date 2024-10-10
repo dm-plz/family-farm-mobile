@@ -3,7 +3,7 @@ export const authApis = {
   signOut: 'auth/oauth/sign-out/:userId',
   signUp: 'auth/oauth/sign-up',
   reIssueToken: 'auth/toekn/reissuance',
-  validateFamilyCode: 'auth/validate/family-code',
+  validateInviteCode: 'auth/validate/invite-code',
   reRegistrationAlertToken: 'auth/alert-token/re-registration',
 };
 
