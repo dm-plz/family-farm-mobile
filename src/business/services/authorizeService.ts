@@ -6,9 +6,9 @@ import { AuthAgent } from '@/types';
 
 const { KakaoLoginModule, AppleLoginModule } = NativeModules;
 
-export type AuthToken = string;
+export type AuthAgentToken = string;
 
-const authorizeAgents: Record<AuthAgent, () => Promise<AuthToken>> = {
+const authorizeAgents: Record<AuthAgent, () => Promise<AuthAgentToken>> = {
   apple: authorizeWithApple,
   google: authorizeWithGoogle,
   kakao: authorizeWithKakao,
@@ -21,7 +21,7 @@ export async function authorizeWithAgent(agent: AuthAgent) {
 
 type AppleAuthPayload = { idToken: string };
 
-async function authorizeWithApple(): Promise<AuthToken> {
+async function authorizeWithApple(): Promise<AuthAgentToken> {
   const { idToken } =
     (await AppleLoginModule.loginWithApple()) as AppleAuthPayload;
   return idToken;
@@ -29,13 +29,13 @@ async function authorizeWithApple(): Promise<AuthToken> {
 
 type GoogleAuthPayload = { idToken: string };
 
-async function authorizeWithGoogle(): Promise<AuthToken> {
+async function authorizeWithGoogle(): Promise<AuthAgentToken> {
   const { idToken } = (await authorize(
     SIGN_IN_WITH_GOOGLE_CONFIG,
   )) as GoogleAuthPayload;
   return idToken;
 }
 
-async function authorizeWithKakao(): Promise<AuthToken> {
+async function authorizeWithKakao(): Promise<AuthAgentToken> {
   return await KakaoLoginModule.signInWithKakao();
 }
