@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import RNDatePicker from 'react-native-date-picker';
 
-import CustomInput from '../CustomInput';
-
+import CustomInput from '@/entities/CustomInput';
 import dayjs from '@/utils/dayjs';
 
 type DatePickerProps = {
