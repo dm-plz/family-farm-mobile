@@ -1,7 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useMutation, useQuery, UseQueryResult } from '@tanstack/react-query';
+import _ from 'lodash';
 
-import { postSignIn, postSignUp, validateInviteCode } from '@/api/auth';
+import {
+  postSignIn,
+  postSignUp,
+  validateInviteCode,
+  validateNickName,
+} from '@/api/auth';
 import { getMy } from '@/api/my';
 import queryClient from '@/api/queryClient';
 import { authRouteNames } from '@/constants';
@@ -16,6 +22,7 @@ export const authQueryKeys = {
     'validateInviteCode',
     inviteCode,
   ],
+  validateNickName: (nickName: string) => ['validateNickName', nickName],
 };
 
 const ASYNC_STORAGE_KEY = {
@@ -101,6 +108,21 @@ export function useValidateInviteCode(inviteCode: string | null) {
     queryKey: authQueryKeys.validateInviteCode(inviteCode),
     queryFn: () => validateInviteCode({ inviteCode } as { inviteCode: string }),
     enabled: !!inviteCode && inviteCode.length === 8,
+    staleTime: 1000,
+  });
+}
+
+export function useValidateNickName(rawNickName?: string) {
+  const nickName = rawNickName?.trim();
+
+  return useQuery({
+    queryKey: authQueryKeys.validateNickName(nickName ?? ''),
+    queryFn: _.throttle(
+      () => validateNickName({ nickName } as { nickName: string }),
+      300,
+      { trailing: false },
+    ),
+    enabled: !!nickName && nickName.length > 0,
     staleTime: 1000,
   });
 }
