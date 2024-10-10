@@ -1,18 +1,18 @@
 import { kyInstance } from './ky';
 import { authApis } from './routes';
 
-import { AlertToken, BirthType, GoupRole, OAuthAgent } from '@/types';
+import { AuthAgentToken } from '@/business/services/authorizeService';
+import { AlertToken, BirthType, FamilyRole, AuthAgent } from '@/types';
 import { createUrl } from '@/utils/url';
 
 type BodySignUp = {
   nickName: string;
-  OAuthProvider: OAuthAgent;
-  birth: Date;
+  inviteCode: null | string;
+  oAuthProvider: AuthAgent;
+  birthday: Date;
   birthType: BirthType;
-  email: String;
-  groupRole: GoupRole;
-  familyCode: null | string;
-  alertToken: AlertToken;
+  familyRole: FamilyRole;
+  registerAlertToken: AlertToken;
 };
 
 type ResponseToken = {
@@ -28,8 +28,8 @@ async function postSignUp(body: BodySignUp) {
 }
 
 type BodySignIn = {
-  OAuthProvider: OAuthAgent;
-  AuthorizationCode: string;
+  agent: AuthAgent;
+  agentToken: AuthAgentToken;
 };
 
 async function postSignIn(body: BodySignIn) {

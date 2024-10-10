@@ -11,15 +11,15 @@ type ResponseGetMy = {
   familyCode: string;
 } & UserInfo;
 
-async function getMy(param: ParamGetMy) {
-  const apiUrl = createUrl(myApis.getMy, { param });
+async function getMy() {
+  const apiUrl = createUrl(myApis.getMy);
   return await kyInstance.get(apiUrl).json<ResponseGetMy>();
 }
 
 type ParamPatchMy = { userId: string };
-
-async function patchMy(param: ParamPatchMy) {
-  const apiUrl = createUrl(myApis.patchMy, { param });
+//TODO: 수정을 위해 사용 가능한 데이터 타입 선언해야 함
+async function patchMy() {
+  const apiUrl = createUrl(myApis.patchMy);
   return await kyInstance.patch(apiUrl).json();
 }
 

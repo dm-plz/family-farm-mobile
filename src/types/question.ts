@@ -1,4 +1,4 @@
-import { GoupRole } from './user';
+import { FamilyRole } from './user';
 
 export type Question = {
   questionHistoryId: number;
@@ -7,7 +7,7 @@ export type Question = {
 
 export type Answer = {
   nickname: string;
-  groupRole: GoupRole;
+  groupRole: FamilyRole;
   emoji: string | null;
   content: string;
   createAt: Date;

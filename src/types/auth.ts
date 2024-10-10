@@ -9,3 +9,8 @@ export type AlertToken = {
   deviceId: string;
   tokenValue: string;
 };
+
+export type AuthToken = {
+  accessToken: string;
+  refreshToken: string;
+};
