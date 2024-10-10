@@ -46,17 +46,17 @@ async function reIssueToken() {
   return await kyInstance.patch(authApis.reIssueToken).json<ResponseToken>();
 }
 
-type QueryValidateFamilyCode = {
-  familyCode: string;
+type QueryValidateInviteCode = {
+  inviteCode: string;
 };
 
-type ResponseValidateFamilyCode = {
+type ResponseValidateInviteCode = {
   isValidate: boolean;
 };
 
-async function validateFamilyCode(query: QueryValidateFamilyCode) {
+async function validateInviteCode(query: QueryValidateInviteCode) {
   const apiUrl = createUrl(authApis.validateFamilyCode, { query });
-  return await kyInstance.get(apiUrl).json<ResponseValidateFamilyCode>();
+  return await kyInstance.get(apiUrl).json<ResponseValidateInviteCode>();
 }
 
 type BodyReRegistrationAlertToken = {
@@ -73,14 +73,14 @@ export {
   postSignIn,
   getSignOut,
   reIssueToken,
-  validateFamilyCode,
+  validateInviteCode,
   reRegistrationAlertToken,
 };
 export type {
   BodySignUp,
   ResponseToken,
   BodySignIn,
-  QueryValidateFamilyCode,
-  ResponseValidateFamilyCode,
+  QueryValidateInviteCode,
+  ResponseValidateInviteCode,
   BodyReRegistrationAlertToken,
 };
