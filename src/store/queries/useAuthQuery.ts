@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useMutation, useQuery, UseQueryResult } from '@tanstack/react-query';
 
-import { postSignIn, postSignUp } from '@/api/auth';
+import { postSignIn, postSignUp, validateInviteCode } from '@/api/auth';
 import { getMy } from '@/api/my';
 import queryClient from '@/api/queryClient';
 import { authRouteNames } from '@/constants';
@@ -12,6 +12,10 @@ import { navigate } from '@/utils/navigation';
 export const authQueryKeys = {
   keychainToken: () => ['token-from-keychain'],
   my: () => ['my-information'],
+  validateInviteCode: (inviteCode: string | null) => [
+    'validateInviteCode',
+    inviteCode,
+  ],
 };
 
 const ASYNC_STORAGE_KEY = {
@@ -89,5 +93,14 @@ export function useSignUp() {
     onError: () => {
       //TODO: 어떻게 처리해야할지 정해야 함
     },
+  });
+}
+
+export function useValidateInviteCode(inviteCode: string | null) {
+  return useQuery({
+    queryKey: authQueryKeys.validateInviteCode(inviteCode),
+    queryFn: () => validateInviteCode({ inviteCode } as { inviteCode: string }),
+    enabled: !!inviteCode && inviteCode.length === 8,
+    staleTime: 1000,
   });
 }
