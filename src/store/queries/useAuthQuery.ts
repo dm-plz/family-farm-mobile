@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useMutation, useQuery, UseQueryResult } from '@tanstack/react-query';
-import _ from 'lodash';
+import lodash from 'lodash';
 
 import {
   postSignIn,
@@ -12,12 +12,13 @@ import { getMy } from '@/api/my';
 import queryClient from '@/api/queryClient';
 import { authRouteNames } from '@/constants';
 import { useAuthStore } from '@/store/stores';
+import useSignupStore from '@/store/stores/signupStore';
 import type { AuthToken } from '@/types';
 import { navigate } from '@/utils/navigation';
 
 export const authQueryKeys = {
-  keychainToken: () => ['token-from-keychain'],
-  my: () => ['my-information'],
+  authToken: () => ['authToken'],
+  my: () => ['my'],
   validateInviteCode: (inviteCode: string | null) => [
     'validateInviteCode',
     inviteCode,
@@ -32,7 +33,7 @@ const ASYNC_STORAGE_KEY = {
 
 export function useGetAuthTokens(): UseQueryResult<Partial<AuthToken>> {
   return useQuery({
-    queryKey: authQueryKeys.keychainToken(),
+    queryKey: authQueryKeys.authToken(),
     queryFn: async () => {
       const accessToken =
         (await AsyncStorage.getItem(ASYNC_STORAGE_KEY.accessToken)) ??
@@ -50,6 +51,7 @@ export function useGetAuthTokens(): UseQueryResult<Partial<AuthToken>> {
 
 export function useSigninWithAgent() {
   const { setIsLogin } = useAuthStore();
+  const { setAuthAgent } = useSignupStore();
 
   return useMutation({
     mutationFn: postSignIn,
@@ -59,14 +61,16 @@ export function useSigninWithAgent() {
         AsyncStorage.setItem(ASYNC_STORAGE_KEY.refreshToken, refreshToken),
       ]).then(() => {
         queryClient.invalidateQueries({
-          queryKey: authQueryKeys.keychainToken(),
+          queryKey: authQueryKeys.authToken(),
           refetchType: 'all',
         });
         setIsLogin(true);
       }),
-    onError: () => {
-      //FIXME: 로그인 실패를 제외한 에러에서는 다른 동작이 진행되어야 함
+    onError: (_, { agent }) => {
+      //FIXME: 로그인 실패를 제외한 에러에서는 다른 동작이 진행되어야 함 (tyr...catch 구문 전에 해당 코드 추가)
+
       try {
+        setAuthAgent(agent);
         navigate(authRouteNames.JOIN1);
       } catch (error) {
         //NOTE: 해당 에러의 경우 잘못된 설계로 인해 발생될 확률이 큼
@@ -85,19 +89,47 @@ export function useGetUserInfo() {
 }
 
 export function useSignUp() {
+  const { agent, inviteCode, nickName, familyRole, birthday, birthType } =
+    useSignupStore();
+
   return useMutation({
-    mutationFn: postSignUp,
+    mutationFn: () => {
+      if (
+        ![agent, inviteCode, nickName, familyRole, birthday, birthType].every(
+          v => v !== undefined,
+        )
+      ) {
+        throw new TypeError('sign up api can not recive undefined parameter');
+      }
+      return postSignUp({
+        inviteCode: inviteCode!,
+        nickName: nickName!,
+        familyRole: familyRole!,
+        birthday: birthday!,
+        birthType: birthType!,
+        oAuthProvider: agent!,
+        registerAlertToken: {
+          //BUG: 여기 FCM 관련 값이 없어서 동작하지 않음. FCM 코드 작성을 위해 임시 커밋
+          deviceId: null,
+          tokenValue: null,
+        },
+      });
+    },
     onSuccess: ({ accessToken, refreshToken }) =>
       Promise.all([
         AsyncStorage.setItem(ASYNC_STORAGE_KEY.accessToken, accessToken),
         AsyncStorage.setItem(ASYNC_STORAGE_KEY.refreshToken, refreshToken),
       ]).then(() =>
         queryClient.invalidateQueries({
-          queryKey: authQueryKeys.keychainToken(),
+          queryKey: authQueryKeys.authToken(),
           refetchType: 'all',
         }),
       ),
-    onError: () => {
+    onError: error => {
+      if (error instanceof TypeError) {
+        //NOTE: 잘못된 로직 설계로 인해 발생되는 에러
+        console.error(error);
+      }
       //TODO: 어떻게 처리해야할지 정해야 함
     },
   });
@@ -117,7 +149,7 @@ export function useValidateNickName(rawNickName?: string) {
 
   return useQuery({
     queryKey: authQueryKeys.validateNickName(nickName ?? ''),
-    queryFn: _.throttle(
+    queryFn: lodash.throttle(
       () => validateNickName({ nickName } as { nickName: string }),
       300,
       { trailing: false },

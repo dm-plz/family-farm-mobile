@@ -10,7 +10,7 @@ const requestHeaders: Record<string, string> = {};
 
 function attachHeaderToRequest(request: KyRequest) {
   const authTokens: AuthToken | undefined = queryClient.getQueryData(
-    authQueryKeys.keychainToken(),
+    authQueryKeys.authToken(),
   );
 
   if (authTokens) {
