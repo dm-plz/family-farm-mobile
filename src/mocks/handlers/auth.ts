@@ -1,14 +1,14 @@
 //NOTE: 로그인 실패 -> 회원 가입 로직
-// import {faker} from '@faker-js/faker';
+import { faker } from '@faker-js/faker';
 import { http, HttpResponse } from 'msw';
 
 import { getApiUrl } from '../utils/api';
 
 import {
   //NOTE: 로그인 실패 -> 회원 가입 로직
-  // RequestSignIn,
+  BodySignIn,
   ResponseToken,
-  ResponseValidateFamilyCode,
+  ResponseValidateInviteCode,
 } from '@/api/auth';
 import { authApis } from '@/api/routes';
 import { createFakeToken, setFakeToken } from '@/mocks/utils/token';
@@ -28,38 +28,38 @@ export default [
 
     return HttpResponse.json(response, { status: 201 });
   }),
-  http.post(getApiUrl(authApis.signIn), async () => {
+  http.post(getApiUrl(authApis.signIn), async ({ request }) => {
     //NOTE: 로그인 실패 -> 회원 가입 로직
-    // const body = (await request.json()) as RequestSignIn;
-    // const {OAuthProvider, AuthorizationCode} = body;
-    // const userEmail = faker.internet.email();
-    // const response = {
-    //   code: 'AUTH-0001',
-    //   message: '가입하지 않은 회원입니다. 회원가입을 진행해주세요.',
-    //   data: {
-    //     OAuthProvider,
-    //     AuthorizationCode,
-    //     email: userEmail,
-    //   },
-    // };
-    // return HttpResponse.json(response, {
-    //   status: 403,
-    //   statusText: 'Forbidden',
-    // });
+    const body = (await request.json()) as BodySignIn;
+    const { agent, agentToken } = body;
+    const userEmail = faker.internet.email();
+    const response = {
+      code: 'AUTH-0001',
+      message: '가입하지 않은 회원입니다. 회원가입을 진행해주세요.',
+      data: {
+        OAuthProvider: agent,
+        AuthorizationCode: agentToken,
+        email: userEmail,
+      },
+    };
+    return HttpResponse.json(response, {
+      status: 403,
+      statusText: 'Forbidden',
+    });
 
     //NOTE: 로그인 성공 로직
-    const accessToken = createFakeToken();
-    const refreshToken = createFakeToken(true);
+    // const accessToken = createFakeToken();
+    // const refreshToken = createFakeToken(true);
 
-    setFakeToken({ accessToken, refreshToken });
+    // setFakeToken({ accessToken, refreshToken });
 
-    const response: ResponseToken = {
-      accessToken,
-      refreshToken,
-      grantType: 'Bearer',
-    };
+    // const response: ResponseToken = {
+    //   accessToken,
+    //   refreshToken,
+    //   grantType: 'Bearer',
+    // };
 
-    return HttpResponse.json(response, { status: 201 });
+    // return HttpResponse.json(response, { status: 201 });
   }),
   http.patch(getApiUrl(authApis.signOut), () => {
     const accessToken = createFakeToken();
@@ -89,8 +89,8 @@ export default [
 
     return HttpResponse.json(response, { status: 201 });
   }),
-  http.get(getApiUrl(authApis.validateFamilyCode), () => {
-    const response: ResponseValidateFamilyCode = { isValidate: true };
+  http.get(getApiUrl(authApis.validateInviteCode), () => {
+    const response: ResponseValidateInviteCode = { isValidate: true };
     return HttpResponse.json(response);
   }),
   http.patch(getApiUrl(authApis.reRegistrationAlertToken), () => {
