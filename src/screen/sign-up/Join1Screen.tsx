@@ -7,6 +7,7 @@ import CustomInput from '@/entities/CustomInput';
 import { TextBold, TextRegular } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { AuthStackParams } from '@/navigations/stack/AuthStackNavigator';
+import { useValidateInviteCode } from '@/store/queries/useAuthQuery';
 import useNavigationStore from '@/store/stores/navigationStore';
 import useSignupStore from '@/store/stores/signupStore';
 
@@ -19,14 +20,15 @@ function Join1Screen({ navigation }: Join1ScreenProps) {
   const { navigate, goBack } = useNavigationStore();
   const { setInviteCode, inviteCode } = useSignupStore();
 
+  const [_inviteCode, _setInviteCode] = useState(inviteCode ?? '');
+
+  const isValidate = useValidateInviteCode(_inviteCode ?? '').data?.isValidate;
+
   //TODO: inviteCode가 null이 아닌 경우 코드가 존재하는지 확인해야 함
-  function handleJoin1(inputCode: string | null) {
+  async function handleJoin1(inputCode: string | null) {
     setInviteCode(inputCode);
     navigate(navigation, authRouteNames.JOIN2);
   }
-
-  const [code, setCode] = useState(inviteCode ?? '');
-  const isCompleteCode = code.length === 8;
 
   return (
     <SafeScreenWithHeader
@@ -62,14 +64,14 @@ function Join1Screen({ navigation }: Join1ScreenProps) {
             error={false}
             placeholder="초대 코드 8자리를 입력해 주세요"
             errorMessage="코드가 조회되지 않습니다. 다시 확인해 주세요."
-            value={code}
-            onChangeText={setCode}
+            value={_inviteCode}
+            onChangeText={_setInviteCode}
             maxLength={8}
           />
           <Pressable
-            className={`mt-5 rounded-xl px-9 py-3 ${isCompleteCode ? 'bg-primary-100' : 'bg-gray-300'}`}
-            disabled={!isCompleteCode}
-            onPress={() => handleJoin1(code)}>
+            className={`mt-5 rounded-xl px-9 py-3 ${isValidate ? 'bg-primary-100' : 'bg-gray-300'}`}
+            disabled={!isValidate}
+            onPress={() => handleJoin1(_inviteCode)}>
             <TextBold className="text-center text-h4 text-white">
               입력 완료
             </TextBold>
