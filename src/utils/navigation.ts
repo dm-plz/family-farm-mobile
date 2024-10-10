@@ -10,7 +10,9 @@ export function navigate(name: RouteName) {
     navigationRef.isReady() ||
     !navigationRef.getState().routeNames.some(v => v === name)
   ) {
+    return false;
   }
 
   navigationRef.navigate(name);
+  return true;
 }
