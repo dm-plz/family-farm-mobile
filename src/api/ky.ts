@@ -1,24 +1,35 @@
-import ky from 'ky';
+import ky, { type KyRequest } from 'ky';
+
+import queryClient from './queryClient';
 
 import { API_BASE_URL } from '@/constants/api';
+import { authQueryKeys } from '@/store/queries/useAuthQuery';
+import { AuthToken } from '@/types';
 
 const requestHeaders: Record<string, string> = {};
 
-//TODO: 에러 핸들링 로직 추가
+function attachHeaderToRequest(request: KyRequest) {
+  const authTokens: AuthToken | undefined = queryClient.getQueryData(
+    authQueryKeys.keychainToken(),
+  );
+
+  if (authTokens) {
+    request.headers.set('accessToken', authTokens.accessToken);
+  }
+
+  Object.keys(requestHeaders).forEach(key => {
+    request.headers.set(key, requestHeaders[key]);
+  });
+}
+
+//NOTE: 에러 핸들링은 react-query에서 진행
 const kyInstance = ky.create({
   prefixUrl: API_BASE_URL,
   hooks: {
-    beforeRequest: [
-      request => {
-        Object.keys(requestHeaders).forEach(key => {
-          request.headers.set(key, requestHeaders[key]);
-        });
-      },
-    ],
+    beforeRequest: [attachHeaderToRequest],
   },
 });
 
-//TODO: 로그인 성공시 토큰 전달을 위한 Header 설정
 function setHeader(key: string, value: string) {
   requestHeaders[key] = value;
 }
