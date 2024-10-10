@@ -7,6 +7,7 @@ import CustomInput from '@/entities/CustomInput';
 import { TextBold, TextRegular } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { AuthStackParams } from '@/navigations/stack/AuthStackNavigator';
+import { useValidateNickName } from '@/store/queries/useAuthQuery';
 import useNavigationStore from '@/store/stores/navigationStore';
 import useSignupStore from '@/store/stores/signupStore';
 
@@ -19,13 +20,14 @@ function Join2Screen({ navigation }: Join2ScreenProps) {
   const { navigate, goBack } = useNavigationStore();
   const { setNickName, nickName } = useSignupStore();
 
-  //TODO: 닉네임 중복 여부 확인 로직 들어가야 함
-  function handleJoin2(inputName: string) {
-    setNickName(inputName);
+  const [_nickName, _setNickName] = useState(nickName ?? '');
+
+  const isValidate = useValidateNickName(_nickName).data?.isValidate;
+
+  function handleJoin2() {
+    setNickName(_nickName);
     navigate(navigation, authRouteNames.JOIN3);
   }
-
-  const [name, setName] = useState(nickName ?? '');
 
   return (
     <SafeScreenWithHeader
@@ -57,17 +59,18 @@ function Join2Screen({ navigation }: Join2ScreenProps) {
           <CustomInput
             className="mt-3"
             placeholder="이름 또는 닉네임을 입력해주세요."
-            error={false}
+            error={isValidate === false}
             errorMessage="중복된 이름 또는 닉네임 입니다."
-            success={false}
+            success={isValidate}
             successMessage="사용 가능한 이름 또는 닉네임 입니다."
-            value={name}
-            onChangeText={setName}
+            value={_nickName}
+            onChangeText={_setNickName}
           />
         </View>
         <Pressable
-          className="my-2 mt-auto flex-row items-center justify-center rounded-xl bg-primary-100 px-9 py-3"
-          onPress={() => handleJoin2(name)}>
+          className={`my-2 mt-auto flex-row items-center justify-center rounded-xl px-9 py-3 ${isValidate ? 'bg-primary-100' : 'bg-gray-300'}`}
+          disabled={!isValidate}
+          onPress={() => handleJoin2()}>
           <TextBold className="text-h4 text-white">입력 완료</TextBold>
         </Pressable>
       </View>
