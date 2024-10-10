@@ -11,4 +11,5 @@ export type UserInfo = {
   birthType: BirthType;
   OAuthProvider: AuthAgent;
   createAt: Date;
+  familyId: string;
 };
