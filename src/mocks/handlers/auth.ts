@@ -9,6 +9,7 @@ import {
   BodySignIn,
   ResponseToken,
   ResponseValidateInviteCode,
+  ResponseValidateNickName,
 } from '@/api/auth';
 import { authApis } from '@/api/routes';
 import { createFakeToken, setFakeToken } from '@/mocks/utils/token';
@@ -91,6 +92,10 @@ export default [
   }),
   http.get(getApiUrl(authApis.validateInviteCode), () => {
     const response: ResponseValidateInviteCode = { isValidate: true };
+    return HttpResponse.json(response);
+  }),
+  http.get(getApiUrl(authApis.validateNickName), () => {
+    const response: ResponseValidateNickName = { isValidate: true };
     return HttpResponse.json(response);
   }),
   http.patch(getApiUrl(authApis.reRegistrationAlertToken), () => {
