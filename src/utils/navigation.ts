@@ -10,8 +10,8 @@ export function navigate(routeName: RouteName) {
     throw new Error('Can not find connected navigation container.');
   }
 
-  const { routes } = navigationRef.getState();
-  if (routes.find(route => route.name === routeName)) {
+  const { routeNames } = navigationRef.getRootState();
+  if (!routeNames.find(name => name === routeName)) {
     throw new Error('Tried to navigate to an unavailable route.');
   }
 
