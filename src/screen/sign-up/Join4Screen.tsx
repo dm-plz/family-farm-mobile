@@ -62,7 +62,7 @@ function Join4Screen({ navigation }: Join2ScreenProps) {
         </View>
         <Pressable
           className={`my-2 mt-auto flex-row items-center justify-center rounded-xl px-9 py-3 ${birthday ? 'bg-primary-100' : 'bg-gray-300'}`}
-          disabled={!!birthday}
+          disabled={!birthday}
           onPress={() => mutate()}>
           <TextBold className="text-h4 text-white">입력 완료</TextBold>
         </Pressable>
