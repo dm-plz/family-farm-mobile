@@ -4,6 +4,8 @@ import lodash from 'lodash';
 import { NativeModules } from 'react-native';
 import { getUniqueId } from 'react-native-device-info';
 
+import useCredentialStore from '../stores/credentialStore';
+
 import {
   postSignIn,
   postSignUp,
@@ -11,9 +13,7 @@ import {
   validateNickName,
 } from '@/api/auth';
 import { getMy } from '@/api/my';
-import queryClient from '@/api/queryClient';
 import { authRouteNames } from '@/constants';
-import { useAuthStore } from '@/store/stores';
 import useSignupStore from '@/store/stores/signupStore';
 import type { AuthToken } from '@/types';
 import { navigate } from '@/utils/navigation';
@@ -53,22 +53,13 @@ export function useGetAuthTokens(): UseQueryResult<Partial<AuthToken>> {
 }
 
 export function useSigninWithAgent() {
-  const { setIsLogin } = useAuthStore();
   const { setAuthAgent } = useSignupStore();
+  const { setToken } = useCredentialStore();
 
   return useMutation({
     mutationFn: postSignIn,
     onSuccess: ({ accessToken, refreshToken }) =>
-      Promise.all([
-        AsyncStorage.setItem(ASYNC_STORAGE_KEY.accessToken, accessToken),
-        AsyncStorage.setItem(ASYNC_STORAGE_KEY.refreshToken, refreshToken),
-      ]).then(() => {
-        queryClient.invalidateQueries({
-          queryKey: authQueryKeys.authToken(),
-          refetchType: 'all',
-        });
-        setIsLogin(true);
-      }),
+      setToken({ accessToken, refreshToken }),
     onError: (_, { agent }) => {
       //FIXME: 로그인 실패를 제외한 에러에서는 다른 동작이 진행되어야 함 (tyr...catch 구문 전에 해당 코드 추가)
 
@@ -107,6 +98,8 @@ export function useSignUp() {
   const { agent, inviteCode, nickName, familyRole, birthday, birthType } =
     useSignupStore();
   const { data: fcmToken } = useGetFCMToken();
+
+  const { setToken } = useCredentialStore();
   return useMutation({
     mutationFn: async () => {
       if (
@@ -137,15 +130,7 @@ export function useSignUp() {
       });
     },
     onSuccess: ({ accessToken, refreshToken }) =>
-      Promise.all([
-        AsyncStorage.setItem(ASYNC_STORAGE_KEY.accessToken, accessToken),
-        AsyncStorage.setItem(ASYNC_STORAGE_KEY.refreshToken, refreshToken),
-      ]).then(() =>
-        queryClient.invalidateQueries({
-          queryKey: authQueryKeys.authToken(),
-          refetchType: 'all',
-        }),
-      ),
+      setToken({ accessToken, refreshToken }),
     onError: error => {
       if (error instanceof TypeError) {
         //NOTE: 잘못된 로직 설계로 인해 발생되는 에러

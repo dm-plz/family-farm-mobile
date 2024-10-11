@@ -1,20 +1,16 @@
 import ky, { type KyRequest } from 'ky';
 
-import queryClient from './queryClient';
-
 import { API_BASE_URL } from '@/constants/api';
-import { authQueryKeys } from '@/store/queries/useAuthQuery';
-import { AuthToken } from '@/types';
+import useCredentialStore from '@/store/stores/credentialStore';
 
 const requestHeaders: Record<string, string> = {};
 
-function attachHeaderToRequest(request: KyRequest) {
-  const authTokens: AuthToken | undefined = queryClient.getQueryData(
-    authQueryKeys.authToken(),
-  );
+function useAttachHeaderToRequest(request: KyRequest) {
+  const { accessToken, refreshToken } = useCredentialStore();
 
-  if (authTokens) {
-    request.headers.set('accessToken', authTokens.accessToken);
+  if (accessToken && refreshToken) {
+    request.headers.set('accessToken', accessToken);
+    request.headers.set('refreshToken', refreshToken);
   }
 
   Object.keys(requestHeaders).forEach(key => {
@@ -26,7 +22,7 @@ function attachHeaderToRequest(request: KyRequest) {
 const kyInstance = ky.create({
   prefixUrl: API_BASE_URL,
   hooks: {
-    beforeRequest: [attachHeaderToRequest],
+    beforeRequest: [useAttachHeaderToRequest],
   },
 });
 
