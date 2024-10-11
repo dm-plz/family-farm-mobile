@@ -6,7 +6,7 @@ import useCredentialStore from '@/store/stores/credentialStore';
 const requestHeaders: Record<string, string> = {};
 
 function useAttachHeaderToRequest(request: KyRequest) {
-  const { accessToken, refreshToken } = useCredentialStore();
+  const { accessToken, refreshToken } = useCredentialStore.getState();
 
   if (accessToken && refreshToken) {
     request.headers.set('accessToken', accessToken);
