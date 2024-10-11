@@ -1209,6 +1209,8 @@ PODS:
     - React-utils (= 0.74.3)
   - RNCAsyncStorage (2.0.0):
     - React-Core
+  - RNDeviceInfo (13.1.0):
+    - React-Core
   - RNGestureHandler (2.18.1):
     - DoubleConversion
     - glog
@@ -1346,6 +1348,7 @@ DEPENDENCIES:
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - "RNGoogleSignin (from `../node_modules/@react-native-google-signin/google-signin`)"
   - RNKeychain (from `../node_modules/react-native-keychain`)
@@ -1488,6 +1491,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
+  RNDeviceInfo:
+    :path: "../node_modules/react-native-device-info"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNGoogleSignin:
@@ -1569,6 +1574,7 @@ SPEC CHECKSUMS:
   React-utils: a06061b3887c702235d2dac92dacbd93e1ea079e
   ReactCommon: f00e436b3925a7ae44dfa294b43ef360fbd8ccc4
   RNCAsyncStorage: d35c79ffba52c1013013e16b1fc295aec2feabb6
+  RNDeviceInfo: e13b7d68878fba693c9fbb13ca4d56ad57d95917
   RNGestureHandler: efed690b8493a00b99654043daeb1335276ac4a2
   RNGoogleSignin: 08dc4ba7eac2096c7fecfe109f0950fa4683c803
   RNKeychain: 1d8f55e26c6eb0bbd674cc9840156746d41819e8
