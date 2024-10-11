@@ -1,6 +1,10 @@
 import EncryptedStorage from 'react-native-encrypted-storage';
 
-export type EncryptedStorageRecord = {};
+import { CredentialStoreState } from '@/store/stores/credentialStore';
+
+export type EncryptedStorageRecord = {
+  credential_token: Required<CredentialStoreState>;
+};
 
 type EncryptedStorageKey = keyof EncryptedStorageRecord;
 
