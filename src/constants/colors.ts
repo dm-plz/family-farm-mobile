@@ -12,7 +12,8 @@ const colors = {
   },
   primary: {
     100: '#1bb876',
-    8: '#1bb876',
+    8: '#1bb87614',
+    4: '1bb8760a',
   },
   kakaoColor: '#FEE500',
   appleColor: '#222222',
