@@ -12,7 +12,6 @@ import {
   validateInviteCode,
   validateNickName,
 } from '@/api/auth';
-import { getMy } from '@/api/my';
 import { authRouteNames } from '@/constants';
 import useSignupStore from '@/store/stores/signupStore';
 import type { AuthToken } from '@/types';
@@ -20,7 +19,6 @@ import { navigate } from '@/utils/navigation';
 
 export const authQueryKeys = {
   authToken: () => ['authToken'],
-  my: () => ['my'],
   fcmToken: () => ['fcmToken'],
   validateInviteCode: (inviteCode: string | null) => [
     'validateInviteCode',
@@ -71,14 +69,6 @@ export function useSigninWithAgent() {
         console.error(error);
       }
     },
-  });
-}
-
-export function useGetUserInfo() {
-  return useQuery({
-    queryKey: authQueryKeys.my(),
-    queryFn: () => getMy(),
-    staleTime: 1000 * 60 * 60 * 24,
   });
 }
 
