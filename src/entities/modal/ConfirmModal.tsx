@@ -1,7 +1,6 @@
 import { Modal, Pressable, StyleSheet, View } from 'react-native';
 
-import { TextBold, TextRegular } from './fonts';
-
+import { TextBold, TextRegular } from '@/entities/fonts';
 import { useModalStore } from '@/store/stores';
 
 function ConfirmModal() {

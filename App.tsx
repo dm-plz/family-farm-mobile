@@ -5,7 +5,7 @@ import ReactNativeModule, { NativeModules } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import queryClient from '@/api/queryClient';
-import ConfirmModal from '@/entities/ConfirmModal';
+import ConfirmModal from '@/entities/modal/ConfirmModal';
 import { initMSW } from '@/mocks/init';
 import RootNavigator from '@/navigations/RootNavigator';
 import './gesture-handler';
