@@ -14,5 +14,6 @@ export function createUser(): UserInfo {
     birthType: getRandom(birthType),
     OAuthProvider: getRandom(oauthAgents),
     createAt: faker.date.past(),
+    familyId: faker.string.numeric({ length: 6 }),
   };
 }

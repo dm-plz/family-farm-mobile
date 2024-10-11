@@ -15,7 +15,17 @@ const fakeFamily = [
 ];
 
 export default [
-  http.get(getApiUrl(myApis.getMy), () => {
+  http.get(getApiUrl(myApis.getMy), ({ request }) => {
+    if (!request.headers.get('accessToken')) {
+      return HttpResponse.json(
+        {},
+        {
+          status: 403,
+          statusText: 'Forbidden',
+        },
+      );
+    }
+
     const response: ResponseGetMy = {
       ...fakeFamily[0],
       family: fakeFamily,
