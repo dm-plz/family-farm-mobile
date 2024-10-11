@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useMutation, useQuery, UseQueryResult } from '@tanstack/react-query';
 import lodash from 'lodash';
+import { NativeModules } from 'react-native';
+import { getUniqueId } from 'react-native-device-info';
 
 import {
   postSignIn,
@@ -19,6 +21,7 @@ import { navigate } from '@/utils/navigation';
 export const authQueryKeys = {
   authToken: () => ['authToken'],
   my: () => ['my'],
+  fcmToken: () => ['fcmToken'],
   validateInviteCode: (inviteCode: string | null) => [
     'validateInviteCode',
     inviteCode,
@@ -88,19 +91,38 @@ export function useGetUserInfo() {
   });
 }
 
+export function useGetFCMToken() {
+  const { FirebaseMessagingModule } = NativeModules;
+
+  return useQuery({
+    queryKey: authQueryKeys.fcmToken(),
+    queryFn: (): string => FirebaseMessagingModule.getToken(),
+    staleTime: Infinity,
+  });
+}
+
+// TODO: FCM Token 재발급시에 사용할 mutation 만들어야 함
+
 export function useSignUp() {
   const { agent, inviteCode, nickName, familyRole, birthday, birthType } =
     useSignupStore();
-
+  const { data: fcmToken } = useGetFCMToken();
   return useMutation({
-    mutationFn: () => {
+    mutationFn: async () => {
       if (
-        ![agent, inviteCode, nickName, familyRole, birthday, birthType].every(
-          v => v !== undefined,
-        )
+        ![
+          agent,
+          inviteCode,
+          nickName,
+          familyRole,
+          birthday,
+          birthType,
+          fcmToken,
+        ].every(v => v !== undefined)
       ) {
         throw new TypeError('sign up api can not recive undefined parameter');
       }
+      const deviceId = await getUniqueId();
       return postSignUp({
         inviteCode: inviteCode!,
         nickName: nickName!,
@@ -109,9 +131,8 @@ export function useSignUp() {
         birthType: birthType!,
         oAuthProvider: agent!,
         registerAlertToken: {
-          //BUG: 여기 FCM 관련 값이 없어서 동작하지 않음. FCM 코드 작성을 위해 임시 커밋
-          deviceId: null,
-          tokenValue: null,
+          deviceId: deviceId,
+          tokenValue: fcmToken!,
         },
       });
     },
