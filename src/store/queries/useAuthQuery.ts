@@ -6,15 +6,12 @@ import { getUniqueId } from 'react-native-device-info';
 
 import useCredentialStore from '../stores/credentialStore';
 
-import { userQueryKeys } from './user';
-
 import {
   postSignIn,
   postSignUp,
   validateInviteCode,
   validateNickName,
 } from '@/api/auth';
-import queryClient from '@/api/queryClient';
 import { authRouteNames } from '@/constants';
 import useSignupStore from '@/store/stores/signupStore';
 import type { AuthToken } from '@/types';
@@ -124,9 +121,7 @@ export function useSignUp() {
     },
     onSuccess: ({ accessToken, refreshToken }) => {
       setToken({ accessToken, refreshToken });
-      queryClient.invalidateQueries({
-        queryKey: userQueryKeys.my(),
-      });
+      navigate('Join5');
     },
     onError: error => {
       if (error instanceof TypeError) {

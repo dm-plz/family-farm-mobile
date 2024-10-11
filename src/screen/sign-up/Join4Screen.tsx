@@ -11,12 +11,12 @@ import { useSignUp } from '@/store/queries/useAuthQuery';
 import useNavigationStore from '@/store/stores/navigationStore';
 import useSignupStore from '@/store/stores/signupStore';
 
-type Join2ScreenProps = NativeStackScreenProps<
+type Join4ScreenProps = NativeStackScreenProps<
   AuthStackParams,
   typeof authRouteNames.JOIN4
 >;
 
-function Join4Screen({ navigation }: Join2ScreenProps) {
+function Join4Screen({ navigation }: Join4ScreenProps) {
   const { goBack } = useNavigationStore();
   const { birthday, birthType, setBirthday, setBirthType } = useSignupStore();
   const { mutate } = useSignUp();

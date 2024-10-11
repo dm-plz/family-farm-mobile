@@ -13,13 +13,13 @@ import {
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { AuthStackParams } from '@/navigations/stack/AuthStackNavigator';
 
-type Join2ScreenProps = NativeStackScreenProps<
+type Join5ScreenProps = NativeStackScreenProps<
   AuthStackParams,
   typeof authRouteNames.JOIN5
 >;
 
-function Join5Screen(_: Join2ScreenProps) {
-  const { signUpSuccess } = useAuth();
+function Join5Screen(_: Join5ScreenProps) {
+  const { signupSuccess } = useAuth();
 
   return (
     <SafeScreenWithHeader
@@ -69,7 +69,7 @@ function Join5Screen(_: Join2ScreenProps) {
       </View>
       <Pressable
         className="mx-5 mb-2 mt-5 rounded-xl bg-gray-500 px-9 py-4"
-        onPress={signUpSuccess}>
+        onPress={signupSuccess}>
         <TextBold className="text-center text-h4 text-white">홈으로</TextBold>
       </Pressable>
     </SafeScreenWithHeader>

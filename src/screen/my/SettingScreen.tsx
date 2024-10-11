@@ -2,7 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import { Image, Pressable, StyleSheet, Switch, View } from 'react-native';
 
-import { useSignout } from '@/business/hooks/useSignout';
+import useAuth from '@/business/hooks/useAuth';
 import { colors, settingRouteNames } from '@/constants';
 import { TextBold, TextMedium, TextRegular } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
@@ -16,7 +16,7 @@ type SettingScreenProps = NativeStackScreenProps<
 export default function SettingScreen({ navigation }: SettingScreenProps) {
   const [isAlarm, setIsAlram] = useState(false);
   const [isMarketing, setIsMarketing] = useState(false);
-  const { signout } = useSignout();
+  const { signout } = useAuth();
 
   const { navigate, goBack } = useNavigationStore();
 

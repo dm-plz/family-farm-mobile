@@ -14,7 +14,7 @@ import { TextMedium, TextSemiBold } from '@/entities/fonts';
 import { isIOS } from '@/utils/platform';
 
 function SignInScreen() {
-  const { authorize } = useAuth();
+  const { signin } = useAuth();
 
   return (
     <ImageBackground
@@ -34,7 +34,7 @@ function SignInScreen() {
           <View className="my-4">
             <Pressable
               className="flex h-11 flex-row items-center rounded-lg bg-white px-4"
-              onPress={() => authorize('google')}>
+              onPress={() => signin('google')}>
               <Image
                 source={require('@/assets/img/google-logo.png')}
                 className="h-5 w-5"
@@ -46,7 +46,7 @@ function SignInScreen() {
             <Pressable
               className="my-3 flex h-11 flex-row items-center rounded-lg px-4"
               style={[styles.kakaoLoginButton]}
-              onPress={() => authorize('kakao')}>
+              onPress={() => signin('kakao')}>
               <Image
                 source={require('@/assets/img/kakao-logo.png')}
                 className="h-5 w-5"
@@ -58,7 +58,7 @@ function SignInScreen() {
             {isIOS() && (
               <Pressable
                 className="flex h-11 flex-row items-center rounded-lg px-4"
-                onPress={() => authorize('apple')}
+                onPress={() => signin('apple')}
                 style={[styles.appleLoginButton]}>
                 <Image
                   source={require('@/assets/img/apple-logo.png')}
