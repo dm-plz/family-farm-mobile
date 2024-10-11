@@ -5,6 +5,7 @@ import { Image, Pressable, StyleSheet, Switch, View } from 'react-native';
 import useAuth from '@/business/hooks/useAuth';
 import { colors, settingRouteNames } from '@/constants';
 import { TextBold, TextMedium, TextRegular } from '@/entities/fonts';
+import WebViewModal from '@/entities/modal/WebViewModal';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { SettingStackParams } from '@/navigations/stack/SettingStackNavigator';
 import useNavigationStore from '@/store/stores/navigationStore';
@@ -17,6 +18,11 @@ export default function SettingScreen({ navigation }: SettingScreenProps) {
   const [isAlarm, setIsAlram] = useState(false);
   const [isMarketing, setIsMarketing] = useState(false);
   const { signout } = useAuth();
+
+  const [webViewSourceUri, setWebViewSourceUri] = useState<string | undefined>(
+    undefined,
+  );
+  const [webViewTitle, setWebViewTitle] = useState<string | undefined>();
 
   const { navigate, goBack } = useNavigationStore();
 
@@ -35,6 +41,12 @@ export default function SettingScreen({ navigation }: SettingScreenProps) {
         ),
       }}
       title="설정">
+      <WebViewModal
+        title={webViewTitle}
+        source={{ uri: webViewSourceUri ?? '' }}
+        visible={!!webViewTitle}
+        close={() => setWebViewTitle(undefined)}
+      />
       <Pressable
         onPress={() => navigate(navigation, settingRouteNames.PROFILE)}>
         <View className="mx-5 my-5 flex flex-row items-center">
@@ -91,7 +103,14 @@ export default function SettingScreen({ navigation }: SettingScreenProps) {
       </View>
       <View className="mt-5">
         <TextBold className="ml-5 text-h3 leading-6">문의하기</TextBold>
-        <View className="mt-4 flex flex-row items-center border-b border-gray-25 px-5 pb-3">
+        <Pressable
+          className="mt-4 flex flex-row items-center border-b border-gray-25 px-5 pb-3"
+          onPress={() => {
+            setWebViewSourceUri(
+              'https://www.notion.so/001336db727a461b8ed76c9731b7c690?pvs=4',
+            );
+            setWebViewTitle('자주 묻는 질문');
+          }}>
           <TextRegular>자주 묻는 질문</TextRegular>
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}
@@ -99,8 +118,8 @@ export default function SettingScreen({ navigation }: SettingScreenProps) {
             className="ml-auto h-4 w-4 rotate-180"
             tintColor={colors.gray[100]}
           />
-        </View>
-        <View className="flex flex-row items-center border-b border-gray-25 px-5 py-3">
+        </Pressable>
+        {/* <View className="flex flex-row items-center border-b border-gray-25 px-5 py-3">
           <TextRegular>1:1 문의하기</TextRegular>
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}
@@ -108,11 +127,18 @@ export default function SettingScreen({ navigation }: SettingScreenProps) {
             className="ml-auto h-4 w-4 rotate-180"
             tintColor={colors.gray[100]}
           />
-        </View>
+        </View> */}
       </View>
       <View className="mt-5">
         <TextBold className="ml-5 text-h3 leading-6">약관 및 정책</TextBold>
-        <View className="mt-4 flex flex-row items-center border-b border-gray-25 px-5 pb-3">
+        <Pressable
+          className="mt-4 flex flex-row items-center border-b border-gray-25 px-5 pb-3"
+          onPress={() => {
+            setWebViewSourceUri(
+              'https://www.notion.so/26146cc5edd647109f68442164b0ff22?pvs=4',
+            );
+            setWebViewTitle('이용 약관');
+          }}>
           <TextRegular>이용 약관</TextRegular>
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}
@@ -120,8 +146,15 @@ export default function SettingScreen({ navigation }: SettingScreenProps) {
             className="ml-auto h-4 w-4 rotate-180"
             tintColor={colors.gray[100]}
           />
-        </View>
-        <View className="flex flex-row items-center border-b border-gray-25 px-5 py-3">
+        </Pressable>
+        <Pressable
+          className="flex flex-row items-center border-b border-gray-25 px-5 py-3"
+          onPress={() => {
+            setWebViewSourceUri(
+              'https://www.notion.so/7ea028fe506c4ea4bd615eea0a646b11?pvs=4',
+            );
+            setWebViewTitle('개인 정보 처리 방침');
+          }}>
           <TextRegular>개인 정보 처리 방침</TextRegular>
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}
@@ -129,8 +162,8 @@ export default function SettingScreen({ navigation }: SettingScreenProps) {
             className="ml-auto h-4 w-4 rotate-180"
             tintColor={colors.gray[100]}
           />
-        </View>
-        <View className="flex flex-row items-center border-b border-gray-25 px-5 py-3">
+        </Pressable>
+        {/* <View className="flex flex-row items-center border-b border-gray-25 px-5 py-3">
           <TextRegular>위치 정보 이용 약관</TextRegular>
           <Image
             source={require('@/assets/img/icon-arrow-left.png')}
@@ -138,7 +171,7 @@ export default function SettingScreen({ navigation }: SettingScreenProps) {
             className="ml-auto h-4 w-4 rotate-180"
             tintColor={colors.gray[100]}
           />
-        </View>
+        </View> */}
       </View>
       <Pressable className="ml-5 mt-5" onPress={signout}>
         <TextMedium className="text-body2 leading-4 text-gray-300">
