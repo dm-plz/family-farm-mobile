@@ -8,8 +8,7 @@ type SignupState = Partial<{
   nickName: string;
   familyRole: FamilyRole;
   birthday: Date;
-  birthType: BirthType;
-}>;
+}> & { birthType: BirthType };
 type SignupActions = {
   setAuthAgent: (agent: AuthAgent) => void;
   setInviteCode: (inviteCode: string | null) => void;
@@ -21,13 +20,13 @@ type SignupActions = {
 };
 type Signup = SignupState & SignupActions;
 
-const initSignupState = {
+const initSignupState: SignupState = {
   agent: undefined,
   inviteCode: undefined,
   nickName: undefined,
   familyRole: undefined,
   birthday: undefined,
-  birthType: undefined,
+  birthType: 'SOLAR',
 };
 
 const useSignupStore = create<Signup>(set => ({
