@@ -8,9 +8,7 @@ type IsAuthorizedStoreActions = {
 };
 type IsAuthorizedStore = IsAuthorizedStoreState & IsAuthorizedStoreActions;
 
-const useIsAuthorizedStore = create<IsAuthorizedStore>(set => ({
+export const useIsAuthorizedStore = create<IsAuthorizedStore>(set => ({
   isAuthorized: false,
   setIsAuthorized: isAuthorized => set(() => ({ isAuthorized })),
 }));
-
-export default useIsAuthorizedStore;

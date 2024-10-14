@@ -1,6 +1,6 @@
-import useAuthStore from './authStore';
 import useBackGroundStore from './backgroundStore';
 import useErrorStore from './errorStore';
 import useModalStore from './modalStore';
+export * from './useIsAuthroizedStore';
 
-export { useAuthStore, useBackGroundStore, useErrorStore, useModalStore };
+export { useBackGroundStore, useErrorStore, useModalStore };
