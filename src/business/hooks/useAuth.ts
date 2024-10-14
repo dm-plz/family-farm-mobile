@@ -1,5 +1,4 @@
 import queryClient from '@/api/queryClient';
-import { authorizeWithAgent } from '@/business/services/authorizeService';
 import { defaultRouteNames } from '@/constants';
 import { useSigninWithAgent } from '@/store/queries/useAuthQuery';
 import { userQueryKeys } from '@/store/queries/user';
@@ -7,6 +6,7 @@ import useCredentialStore from '@/store/stores/credentialStore';
 import useNavigationStore from '@/store/stores/navigationStore';
 import useSignupStore from '@/store/stores/signupStore';
 import { AuthAgent } from '@/types';
+import { authorizeWithAgent } from '@/utils/agentAuth';
 
 export default function useAuth() {
   const { moveWithFlush } = useNavigationStore();
