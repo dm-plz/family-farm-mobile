@@ -12,6 +12,7 @@ import {
 } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { AuthStackParams } from '@/navigations/stack/AuthStackNavigator';
+import { setStringToClipboard } from '@/utils/system';
 
 type Join5ScreenProps = NativeStackScreenProps<
   AuthStackParams,
@@ -20,6 +21,7 @@ type Join5ScreenProps = NativeStackScreenProps<
 
 function Join5Screen(_: Join5ScreenProps) {
   const { signupSuccess } = useAuth();
+  const FAMILY_CODE = 'AS12F56E';
 
   return (
     <SafeScreenWithHeader
@@ -48,16 +50,18 @@ function Join5Screen(_: Join5ScreenProps) {
               우리 가족 코드
             </TextRegular>
             <TextSemiBold className="mt-1 text-h3 leading-6 text-black">
-              AS12F56E
+              {FAMILY_CODE}
             </TextSemiBold>
           </View>
-          <View className="mt-2 flex h-10 w-10 items-center justify-center rounded-full border border-primary-4 bg-white p-3">
+          <Pressable
+            className="mt-2 flex h-10 w-10 items-center justify-center rounded-full border border-primary-4 bg-white p-3"
+            onPress={() => setStringToClipboard(FAMILY_CODE)}>
             <Image
               source={require('@/assets/img/icon-copy.png')}
               className="h-4 w-4"
               resizeMode="contain"
             />
-          </View>
+          </Pressable>
         </View>
         <Pressable
           className="mt-2 rounded-3xl bg-primary-100 px-9 py-3"

@@ -1,6 +1,6 @@
 import { type BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { colors, defaultRouteNames, settingRouteNames } from '@/constants';
 import GradientBackground from '@/entities/background/GradientBackground';
@@ -8,6 +8,7 @@ import { TextRegular, TextSemiBold } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { DefaultTabNavigation } from '@/navigations/DefaultTabNavigator';
 import useNavigationStore from '@/store/stores/navigationStore';
+import { setStringToClipboard } from '@/utils/system';
 
 type DestinationOfOtherNavigator = {
   [settingRouteNames.SETTING_NAVIGATOR_NAME]: undefined;
@@ -41,6 +42,8 @@ export default function MyScreen({ navigation }: MymyScreenProps) {
   ];
 
   const { navigate } = useNavigationStore();
+
+  const FAMILY_CODE = 'AS12F56E';
 
   return (
     <GradientBackground>
@@ -105,15 +108,19 @@ export default function MyScreen({ navigation }: MymyScreenProps) {
             <TextRegular className="mb-1 text-gray-300">
               우리 가족 코드
             </TextRegular>
-            <TextSemiBold className="text-h3 text-black">AS12F56E</TextSemiBold>
+            <TextSemiBold className="text-h3 text-black">
+              {FAMILY_CODE}
+            </TextSemiBold>
           </View>
-          <View className="flex h-10 w-10 items-center justify-center rounded-full bg-white">
+          <Pressable
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-white"
+            onPress={() => setStringToClipboard(FAMILY_CODE)}>
             <Image
               source={require('@/assets/img/icon-copy.png')}
               className="h-4 w-4"
               resizeMode="contain"
             />
-          </View>
+          </Pressable>
         </View>
       </SafeScreenWithHeader>
     </GradientBackground>
