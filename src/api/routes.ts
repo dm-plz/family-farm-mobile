@@ -9,7 +9,7 @@ export const authApis = {
 };
 
 export const questionApis = {
-  getQuestion: 'question/:familyId',
+  getQuestion: 'question',
   postAnswer: 'question/answer',
   getAnswer: 'question/answer/:questionHistoryId',
   patchAnswer: 'question/answer/:answerId',

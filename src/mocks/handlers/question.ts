@@ -14,7 +14,7 @@ import { questionApis } from '@/api/routes';
 import { Answer, Question } from '@/types';
 
 const question: Question[] = [
-  { questionHistoryId: 0, question: '지금 이 순간 제일 듣고 싶은 단어는?' },
+  { questionHistoryId: 0, content: '지금 이 순간 제일 듣고 싶은 단어는?' },
 ];
 const answer: Answer[] = [];
 

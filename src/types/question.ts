@@ -2,7 +2,7 @@ import { FamilyRole } from './user';
 
 export type Question = {
   questionHistoryId: number;
-  question: string;
+  content: string;
 };
 
 export type Answer = {

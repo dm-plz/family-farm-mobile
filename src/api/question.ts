@@ -4,16 +4,12 @@ import { questionApis } from './routes';
 import { AlertToken, Answer, Question } from '@/types';
 import { createUrl } from '@/utils/url';
 
-type ParamGetQuestion = {
-  familyId: string;
-};
-
 type ResponseGetQuestion = {
   isAnswered: boolean;
 } & Question;
 
-async function getQuestion(param: ParamGetQuestion) {
-  const apiUrl = createUrl(questionApis.getQuestion, { param });
+async function getQuestion() {
+  const apiUrl = createUrl(questionApis.getQuestion);
   return await kyInstance.get(apiUrl).json<ResponseGetQuestion>();
 }
 
@@ -81,7 +77,6 @@ async function cheerUp(body: BodyCheerUp) {
 
 export { getQuestion, postAnswer, getAnswer, patchAnswer, getList, cheerUp };
 export type {
-  ParamGetQuestion,
   ResponseGetQuestion,
   BodyPostAnswer,
   ParamGetAnswer,
