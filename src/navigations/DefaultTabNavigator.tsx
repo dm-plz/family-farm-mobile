@@ -12,11 +12,13 @@ import {
   answerRouteNames,
   defaultRouteNames,
   settingRouteNames,
+  authRouteNames,
 } from '@/constants';
 import GradientEndBackground from '@/entities/background/GradientEndBackground';
 import { TextMedium } from '@/entities/fonts';
 import {
   AnswerStackNavigator,
+  AuthStackNavigator,
   SettingStackNavigator,
 } from '@/navigations/stack';
 import { AlarmScreen, HomeScreen } from '@/screen/home';
@@ -32,6 +34,7 @@ export type DefaultTabNavigation = {
   [defaultRouteNames.MY]: undefined;
   [defaultRouteNames.FAMILY_ANSWER]: undefined;
   [defaultRouteNames.ALARM]: undefined;
+  [authRouteNames.AUTH_NAVIGATOR_NAME]: undefined;
   [answerRouteNames.ANSWER_NAVIGATOR_NAME]: undefined;
   [settingRouteNames.SETTING_NAVIGATOR_NAME]: undefined;
 };
@@ -65,6 +68,10 @@ export default function DefaultTabNavigator() {
       <DefaultTab.Screen
         name={defaultRouteNames.ALARM}
         component={AlarmScreen}
+      />
+      <DefaultTab.Screen
+        name={authRouteNames.AUTH_NAVIGATOR_NAME}
+        component={AuthStackNavigator}
       />
       <DefaultTab.Screen
         name={settingRouteNames.SETTING_NAVIGATOR_NAME}
