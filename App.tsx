@@ -3,6 +3,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import ReactNativeModule, { NativeModules } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import Toast from 'react-native-toast-message';
 
 import queryClient from '@/api/queryClient';
 import ConfirmModal from '@/entities/modal/ConfirmModal';
@@ -73,13 +74,16 @@ export default function App() {
   }
 
   return (
-    <GestureHandlerRootView>
-      <QueryClientProvider client={queryClient}>
-        <NavigationContainer ref={navigationRef}>
-          <RootNavigator />
-        </NavigationContainer>
-        <ConfirmModal />
-      </QueryClientProvider>
-    </GestureHandlerRootView>
+    <>
+      <GestureHandlerRootView>
+        <QueryClientProvider client={queryClient}>
+          <NavigationContainer ref={navigationRef}>
+            <RootNavigator />
+          </NavigationContainer>
+          <ConfirmModal />
+        </QueryClientProvider>
+      </GestureHandlerRootView>
+      <Toast topOffset={80} visibilityTime={1000} />
+    </>
   );
 }
