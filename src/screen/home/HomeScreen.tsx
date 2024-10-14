@@ -2,7 +2,7 @@ import {
   BottomTabNavigationProp,
   BottomTabScreenProps,
 } from '@react-navigation/bottom-tabs';
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { answerRouteNames, colors, defaultRouteNames } from '@/constants';
@@ -10,7 +10,9 @@ import GradientBackground from '@/entities/background/GradientBackground';
 import { TextBold, TextRegular, TextSemiBold } from '@/entities/fonts';
 import SafeScreenWithHeader from '@/entities/safeScreen/SafeScreenWithHeader';
 import { DefaultTabNavigation } from '@/navigations/DefaultTabNavigator';
+import { useTodayQuestionQuery } from '@/store/queries/question/useTodayQuestionQuery';
 import useNavigationStore from '@/store/stores/navigationStore';
+import { Question } from '@/types';
 
 type HomeScreenProps = BottomTabScreenProps<
   DefaultTabNavigation,
@@ -19,6 +21,8 @@ type HomeScreenProps = BottomTabScreenProps<
 
 export default function HomeScreen({ navigation }: HomeScreenProps) {
   const { navigate } = useNavigationStore();
+  const { data, isSuccess } = useTodayQuestionQuery();
+  const [hideCard, setHideCard] = useState(false);
 
   return (
     <GradientBackground>
@@ -58,41 +62,57 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
             className="mx-auto h-[348] w-[224]"
           />
         </View>
-        <SuggestionCard hasAnsweredToday={false} navigation={navigation} />
+        {isSuccess && !hideCard && (
+          <SuggestionCard
+            isAnswered={data.isAnswered}
+            navigation={navigation}
+            question={data.content}
+            onClose={() => {
+              setHideCard(true);
+            }}
+          />
+        )}
       </SafeScreenWithHeader>
     </GradientBackground>
   );
 }
 
 interface SuggestionCardProps {
-  hasAnsweredToday: boolean;
+  isAnswered: boolean;
   navigation: BottomTabNavigationProp<
     DefaultTabNavigation,
     typeof defaultRouteNames.HOME,
     undefined
   >;
+  question: Question['content'];
+  onClose: () => void;
 }
 
-function SuggestionCard({ hasAnsweredToday, navigation }: SuggestionCardProps) {
+function SuggestionCard({
+  isAnswered,
+  navigation,
+  question,
+  onClose,
+}: SuggestionCardProps) {
   const { navigate } = useNavigationStore();
 
-  const type = hasAnsweredToday ? '답변 완료' : '오늘 하루 질문';
-  const content = hasAnsweredToday
-    ? '우리 가족들의 답변이 궁금하다면?'
-    : '지금 이 순간 제일 듣고 싶은 단어는?';
-  const actionText = hasAnsweredToday ? '보러가기' : '답변하기';
-  const destination = hasAnsweredToday
+  const type = isAnswered ? '답변 완료' : '오늘 하루 질문';
+  const content = isAnswered ? '우리 가족들의 답변이 궁금하다면?' : question;
+  const actionText = isAnswered ? '보러가기' : '답변하기';
+  const destination = isAnswered
     ? defaultRouteNames.FAMILY_ANSWER
     : answerRouteNames.ANSWER_NAVIGATOR_NAME;
   return (
     <View className="absolute bottom-5 z-10" style={[styles.bottomCard]}>
       <View className="relative rounded-3xl border border-primary-100/30 bg-white/90 py-4">
-        <Image
-          source={require('@/assets/img/icon-x.png')}
-          resizeMode="contain"
-          className="absolute right-3 top-3 h-4 w-4"
-          tintColor={colors.gray[300]}
-        />
+        <Pressable onPress={onClose} className="absolute right-3 top-3 z-10">
+          <Image
+            source={require('@/assets/img/icon-x.png')}
+            resizeMode="contain"
+            className="h-4 w-4"
+            tintColor={colors.gray[300]}
+          />
+        </Pressable>
         <TextBold className="text-center text-body3 leading-3 text-primary-100">
           {type}
         </TextBold>
