@@ -1,20 +1,15 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import SplashScreen from 'react-native-splash-screen';
 
-import DefaultTabNavigator from './DefaultTabNavigator';
+import { useIsAuthorizedService } from '../services/useIsAuthorizedService';
 
-import { useIsAuthorizedService } from '@/business/services/useIsAuthorizedService';
-import ErrorScreen from '@/screen/ErrorScreen';
 import { useGetUserInfo } from '@/store/queries/user';
-import { useErrorStore } from '@/store/stores';
 import useCredentialStore from '@/store/stores/credentialStore';
-import { getEncryptStorage } from '@/utils';
+import { getEncryptStorage } from '@/utils/encryptStorage';
 
-export default function RootNavigator() {
-  const { errorType } = useErrorStore();
-
+export default function useInitApp() {
   const { setToken } = useCredentialStore();
-  const { refetch: refetchUserInfo } = useGetUserInfo();
+  const { data: userInfo, refetch: refetchUserInfo } = useGetUserInfo();
   const { setAuthorized: setSignin } = useIsAuthorizedService();
 
   //NOTE: 최초로 1번만 실행 됨
@@ -39,10 +34,5 @@ export default function RootNavigator() {
     })();
   }, [setToken, refetchUserInfo, setSignin]);
 
-  //XXX: ErroType이 변경될 때 보여질 화면 처리 로직도 수정해야 함 (defaultTabNavigator에서 가야 함)
-  if (errorType) {
-    return <ErrorScreen type={400} />;
-  }
-
-  return <DefaultTabNavigator />;
+  return { isAuthroized: !!userInfo };
 }

@@ -6,6 +6,7 @@ import {
   answerRouteNames,
   settingRouteNames,
 } from '@/constants';
+import { navigate } from '@/utils/navigation';
 
 type Navigation = { navigate: (routeName: RouteName) => void };
 
@@ -47,6 +48,7 @@ const useNavigationStore = create<NavigationStore>((set, get) => ({
   },
   moveWithFlush: routeName => {
     set({ prevScreens: [], nextScreens: [], currentScreen: routeName });
+    navigate(routeName);
   },
   goBack: navigation => {
     const { prevScreens, currentScreen, nextScreens } = get();

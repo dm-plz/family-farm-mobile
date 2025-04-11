@@ -1,19 +1,19 @@
+import { useIsAuthorizedService } from '../services/useIsAuthorizedService';
+
 import queryClient from '@/api/queryClient';
-import { defaultRouteNames } from '@/constants';
 import { useSigninWithAgent } from '@/store/queries/useAuthQuery';
 import { userQueryKeys } from '@/store/queries/user';
 import useCredentialStore from '@/store/stores/credentialStore';
-import useNavigationStore from '@/store/stores/navigationStore';
-import useSignupStore from '@/store/stores/signupStore';
 import { AuthAgent } from '@/types';
 import { authorizeWithAgent } from '@/utils/agentAuth';
+import { showToast } from '@/utils/toast';
 
 export default function useAuth() {
-  const { moveWithFlush } = useNavigationStore();
   const { removeToken } = useCredentialStore();
-  const { removeAllState } = useSignupStore();
 
   const { mutate: signinWithAgent } = useSigninWithAgent();
+
+  const { setUnauthorized: setSignout } = useIsAuthorizedService();
 
   return {
     signin: async (agent: AuthAgent) => {
@@ -27,11 +27,9 @@ export default function useAuth() {
     signout: () => {
       removeToken();
       queryClient.removeQueries({ queryKey: userQueryKeys.my() });
-    },
-    signupSuccess: () => {
-      removeAllState();
-      queryClient.invalidateQueries({ queryKey: userQueryKeys.my() });
-      moveWithFlush(defaultRouteNames.HOME);
+      showToast({ title: '성공적으로 로그아웃 되었습니다.' }, 'success', {
+        onShow: () => setSignout(),
+      });
     },
   };
 }

@@ -5,6 +5,9 @@ import { NativeModules } from 'react-native';
 import { getUniqueId } from 'react-native-device-info';
 
 import useCredentialStore from '../stores/credentialStore';
+import useNavigationStore from '../stores/navigationStore';
+
+import { userQueryKeys } from './user';
 
 import {
   postSignIn,
@@ -12,6 +15,7 @@ import {
   validateInviteCode,
   validateNickName,
 } from '@/api/auth';
+import queryClient from '@/api/queryClient';
 import { authRouteNames } from '@/constants';
 import useSignupStore from '@/store/stores/signupStore';
 import type { AuthToken } from '@/types';
@@ -53,17 +57,20 @@ export function useGetAuthTokens(): UseQueryResult<Partial<AuthToken>> {
 export function useSigninWithAgent() {
   const { setAuthAgent } = useSignupStore();
   const { setToken } = useCredentialStore();
+  const { moveWithFlush } = useNavigationStore();
 
   return useMutation({
     mutationFn: postSignIn,
-    onSuccess: ({ accessToken, refreshToken }) =>
-      setToken({ accessToken, refreshToken }),
+    onSuccess: ({ accessToken, refreshToken }) => {
+      setToken({ accessToken, refreshToken });
+    },
     onError: (_, { agent }) => {
       //FIXME: 로그인 실패를 제외한 에러에서는 다른 동작이 진행되어야 함 (tyr...catch 구문 전에 해당 코드 추가)
 
       try {
         setAuthAgent(agent);
-        navigate(authRouteNames.JOIN1);
+        navigate(authRouteNames.AUTH_NAVIGATOR_NAME);
+        moveWithFlush(authRouteNames.JOIN1);
       } catch (error) {
         //NOTE: 해당 에러의 경우 잘못된 설계로 인해 발생될 확률이 큼
         console.error(error);
@@ -121,6 +128,7 @@ export function useSignUp() {
     },
     onSuccess: ({ accessToken, refreshToken }) => {
       setToken({ accessToken, refreshToken });
+      queryClient.invalidateQueries({ queryKey: userQueryKeys.my() });
       navigate('Join5');
     },
     onError: error => {
@@ -132,6 +140,8 @@ export function useSignUp() {
     },
   });
 }
+
+//TODO: signout도 만들어야 함
 
 export function useValidateInviteCode(inviteCode: string | null) {
   return useQuery({

@@ -22,7 +22,12 @@ const getEncryptStorage = async (key: EncryptedStorageKey) => {
 };
 
 const removeEncryptStorage = async (key: EncryptedStorageKey) => {
-  await EncryptedStorage.removeItem(key);
+  try {
+    console.log('removeEncryptStorage');
+    await EncryptedStorage.removeItem(key);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export { setEncryptStorage, getEncryptStorage, removeEncryptStorage };

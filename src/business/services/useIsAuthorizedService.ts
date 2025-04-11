@@ -9,12 +9,12 @@ export function useIsAuthorizedService() {
   const { moveWithFlush } = useNavigationStore();
 
   return {
-    setSignout: () => {
+    setUnauthorized: () => {
       setIsAuthorized(false);
       navigate('AuthStackNavigator');
       moveWithFlush(authRouteNames.SIGN_IN);
     },
-    setSignin: () => {
+    setAuthorized: () => {
       setIsAuthorized(true);
       moveWithFlush(defaultRouteNames.HOME);
     },

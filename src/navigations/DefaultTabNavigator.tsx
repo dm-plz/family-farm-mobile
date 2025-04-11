@@ -169,6 +169,7 @@ function CustomTabBar({ state, navigation }: BottomTabBarProps) {
   const hideTabBarRouteNames: string[] = [
     settingRouteNames.SETTING_NAVIGATOR_NAME,
     answerRouteNames.ANSWER_NAVIGATOR_NAME,
+    authRouteNames.AUTH_NAVIGATOR_NAME,
   ];
 
   if (hideTabBarRouteNames.includes(currentRouteName)) {
